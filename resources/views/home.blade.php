@@ -1,23 +1,182 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="section">
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+        <ul class="collapsible">
+
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+            <li>
+                <div class="collapsible-header">First Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Second Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+            <li>
+                <div class="collapsible-header">Third Stuff</div>
+                <div class="collapsible-body">Here's some content to go along with it and stuff.</div>
+            </li>
+
+        </ul>
+
     </div>
-</div>
+
 @endsection

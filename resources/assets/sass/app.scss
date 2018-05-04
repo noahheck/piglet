@@ -1,14 +1,34 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
+// Materialize CSS
+@import '~materialize-css/sass/materialize.scss';
+
+body {
+  //background-color: $body-bg;
+  @extend .blue, .lighten-5;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  margin-top: 30px;
+}
+
+footer {
+  @extend .blue, .lighten-3;
+}
+
+
+main > .container {
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
