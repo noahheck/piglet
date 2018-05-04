@@ -12,6 +12,9 @@ npm-debug.log
 yarn-error.log
 .env
 
+# Composer
+composer.lock
+
 # Mix build artifacts - should be generated at time of deployment
 /public/css/
 /public/js/
