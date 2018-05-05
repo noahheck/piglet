@@ -28,4 +28,11 @@ body {
   margin-bottom: 60px;
   background-color: #fff;
   border: 1px solid $light-gray-border;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+//
+.has-bold-labels label {
+  font-weight: bold;
 }

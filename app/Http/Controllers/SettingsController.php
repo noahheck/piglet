@@ -13,4 +13,11 @@ class SettingsController extends Controller
             'user' => Auth::user(),
         ]);
     }
+
+    public function update(Request $request)
+    {
+        return view("user-settings", [
+            'user' => Auth::user(),
+        ]);
+    }
 }

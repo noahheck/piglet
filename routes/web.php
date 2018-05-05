@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/my-settings', 'SettingsController@index')->name('user-settings')->middleware("auth");
+Route::post('/my-settings', 'SettingsController@update')->name('user-settings-update')->middleware("auth");
