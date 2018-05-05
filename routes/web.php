@@ -20,3 +20,5 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/my-settings', 'SettingsController@index')->name('user-settings')->middleware("auth");

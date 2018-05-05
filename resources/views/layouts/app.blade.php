@@ -55,9 +55,10 @@
                             <span class="fa fa-user"></span> User
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {{--<a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>--}}
+                            <a class="dropdown-item" href="{{ route("user-settings") }}">
+                                <span class="fa fa-cogs"></span> Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route("logout") }}">
                                 <span class="fa fa-sign-out"></span> Logout
                             </a>
@@ -69,7 +70,7 @@
         </div>
     </nav>
 
-    <div class="main container" style="background-color: #fff; border: 1px solid #ddd;">
+    <div class="main container">
 
         @yield('content')
 
