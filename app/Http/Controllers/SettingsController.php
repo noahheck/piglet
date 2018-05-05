@@ -18,10 +18,14 @@ class SettingsController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->validate(User::getValidations(Auth::user()->id)));
+        $user = Auth::user();
 
-        return view("user-settings", [
-            'user' => Auth::user(),
-        ]);
+        $request->validate(User::getValidations($user->id));
+
+        $user->fill($request->only(['name', 'email']));
+
+        $user->save();
+
+        return redirect(route("user-settings"));
     }
 }
