@@ -15,29 +15,27 @@
         <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
             <div class="text-center">
-                <span class="fa fa-user-circle" style="font-size: 128pt;"></span>
+                <span class="fa fa-user-circle user-image-placeholder"></span>
             </div>
 
             <hr>
 
-            <form method="POST" action="{{ route("user-settings-update") }}" class="has-bold-labels">
+            <form method="POST" action="{{ route("user-settings.update") }}" class="has-bold-labels">
+
+                {{ csrf_field() }}
 
                 <div class="form-group">
                     <label for="user-settings_name">Name</label>
-                    <input type="text" class="form-control" id="user-settings_name" placeholder="Name" value="{{ $user->name }}">
+                    <input type="text" class="form-control" id="user-settings_name" name='name' placeholder="Name" value="{{ $user->name }}">
                 </div>
                 <div class="form-group">
                     <label for="user-settings_email">Email address</label>
-                    <input type="email" class="form-control" id="user-settings_email" aria-describedby="emailHelp" placeholder="Email address" value="{{ $user->email }}">
+                    <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="Email address" value="{{ $user->email }}">
                 </div>
-                {{--<div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>--}}
+
+                <button class="btn btn-primary btn-block" type="submit">
+                    Save
+                </button>
 
             </form>
 

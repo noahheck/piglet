@@ -4,10 +4,22 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    static public function getValidations($userId = null)
+    {
+        $email  = 'required|email|unique:users,email';
+        $email .= ($userId) ? ",$userId" : '';
+
+        return [
+            'name' => 'required|max:255',
+            'email' => $email
+        ];
+    }
 
     /**
      * The attributes that are mass assignable.

@@ -2,3 +2,11 @@
  * sass/user-settings.scss
  */
 
+// Variables
+@import "variables";
+
+.user-image-placeholder {
+  font-size: 128pt;
+  color: $blue-text-color;
+}
+
