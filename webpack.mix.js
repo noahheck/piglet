@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 
 mix
     .js('resources/assets/js/app.js', 'public/js')
+    .js('resources/assets/js/home.js', 'public/js')
 
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
@@ -21,3 +22,11 @@ mix
 
 
     .disableNotifications();
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            "Services": path.resolve(__dirname, "resources/assets/js/services/")
+        }
+    }
+});
