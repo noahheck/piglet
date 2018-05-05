@@ -6,9 +6,9 @@
  */
 
 var $ = require("jquery");
-var m = require("materialize-css");
+// var m = require("materialize-css");
 
-// require('./bootstrap');
+require('./bootstrap');
 
 // window.Vue = require('vue');
 

@@ -6,29 +6,24 @@
 @import "variables";
 
 // Bootstrap
-//@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 
-// Materialize CSS
-@import '~materialize-css/sass/materialize.scss';
+// Font Awesome
+@import '~font-awesome/scss/font-awesome.scss';
 
 body {
-  //background-color: $body-bg;
-  @extend .blue, .lighten-5;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  background-color: $body-bg;
 }
 
-main {
-  flex: 1 0 auto;
-  margin-top: 30px;
+// Header
+
+// right-side drowpdown menu
+.ml-auto .dropdown-menu {
+  left: auto !important;
+  right: 0;
 }
 
-footer {
-  @extend .blue, .lighten-3;
-}
-
-
-main > .container {
-  background-color: #fff;
+.main {
+  margin-top: 20px;
+  margin-bottom: 60px;
 }

@@ -19,3 +19,5 @@ composer.lock
 /public/css/
 /public/js/
 /public/mix-manifest.json
+/public/fonts/vendor/
+

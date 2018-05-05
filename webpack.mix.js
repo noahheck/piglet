@@ -15,7 +15,7 @@ mix
     .js('resources/assets/js/app.js', 'public/js')
 
     // Things to put in vendor file
-    .extract(['jquery', 'materialize-css'])
+    .extract(['jquery', 'bootstrap'])
 
     .sass('resources/assets/sass/app.scss', 'public/css')
 

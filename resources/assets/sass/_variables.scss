@@ -1,8 +1,30 @@
 
 // Body
 $body-bg: #f5f8fa;
+$light-gray-border: #ddd;
+
 
 // Typography
 $font-family-sans-serif: sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Utilities
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin noselect() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.noselect {
+  @include noselect();
+}
