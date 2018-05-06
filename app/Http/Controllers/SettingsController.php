@@ -22,7 +22,7 @@ class SettingsController extends Controller
 
         $request->validate(User::getValidations($user->id));
 
-        $user->fill($request->only(['name', 'email']));
+        $user->fill($request->only(['firstName', 'lastName', 'email']));
 
         $user->save();
 

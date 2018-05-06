@@ -20,24 +20,113 @@
 
             <hr>
 
-            <form method="POST" action="{{ route("user-settings.update") }}" class="has-bold-labels">
+            <div class="card">
 
-                {{ csrf_field() }}
+                <div class="card-body">
 
-                <div class="form-group">
-                    <label for="user-settings_name">Name</label>
-                    <input type="text" class="form-control" id="user-settings_name" name='name' placeholder="Name" value="{{ $user->name }}">
+                    <form method="POST" action="{{ route("user-settings.update") }}" class="has-bold-labels">
+
+                        {{ csrf_field() }}
+
+                        <fieldset>
+                            <legend>User Details</legend>
+
+
+                            @if ($errors->any())
+
+                                <div class="alert alert-danger">
+
+                                    Looks like something went wrong:
+
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+
+                                </div>
+
+                            @endif
+
+                            <div class="form-group">
+                                <label for="user-settings_firstName">First Name</label>
+                                <input type="text" class="form-control" id="user-settings_firstName" name='firstName' placeholder="First Name" value="{{ $user->firstName }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-settings_lastName">Last Name</label>
+                                <input type="text" class="form-control" id="user-settings_lastName" name='lastName' placeholder="Last Name" value="{{ $user->lastName }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-settings_email">Email address</label>
+                                <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="Email address" value="{{ $user->email }}">
+                            </div>
+
+                            <button class="btn btn-primary btn-block" type="submit">
+                                Save
+                            </button>
+
+                        </fieldset>
+
+                    </form>
+
                 </div>
-                <div class="form-group">
-                    <label for="user-settings_email">Email address</label>
-                    <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="Email address" value="{{ $user->email }}">
+
+            </div>
+
+            <hr>
+
+            <h4>You might also want to:</h4>
+
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" href="#"><span class="fa fa-shield"></span> Change your password</a>
+            </div>
+
+            {{--<div class="accordion" id="user-settings_additionalOptions">
+
+                <div class="card">
+
+                    <div class="card-header" id="passwordFormHeader">
+                        <h4>
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#passwordForm" aria-expanded="false" aria-controls="passwordForm">
+                                Change your password
+                            </button>
+                        </h4>
+                    </div>
+
+                    <div id="passwordForm" class="collapse" aria-labelledby="passwordFormHeader" data-parent="#user-settings_additionalOptions">
+
+                        <div class="card-body">
+
+                            <form method="POST" action="{{ route("user-settings.update-password") }}" class="has-bold-labels">
+
+                                {{ csrf_field() }}
+
+                                <div class="form-group">
+                                    <label for="user-settings_password-current">Current Password</label>
+                                    <input type="password" class="form-control" id="user-settings_password-current" name='password-current' placeholder="Current Password" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-settings_password">New Password</label>
+                                    <input type="password" class="form-control" id="user-settings_password" name='password' placeholder="New Password" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-settings_password-confirmation">Confirm</label>
+                                    <input type="password" class="form-control" id="user-settings_password-confirmation" name='password-confirmation' placeholder="Confirm Password" />
+                                </div>
+
+                                <button class="btn btn-warning btn-block" type="submit">
+                                    Update Password
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <button class="btn btn-primary btn-block" type="submit">
-                    Save
-                </button>
-
-            </form>
+            </div>--}}
 
         </div>
 
