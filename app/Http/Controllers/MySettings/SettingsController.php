@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MySettings;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\Controller;
 use App\User;
 
 class SettingsController extends Controller
@@ -13,9 +14,6 @@ class SettingsController extends Controller
     {
         return view("user-settings/home", [
             'user' => Auth::user(),
-//            'firstName' => $user->firstName,
-//            'lastName' => $user->lastName,
-//            'email' => $user->email,
         ]);
     }
 
