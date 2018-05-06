@@ -31,39 +31,46 @@
                         <fieldset>
                             <legend>User Details</legend>
 
+                            @formSuccess('user-settings-success')
 
-                            @if ($errors->any())
+                            @formError
 
-                                <div class="alert alert-danger">
-
-                                    Looks like something went wrong:
-
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-
-                                </div>
-
-                            @endif
+                            {{--@if (Session::has('user-settings-success'))
+                                <div class="alert alert-success">{{ Session::get('user-settings-success') }}</div>
+                            @endif--}}
 
                             <div class="form-group">
                                 <label for="user-settings_firstName">First Name</label>
-                                <input type="text" class="form-control" id="user-settings_firstName" name='firstName' placeholder="First Name" value="{{ $user->firstName }}">
+                                <input type="text" class="form-control" id="user-settings_firstName" name='firstName' placeholder="First Name" value="{{ old('firstName', $user->firstName) }}">
+
+                                @fieldError('firstName')
                             </div>
                             <div class="form-group">
                                 <label for="user-settings_lastName">Last Name</label>
-                                <input type="text" class="form-control" id="user-settings_lastName" name='lastName' placeholder="Last Name" value="{{ $user->lastName }}">
+                                <input type="text" class="form-control" id="user-settings_lastName" name='lastName' placeholder="Last Name" value="{{ old('lastName', $user->lastName) }}">
+
+                                @fieldError('lastName')
                             </div>
                             <div class="form-group">
                                 <label for="user-settings_email">Email address</label>
-                                <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="Email address" value="{{ $user->email }}">
+                                <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="Email address" value="{{ old('email', $user->email) }}">
+
+                                @fieldError('email')
                             </div>
 
-                            <button class="btn btn-primary btn-block" type="submit">
-                                Save
-                            </button>
+                            <div class="row">
+
+                                <div class="col">
+                                    <button class="btn btn-primary btn-block" type="submit">
+                                        Save
+                                    </button>
+                                </div>
+
+                                <div class="col">
+                                    <a class="btn btn-secondary btn-block" href="{{ route("home") }}">Cancel</a>
+                                </div>
+
+                            </div>
 
                         </fieldset>
 

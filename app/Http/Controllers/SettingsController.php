@@ -11,8 +11,11 @@ class SettingsController extends Controller
 {
     public function index(Request $request)
     {
-        return view("user-settings", [
+        return view("user-settings/home", [
             'user' => Auth::user(),
+//            'firstName' => $user->firstName,
+//            'lastName' => $user->lastName,
+//            'email' => $user->email,
         ]);
     }
 
@@ -26,6 +29,8 @@ class SettingsController extends Controller
 
         $user->save();
 
-        return redirect(route("user-settings"));
+        $request->session()->flash('user-settings-success', 'User details saved successfully');
+
+        return redirect()->route("user-settings");
     }
 }
