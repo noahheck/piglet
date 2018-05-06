@@ -53,7 +53,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                            <span class="fa fa-user"></span> User
+                            <span class="fa fa-user"></span> {{ Auth::user()->firstName }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route("user-settings") }}">
