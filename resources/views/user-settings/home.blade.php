@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+- My Settings
+@endsection
+
 @section('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/user-settings.css') }}" />
 @endsection
