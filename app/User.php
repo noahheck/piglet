@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const MIN_PASSWORD_LENGTH = 8;
+
     static public function getValidations($userId = null)
     {
         $email  = 'required|email|unique:users,email';

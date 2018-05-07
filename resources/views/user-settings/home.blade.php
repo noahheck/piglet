@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-- My Settings
+- {{ __('user-settings.my_settings') }}
 @endsection
 
 @section('stylesheets')
@@ -36,6 +36,7 @@
                             <legend>{{ __('user-settings.user_details') }}</legend>
 
                             @formSuccess('user-settings-success')
+                            @formSuccess('user-settings-password-success')
 
                             @formError
 
@@ -85,7 +86,7 @@
             <h4>{{ __('user-settings.other_options') }}:</h4>
 
             <div class="list-group">
-                <a class="list-group-item list-group-item-action" href="#"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
+                <a class="list-group-item list-group-item-action" href="{{ route('user-settings.password') }}"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
             </div>
 
             {{--<div class="accordion" id="user-settings_additionalOptions">

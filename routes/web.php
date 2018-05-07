@@ -24,4 +24,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/my-settings', 'MySettings\SettingsController@index')->name('user-settings')->middleware('auth');
 Route::post('/my-settings', 'MySettings\SettingsController@update')->name('user-settings.update')->middleware('auth');
 
-//Route::post('/my-settings/password', 'SettingsController@updatePassword')->name('user-settings.update-password')->middleware('auth');
+Route::get('/my-settings/password', 'MySettings\PasswordController@index')->name('user-settings.password')->middleware('auth');
+Route::post('/my-settings/password', 'MySettings\PasswordController@update')->name('user-settings.password.update')->middleware('auth');
