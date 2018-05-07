@@ -33,31 +33,27 @@
                         {{ csrf_field() }}
 
                         <fieldset>
-                            <legend>User Details</legend>
+                            <legend>{{ __('user-settings.user_details') }}</legend>
 
                             @formSuccess('user-settings-success')
 
                             @formError
 
-                            {{--@if (Session::has('user-settings-success'))
-                                <div class="alert alert-success">{{ Session::get('user-settings-success') }}</div>
-                            @endif--}}
-
                             <div class="form-group">
-                                <label for="user-settings_firstName">First Name</label>
-                                <input type="text" class="form-control" id="user-settings_firstName" name='firstName' placeholder="First Name" value="{{ old('firstName', $user->firstName) }}">
+                                <label for="user-settings_firstName">{{ __('user.firstName') }}</label>
+                                <input type="text" class="form-control" id="user-settings_firstName" name='firstName' placeholder="{{ __('user.firstName') }}" value="{{ old('firstName', $user->firstName) }}">
 
                                 @fieldError('firstName')
                             </div>
                             <div class="form-group">
-                                <label for="user-settings_lastName">Last Name</label>
-                                <input type="text" class="form-control" id="user-settings_lastName" name='lastName' placeholder="Last Name" value="{{ old('lastName', $user->lastName) }}">
+                                <label for="user-settings_lastName">{{ __('user.lastName') }}</label>
+                                <input type="text" class="form-control" id="user-settings_lastName" name='lastName' placeholder="{{ __('user.lastName') }}" value="{{ old('lastName', $user->lastName) }}">
 
                                 @fieldError('lastName')
                             </div>
                             <div class="form-group">
-                                <label for="user-settings_email">Email address</label>
-                                <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="Email address" value="{{ old('email', $user->email) }}">
+                                <label for="user-settings_email">{{ __('user.email') }}</label>
+                                <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="{{ __('user.email') }}" value="{{ old('email', $user->email) }}">
 
                                 @fieldError('email')
                             </div>
@@ -66,12 +62,12 @@
 
                                 <div class="col">
                                     <button class="btn btn-primary btn-block" type="submit">
-                                        Save
+                                        {{ __('form.save') }}
                                     </button>
                                 </div>
 
                                 <div class="col">
-                                    <a class="btn btn-secondary btn-block" href="{{ route("home") }}">Cancel</a>
+                                    <a class="btn btn-secondary btn-block" href="{{ route("home") }}">{{ __('form.cancel') }}</a>
                                 </div>
 
                             </div>
@@ -86,10 +82,10 @@
 
             <hr>
 
-            <h4>You might also want to:</h4>
+            <h4>{{ __('user-settings.other_options') }}:</h4>
 
             <div class="list-group">
-                <a class="list-group-item list-group-item-action" href="#"><span class="fa fa-shield"></span> Change your password</a>
+                <a class="list-group-item list-group-item-action" href="#"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
             </div>
 
             {{--<div class="accordion" id="user-settings_additionalOptions">
