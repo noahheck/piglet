@@ -2,6 +2,7 @@
 
 return [
     'firstName' => 'First name',
-    'lastName' => 'Last name',
-    'email' => 'Email',
+    'lastName'  => 'Last name',
+    'email'     => 'Email',
+    'timezone'  => 'Timezone',
 ];

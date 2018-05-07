@@ -58,6 +58,16 @@
 
                                 @fieldError('email')
                             </div>
+                            <div class="form-group">
+                                <label for="user-settings_timezone">{{ __('user.timezone') }}</label>
+                                <select class="custom-select" id="user-settings_timezone" name='timezone' aria-describedby="timezoneHelp">
+                                    @foreach(config('piglet.timezones') as $key => $value)
+                                        <option value="{{ $key }}"{{ ($key === old('timezone', $user->timezone)) ? " selected='selected'" : "" }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+
+                                @fieldError('email')
+                            </div>
 
                             <div class="row">
 
