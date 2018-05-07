@@ -48,9 +48,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $timezones = implode(",", array_keys(config("piglet.timezones")));
+
         return Validator::make($data, [
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
+            'timezone' => 'required|in:' . $timezones,
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:' . User::MIN_PASSWORD_LENGTH . '|confirmed',
         ]);
@@ -67,6 +70,7 @@ class RegisterController extends Controller
         return User::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
+            'timezone' => $data['timezone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

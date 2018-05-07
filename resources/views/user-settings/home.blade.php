@@ -66,7 +66,7 @@
                                     @endforeach
                                 </select>
 
-                                @fieldError('email')
+                                @fieldError('timezone')
                             </div>
 
                             <div class="row">

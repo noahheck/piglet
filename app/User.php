@@ -14,13 +14,16 @@ class User extends Authenticatable
 
     static public function getValidations($userId = null)
     {
+        $timezones = implode(',', array_keys(config("piglet.timezones")));
+
         $email  = 'required|email|unique:users,email';
         $email .= ($userId) ? ",$userId" : '';
 
         return [
             'firstName' => 'required|max:255',
-            'lastName' => 'required|max:255',
-            'email' => $email
+            'lastName'  => 'required|max:255',
+            'timezone'  => 'required|in:' . $timezones,
+            'email'     => $email,
         ];
     }
 
@@ -30,7 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstName', 'lastName', 'email', 'password',
+        'firstName', 'lastName', 'timezone', 'email', 'password',
     ];
 
     /**

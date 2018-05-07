@@ -40,6 +40,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="timezone" class="col-md-4 col-form-label text-md-right">{{ __('user.timezone') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="custom-select" name="timezone" id="timezone">
+                                    @foreach (config("piglet.timezones") as $key => $value)
+                                        <option value="{{ $key }}"{{ (old('timezone', 'America/Denver') === $key) ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('timezone'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('timezone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
