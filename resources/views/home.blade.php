@@ -10,7 +10,11 @@
 
         <div class="col">
 
+            @formSuccess('family.create-success')
+
             <h2>Welcome Home!</h2>
+
+            <a href="{{ route('family.create') }}">Let's setup your family!</a>
 
         </div>
 

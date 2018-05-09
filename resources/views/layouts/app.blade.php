@@ -43,11 +43,11 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         {{--<a class="navbar-brand" href="#">Navbar</a>--}}
         <div class="navbar-collapse collapse">
-            {{--<ul class="navbar-nav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="fa fa-users"></span> Family</a>
+                    <a class="nav-link" href="{{ route("home") }}"><span class="fa fa-home"></span> Home</a>
                 </li>
-            </ul>--}}
+            </ul>
 
             @auth
                 <ul class="navbar-nav ml-auto">

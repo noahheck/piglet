@@ -99,53 +99,6 @@
                 <a class="list-group-item list-group-item-action" href="{{ route('user-settings.password') }}"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
             </div>
 
-            {{--<div class="accordion" id="user-settings_additionalOptions">
-
-                <div class="card">
-
-                    <div class="card-header" id="passwordFormHeader">
-                        <h4>
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#passwordForm" aria-expanded="false" aria-controls="passwordForm">
-                                Change your password
-                            </button>
-                        </h4>
-                    </div>
-
-                    <div id="passwordForm" class="collapse" aria-labelledby="passwordFormHeader" data-parent="#user-settings_additionalOptions">
-
-                        <div class="card-body">
-
-                            <form method="POST" action="{{ route("user-settings.update-password") }}" class="has-bold-labels">
-
-                                {{ csrf_field() }}
-
-                                <div class="form-group">
-                                    <label for="user-settings_password-current">Current Password</label>
-                                    <input type="password" class="form-control" id="user-settings_password-current" name='password-current' placeholder="Current Password" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-settings_password">New Password</label>
-                                    <input type="password" class="form-control" id="user-settings_password" name='password' placeholder="New Password" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-settings_password-confirmation">Confirm</label>
-                                    <input type="password" class="form-control" id="user-settings_password-confirmation" name='password-confirmation' placeholder="Confirm Password" />
-                                </div>
-
-                                <button class="btn btn-warning btn-block" type="submit">
-                                    Update Password
-                                </button>
-
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>--}}
-
         </div>
 
     </div>

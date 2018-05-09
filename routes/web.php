@@ -26,3 +26,5 @@ Route::post('/my-settings', 'MySettings\SettingsController@update')->name('user-
 
 Route::get('/my-settings/password', 'MySettings\PasswordController@index')->name('user-settings.password')->middleware('auth');
 Route::post('/my-settings/password', 'MySettings\PasswordController@update')->name('user-settings.password.update')->middleware('auth');
+
+Route::resource('family', 'FamilyController');
