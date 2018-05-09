@@ -21,4 +21,9 @@ class Family extends Model
             'name' => 'required|max:255',
         ];
     }
+
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'creator', 'id');
+    }
 }

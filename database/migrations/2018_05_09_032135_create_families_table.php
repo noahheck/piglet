@@ -17,10 +17,12 @@ class CreateFamiliesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('details');
-            $table->integer('creator');
+            $table->unsignedInteger('creator');
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('creator')->references('id')->on('users');
         });
     }
 

@@ -44,4 +44,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function families()
+    {
+        return $this->hasMany('App\Family', 'creator');
+    }
 }
