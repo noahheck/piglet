@@ -26,4 +26,9 @@ class Family extends Model
     {
         return $this->belongsTo('App\User', 'creator', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->using('App\FamilyUser');
+    }
 }

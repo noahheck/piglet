@@ -47,6 +47,7 @@ class User extends Authenticatable
 
     public function families()
     {
-        return $this->hasMany('App\Family', 'creator');
+//        return $this->hasMany('App\Family', 'creator');
+        return $this->belongsToMany('App\Family')->using('App\FamilyUser');
     }
 }

@@ -16,6 +16,14 @@
 
             <a href="{{ route('family.create') }}">Let's setup your family!</a>
 
+            <ul>
+                @foreach ($families as $family)
+                    <li>
+                        {{ $family->name }}
+                    </li>
+                @endforeach
+            </ul>
+
         </div>
 
     </div>
