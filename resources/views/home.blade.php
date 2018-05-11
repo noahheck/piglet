@@ -19,7 +19,7 @@
             <ul>
                 @foreach ($families as $family)
                     <li>
-                        {{ $family->name }}
+                        <a href="{{ route('family.home', $family) }}">{{ $family->name }}</a>
                     </li>
                 @endforeach
             </ul>
