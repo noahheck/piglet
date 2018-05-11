@@ -14,7 +14,7 @@
 
             <h2>Welcome Home!</h2>
 
-            <a href="{{ route('family.create') }}">Let's setup your family!</a>
+            <a href="{{ route('family.create') }}">Create-a-family</a>
 
             <ul>
                 @foreach ($families as $family)
