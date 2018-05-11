@@ -31,4 +31,16 @@ class Family extends Model
     {
         return $this->belongsToMany('App\User')->using('App\FamilyUser');
     }
+
+
+
+    /**
+     * Returns whether the provided user has been granted access to this family
+     *
+     * @return bool
+     */
+    public function isAccessibleBy(User $user)
+    {
+        return $this->users->contains($user);
+    }
 }
