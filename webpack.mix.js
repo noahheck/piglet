@@ -20,6 +20,9 @@ mix
     .js('resources/assets/js/user-settings.js', 'public/js')
     .sass('resources/assets/sass/user-settings.scss', 'public/css')
 
+
+    .sass('resources/assets/sass/family/home.scss', 'public/css/family')
+
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
 
@@ -30,7 +33,8 @@ mix
 mix.webpackConfig({
     resolve: {
         alias: {
-            "Services": path.resolve(__dirname, "resources/assets/js/services/")
+            "Services": path.resolve(__dirname, "resources/assets/js/services/"),
+            "Css":      path.resolve(__dirname, "resources/assets/sass/")
         }
     }
 });

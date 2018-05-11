@@ -5,7 +5,7 @@
 @endsection
 
 @section('stylesheets')
-{{--    <link rel="stylesheet" type="text/css" href="{{ asset('css/user-settings.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family/home.css') }}" />
 @endsection
 
 @section('scripts')
@@ -16,55 +16,47 @@
 
     <div class="row">
 
-        <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+        <div class="col-12 col-md-8">
 
-            <div class="card">
+            <h2>{{ $family->name }}</h2>
 
+        </div>
+
+        <div class="col-12 col-md-4">
+
+            <div class="card shadow">
                 <div class="card-body">
-
-                    <h2>{{ $family->name }} Home</h2>
-
-                    {{--<form method="POST" action="{{ route("family.store") }}" class="has-bold-labels">
-
-                        {{ csrf_field() }}
-
-                        <fieldset>
-                            <legend>Family Details</legend>
-
-                            --}}{{--@formSuccess('user-settings-success')--}}{{--
-                            @formError
-
-                            <div class="form-group">
-                                <label for="family_name">Family Name</label>
-                                <input type="text" class="form-control" id="family_name" name='name' placeholder="Family Name" value="{{ old('name') }}">
-
-                                @fieldError('name')
-                            </div>
-                            <div class="form-group">
-                                <label for="family_details">Add some details</label>
-                                <textarea name="details" id="family_details" class="form-control" placeholder="Details">{{ old('details') }}</textarea>
-                                @fieldError('details')
-                            </div>
-                            <div class="row">
-
-                                <div class="col">
-                                    <button class="btn btn-primary btn-block" type="submit">
-                                        {{ __('form.save') }}
-                                    </button>
-                                </div>
-
-                                <div class="col">
-                                    <a class="btn btn-secondary btn-block" href="{{ route("home") }}">{{ __('form.cancel') }}</a>
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-
-                    </form>--}}
-
+                    <h5 class="card-title">Family Members</h5>
+                    Stuff about the family members
                 </div>
+            </div>
 
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Goals</h5>
+                    Progress about the goals
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Budget</h5>
+                    Money Matters
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Things to do</h5>
+                    To do lists and things
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Schedule</h5>
+                    Schedule type things
+                </div>
             </div>
 
         </div>
