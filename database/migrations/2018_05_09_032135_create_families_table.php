@@ -17,6 +17,7 @@ class CreateFamiliesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('details')->nullable();
+            $table->text('image')->nullable();
             $table->unsignedInteger('creator');
             $table->boolean('active')->default(true);
             $table->timestamps();

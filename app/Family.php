@@ -2,10 +2,14 @@
 
 namespace App;
 
+use App\Traits\Photographable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Family extends Model
 {
+    protected $defaultImageFile = "/img/cartoon_family.jpg";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -35,6 +39,23 @@ class Family extends Model
 
 
     /**
+     *
+     */
+    public function imagePath()
+    {
+        if (!$this->image) {
+            return asset($this->defaultImageFile);
+        }
+        return route('family.photo', $this);
+    }
+
+
+    public function imageFile()
+    {
+        return $this->familyPhotosDirectory() . '/' . $this->image;
+    }
+
+    /**
      * Returns whether the provided user has been granted access to this family
      *
      * @return bool
@@ -42,5 +63,55 @@ class Family extends Model
     public function isAccessibleBy(User $user)
     {
         return $this->users->contains($user);
+    }
+
+
+
+    /**
+     * Process for creating a new Family - creates the storage directory and database (eventually)
+     *
+     * @param array $fillables
+     * @param \App\User $user
+     * @param \Illuminate\Http\UploadedFile $familyPhoto
+     *
+     * @return Family
+     */
+    public static function createNew($fillables, $user, $familyPhoto = null)
+    {
+        $family = new Family;
+
+        $family->fill($fillables);
+        $family->creator = $user->id;
+        $family->save();
+
+        $familyUser                  = new FamilyUser;
+        $familyUser->family_id       = $family->id;
+        $familyUser->user_id         = $user->id;
+        $familyUser->active          = true;
+        $familyUser->isAdministrator = true;
+        $familyUser->save();
+
+        // Create storage directory for this new family
+        $disk = Storage::disk('family');
+        $disk->makeDirectory($family->id);
+
+        $familyPhotosDirectory = $family->familyPhotosDirectory();
+        $disk->makeDirectory($familyPhotosDirectory);
+
+        // Save the uploaded family photo if provided
+        if ($familyPhoto) {
+            $familyPhotoFilename = '1.' . $familyPhoto->guessExtension();
+            $disk->putFileAs($familyPhotosDirectory, $familyPhoto, $familyPhotoFilename);
+
+            $family->image = $familyPhotoFilename;
+            $family->save();
+        }
+
+        return $family;
+    }
+
+    private function familyPhotosDirectory()
+    {
+        return $this->id . '/family_photos';
     }
 }

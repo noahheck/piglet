@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Family;
+use App\FamilyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FamilyController extends Controller
 {
@@ -26,7 +28,10 @@ class FamilyController extends Controller
     public function create()
     {
         //
-        return view('family/new');
+
+        return view('family/new', [
+            'family' => new Family,
+        ]);
     }
 
     /**
@@ -39,15 +44,11 @@ class FamilyController extends Controller
     {
         $request->validate(Family::getValidations());
 
-        $family = new Family;
+        $family = Family::createNew($request->only(['name', 'details']), Auth::user(), $request->file('familyPhoto'));
 
-        $family->fill($request->only(['name', 'details']));
-
-        $family->creator = Auth::user()->id;
-
-        $family->save();
-
-        $request->session()->flash('family.create-success', 'Family created successfully');
+        if ($family) {
+            $request->session()->flash('family.create-success', 'Family created successfully');
+        }
 
         return redirect()->to(route("home"));
     }
@@ -71,7 +72,9 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        //
+        return view('family/edit', [
+            'family' => $family,
+        ]);
     }
 
     /**
@@ -96,4 +99,16 @@ class FamilyController extends Controller
     {
         //
     }
+
+    /**
+     * Downloads the family photo for the $family
+     *
+     * @param Family $family
+     * @return mixed
+     */
+    public function photo(Family $family)
+    {
+        return Storage::disk('family')->download($family->imageFile());
+    }
+
 }

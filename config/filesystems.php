@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'family' => [
+            'driver' => 'local',
+            'root' => storage_path('piglet'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

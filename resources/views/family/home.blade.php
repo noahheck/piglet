@@ -16,9 +16,13 @@
 
     <div class="row">
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 text-center">
 
             <h2>{{ $family->name }}</h2>
+
+            <img class="rounded-circle img-fluid" src="{{ $family->imagePath() }}" alt="Family photo">
+
+            <p><a href="{{ route('family.edit', $family) }}" class="btn btn-primary">Edit Details</a></p>
 
         </div>
 
