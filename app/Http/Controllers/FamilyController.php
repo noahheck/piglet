@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Family;
 use App\FamilyUser;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -113,9 +114,21 @@ class FamilyController extends Controller
      * @param Family $family
      * @return mixed
      */
-    public function photo(Family $family)
+    public function photo(Family $family, Request $request)
     {
-        return Storage::disk('family')->download($family->imageFile());
+        $lastModified = new \DateTime($family->image_updated_at);
+
+        $response = new Response();
+        $response->setLastModified($lastModified);
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        return Storage::disk('family')
+            ->download($family->imageFile())
+            ->setLastModified($lastModified)
+            ->setPublic();
     }
 
 }

@@ -102,7 +102,9 @@ class Family extends Model
             $familyPhotoFilename = '1.' . $familyPhoto->guessExtension();
             $disk->putFileAs($familyPhotosDirectory, $familyPhoto, $familyPhotoFilename);
 
-            $family->image = $familyPhotoFilename;
+            $family->image            = $familyPhotoFilename;
+            $family->image_updated_at = new \DateTime();
+
             $family->save();
         }
 
@@ -125,7 +127,9 @@ class Family extends Model
 
         Storage::disk('family')->putFileAs($this->familyPhotosDirectory(), $familyPhoto, $familyPhotoName);
 
-        $this->image = $familyPhotoName;
+        $this->image            = $familyPhotoName;
+        $this->image_updated_at = new \DateTime();
+
         $this->save();
 
         return $this;
