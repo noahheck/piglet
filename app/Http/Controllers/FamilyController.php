@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class FamilyController extends Controller
 {
@@ -73,6 +74,12 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
+        $familyUser = $family->familyUser(Auth::user());
+
+        if (!$familyUser->isAdministrator) {
+            throw new AccessDeniedHttpException("You need to be an administrator to update this family");
+        }
+
         return view('family/edit', [
             'family' => $family,
         ]);
@@ -87,6 +94,12 @@ class FamilyController extends Controller
      */
     public function update(Request $request, Family $family)
     {
+        $familyUser = $family->familyUser(Auth::user());
+
+        if (!$familyUser->isAdministrator) {
+            throw new AccessDeniedHttpException("You need to be an administrator to update this family");
+        }
+
         $family->update($request->only(['name', 'details']));
         $family->save();
 

@@ -32,7 +32,9 @@ class Family extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User')->using('App\FamilyUser');
+        return $this->belongsToMany('App\User')
+            ->withPivot(FamilyUser::PIVOT_ATTRIBUTES)
+            ->using('App\FamilyUser');
     }
 
 
@@ -48,11 +50,12 @@ class Family extends Model
         return route('family.photo', $this);
     }
 
-
     public function imageFile()
     {
         return $this->familyPhotosDirectory() . '/' . $this->image;
     }
+
+
 
     /**
      * Returns whether the provided user has been granted access to this family
@@ -62,6 +65,16 @@ class Family extends Model
     public function isAccessibleBy(User $user)
     {
         return $this->users->contains($user);
+    }
+
+    /**
+     * Returns FamilyUser instance for the provided user
+     *
+     * @return FamilyUser
+     */
+    public function familyUser(User $user)
+    {
+        return $this->users()->where('user_id', $user->id)->first()->pivot;
     }
 
 
