@@ -17,7 +17,7 @@
 
         <div class="row">
 
-            <div class="col-12 col-md-6 text-center">
+            <div class="col-12 col-md-6 col-xl-7 text-center">
                 <img class="img-fluid rounded-circle" alt="Family photo" src="{{ $family->imagePath() }}">
 
                 @if($family->image)
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 col-xl-5">
 
                 <div class="form-group">
                     <label for="family_name">Family Name</label>

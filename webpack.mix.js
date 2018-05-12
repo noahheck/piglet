@@ -23,6 +23,7 @@ mix
 
 
     .js('resources/assets/js/family-details-form.js', 'public/js')
+    .sass('resources/assets/sass/family/form.scss', 'public/css/family')
 
 
     .sass('resources/assets/sass/family/home.scss', 'public/css/family')
