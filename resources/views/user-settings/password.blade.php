@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+    <script src="{{ asset("js/user-settings-password.js") }}"></script>
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@
 
                     <a href="{{ route('user-settings') }}"><span class="fa fa-chevron-left"></span> {{ __('navigation.back') }}</a>
 
-                    <form method="POST" action="{{ route("user-settings.password.update") }}" class="has-bold-labels">
+                    <form method="POST" action="{{ route("user-settings.password.update") }}" class="has-bold-labels" id="user-settings_password-form">
 
                         {{ csrf_field() }}
 
@@ -54,13 +54,18 @@
 
                             <div class="row">
 
-                                <div class="col">
+                                <div class="col-12 text-danger" id="passwordErrors">
+                                    <p class="d-none" id="newPasswordLengthError">Passwords must be at least 8 characters</p>
+                                    <p class="d-none" id="newPasswordsMismatchError">Passwords don't match</p>
+                                </div>
+
+                                <div class="col-6">
                                     <button class="btn btn-primary btn-block" type="submit">
                                         {{ __('form.save') }}
                                     </button>
                                 </div>
 
-                                <div class="col">
+                                <div class="col-6">
                                     <a class="btn btn-secondary btn-block" href="{{ route("user-settings") }}">{{ __('form.cancel') }}</a>
                                 </div>
 
