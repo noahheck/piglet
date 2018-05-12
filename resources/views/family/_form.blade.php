@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="col">
-                        <a class="btn btn-secondary btn-block" href="{{ route("home") }}">{{ __('form.cancel') }}</a>
+                        <a class="btn btn-secondary btn-block" href="{{ $cancelRoute }}">{{ __('form.cancel') }}</a>
                     </div>
 
                 </div>

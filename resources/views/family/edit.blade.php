@@ -22,6 +22,7 @@
                 'legend' => 'Edit Family Details',
                 'action' => route('family.update', $family),
                 'method' => 'PUT',
+                'cancelRoute' => route('family.home', $family),
             ])
 
         </div>

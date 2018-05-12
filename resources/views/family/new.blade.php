@@ -22,6 +22,7 @@
                 'legend' => 'Family Details',
                 'action' => route('family.store'),
                 'method' => false,
+                'cancelRoute' => route('home'),
             ])
 
         </div>
