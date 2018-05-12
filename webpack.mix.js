@@ -20,6 +20,8 @@ mix
     .js('resources/assets/js/user-settings.js', 'public/js')
     .sass('resources/assets/sass/user-settings.scss', 'public/css')
 
+    .js('resources/assets/js/family-details-form.js', 'public/js')
+
 
     .sass('resources/assets/sass/family/home.scss', 'public/css/family')
 

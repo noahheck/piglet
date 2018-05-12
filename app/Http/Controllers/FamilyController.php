@@ -50,7 +50,7 @@ class FamilyController extends Controller
             $request->session()->flash('family.create-success', 'Family created successfully');
         }
 
-        return redirect()->to(route("home"));
+        return redirect()->to(route("family.home", $family));
     }
 
     /**
@@ -86,7 +86,14 @@ class FamilyController extends Controller
      */
     public function update(Request $request, Family $family)
     {
-        //
+        $family->update($request->only(['name', 'details']));
+        $family->save();
+
+        if ($photoFile = $request->file('familyPhoto')) {
+            $family->updateFamilyPhoto($photoFile);
+        }
+
+        return redirect()->route('family.home', $family);
     }
 
     /**

@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+    <script src="{{ asset("js/family-details-form.js") }}"></script>
 @endsection
 
 @section('content')
@@ -18,7 +18,11 @@
 
         <div class="col-12">
 
-            @include('family/_form')
+            @include('family/_form', [
+                'legend' => 'Family Details',
+                'action' => route('family.store'),
+                'method' => false,
+            ])
 
         </div>
 

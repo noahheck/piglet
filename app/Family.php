@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Traits\Photographable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -108,6 +107,28 @@ class Family extends Model
         }
 
         return $family;
+    }
+
+    /**
+     * @return string
+     */
+    public function updateFamilyPhoto($familyPhoto)
+    {
+        $photoNum = 1;
+
+        if ($this->image) {
+            list($curNum, $ext) = explode('.', $this->image);
+            $photoNum = $curNum + 1;
+        }
+
+        $familyPhotoName = $photoNum . '.' . $familyPhoto->guessExtension();
+
+        Storage::disk('family')->putFileAs($this->familyPhotosDirectory(), $familyPhoto, $familyPhotoName);
+
+        $this->image = $familyPhotoName;
+        $this->save();
+
+        return $this;
     }
 
     private function familyPhotosDirectory()
