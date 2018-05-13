@@ -47,7 +47,7 @@ class Family extends Model
         if (!$this->image) {
             return asset($this->defaultImageFile);
         }
-        return route('family.photo', $this);
+        return route('family.photo', ['family' => $this, 'imageFile' => $this->image]);
     }
 
     public function imageFile()

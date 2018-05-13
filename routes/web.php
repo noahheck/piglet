@@ -30,7 +30,7 @@ Route::get('/my-settings/password', 'MySettings\PasswordController@index')->name
 Route::post('/my-settings/password', 'MySettings\PasswordController@update')->name('user-settings.password.update')->middleware('auth');
 
 Route::resource('family', 'FamilyController');
-Route::get('{family}/photo', 'FamilyController@photo')->name('family.photo');
+Route::get('{family}/photo/{photoFile}', 'FamilyController@photo')->name('family.photo');
 
 Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(VerifyFamilyAccess::class)->group(function() {
 
