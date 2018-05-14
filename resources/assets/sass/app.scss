@@ -45,6 +45,12 @@ img.icon {
   max-width: 25px;
 }
 
+img.user-photo {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
 //
 .has-bold-labels label {
   font-weight: bold;

@@ -19,7 +19,7 @@
         <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
             <div class="text-center">
-                <img src="{{ $user->imagePath('thumbnail') }}" alt="User image">
+                <img src="{{ $user->imagePath('thumbnail') }}" alt="User image" class="user-photo mb-2">
             </div>
 
             <div class="card">
@@ -38,8 +38,9 @@
                             <div class="form-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="profilePhoto" name="profilePhoto">
-                                    <label class="custom-file-label" for="profilePhoto">Choose file</label>
+                                    <label class="custom-file-label" for="profilePhoto">{{ __('form.choose_file') }}</label>
                                 </div>
+                                @fieldError('profilePhoto')
                             </div>
 
                             <div class="row">

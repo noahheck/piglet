@@ -19,7 +19,7 @@
         <div class="col-12">
 
             @include('family/_form', [
-                'legend' => 'Family Details',
+                'legend' => trans('family-settings.new_family_details'),
                 'action' => route('family.store'),
                 'method' => false,
                 'cancelRoute' => route('home'),

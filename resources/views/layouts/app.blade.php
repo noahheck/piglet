@@ -53,8 +53,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                            {{--<span class="fa fa-user"></span>--}}
-                            <img src="{{ Auth::user()->imagePath('icon') }}" alt="User photo" class="icon user-photo-icon">
+                            <img src="{{ Auth::user()->imagePath('icon') }}" alt="User photo" class="icon user-photo">
                             {{ Auth::user()->firstName }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

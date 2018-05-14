@@ -19,11 +19,8 @@
         <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
             <div class="text-center">
-                {{--<span class="fa fa-user-circle user-image-placeholder"></span>--}}
-                <img src="{{ $user->imagePath('thumbnail') }}" alt="User image">
+                <img src="{{ $user->imagePath('thumbnail') }}" alt="User image" class="user-photo mb-2">
             </div>
-
-            {{--<hr>--}}
 
             <div class="card">
 
