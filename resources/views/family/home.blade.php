@@ -20,7 +20,7 @@
 
             <h2>{{ $family->name }}</h2>
 
-            <img class="rounded-circle img-fluid" src="{{ $family->imagePath() }}" alt="Family photo">
+            <img class="rounded-circle img-fluid family-photo" src="{{ $family->imagePath() }}" alt="Family photo">
 
             @if ($familyUser->isAdministrator)
                 <p><a href="{{ route('family.edit', $family) }}" class="btn btn-primary">Edit Details</a></p>
