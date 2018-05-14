@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('timezone');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('image')->nullable();
+            $table->timestamp('image_updated_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

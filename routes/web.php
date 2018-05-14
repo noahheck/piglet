@@ -29,6 +29,10 @@ Route::post('/my-settings', 'MySettings\SettingsController@update')->name('user-
 Route::get('/my-settings/password', 'MySettings\PasswordController@index')->name('user-settings.password')->middleware('auth');
 Route::post('/my-settings/password', 'MySettings\PasswordController@update')->name('user-settings.password.update')->middleware('auth');
 
+Route::get('/my-settings/photo', 'MySettings\PhotoController@index')->name('user-settings.photo')->middleware('auth');
+Route::post('/my-settings/photo', 'MySettings\PhotoController@update')->name('user-settings.photo.update')->middleware('auth');
+Route::get('/user/{user}/photo/{size}/{photoFile}', 'MySettings\PhotoController@photo')->name('user.photo')->middleware('auth');
+
 Route::resource('family', 'FamilyController');
 Route::get('{family}/photo/{photoFile}', 'FamilyController@photo')->name('family.photo');
 

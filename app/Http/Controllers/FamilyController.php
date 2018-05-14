@@ -100,6 +100,8 @@ class FamilyController extends Controller
             throw new AccessDeniedHttpException("You need to be an administrator to update this family");
         }
 
+        $request->validate(Family::getValidations());
+
         $family->update($request->only(['name', 'details']));
         $family->save();
 

@@ -19,10 +19,11 @@
         <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
             <div class="text-center">
-                <span class="fa fa-user-circle user-image-placeholder"></span>
+                {{--<span class="fa fa-user-circle user-image-placeholder"></span>--}}
+                <img src="{{ $user->imagePath('thumbnail') }}" alt="User image">
             </div>
 
-            <hr>
+            {{--<hr>--}}
 
             <div class="card">
 
@@ -37,6 +38,7 @@
 
                             @formSuccess('user-settings-success')
                             @formSuccess('user-settings-password-success')
+                            @formSuccess('user-settings-photo-success')
 
                             @formError
 
@@ -96,6 +98,7 @@
             <h4>{{ __('user-settings.other_options') }}:</h4>
 
             <div class="list-group">
+                <a class="list-group-item list-group-item-action" href="{{ route('user-settings.photo') }}"><span class="fa fa-smile-o"></span> {{ __('user-settings.change_photo') }}</a>
                 <a class="list-group-item list-group-item-action" href="{{ route('user-settings.password') }}"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
             </div>
 
