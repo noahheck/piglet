@@ -1,6 +1,6 @@
 <?php
 
-use App\Family\Model;
+namespace App\Family;
 
 class Member extends Model
 {
