@@ -105,10 +105,12 @@ class Family extends Model
 
         // Create storage directory for this new family
         $disk = Storage::disk('family');
-        $disk->makeDirectory($family->id);
+        $disk->makeDirectory($family->familyStorageDirectory());
 
         $familyPhotosDirectory = $family->familyPhotosDirectory();
         $disk->makeDirectory($familyPhotosDirectory);
+
+        $disk->put($family->familyStorageDirectory() . '/db.sqlite', '');
 
         // Save the uploaded family photo if provided
         if ($familyPhoto) {
@@ -148,8 +150,13 @@ class Family extends Model
         return $this;
     }
 
+    private function familyStorageDirectory()
+    {
+        return $this->id;
+    }
+
     private function familyPhotosDirectory()
     {
-        return $this->id . '/family_photos';
+        return $this->familyStorageDirectory() . '/family_photos';
     }
 }
