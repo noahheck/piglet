@@ -35,7 +35,7 @@ return [
 
         'family' => [
             'driver' => 'sqlite',
-            'database' => '',
+            'database' => storage_path('piglet/1/db.sqlite'),
             'prefix' => '',
         ],
 
