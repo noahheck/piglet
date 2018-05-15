@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Middleware\ConnectFamilyDatabase;
 use App\Http\Middleware\VerifyFamilyAccess;
 
 Route::get('/', function () {
@@ -36,7 +37,7 @@ Route::get('/user/{user}/photo/{size}/{photoFile}', 'MySettings\PhotoController@
 Route::resource('family', 'FamilyController');
 Route::get('{family}/photo/{photoFile}', 'FamilyController@photo')->name('family.photo');
 
-Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(VerifyFamilyAccess::class)->group(function() {
+Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(VerifyFamilyAccess::class, ConnectFamilyDatabase::class)->group(function() {
 
     Route::get('/', 'HomeController@index')->name('home');
 

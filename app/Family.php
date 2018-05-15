@@ -80,6 +80,18 @@ class Family extends Model
 
 
     /**
+     * Returns the path to the database storage file for the family
+     *
+     * @return string
+     */
+    public function dbFilePath()
+    {
+        return storage_path('piglet/'. $this->familyStorageDirectory() . '/db.sqlite');
+    }
+
+
+
+    /**
      * Process for creating a new Family - creates the storage directory and database (eventually)
      *
      * @param array $fillables
