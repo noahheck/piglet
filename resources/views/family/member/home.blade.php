@@ -46,6 +46,7 @@
 
         <div class="col-4">
             <a class="card shadow" href="#">
+                {{-- Family member's photo as a card photo header e.g. card-img-top --}}
                 <div class="card-body">
                     <h5 class="card-title">Noah Heck</h5>
                 </div>
