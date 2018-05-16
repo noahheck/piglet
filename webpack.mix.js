@@ -28,6 +28,8 @@ mix
 
     .sass('resources/assets/sass/family/home.scss', 'public/css/family')
 
+    .sass('resources/assets/sass/family/member/home.scss', 'public/css/family/member')
+
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
 

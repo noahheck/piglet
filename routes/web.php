@@ -42,4 +42,8 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
     Route::get('/', 'HomeController@index')->name('home');
 
 
+    // Family Members
+    Route::resource('family/member', 'MemberController');
+
+
 });

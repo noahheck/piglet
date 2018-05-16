@@ -51,6 +51,11 @@ img.user-photo {
   border-radius: 50%;
 }
 
+img.thumbnail {
+  max-height: 200px;
+  max-width: 200px;
+}
+
 //
 .has-bold-labels label {
   font-weight: bold;
