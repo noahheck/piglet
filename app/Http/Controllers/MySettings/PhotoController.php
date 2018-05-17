@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\MySettings;
 
+use App\Service\PhotoUploaderService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,7 @@ class PhotoController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, PhotoUploaderService $photoUploaderService)
     {
         $request->validate([
             'profilePhoto' => 'required|image',
@@ -26,7 +27,7 @@ class PhotoController extends Controller
 
         $profilePhoto = $request->file('profilePhoto');
 
-        Auth::user()->updateProfilePhoto($profilePhoto);
+        Auth::user()->updateProfilePhoto($photoUploaderService, $profilePhoto);
 
         $request->session()->flash('user-settings-photo-success', 'Profile photo updated successfully');
 

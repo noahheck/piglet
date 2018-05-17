@@ -90,7 +90,7 @@ class User extends Authenticatable
      * @param $size
      * @return string
      */
-    public function imageFile($size)
+    public function imageFile($size = 'full')
     {
         list($photoNum, $ext) = explode('.', $this->image);
 
@@ -108,7 +108,7 @@ class User extends Authenticatable
     }
 
 
-    public function updateProfilePhoto($profilePhoto)
+    public function updateProfilePhoto($photoUploaderService, $profilePhoto)
     {
         $photoNum = 1;
 
@@ -117,50 +117,12 @@ class User extends Authenticatable
             $photoNum = $curNum + 1;
         }
 
-        $ext = $profilePhoto->guessExtension();
-
-        $profilePhotoName = $photoNum . '.'           . $ext;
-        $thumbPhotoName   = $photoNum . '.thumbnail.' . $ext;
-        $iconPhotoName    = $photoNum . '.icon.'      . $ext;
-
-
-        // Need to make 2 sizes - Thumbnail ~ 200 x 200 | Icon ~ 50 x 50
-
-        $baseImage = Image::make($profilePhoto);
-        $baseWidth = $baseImage->width();
-        $baseHeight = $baseImage->height();
-
-        $thumbWidth = 200;
-        $iconWidth  = 50;
-
-        $thumbHeight = null;
-        $iconHeight  = null;
-
-        if ($baseHeight > $baseWidth) {
-            $thumbWidth = null;
-            $iconWidth  = null;
-
-            $thumbHeight = 200;
-            $iconHeight  = 50;
-        }
-
-        $thumbImage = Image::make($profilePhoto);
-        $thumbImage->resize($thumbWidth, $thumbHeight, function($constraint) {
-            $constraint->aspectRatio();
-        });
-
-        $iconImage = Image::make($profilePhoto);
-        $iconImage->resize($iconWidth, $iconHeight, function($constraint) {
-            $constraint->aspectRatio();
-        });
-
         $disk = Storage::disk('local');
 
-        $disk->putFileAs($this->userPhotoDirectory(), $profilePhoto, $profilePhotoName);
-        $disk->put($this->userPhotoDirectory() . '/' . $thumbPhotoName, (string) $thumbImage->encode());
-        $disk->put($this->userPhotoDirectory() . '/' . $iconPhotoName, (string) $iconImage->encode());
 
+        $uploaded = $photoUploaderService->uploadFile($profilePhoto, $disk, $this->userPhotoDirectory(), $photoNum);
 
+        $profilePhotoName = $uploaded['photoName'];
 
         $this->image            = $profilePhotoName;
         $this->image_updated_at = new \DateTime();

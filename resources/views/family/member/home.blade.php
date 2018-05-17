@@ -22,7 +22,7 @@
 
         <div class="col-12 col-md-4 text-center">
 
-            <img class="rounded-circle img-fluid family-photo thumbnail" src="{{ $family->imagePath() }}" alt="Family photo">
+            <img class="rounded-circle img-fluid family-photo thumbnail" src="{{ $family->imagePath('thumbnail') }}" alt="Family photo">
 
         </div>
 

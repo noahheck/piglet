@@ -35,7 +35,7 @@ Route::post('/my-settings/photo', 'MySettings\PhotoController@update')->name('us
 Route::get('/user/{user}/photo/{size}/{photoFile}', 'MySettings\PhotoController@photo')->name('user.photo')->middleware('auth');
 
 Route::resource('family', 'FamilyController');
-Route::get('{family}/photo/{photoFile}', 'FamilyController@photo')->name('family.photo');
+Route::get('{family}/photo/{size}/{photoFile}', 'FamilyController@photo')->name('family.photo');
 
 Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(VerifyFamilyAccess::class, ConnectFamilyDatabase::class)->group(function() {
 
