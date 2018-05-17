@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Family;
 use App\FamilyUser;
+use App\Service\PhotoUploaderService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -42,11 +43,16 @@ class FamilyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PhotoUploaderService $photoUploaderService)
     {
         $request->validate(Family::getValidations());
 
-        $family = Family::createNew($request->only(['name', 'details']), Auth::user(), $request->file('familyPhoto'));
+        $family = Family::createNew(
+            $request->only(['name', 'details']),
+            Auth::user(),
+            $request->file('familyPhoto'),
+            $photoUploaderService
+        );
 
         if ($family) {
             $request->session()->flash('family.create-success', 'Family created successfully');
@@ -92,7 +98,7 @@ class FamilyController extends Controller
      * @param  \App\Family  $family
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Family $family)
+    public function update(Request $request, Family $family, PhotoUploaderService $photoUploaderService)
     {
         $familyUser = $family->familyUser(Auth::user());
 
@@ -106,7 +112,7 @@ class FamilyController extends Controller
         $family->save();
 
         if ($photoFile = $request->file('familyPhoto')) {
-            $family->updateFamilyPhoto($photoFile);
+            $family->updateFamilyPhoto($photoFile, $photoUploaderService);
         }
 
         return redirect()->route('family.home', $family);
@@ -129,7 +135,7 @@ class FamilyController extends Controller
      * @param Family $family
      * @return mixed
      */
-    public function photo(Family $family, Request $request)
+    public function photo(Family $family, $size, Request $request)
     {
         $lastModified = new \DateTime($family->image_updated_at);
 
@@ -141,7 +147,7 @@ class FamilyController extends Controller
         }
 
         return Storage::disk('family')
-            ->download($family->imageFile())
+            ->download($family->imageFile($size))
             ->setLastModified($lastModified)
             ->setPublic();
     }

@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Storage;
 
 class Family extends Model
 {
-    protected $defaultImageFile = "/img/cartoon_family.jpg";
+    protected $defaultImageFile          = "/img/cartoon_family_fullsize.jpg";
+    protected $defaultThumbnailImageFile = "/img/cartoon_family_thumbnail.jpg";
+    protected $defaultIconImageFile      = "/img/cartoon_family_icon.jpg";
 
     /**
      * The attributes that are mass assignable.
@@ -42,17 +44,44 @@ class Family extends Model
     /**
      *
      */
-    public function imagePath()
+    public function imagePath($size = 'full')
     {
         if (!$this->image) {
-            return asset($this->defaultImageFile);
+            switch ($size):
+
+                case 'thumbnail':
+                    $prop = 'defaultThumbnailImageFile';
+                    break;
+
+                case 'icon':
+                    $prop = 'defaultIconImageFile';
+                    break;
+
+                default:
+                    $prop = 'defaultImageFile';
+
+            endswitch;
+
+            return asset($this->$prop);
         }
-        return route('family.photo', ['family' => $this, 'imageFile' => $this->image]);
+        return route('family.photo', ['family' => $this, 'size' => $size, 'imageFile' => $this->image]);
     }
 
-    public function imageFile()
+    public function imageFile($size = 'full')
     {
-        return $this->familyPhotosDirectory() . '/' . $this->image;
+        list($photoNum, $ext) = explode('.', $this->image);
+
+        $photoFile = $this->image;
+
+        if ($size === 'thumbnail') {
+            $photoFile = $photoNum . '.thumbnail.' . $ext;
+        }
+
+        if ($size === 'icon') {
+            $photoFile = $photoNum . '.icon.' . $ext;
+        }
+
+        return $this->familyPhotosDirectory() . '/' . $photoFile;
     }
 
 
@@ -100,7 +129,7 @@ class Family extends Model
      *
      * @return Family
      */
-    public static function createNew($fillables, $user, $familyPhoto = null)
+    public static function createNew($fillables, $user, $familyPhoto = null, $photoUploaderService)
     {
         $family = new Family;
 
@@ -126,13 +155,7 @@ class Family extends Model
 
         // Save the uploaded family photo if provided
         if ($familyPhoto) {
-            $familyPhotoFilename = '1.' . $familyPhoto->guessExtension();
-            $disk->putFileAs($familyPhotosDirectory, $familyPhoto, $familyPhotoFilename);
-
-            $family->image            = $familyPhotoFilename;
-            $family->image_updated_at = new \DateTime();
-
-            $family->save();
+            $family->updateFamilyPhoto($familyPhoto, $photoUploaderService);
         }
 
         return $family;
@@ -141,7 +164,7 @@ class Family extends Model
     /**
      * @return string
      */
-    public function updateFamilyPhoto($familyPhoto)
+    public function updateFamilyPhoto($familyPhoto, $photoUploaderService)
     {
         $photoNum = 1;
 
@@ -150,9 +173,11 @@ class Family extends Model
             $photoNum = $curNum + 1;
         }
 
-        $familyPhotoName = $photoNum . '.' . $familyPhoto->guessExtension();
+        $disk = Storage::disk('family');
 
-        Storage::disk('family')->putFileAs($this->familyPhotosDirectory(), $familyPhoto, $familyPhotoName);
+        $uploaded = $photoUploaderService->uploadFile($familyPhoto, $disk, $this->familyPhotosDirectory(), $photoNum);
+
+        $familyPhotoName = $uploaded['photoName'];
 
         $this->image            = $familyPhotoName;
         $this->image_updated_at = new \DateTime();
