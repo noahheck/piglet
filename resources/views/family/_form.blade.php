@@ -18,8 +18,11 @@
         <div class="row">
 
             <div class="col-12 col-md-6 col-xl-7 text-center">
-                <img class="img-fluid rounded-circle family-photo" alt="{{ __('family.family_photo') }}" src="{{ $family->imagePath() }}">
+                <div>
+                    <img class="img-fluid rounded-circle family-photo" alt="{{ __('family.family_photo') }}" src="{{ $family->imagePath() }}">
+                </div>
 
+                {{--<hr>--}}
                 @if($family->image)
                     <button class="btn btn-secondary" type="button" id="showChangePhotoFormButton">
                         <span class="fa fa-photo"></span> {{ __('family-settings.change_family_photo') }}
