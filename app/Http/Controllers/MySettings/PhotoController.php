@@ -45,8 +45,7 @@ class PhotoController extends Controller
             return $response;
         }
 
-        return Storage::disk('local')
-            ->download($user->imageFile($size))
+        return response()->file(Storage::disk('local')->path($user->imageFile($size)))
             ->setLastModified($lastModified)
             ->setPublic();
     }

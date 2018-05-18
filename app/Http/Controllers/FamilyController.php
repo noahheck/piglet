@@ -146,8 +146,7 @@ class FamilyController extends Controller
             return $response;
         }
 
-        return Storage::disk('family')
-            ->download($family->imageFile($size))
+        return response()->file(Storage::disk('family')->path($family->imageFile($size)))
             ->setLastModified($lastModified)
             ->setPublic();
     }
