@@ -24,6 +24,7 @@ class Family extends Model
     {
         return [
             'name' => 'required|max:255',
+            'familyPhoto' => 'image',
         ];
     }
 

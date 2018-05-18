@@ -20,6 +20,8 @@
             <div class="col-12 col-md-6 col-xl-7 text-center">
                 <div>
                     <img class="img-fluid rounded-circle family-photo" alt="{{ __('family.family_photo') }}" src="{{ $family->imagePath() }}">
+
+                    @fieldError('familyPhoto')
                 </div>
 
                 {{--<hr>--}}
