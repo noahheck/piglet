@@ -11,3 +11,9 @@
 var $ = require("jquery");
 
 require('./bootstrap');
+
+$(function() {
+
+    // $(".bs-datepicker").datetimepicker();
+
+});
