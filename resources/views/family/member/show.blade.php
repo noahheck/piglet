@@ -27,7 +27,9 @@
 
         <div class="col-12 col-md-4 col-lg-3">
 
-            {{--<img class="rounded-circle img-fluid" src="" alt="{{ $member->firstName }}">--}}
+            <div class="text-center">
+                <img class="rounded-circle img-fluid" src="{{ $member->imagePath('thumbnail') }}" alt="{{ $member->firstName }}">
+            </div>
 
             <hr>
 

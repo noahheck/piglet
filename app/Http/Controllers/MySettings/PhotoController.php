@@ -27,7 +27,7 @@ class PhotoController extends Controller
 
         $profilePhoto = $request->file('profilePhoto');
 
-        Auth::user()->updateProfilePhoto($photoUploaderService, $profilePhoto);
+        Auth::user()->uploadPhoto($profilePhoto, $photoUploaderService);
 
         $request->session()->flash('user-settings-photo-success', 'Profile photo updated successfully');
 

@@ -44,6 +44,7 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
 
     // Family Members
     Route::resource('/member', 'MemberController');
+    Route::get('/member/{member}/photo/{size}/{photoFile}', 'MemberController@photo')->name('member.photo');
 
 
 });

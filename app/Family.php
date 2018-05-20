@@ -5,11 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
+use App\Traits\IsPhotogenic;
+
 class Family extends Model
 {
-    protected $defaultImageFile          = "/img/cartoon_family_fullsize.jpg";
-    protected $defaultThumbnailImageFile = "/img/cartoon_family_thumbnail.jpg";
-    protected $defaultIconImageFile      = "/img/cartoon_family_icon.jpg";
+    use IsPhotogenic;
+
+    protected $defaultImageFile          = "cartoon_family_fullsize.jpg";
+    protected $defaultThumbnailImageFile = "cartoon_family_thumbnail.jpg";
+    protected $defaultIconImageFile      = "cartoon_family_icon.jpg";
 
     /**
      * The attributes that are mass assignable.
@@ -42,48 +46,41 @@ class Family extends Model
 
 
 
+
+
+
+
+
     /**
-     *
+     * @param string $size
+     * @return string
      */
-    public function imagePath($size = 'full')
+    protected function getImageRoute($size = 'full')
     {
-        if (!$this->image) {
-            switch ($size):
-
-                case 'thumbnail':
-                    $prop = 'defaultThumbnailImageFile';
-                    break;
-
-                case 'icon':
-                    $prop = 'defaultIconImageFile';
-                    break;
-
-                default:
-                    $prop = 'defaultImageFile';
-
-            endswitch;
-
-            return asset($this->$prop);
-        }
         return route('family.photo', ['family' => $this, 'size' => $size, 'imageFile' => $this->image]);
     }
 
-    public function imageFile($size = 'full')
+    /**
+     * @return string
+     */
+    protected function photoDirectory()
     {
-        list($photoNum, $ext) = explode('.', $this->image);
-
-        $photoFile = $this->image;
-
-        if ($size === 'thumbnail') {
-            $photoFile = $photoNum . '.thumbnail.' . $ext;
-        }
-
-        if ($size === 'icon') {
-            $photoFile = $photoNum . '.icon.' . $ext;
-        }
-
-        return $this->familyPhotosDirectory() . '/' . $photoFile;
+        return $this->familyStorageDirectory() . '/family_photos';
     }
+
+    /**
+     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     */
+    protected function storageDisk()
+    {
+        return Storage::disk('family');
+    }
+
+
+
+
+
+
 
 
 
@@ -130,7 +127,7 @@ class Family extends Model
      *
      * @return Family
      */
-    public static function createNew($fillables, $user, $familyPhoto = null, $photoUploaderService)
+    public static function createNew($fillables, $user, $familyPhoto = null, $photoUploaderService, $connectService)
     {
         $family = new Family;
 
@@ -146,55 +143,41 @@ class Family extends Model
         $familyUser->save();
 
         // Create storage directory for this new family
-        $disk = Storage::disk('family');
+        $disk = $family->storageDisk();
+
         $disk->makeDirectory($family->familyStorageDirectory());
 
-        $familyPhotosDirectory = $family->familyPhotosDirectory();
+        $familyPhotosDirectory = $family->photoDirectory();
         $disk->makeDirectory($familyPhotosDirectory);
 
         $disk->put($family->familyStorageDirectory() . '/db.sqlite', '');
 
+        $connectService->connectToFamily($family)->migrate();
+
+
+
         // Save the uploaded family photo if provided
         if ($familyPhoto) {
-            $family->updateFamilyPhoto($familyPhoto, $photoUploaderService);
+            $family->uploadPhoto($familyPhoto, $photoUploaderService);
         }
+
 
         return $family;
     }
 
-    /**
-     * @return string
-     */
-    public function updateFamilyPhoto($familyPhoto, $photoUploaderService)
-    {
-        $photoNum = 1;
 
-        if ($this->image) {
-            list($curNum, $ext) = explode('.', $this->image);
-            $photoNum = $curNum + 1;
-        }
 
-        $disk = Storage::disk('family');
 
-        $uploaded = $photoUploaderService->uploadFile($familyPhoto, $disk, $this->familyPhotosDirectory(), $photoNum);
 
-        $familyPhotoName = $uploaded['photoName'];
 
-        $this->image            = $familyPhotoName;
-        $this->image_updated_at = new \DateTime();
 
-        $this->save();
 
-        return $this;
-    }
+
 
     private function familyStorageDirectory()
     {
         return $this->id;
     }
 
-    private function familyPhotosDirectory()
-    {
-        return $this->familyStorageDirectory() . '/family_photos';
-    }
+
 }

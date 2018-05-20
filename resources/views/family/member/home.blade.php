@@ -41,9 +41,9 @@
          --}}
 
         @foreach($members as $member)
-            <div class="col-12 col-sm-4">
+            <div class="col-12 col-sm-4 col-md-3">
                 <a class="card shadow" href="{{ route("family.member.show", [$family, $member]) }}">
-                    {{-- Family member's photo as a card photo header e.g. card-img-top --}}
+                    <img class="card-img-top card-img-bottoms" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }} {{ $member->lastName }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $member->firstName }} {{ $member->lastName }}</h5>
                     </div>

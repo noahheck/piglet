@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Family;
 use App\FamilyUser;
+use App\Service\FamilyConnectService;
 use App\Service\PhotoUploaderService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -43,15 +44,19 @@ class FamilyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, PhotoUploaderService $photoUploaderService)
-    {
+    public function store(
+        Request $request,
+        PhotoUploaderService $photoUploaderService,
+        FamilyConnectService $connectService
+    ) {
         $request->validate(Family::getValidations());
 
         $family = Family::createNew(
             $request->only(['name', 'details']),
             Auth::user(),
             $request->file('familyPhoto'),
-            $photoUploaderService
+            $photoUploaderService,
+            $connectService
         );
 
         if ($family) {
@@ -112,7 +117,7 @@ class FamilyController extends Controller
         $family->save();
 
         if ($photoFile = $request->file('familyPhoto')) {
-            $family->updateFamilyPhoto($photoFile, $photoUploaderService);
+            $family->uploadPhoto($photoFile, $photoUploaderService);
         }
 
         return redirect()->route('family.home', $family);

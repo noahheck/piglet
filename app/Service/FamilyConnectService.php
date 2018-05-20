@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Family;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -26,5 +27,17 @@ class FamilyConnectService
 
         // Ping the database. This will throw an exception in case the database does not exists.
         Schema::connection('family')->getConnection()->reconnect();
+
+        return $this;
+    }
+
+    public function migrate()
+    {
+        Artisan::call('migrate', [
+            '--database' => 'family',
+            '--path'     => 'database/migrations_family',
+        ]);
+
+        return $this;
     }
 }

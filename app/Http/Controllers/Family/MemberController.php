@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\Member;
+use App\Service\PhotoUploaderService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class MemberController extends Controller
 {
@@ -42,7 +45,8 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Make sure to add the family attribute to the newly created member
+
     }
 
     /**
@@ -84,7 +88,7 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Family $family, $id)
+    public function update(Request $request, Family $family, $id, PhotoUploaderService $photoUploaderService)
     {
         $request->validate(Member::getValidations());
 
@@ -93,6 +97,10 @@ class MemberController extends Controller
         $member->fill($request->only(['firstName', 'middleName', 'lastName', 'suffix', 'birthdate']));
 
         $member->save();
+
+        if ($photoFile = $request->file('memberPhoto')) {
+            $member->uploadPhoto($photoFile, $photoUploaderService);
+        }
 
         return redirect()->route('family.member.show', [$family, $member]);
     }
@@ -106,5 +114,29 @@ class MemberController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    /**
+     * Downloads the family photo for the $family
+     *
+     * @param Family $family
+     * @return mixed
+     */
+    public function photo(Family $family, Member $member, $size, Request $request)
+    {
+        $lastModified = new \DateTime($member->image_updated_at);
+
+        $response = new Response();
+        $response->setLastModified($lastModified);
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        return response()->file(Storage::disk('family')->path($member->imageFile($size)))
+            ->setLastModified($lastModified)
+            ->setPublic();
     }
 }
