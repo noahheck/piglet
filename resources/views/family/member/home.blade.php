@@ -34,7 +34,7 @@
 
     <hr>
 
-    <div class="row">
+    <div class="row justify-content-center">
 
         {{--
             Loop through $members and output each one

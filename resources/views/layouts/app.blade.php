@@ -72,7 +72,7 @@
         </div>
     </nav>
 
-    <div class="main container">
+    <div class="main container shadow">
 
         @yield('content')
 
