@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
+use App\Traits\User\FormatsDates;
+
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,
+        FormatsDates;
 
     const MIN_PASSWORD_LENGTH = 8;
 

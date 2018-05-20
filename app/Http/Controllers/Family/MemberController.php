@@ -51,9 +51,14 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Family $family, $id)
     {
-        //
+        $member = Member::find($id);
+
+        return view('family.member.show', [
+            'family' => $family,
+            'member' => $member,
+        ]);
     }
 
     /**
