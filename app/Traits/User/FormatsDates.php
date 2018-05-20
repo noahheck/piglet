@@ -6,8 +6,12 @@ use DateTime;
 
 trait FormatsDates
 {
-    public function formatDate(DateTime $date)
+    public function formatDate(DateTime $date = null)
     {
+        if (!$date) {
+            return "";
+        }
+
         return $date->format("m/d/Y");
     }
 }

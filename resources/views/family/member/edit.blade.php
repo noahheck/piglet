@@ -44,7 +44,11 @@
 
             <form method="POST" action="{{ route('family.member.update', [$family, $member]) }}" enctype="multipart/form-data" class="has-bold-labels">
 
-                {{ csrf_field() }}
+                @csrf
+
+                @method('PUT')
+
+
 
                 <fieldset>
                     <legend>Details</legend>
@@ -70,11 +74,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="birthdate">Birthdate</label>
+                        <label for="birthdate">Birthdate <small class="text-muted">mm/dd/yyyy</small></label>
                         <input type="text" name="birthdate" id="birthdate" class="form-control bs-datepicker" placeholder="Birthdate" value="{{ old('birthdate', Auth::user()->formatDate($member->birthdate)) }}">
                     </div>
 
                 </fieldset>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+
+                <a class="btn btn-secondary" href="{{ route('family.member.show', [$family, $member]) }}">Cancel</a>
 
             </form>
 

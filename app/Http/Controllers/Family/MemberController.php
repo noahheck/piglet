@@ -84,9 +84,17 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Family $family, $id)
     {
-        //
+        $request->validate(Member::getValidations());
+
+        $member = Member::find($id);
+
+        $member->fill($request->only(['firstName', 'middleName', 'lastName', 'suffix', 'birthdate']));
+
+        $member->save();
+
+        return redirect()->route('family.member.show', [$family, $member]);
     }
 
     /**

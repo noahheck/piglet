@@ -17,6 +17,7 @@
     <div class="row">
 
         <div class="col-12">
+            <a href="{{ route("family.member.index", [$family]) }}"><span class="fa fa-chevron-left"></span> Back</a>
             <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>
         </div>
 

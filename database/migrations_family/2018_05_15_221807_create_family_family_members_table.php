@@ -16,10 +16,10 @@ class CreateFamilyFamilyMembersTable extends Migration
         Schema::connection('family')->create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstName')->default('');
-            $table->string('middleName')->default('');
-            $table->string('lastName')->default('');
-            $table->string('suffix')->default('');
-            $table->string('nickname')->default('');
+            $table->string('middleName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('suffix')->nullable();
+            $table->string('nickname')->nullable();
             $table->date('birthdate')->nullable();
             $table->timestamps();
         });

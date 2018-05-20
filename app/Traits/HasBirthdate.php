@@ -11,6 +11,11 @@ trait HasBirthdate
         return Carbon::parse($this->attributes['birthdate'])->age;
     }
 
+    public function setBirthdateAttribute($birthdate)
+    {
+        return $this->attributes['birthdate'] = \Carbon\Carbon::createFromFormat('m/d/Y', $birthdate);
+    }
+
     public function getAgeAttribute()
     {
         return $this->age();
