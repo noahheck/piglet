@@ -43,7 +43,7 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
 
 
     // Family Members
-    Route::resource('family/member', 'MemberController');
+    Route::resource('/member', 'MemberController');
 
 
 });
