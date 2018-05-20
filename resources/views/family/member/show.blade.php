@@ -34,7 +34,9 @@
                 <p class="text-muted">{{ Auth::user()->formatDate($member->birthdate) }} ({{ $member->age }} years)</p>
             @endif
 
-            
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> Edit Details</a>
+            </div>
 
         </div>
 
