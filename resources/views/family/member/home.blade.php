@@ -16,6 +16,16 @@
 
     <div class="row">
 
+        <div class="col-12">
+            <a href="{{ route("family.home", [$family]) }}"><span class="fa fa-chevron-left"></span> Back to family home</a>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+
         <div class="col-12 col-md-4 text-center">
 
             <img class="rounded-circle img-fluid family-photo thumbnail" src="{{ $family->imagePath('thumbnail') }}" alt="Family photo">

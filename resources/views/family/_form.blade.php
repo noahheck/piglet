@@ -1,10 +1,6 @@
-@php
-
-@endphp
-
 <form method="POST" action="{{ $action }}" class="has-bold-labels" enctype="multipart/form-data">
 
-    {{ csrf_field() }}
+    @csrf
 
     @if ($method)
         @method($method)
@@ -24,7 +20,6 @@
                     @fieldError('familyPhoto')
                 </div>
 
-                {{--<hr>--}}
                 @if($family->image)
                     <button class="btn btn-secondary" type="button" id="showChangePhotoFormButton">
                         <span class="fa fa-photo"></span> {{ __('family-settings.change_family_photo') }}

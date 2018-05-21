@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} Home
+ - {{ $family->name }} - {{ $member->firstName }} {{ $member->lastName }}
 @endsection
 
 @section('stylesheets')
@@ -17,7 +17,7 @@
     <div class="row">
 
         <div class="col-12">
-            <a href="{{ route("family.member.index", [$family]) }}"><span class="fa fa-chevron-left"></span> Back</a>
+            <a href="{{ route("family.member.index", [$family]) }}"><span class="fa fa-chevron-left"></span> Back to family members</a>
             <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>
         </div>
 
@@ -27,18 +27,19 @@
 
         <div class="col-12 col-md-4 col-lg-3">
 
-            <div class="text-center">
-                <img class="rounded-circle img-fluid" src="{{ $member->imagePath('thumbnail') }}" alt="{{ $member->firstName }}">
-            </div>
+            <div class="card shadow">
+                <img class="{{--rounded-circle img-fluid--}}img-fluid card-img-top" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }}">
 
-            <hr>
+                @if ($member->birthdate)
+                    <div class="card-body">
+                        {{ Auth::user()->formatDate($member->birthdate) }} ({{ $member->age }} years)
+                    </div>
+                @endif
 
-            @if ($member->birthdate)
-                <p class="text-muted">{{ Auth::user()->formatDate($member->birthdate) }} ({{ $member->age }} years)</p>
-            @endif
+                <ul class="list-group list-group-flush">
+                    <a href="{{ route('family.member.edit', [$family, $member]) }}"><li class="list-group-item"><span class="fa fa-pencil-square-o"></span> Edit Details</li></a>
+                </ul>
 
-            <div class="list-group">
-                <a class="list-group-item list-group-item-action" href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> Edit Details</a>
             </div>
 
         </div>
