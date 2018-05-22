@@ -32,9 +32,14 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family)
     {
-        //
+        $member = new Member();
+
+        return view('family.member.create', [
+            'family' => $family,
+            'member' => $member,
+        ]);
     }
 
     /**
@@ -43,10 +48,23 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Family $family, Request $request, PhotoUploaderService $photoUploaderService)
     {
-        // Make sure to add the family attribute to the newly created member
+        $request->validate(Member::getValidations());
 
+        $member = new Member();
+
+        $member->fill($request->only($member->getFillable()));
+
+        $member->family = $family->id;
+
+        $member->save();
+
+        if ($photoFile = $request->file('memberPhoto')) {
+            $member->uploadPhoto($photoFile, $photoUploaderService);
+        }
+
+        return redirect()->route('family.member.show', [$family, $member]);
     }
 
     /**

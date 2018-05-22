@@ -17,6 +17,13 @@
     <div class="row">
 
         <div class="col-12">
+
+            <div class="float-right">
+                <a class="btn btn-sm btn-primary" href="{{ route('family.member.create', [$family]) }}">
+                    <span class="fa fa-plus-circle"></span> Add new
+                </a>
+            </div>
+
             <a href="{{ route("family.home", [$family]) }}"><span class="fa fa-chevron-left"></span> Back to family home</a>
         </div>
 
@@ -25,6 +32,12 @@
     <hr>
 
     <div class="row">
+        <div class="col">
+            <h2>Family Members</h2>
+        </div>
+    </div>
+
+    {{--<div class="row">
 
         <div class="col-12 col-md-4 text-center">
 
@@ -42,17 +55,13 @@
 
     </div>
 
-    <hr>
+    <hr>--}}
 
     <div class="row justify-content-center">
 
-        {{--
-            Loop through $members and output each one
-         --}}
-
         @foreach($members as $member)
             <div class="col-12 col-sm-4 col-md-3">
-                <a class="card shadow" href="{{ route("family.member.show", [$family, $member]) }}">
+                <a class="card shadow" href="{{ route('family.member.show', [$family, $member]) }}">
                     <img class="card-img-top card-img-bottoms" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }} {{ $member->lastName }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $member->firstName }} {{ $member->lastName }}</h5>
