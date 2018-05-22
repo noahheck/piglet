@@ -32,7 +32,7 @@
 
                 @if ($member->birthdate)
                     <div class="card-body">
-                        {{--{{ Auth::user()->formatDate($member->birthdate) }} --}} {{ $member->age }} years - {{ ucfirst($member->gender) }}
+                        {{ $member->age }} years - {{ ucfirst($member->gender) }}
                     </div>
                 @endif
 
