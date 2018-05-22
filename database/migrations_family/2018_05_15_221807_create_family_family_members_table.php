@@ -22,6 +22,7 @@ class CreateFamilyFamilyMembersTable extends Migration
             $table->string('suffix')->nullable();
             $table->string('nickname')->nullable();
             $table->date('birthdate')->nullable();
+            $table->string('gender')->nullable();
             $table->string('image')->nullable();
             $table->dateTime('image_updated_at')->nullable();
             $table->timestamps();

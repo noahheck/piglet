@@ -66,6 +66,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="custom-select" name="gender" id="gender">
+                        <option value="">--</option>
+                        <option value="male" {{ (old('gender', $member->gender) === 'male') ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ (old('gender', $member->gender) === 'female') ? 'selected' : '' }}>Female</option>
+                    </select>
+                    @fieldError('gender')
+                </div>
+
+                <div class="form-group">
                     <label for="birthdate">Birthdate <small class="text-muted">mm/dd/yyyy</small></label>
                     <input type="text" name="birthdate" id="birthdate" class="form-control bs-datepicker" placeholder="Birthdate" value="{{ old('birthdate', Auth::user()->formatDate($member->birthdate)) }}">
                     @fieldError('birthdate')

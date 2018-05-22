@@ -112,7 +112,7 @@ class MemberController extends Controller
 
         $member = Member::find($id);
 
-        $member->fill($request->only(['firstName', 'middleName', 'lastName', 'suffix', 'birthdate']));
+        $member->fill($request->only($member->getFillable()));
 
         $member->save();
 

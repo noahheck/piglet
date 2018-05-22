@@ -28,11 +28,11 @@
         <div class="col-12 col-md-4 col-lg-3">
 
             <div class="card shadow">
-                <img class="{{--rounded-circle img-fluid--}}img-fluid card-img-top" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }}">
+                <img class="img-fluid card-img-top" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }}">
 
                 @if ($member->birthdate)
                     <div class="card-body">
-                        {{ Auth::user()->formatDate($member->birthdate) }} ({{ $member->age }} years)
+                        {{--{{ Auth::user()->formatDate($member->birthdate) }} --}} {{ $member->age }} years - {{ ucfirst($member->gender) }}
                     </div>
                 @endif
 

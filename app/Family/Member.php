@@ -24,6 +24,7 @@ class Member extends Model
         'lastName',
         'suffix',
         'birthdate',
+        'gender',
     ];
 
     public static function getValidations()
@@ -34,6 +35,7 @@ class Member extends Model
             'lastName'   => 'max:255',
             'suffix'     => 'max:255',
             'birthdate'  => 'date|nullable',
+            'gender'     => 'in:male,female|nullable',
         ];
     }
 
