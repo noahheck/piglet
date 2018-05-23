@@ -17,7 +17,11 @@
     <div class="row">
 
         <div class="col-12">
-            <a href="{{ route("family.member.index", [$family]) }}"><span class="fa fa-chevron-left"></span> Back to family members</a>
+            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            >
+            <a href="{{ route("family.member.index", [$family]) }}">Family Members</a>
+            >
+            {{ $member->firstName }}
         </div>
 
     </div>

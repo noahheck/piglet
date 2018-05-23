@@ -17,6 +17,19 @@
     <div class="row">
 
         <div class="col-12">
+            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            >
+            <a href="{{ route("family.member.index", [$family]) }}">Family Members</a>
+            >
+            Add New
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-12">
             <h2>Add a family member</h2>
         </div>
 

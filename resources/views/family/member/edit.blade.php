@@ -17,6 +17,20 @@
     <div class="row">
 
         <div class="col-12">
+            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            >
+            <a href="{{ route("family.member.index", [$family]) }}">Family Members</a>
+            >
+            <a href="{{ route('family.member.show', [$family, $member]) }}">{{ $member->firstName }}</a>
+            > Edit
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-12">
             <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>
         </div>
 

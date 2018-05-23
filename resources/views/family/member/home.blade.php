@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} Home
+ - {{ $family->name }} - Members Home
 @endsection
 
 @section('stylesheets')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+
 @endsection
 
 @section('content')
@@ -24,7 +24,10 @@
                 </a>
             </div>
 
-            <a href="{{ route("family.home", [$family]) }}"><span class="fa fa-chevron-left"></span> Back to family home</a>
+            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            >
+            Family Members
+
         </div>
 
     </div>
@@ -36,7 +39,7 @@
             <h2>Family Members</h2>
         </div>
     </div>
-    
+
     <div class="row justify-content-center">
 
         @foreach($members as $member)
