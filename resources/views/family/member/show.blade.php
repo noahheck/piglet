@@ -44,9 +44,12 @@
                 @endif
 
                 {{--<ul class="list-group list-group-flush">--}}
-                <div class="card-footer text-right text-muted">
-                    | <a href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}</a>
-                </div>
+                <a href="{{ route('family.member.edit', [$family, $member]) }}">
+                    <div class="card-footer text-right text-muted">
+                        {{--<a href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}</a>--}}
+                        <span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}
+                    </div>
+                </a>
                 {{--</ul>--}}
 
             </div>
