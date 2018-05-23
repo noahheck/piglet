@@ -32,8 +32,10 @@
 
             <a class="card shadow" href="{{ route('family.member.index', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">Family Members</h5>
-                    Stuff about the family members
+                    <h5 class="card-title">{{ __('family-members.family_members') }}</h5>
+                    @foreach ($members as $member)
+                        <img class="rounded-circle" src="{{ $member->imagePath('icon') }}" alt="{{ $member->firstName }}" title="{{ $member->firstName }} {{ $member->lastName }}">
+                    @endforeach
                 </div>
             </a>
 
