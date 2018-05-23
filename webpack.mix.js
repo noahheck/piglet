@@ -29,6 +29,7 @@ mix
     .sass('resources/assets/sass/family/home.scss', 'public/css/family')
 
 
+    .sass('resources/assets/sass/family/member/show.scss', 'public/css/family.member.show.css')
 
     .js('resources/assets/js/family/member/_form.js', 'public/js/family.member._form.js')
     .sass('resources/assets/sass/family/member/_form.scss', 'public/css/family.member._form.css')

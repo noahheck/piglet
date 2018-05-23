@@ -5,7 +5,7 @@
 @endsection
 
 @section('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/family/member/home.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.member.show.css') }}" />
 @endsection
 
 @section('scripts')
@@ -18,10 +18,13 @@
 
         <div class="col-12">
             <a href="{{ route("family.member.index", [$family]) }}"><span class="fa fa-chevron-left"></span> Back to family members</a>
-            <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>
         </div>
 
     </div>
+
+    <hr>
+
+    <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>
 
     <div class="row">
 
@@ -36,9 +39,11 @@
                     </div>
                 @endif
 
-                <ul class="list-group list-group-flush">
-                    <a href="{{ route('family.member.edit', [$family, $member]) }}"><li class="list-group-item"><span class="fa fa-pencil-square-o"></span> Edit Details</li></a>
-                </ul>
+                {{--<ul class="list-group list-group-flush">--}}
+                <div class="card-footer text-right text-muted">
+                    | <a href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> Edit Details</a>
+                </div>
+                {{--</ul>--}}
 
             </div>
 
