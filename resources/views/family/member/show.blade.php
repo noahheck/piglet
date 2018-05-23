@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+
 @endsection
 
 @section('content')
@@ -17,9 +17,9 @@
     <div class="row">
 
         <div class="col-12">
-            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            <a href="{{ route("family.home", [$family]) }}">{{ __('family.family_home') }}</a>
             >
-            <a href="{{ route("family.member.index", [$family]) }}">Family Members</a>
+            <a href="{{ route("family.member.index", [$family]) }}">{{ __('family-members.family_members') }}</a>
             >
             {{ $member->firstName }}
         </div>
@@ -45,7 +45,7 @@
 
                 {{--<ul class="list-group list-group-flush">--}}
                 <div class="card-footer text-right text-muted">
-                    | <a href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> Edit Details</a>
+                    | <a href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}</a>
                 </div>
                 {{--</ul>--}}
 

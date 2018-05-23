@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} - {{ $member->firstName }} {{ $member->lastName }} - Edit
+ - {{ $family->name }} - {{ $member->firstName }} {{ $member->lastName }} - {{ __('form.edit') }}
 @endsection
 
 @section('stylesheets')
@@ -17,9 +17,9 @@
     <div class="row">
 
         <div class="col-12">
-            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            <a href="{{ route("family.home", [$family]) }}">{{ __('family.family_home') }}</a>
             >
-            <a href="{{ route("family.member.index", [$family]) }}">Family Members</a>
+            <a href="{{ route("family.member.index", [$family]) }}">{{ __('family-members.family_members') }}</a>
             >
             <a href="{{ route('family.member.show', [$family, $member]) }}">{{ $member->firstName }}</a>
             > Edit
@@ -37,9 +37,9 @@
     </div>
 
     @include('family/member/_form', [
-        'legend' => 'Edit Details',
-        'action' => route('family.member.update', [$family, $member]),
-        'method' => 'PUT',
+        'legend'      => ucwords(__('form.edit_details')),
+        'action'      => route('family.member.update', [$family, $member]),
+        'method'      => 'PUT',
         'cancelRoute' => route('family.member.show', [$family, $member]),
     ])
 

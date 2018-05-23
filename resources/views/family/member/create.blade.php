@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} - Add new family member
+ - {{ $family->name }} - {{ __('family-members.add_new_family_member') }}
 @endsection
 
 @section('stylesheets')
@@ -17,11 +17,11 @@
     <div class="row">
 
         <div class="col-12">
-            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            <a href="{{ route("family.home", [$family]) }}">{{ __('family.family_home') }}</a>
             >
-            <a href="{{ route("family.member.index", [$family]) }}">Family Members</a>
+            <a href="{{ route("family.member.index", [$family]) }}">{{ __('family-members.family_members') }}</a>
             >
-            Add New
+            {{ ucwords(__('form.add_new')) }}
         </div>
     </div>
 
@@ -30,15 +30,15 @@
     <div class="row">
 
         <div class="col-12">
-            <h2>Add a family member</h2>
+            <h2>{{ __('family-members.add_new_family_member') }}</h2>
         </div>
 
     </div>
 
     @include('family/member/_form', [
-        'legend' => 'Details',
-        'action' => route('family.member.store', [$family]),
-        'method' => false,
+        'legend'      => __('form.details'),
+        'action'      => route('family.member.store', [$family]),
+        'method'      => false,
         'cancelRoute' => route('family.member.index', [$family]),
     ])
 

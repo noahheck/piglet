@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} - Members Home
+ - {{ $family->name }} - {{ __('family-members.family_members') }}
 @endsection
 
 @section('stylesheets')
@@ -20,13 +20,13 @@
 
             <div class="float-right">
                 <a class="btn btn-sm btn-primary" href="{{ route('family.member.create', [$family]) }}">
-                    <span class="fa fa-plus-circle"></span> Add new
+                    <span class="fa fa-plus-circle"></span> {{ __('form.add_new') }}
                 </a>
             </div>
 
-            <a href="{{ route("family.home", [$family]) }}">Home</a>
+            <a href="{{ route("family.home", [$family]) }}">{{ __('family.family_home') }}</a>
             >
-            Family Members
+            {{ __('family-members.family_members') }}
 
         </div>
 
@@ -36,7 +36,7 @@
 
     <div class="row">
         <div class="col">
-            <h2>Family Members</h2>
+            <h2>{{ __('family-members.family_members') }}</h2>
         </div>
     </div>
 
