@@ -12,6 +12,8 @@ return [
     'suffix'     => 'Suffix',
     'gender'     => 'Gender',
     'birthdate'  => 'Birthdate',
+    'color'      => 'Color',
+    'color_desc' => 'Color used for this family member\'s icon',
 
     'male'       => 'Male',
     'female'     => 'Female',

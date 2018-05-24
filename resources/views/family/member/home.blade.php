@@ -47,7 +47,7 @@
                 <a class="card shadow" href="{{ route('family.member.show', [$family, $member]) }}">
                     <img class="card-img-top card-img-bottoms" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }} {{ $member->lastName }}">
                     <div class="card-footer text-muted">
-                        <p class="ssscard-title">{{ $member->firstName }}</p>
+                        <p style="color: {{ $member->color }};">{{ $member->firstName }}</p>
                     </div>
                 </a>
             </div>

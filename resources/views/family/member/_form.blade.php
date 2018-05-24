@@ -77,8 +77,15 @@
 
                 <div class="form-group">
                     <label for="birthdate">{{ __('family-members.birthdate') }} <small class="text-muted">mm/dd/yyyy</small></label>
-                    <input type="text" name="birthdate" id="birthdate" class="form-control bs-datepicker" placeholder="{{ __('family-members.birthdate') }}" value="{{ old('birthdate', Auth::user()->formatDate($member->birthdate)) }}">
+                    <input type="text" name="birthdate" id="birthdate" class="form-control" placeholder="{{ __('family-members.birthdate') }}" value="{{ old('birthdate', Auth::user()->formatDate($member->birthdate)) }}">
                     @fieldError('birthdate')
+                </div>
+
+                <div class="form-group">
+                    <label for="color">{{ __('family-members.color') }}</label>
+                    <a href="#" class="dismissable-popover" data-toggle="popover" data-content="{{ __('family-members.color_desc') }}"><span class="fa fa-question-circle"></span></a>
+                    <input type="color" name="color" id="color" class="form-control" placeholder="{{ __('family-members.color') }}" value="{{ old('color', $member->color) }}">
+                    @fieldError('color')
                 </div>
 
             </fieldset>

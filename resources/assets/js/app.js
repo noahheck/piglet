@@ -14,6 +14,10 @@ require('./bootstrap');
 
 $(function() {
 
-    // $(".bs-datepicker").datetimepicker();
+    $(".dismissable-popover").click(() => {return false;}).popover({
+        trigger: 'focus'
+    });
+
+    console.log("Hello");
 
 });

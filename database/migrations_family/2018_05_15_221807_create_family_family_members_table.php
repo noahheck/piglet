@@ -25,6 +25,7 @@ class CreateFamilyFamilyMembersTable extends Migration
             $table->string('gender')->nullable();
             $table->string('image')->nullable();
             $table->dateTime('image_updated_at')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }
