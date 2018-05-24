@@ -34,7 +34,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ __('family-members.family_members') }}</h5>
                     @foreach ($members as $member)
-                        <img class="rounded-circle" src="{{ $member->imagePath('icon') }}" alt="{{ $member->firstName }}" title="{{ $member->firstName }} {{ $member->lastName }}">
+                        {{--<img class="rounded-circle" src="{{ $member->imagePath('icon') }}" alt="{{ $member->firstName }}" title="{{ $member->firstName }} {{ $member->lastName }}">--}}
+                        {!! $member->icon()  !!}
                     @endforeach
                 </div>
             </a>

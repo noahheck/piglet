@@ -47,6 +47,20 @@ class Member extends Model
         'birthdate',
     ];
 
+    public function getInitialsAttribute()
+    {
+        return substr($this->firstName, 0, 1) . substr($this->lastName, 0, 1);
+    }
+
+    public function icon()
+    {
+        if ($this->image) {
+            return "<img class='rounded-circle' src='{$this->imagePath('icon')}' alt='{$this->firstName}' title='{$this->firstName} {$this->lastName}'>";
+        }
+
+        return "<span class='rounded-circle' style='color: #fff; padding: 7px; background-color: {$this->color};' title='{$this->firstName} {$this->lastName}'>{$this->initials}</span>";
+    }
+
 
 
     protected $defaultImageFile          = "cartoon_user_fullsize.png";
