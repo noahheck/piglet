@@ -12,7 +12,7 @@
 
             <div class="text-center member-photo-image-container">
                 <div class="card shadow">
-                    <img class="card-img-top" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }}">
+                    {!! $member->photo(['card-img-top']) !!}
                 </div>
             </div>
 

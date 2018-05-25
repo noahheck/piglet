@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class Member extends Model
 {
-    use HasBirthdate,
-        IsPhotogenic;
+    use HasBirthdate;
+
+    use IsPhotogenic {
+        icon as protected photogenicIcon;
+    }
 
 
 
@@ -52,13 +55,18 @@ class Member extends Model
         return substr($this->firstName, 0, 1) . substr($this->lastName, 0, 1);
     }
 
-    public function icon()
+    public function icon(array $withClasses = [])
     {
         if ($this->image) {
-            return "<img class='rounded-circle' src='{$this->imagePath('icon')}' alt='{$this->firstName}' title='{$this->firstName} {$this->lastName}'>";
+            return $this->photogenicIcon($withClasses);
         }
 
-        return "<span class='rounded-circle' style='color: #fff; padding: 7px; background-color: {$this->color};' title='{$this->firstName} {$this->lastName}'>{$this->initials}</span>";
+        return "<span class='rounded-circle' style='color: #fff; padding: 7px; background-color: {$this->color};' title='{$this->photoAltText()}'>{$this->initials}</span>";
+    }
+
+    public function photoAltText()
+    {
+        return $this->firstName . ' ' . $this->lastName;
     }
 
 

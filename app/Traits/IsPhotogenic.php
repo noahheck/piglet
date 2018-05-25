@@ -44,6 +44,33 @@ trait IsPhotogenic
 
 
     /**
+     *
+     */
+    public function icon(array $withClasses = [])
+    {
+        $classes = implode(' ', $withClasses);
+        return "<img class='{$classes}' src='{$this->imagePath('icon') }' alt='{$this->photoAltText()}'>";
+    }
+
+    public function thumbnail(array $withClasses = [])
+    {
+        $classes = implode(' ', $withClasses);
+        return "<img class='{$classes}' src='{$this->imagePath('thumbnail') }' alt='{$this->photoAltText()}'>";
+    }
+
+    public function photo(array $withClasses = [])
+    {
+        $classes = implode(' ', $withClasses);
+        return "<img class='{$classes}' src='{$this->imagePath('full') }' alt='{$this->photoAltText()}'>";
+    }
+
+    public function photoAltText()
+    {
+        return "Photo";
+    }
+
+
+    /**
      * @param string $size
      * @return string
      */

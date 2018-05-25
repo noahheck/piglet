@@ -50,6 +50,10 @@ class Family extends Model
 
 
 
+    public function photoAltText()
+    {
+        return $this->name;
+    }
 
     /**
      * @param string $size

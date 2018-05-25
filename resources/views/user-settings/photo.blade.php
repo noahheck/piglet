@@ -19,7 +19,7 @@
         <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
             <div class="text-center">
-                <img src="{{ $user->imagePath('thumbnail') }}" alt="User image" class="user-photo mb-2">
+                {!! $user->thumbnail(['user-photo', 'mb-2']) !!}
             </div>
 
             <div class="card">

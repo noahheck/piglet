@@ -45,7 +45,8 @@
         @foreach($members as $member)
             <div class="col-6 col-md-4 col-lg-3">
                 <a class="card shadow" href="{{ route('family.member.show', [$family, $member]) }}">
-                    <img class="card-img-top card-img-bottoms" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }} {{ $member->lastName }}">
+                    {{--<img class="card-img-top card-img-bottoms" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }} {{ $member->lastName }}">--}}
+                    {!! $member->photo(['card-img-top']) !!}
                     <div class="card-footer text-muted">
                         <p style="color: {{ $member->color }};">{{ $member->firstName }}</p>
                     </div>

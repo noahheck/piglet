@@ -35,22 +35,18 @@
         <div class="col-12 col-md-4 col-lg-3">
 
             <div class="card shadow">
-                <img class="img-fluid card-img-top" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }}">
-
+                {!! $member->photo(['img-fluid', 'card-img-top']) !!}
                 @if ($member->birthdate)
                     <div class="card-body">
                         {{ $member->age }} years - {{ ucfirst($member->gender) }}
                     </div>
                 @endif
 
-                {{--<ul class="list-group list-group-flush">--}}
                 <a href="{{ route('family.member.edit', [$family, $member]) }}">
                     <div class="card-footer text-right text-muted">
-                        {{--<a href="{{ route('family.member.edit', [$family, $member]) }}"><span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}</a>--}}
                         <span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}
                     </div>
                 </a>
-                {{--</ul>--}}
 
             </div>
 

@@ -65,7 +65,10 @@ class User extends Authenticatable
 
 
 
-
+    public function photoAltText()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 
     /**
      * @param string $size

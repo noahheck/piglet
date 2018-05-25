@@ -20,10 +20,10 @@
 
             <h2>{{ $family->name }}</h2>
 
-            <img class="rounded-circle img-fluid family-photo" src="{{ $family->imagePath('full') }}" alt="Family photo">
+            {!! $family->photo(['rounded-circle', 'img-fluid', 'family-photo']) !!}
 
             @if ($familyUser->isAdministrator)
-                <p><a href="{{ route('family.edit', $family) }}" class="btn btn-outline-primary">Edit Details</a></p>
+                <p><a href="{{ route('family.edit', $family) }}" class="btn btn-outline-primary">{{ ucwords(__('form.edit_details')) }}</a></p>
             @endif
 
         </div>
@@ -34,8 +34,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ __('family-members.family_members') }}</h5>
                     @foreach ($members as $member)
-                        {{--<img class="rounded-circle" src="{{ $member->imagePath('icon') }}" alt="{{ $member->firstName }}" title="{{ $member->firstName }} {{ $member->lastName }}">--}}
-                        {!! $member->icon()  !!}
+                        {!! $member->icon(['rounded-circle'])  !!}
                     @endforeach
                 </div>
             </a>
