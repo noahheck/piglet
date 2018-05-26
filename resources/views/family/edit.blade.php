@@ -14,6 +14,11 @@
 
 @section('content')
 
+    @include('family.shared.breadcrumb', [
+        'breadcrumb' => [],
+        'location'   => __('family-settings.edit_family_details'),
+    ])
+
     <div class="row">
 
         <div class="col-12">

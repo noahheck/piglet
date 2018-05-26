@@ -14,18 +14,12 @@
 
 @section('content')
 
-    <div class="row">
-
-        <div class="col-12">
-            <a href="{{ route("family.home", [$family]) }}">{{ __('family.family_home') }}</a>
-            >
-            <a href="{{ route("family.member.index", [$family]) }}">{{ __('family-members.family_members') }}</a>
-            >
-            {{ ucwords(__('form.add_new')) }}
-        </div>
-    </div>
-
-    <hr>
+    @include('family.shared.breadcrumb', [
+        'breadcrumb' => [
+            route('family.member.index', [$family]) => __('family-members.family_members'),
+        ],
+        'location' => ucwords(__('form.add_new')),
+    ])
 
     <div class="row">
 

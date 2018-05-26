@@ -14,29 +14,19 @@
 
 @section('content')
 
-    <div class="row">
-
-        <div class="col-12">
-
-            <div class="float-right">
-                <a class="btn btn-sm btn-primary" href="{{ route('family.member.create', [$family]) }}">
-                    <span class="fa fa-plus-circle"></span> {{ __('form.add_new') }}
-                </a>
-            </div>
-
-            <a href="{{ route("family.home", [$family]) }}">{{ __('family.family_home') }}</a>
-            >
-            {{ __('family-members.family_members') }}
-
-        </div>
-
-    </div>
-
-    <hr>
+    @include('family.shared.breadcrumb', [
+        'breadcrumb' => [],
+        'location' => __('family-members.family_members'),
+    ])
 
     <div class="row">
         <div class="col">
-            <h2>{{ __('family-members.family_members') }}</h2>
+            <h2>
+                {{ __('family-members.family_members') }}
+                <a class="btn btn-sm btn-primary" href="{{ route('family.member.create', [$family]) }}">
+                    <span class="fa fa-plus-circle"></span> {{ __('form.add_new') }}
+                </a>
+            </h2>
         </div>
     </div>
 
@@ -45,7 +35,6 @@
         @foreach($members as $member)
             <div class="col-6 col-md-4 col-lg-3">
                 <a class="card shadow" href="{{ route('family.member.show', [$family, $member]) }}">
-                    {{--<img class="card-img-top card-img-bottoms" src="{{ $member->imagePath('full') }}" alt="{{ $member->firstName }} {{ $member->lastName }}">--}}
                     {!! $member->photo(['card-img-top']) !!}
                     <div class="card-footer text-muted">
                         <p style="color: {{ $member->color }};">{{ $member->firstName }}</p>

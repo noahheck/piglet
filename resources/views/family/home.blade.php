@@ -42,7 +42,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">Goals <small class="text-muted">- Coming Soon!</small></h5>
-                    Progress about the goals
+                    Setting and tracking progress toward goals
                 </div>
             </div>
 
