@@ -16,7 +16,7 @@
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
-        'location' => __('family-members.family_members'),
+        'location'   => __('family-members.family_members'),
     ])
 
     <div class="row">

@@ -24,9 +24,9 @@
         <div class="col-12">
 
             @include('family/_form', [
-                'legend' => trans('family-settings.edit_family_details'),
-                'action' => route('family.update', $family),
-                'method' => 'PUT',
+                'legend'      => trans('family-settings.edit_family_details'),
+                'action'      => route('family.update', $family),
+                'method'      => 'PUT',
                 'cancelRoute' => route('family.home', $family),
             ])
 
