@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFamilyTasksTable extends Migration
+class CreateFamilyTaskListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateFamilyTasksTable extends Migration
      */
     public function up()
     {
-        Schema::connection('family')->create('tasks', function (Blueprint $table) {
+        Schema::connection('family')->create('task_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('details')->default('');
-            $table->integer('responsibleFor')->nullable();
-            $table->integer('taskList')->nullable();
             $table->boolean('active')->default(true);
             $table->date('dueDate')->nullable();
-            $table->date('scheduledDate')->nullable();
-            $table->date('completedDate')->nullable();
-
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -36,6 +30,6 @@ class CreateFamilyTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('family_task_lists');
     }
 }

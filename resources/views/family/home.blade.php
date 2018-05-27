@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <a class="card shadow" href="{{ route('family.tasks.index', $family) }}">
+            <a class="card shadow" href="{{ route('family.taskLists.index', $family) }}">
                 <div class="card-body">
                     <h5 class="card-title">Things to do</h5>
                     To do lists and things

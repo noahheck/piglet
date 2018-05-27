@@ -49,6 +49,7 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
     Route::get('/members/{member}/photo/{size}/{photoFile}', 'MemberController@photo')->name('member.photo');
 
     // Tasks
+    Route::resource('/taskLists', 'TaskListController');
     Route::resource('/tasks', 'TaskController');
 
 });

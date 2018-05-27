@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} Tasks
+ - {{ $family->name }} Task Lists
 @endsection
 
 @section('stylesheets')
@@ -16,13 +16,13 @@
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
-        'location'   => 'Tasks',
+        'location'   => 'Task Lists',
     ])
 
     <div class="row">
         <div class="col">
             <h2>
-                Tasks
+                Task Lists
             </h2>
         </div>
     </div>
