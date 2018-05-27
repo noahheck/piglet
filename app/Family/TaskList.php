@@ -17,6 +17,10 @@ class TaskList extends Model
         'active',
     ];
 
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
     public static function getValidations()
     {
         return [

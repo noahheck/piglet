@@ -16,8 +16,8 @@ class CreateFamilyTaskListsTable extends Migration
         Schema::connection('family')->create('task_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('details')->default('');
-            $table->boolean('active')->default(true);
+            $table->text('details')->nullable();
+            $table->boolean('active')->default(false);
             $table->date('dueDate')->nullable();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateFamilyTaskListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family_task_lists');
+        Schema::dropIfExists('task_lists');
     }
 }

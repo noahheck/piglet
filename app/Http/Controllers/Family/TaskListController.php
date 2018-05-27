@@ -55,10 +55,7 @@ class TaskListController extends Controller
 
         $taskList->save();
 
-        /**
-         * @todo Change route to the newly created taskList
-         */
-        return redirect()->route('family.taskLists.index', [$family]);
+        return redirect()->route('family.taskLists.show', [$family, $taskList]);
     }
 
     /**
@@ -101,6 +98,8 @@ class TaskListController extends Controller
         $request->validate($taskList->getValidations());
 
         $taskList->fill($request->only($taskList->getFillable()));
+
+        $taskList->active = $request->has('active');
 
         $taskList->save();
 

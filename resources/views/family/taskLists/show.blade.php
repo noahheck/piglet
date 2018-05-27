@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="col">
-            <h2>
+            <h2 class="{{ (!$taskList->active) ? 'text-muted' : '' }}">
                 {{ $taskList->title }}
                 <a href="{{ route('family.taskLists.edit', [$family, $taskList]) }}" class="btn btn-sm btn-primary">
                     <span class="fa fa-pencil-square-o"></span>
