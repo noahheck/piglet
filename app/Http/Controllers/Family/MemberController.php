@@ -38,7 +38,7 @@ class MemberController extends Controller
 
         $member->color = '#6a8aaa';
 
-        return view('family.members.create', [
+        return view('family.members.new', [
             'family' => $family,
             'member' => $member,
         ]);
