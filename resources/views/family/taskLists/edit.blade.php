@@ -24,16 +24,16 @@
     <div class="row">
         <div class="col">
             <h2>
-                Add new task list
+                {{ $taskList->title }}
             </h2>
         </div>
     </div>
 
     @include('family.taskLists._form', [
-        'legend'      => 'Details',
-        'action'      => route('family.taskLists.store', [$family]),
-        'method'      => false,
-        'cancelRoute' => route('family.taskLists.index', [$family]),
+        'legend'      => 'Edit Details',
+        'action'      => route('family.taskLists.update', [$family, $taskList]),
+        'method'      => 'PUT',
+        'cancelRoute' => route('family.taskLists.show', [$family, $taskList]),
     ])
 
 @endsection

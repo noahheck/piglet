@@ -64,23 +64,29 @@ class TaskListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Family\TaskList  $familyTaskList
+     * @param  \App\Family\TaskList  $taskList
      * @return \Illuminate\Http\Response
      */
-    public function show(TaskList $familyTaskList)
+    public function show(Family $family, TaskList $taskList)
     {
-        //
+        return view('family.taskLists.show', [
+            'family'   => $family,
+            'taskList' => $taskList,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Family\TaskList  $familyTaskList
+     * @param  \App\Family\TaskList  $taskList
      * @return \Illuminate\Http\Response
      */
-    public function edit(TaskList $familyTaskList)
+    public function edit(Family $family, TaskList $taskList)
     {
-        //
+        return view('family.taskLists.edit', [
+            'family'   => $family,
+            'taskList' => $taskList,
+        ]);
     }
 
     /**
@@ -90,9 +96,15 @@ class TaskListController extends Controller
      * @param  \App\Family\TaskList  $familyTaskList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TaskList $familyTaskList)
+    public function update(Request $request, Family $family, TaskList $taskList)
     {
-        //
+        $request->validate($taskList->getValidations());
+
+        $taskList->fill($request->only($taskList->getFillable()));
+
+        $taskList->save();
+
+        return redirect()->route('family.taskLists.show', [$family, $taskList]);
     }
 
     /**
