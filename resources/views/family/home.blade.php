@@ -53,12 +53,12 @@
                 </div>
             </div>
 
-            <div class="card shadow">
+            <a class="card shadow" href="{{ route('family.tasks.index', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">Things to do <small class="text-muted">- Coming Soon!</small></h5>
+                    <h5 class="card-title">Things to do</h5>
                     To do lists and things
                 </div>
-            </div>
+            </a>
 
             <div class="card shadow">
                 <div class="card-body">

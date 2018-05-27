@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Family;
 
-use App\FamilyTask;
+use App\Family;
+use App\Family\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -14,9 +15,14 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Family $family)
     {
-        //
+        $tasks = Task::all();
+
+        return view('family.tasks.home', [
+            'family' => $family,
+            'tasks'  => $tasks,
+        ]);
     }
 
     /**
@@ -43,10 +49,10 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\FamilyTask  $familyTask
+     * @param  \App\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function show(FamilyTask $familyTask)
+    public function show(Task $familyTask)
     {
         //
     }
@@ -54,10 +60,10 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\FamilyTask  $familyTask
+     * @param  \App\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function edit(FamilyTask $familyTask)
+    public function edit(Task $familyTask)
     {
         //
     }
@@ -66,10 +72,10 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FamilyTask  $familyTask
+     * @param  \App\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FamilyTask $familyTask)
+    public function update(Request $request, Task $familyTask)
     {
         //
     }
@@ -77,10 +83,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\FamilyTask  $familyTask
+     * @param  \App\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FamilyTask $familyTask)
+    public function destroy(Task $familyTask)
     {
         //
     }
