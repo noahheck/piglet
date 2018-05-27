@@ -30,6 +30,27 @@
                     Edit
                 </a>
             </h2>
+            @if($taskList->dueDate)
+                <p>Due {{ Auth::user()->formatDate($taskList->dueDate) }}</p>
+            @endif
+            <p>{{ $taskList->details }}</p>
+
+            <hr style="width: 75%;">
+
+            <h5>
+                <a href="#">
+                    <span class="fa fa-plus-circle"></span> Add Task
+                </a>
+            </h5>
+
+            <p>
+                <input type="checkbox"> <a href="#">Buy Groceries</a> <small class="text-muted">- 05/26/2018</small> {!! Auth::user()->icon(['icon', 'rounded-circle']) !!}
+            </p>
+
+            <p>
+                <input type="checkbox"> <a href="#">Put groceries away</a> <small class="text-muted">- 05/26/2018</small> {!! Auth::user()->icon(['icon', 'rounded-circle']) !!}
+            </p>
+
         </div>
     </div>
 
