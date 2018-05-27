@@ -77,7 +77,7 @@
 
                 <div class="form-group">
                     <label for="birthdate">{{ __('family-members.birthdate') }} <small class="text-muted">mm/dd/yyyy</small></label>
-                    <input type="text" name="birthdate" id="birthdate" class="form-control" placeholder="{{ __('family-members.birthdate') }}" value="{{ old('birthdate', Auth::user()->formatDate($member->birthdate)) }}">
+                    <input type="text" name="birthdate" id="birthdate" class="form-control dateField" placeholder="{{ __('family-members.birthdate') }}" value="{{ old('birthdate', Auth::user()->formatDate($member->birthdate)) }}">
                     @fieldError('birthdate')
                 </div>
 

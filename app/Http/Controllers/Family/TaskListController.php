@@ -17,8 +17,11 @@ class TaskListController extends Controller
      */
     public function index(Family $family)
     {
+        $taskLists = TaskList::all();
+
         return view('family.taskLists.home', [
-            'family' => $family,
+            'family'    => $family,
+            'taskLists' => $taskLists,
         ]);
     }
 
@@ -27,9 +30,14 @@ class TaskListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family)
     {
-        //
+        $taskList = new TaskList(['active' => true]);
+
+        return view('family.taskLists.new', [
+            'family'   => $family,
+            'taskList' => $taskList,
+        ]);
     }
 
     /**
@@ -38,9 +46,19 @@ class TaskListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Family $family, Request $request)
     {
-        //
+        $request->validate(TaskList::getValidations());
+
+        $taskList = new TaskList();
+        $taskList->fill($request->only($taskList->getFillable()));
+
+        $taskList->save();
+
+        /**
+         * @todo Change route to the newly created taskList
+         */
+        return redirect()->route('family.taskLists.index', [$family]);
     }
 
     /**
