@@ -16,8 +16,8 @@
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
-            route('family.member.index', [$family])          => __('family-members.family_members'),
-            route('family.member.show',  [$family, $member]) => $member->firstName,
+            route('family.members.index', [$family])          => __('family-members.family_members'),
+            route('family.members.show',  [$family, $member]) => $member->firstName,
         ],
         'location' => __('form.edit'),
     ])
@@ -30,11 +30,11 @@
 
     </div>
 
-    @include('family/member/_form', [
+    @include('family/members/_form', [
         'legend'      => ucwords(__('form.edit_details')),
-        'action'      => route('family.member.update', [$family, $member]),
+        'action'      => route('family.members.update', [$family, $member]),
         'method'      => 'PUT',
-        'cancelRoute' => route('family.member.show', [$family, $member]),
+        'cancelRoute' => route('family.members.show', [$family, $member]),
     ])
 
 @endsection

@@ -30,7 +30,7 @@
 
         <div class="col-12 col-md-4">
 
-            <a class="card shadow" href="{{ route('family.member.index', $family) }}">
+            <a class="card shadow" href="{{ route('family.members.index', $family) }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ __('family-members.family_members') }}</h5>
                     @foreach ($members as $member)

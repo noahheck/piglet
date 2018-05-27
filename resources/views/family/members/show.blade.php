@@ -16,7 +16,7 @@
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
-            route('family.member.index', [$family]) => __('family-members.family_members'),
+            route('family.members.index', [$family]) => __('family-members.family_members'),
         ],
         'location' => $member->firstName
     ])
@@ -35,7 +35,7 @@
                     </div>
                 @endif
 
-                <a href="{{ route('family.member.edit', [$family, $member]) }}">
+                <a href="{{ route('family.members.edit', [$family, $member]) }}">
                     <div class="card-footer text-right text-muted">
                         <span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}
                     </div>

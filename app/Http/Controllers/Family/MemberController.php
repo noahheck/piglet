@@ -21,7 +21,7 @@ class MemberController extends Controller
     {
         $members = Member::all();
 
-        return view('family.member.home', [
+        return view('family.members.home', [
             'family'  => $family,
             'members' => $members,
         ]);
@@ -38,7 +38,7 @@ class MemberController extends Controller
 
         $member->color = '#6a8aaa';
 
-        return view('family.member.create', [
+        return view('family.members.create', [
             'family' => $family,
             'member' => $member,
         ]);
@@ -66,7 +66,7 @@ class MemberController extends Controller
             $member->uploadPhoto($photoFile, $photoUploaderService);
         }
 
-        return redirect()->route('family.member.show', [$family, $member]);
+        return redirect()->route('family.members.show', [$family, $member]);
     }
 
     /**
@@ -79,7 +79,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        return view('family.member.show', [
+        return view('family.members.show', [
             'family' => $family,
             'member' => $member,
         ]);
@@ -95,7 +95,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        return view('family.member.edit', [
+        return view('family.members.edit', [
             'family' => $family,
             'member' => $member,
         ]);
@@ -122,7 +122,7 @@ class MemberController extends Controller
             $member->uploadPhoto($photoFile, $photoUploaderService);
         }
 
-        return redirect()->route('family.member.show', [$family, $member]);
+        return redirect()->route('family.members.show', [$family, $member]);
     }
 
     /**

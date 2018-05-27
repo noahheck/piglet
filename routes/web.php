@@ -14,6 +14,8 @@
 use App\Http\Middleware\ConnectFamilyDatabase;
 use App\Http\Middleware\VerifyFamilyAccess;
 
+Route::singularResourceParameters();
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,8 +45,8 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
 
 
     // Family Members
-    Route::resource('/member', 'MemberController');
-    Route::get('/member/{member}/photo/{size}/{photoFile}', 'MemberController@photo')->name('member.photo');
+    Route::resource('/members', 'MemberController');
+    Route::get('/members/{member}/photo/{size}/{photoFile}', 'MemberController@photo')->name('member.photo');
 
-
+    
 });

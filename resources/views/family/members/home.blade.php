@@ -23,7 +23,7 @@
         <div class="col">
             <h2>
                 {{ __('family-members.family_members') }}
-                <a class="btn btn-sm btn-primary" href="{{ route('family.member.create', [$family]) }}">
+                <a class="btn btn-sm btn-primary" href="{{ route('family.members.create', [$family]) }}">
                     <span class="fa fa-plus-circle"></span> {{ __('form.add_new') }}
                 </a>
             </h2>
@@ -34,7 +34,7 @@
 
         @foreach($members as $member)
             <div class="col-6 col-md-4 col-lg-3">
-                <a class="card shadow" href="{{ route('family.member.show', [$family, $member]) }}">
+                <a class="card shadow" href="{{ route('family.members.show', [$family, $member]) }}">
                     {!! $member->photo(['card-img-top']) !!}
                     <div class="card-footer text-muted">
                         <p style="color: {{ $member->color }};">{{ $member->firstName }}</p>
