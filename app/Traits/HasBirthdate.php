@@ -14,7 +14,7 @@ trait HasBirthdate
     public function setBirthdateAttribute($birthdate)
     {
         if (!$birthdate) {
-            return null;
+            return $this->attributes['birthdate'] = null;
         }
 
         return $this->attributes['birthdate'] = \Carbon\Carbon::createFromFormat('m/d/Y', $birthdate);

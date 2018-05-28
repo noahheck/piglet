@@ -1,0 +1,29 @@
+/**
+ * sass/family/taskLists.scss
+ */
+
+.isOverdue {
+  background-color: #fff0f0;
+}
+
+.taskList {
+  background-image: url("/img/task_list.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 250px;
+  border: none;
+  color: #000;
+}
+
+.taskList:hover {
+  text-decoration: none;
+}
+
+.taskList .card-title {
+  font-weight: bold;
+}
+
+.isOverdue .dueDate {
+  color: #c00;
+}
+

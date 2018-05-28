@@ -44,4 +44,23 @@ class TaskList extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+
+
+    /**
+     * Get the tasks stats for this list
+     */
+    public function taskStats()
+    {
+        $numTotal = $this->tasks->count();
+
+        $numActive = $this->tasks->filter(function($task) {
+            return $task->active;
+        })->count();
+
+        return [
+            'total' => $numTotal,
+            'active' => $numActive,
+        ];
+    }
 }

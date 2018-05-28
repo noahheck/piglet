@@ -37,6 +37,9 @@ mix
     .sass('resources/assets/sass/family/member/home.scss', 'public/css/family/member')
 
 
+    .sass('resources/assets/sass/family/taskLists.scss', 'public/css/family.taskLists.css')
+
+
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
 
