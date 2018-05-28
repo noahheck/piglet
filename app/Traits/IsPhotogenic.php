@@ -48,7 +48,8 @@ trait IsPhotogenic
      */
     public function icon(array $withClasses = [])
     {
-        $classes = implode(' ', $withClasses);
+        $classes = array_merge(['icon', 'rounded-circle'], $withClasses);
+        $classes = implode(' ', $classes);
         return "<img class='{$classes}' src='{$this->imagePath('icon') }' alt='{$this->photoAltText()}'>";
     }
 

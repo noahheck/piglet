@@ -2,6 +2,8 @@
 
 namespace App\Family;
 
+use App\Family\Task;
+
 use App\Traits\HasBirthdate;
 use App\Traits\IsPhotogenic;
 use Illuminate\Support\Facades\Storage;
@@ -49,6 +51,15 @@ class Member extends Model
         'updated_at',
         'birthdate',
     ];
+
+
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+
 
     public function getInitialsAttribute()
     {

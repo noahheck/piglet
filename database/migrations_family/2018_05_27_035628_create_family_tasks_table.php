@@ -17,8 +17,8 @@ class CreateFamilyTasksTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('details')->default('');
-            $table->integer('responsibleFor')->nullable();
-            $table->integer('taskList')->nullable();
+            $table->integer('member_id')->nullable();
+            $table->integer('task_list_id')->nullable();
             $table->boolean('active')->default(true);
             $table->date('dueDate')->nullable();
             $table->date('scheduledDate')->nullable();

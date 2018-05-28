@@ -2,7 +2,7 @@
 
 namespace App\Family;
 
-
+use App\Family\Task;
 
 use App\Traits\HasDueDate;
 
@@ -34,4 +34,14 @@ class TaskList extends Model
         'updated_at',
         'dueDate',
     ];
+
+
+
+    /**
+     * Get the tasks for this list
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

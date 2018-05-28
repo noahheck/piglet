@@ -12,6 +12,6 @@ trait HasDueDate
             return null;
         }
 
-        return $this->attributes['dueDate'] = \Carbon\Carbon::createFromFormat('m/d/Y', $dueDate);
+        return $this->attributes['dueDate'] = Carbon::createFromFormat('m/d/Y', $dueDate);
     }
 }
