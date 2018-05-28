@@ -83,9 +83,13 @@ class TaskController extends Controller
      * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $familyTask)
+    public function edit(Family $family, TaskList $taskList, Task $task)
     {
-        //
+        return view('family.tasks.edit', [
+            'family'   => $family,
+            'taskList' => $taskList,
+            'task'     => $task,
+        ]);
     }
 
     /**
@@ -95,9 +99,17 @@ class TaskController extends Controller
      * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $familyTask)
+    public function update(Family $family, TaskList $taskList, Task $task, Request $request)
     {
-        //
+        $request->validate(Task::getValidations());
+
+        $task->fill($request->only($task->getFillable()));
+
+        $task->active = $request->has('active');
+
+        $task->save();
+
+        return redirect()->route('family.taskLists.show', [$family, $taskList]);
     }
 
     /**

@@ -35,7 +35,7 @@
                 <p>Due {{ Auth::user()->formatDate($taskList->dueDate) }}</p>
             @endif
 
-            <p>{{ $taskList->details }}</p>
+            <p>{!! nl2br(e($taskList->details)) !!}</p>
 
             <hr style="width: 75%;">
 
@@ -45,19 +45,11 @@
                 </a>
             </h5>
 
-            {{--<p>
-                <input type="checkbox"> <a href="#">Buy Groceries</a> <small class="text-muted">- 05/26/2018</small> {!! Auth::user()->icon(['icon', 'rounded-circle']) !!}
-            </p>
-
-            <p>
-                <input type="checkbox"> <a href="#">Put groceries away</a> <small class="text-muted">- 05/26/2018</small> {!! Auth::user()->icon(['icon', 'rounded-circle']) !!}
-            </p>--}}
-
             @foreach ($taskList->tasks as $task)
 
                 <p>
                     <input type="checkbox">
-                    <a href="{{ route('family.tasks.show', [$family, $taskList, $task]) }}">
+                    <a href="{{ route('family.tasks.edit', [$family, $taskList, $task]) }}">
                         {{ $task->title }}
                     </a>
                     @if ($task->dueDate)

@@ -19,7 +19,7 @@
             route('family.taskLists.index', [$family]) => 'Task Lists',
             route('family.taskLists.show', [$family, $taskList]) => $taskList->title,
         ],
-        'location'   => 'Add New Task',
+        'location'   => 'Edit Task',
     ])
 
     <div class="row">
@@ -46,14 +46,15 @@
         <div class="col-12 col-sm-6">
 
             @include('family.tasks._form', [
-                'legend'      => 'New task details',
-                'action'      => route('family.tasks.store', [$family, $taskList]),
-                'method'      => false,
+                'legend'      => 'Edit task details',
+                'action'      => route('family.tasks.update', [$family, $taskList, $task]),
+                'method'      => 'PUT',
                 'cancelRoute' => route('family.taskLists.show', [$family, $taskList]),
             ])
 
         </div>
 
     </div>
+
 
 @endsection
