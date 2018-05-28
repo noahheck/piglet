@@ -40,7 +40,7 @@
             <hr style="width: 75%;">
 
             <h5>
-                <a href="#">
+                <a href="{{ route('family.tasks.create', [$family, $taskList]) }}">
                     <span class="fa fa-plus-circle"></span> Add Task
                 </a>
             </h5>
@@ -57,7 +57,7 @@
 
                 <p>
                     <input type="checkbox">
-                    <a href="#">
+                    <a href="{{ route('family.tasks.show', [$family, $taskList, $task]) }}">
                         {{ $task->title }}
                     </a>
                     @if ($task->dueDate)

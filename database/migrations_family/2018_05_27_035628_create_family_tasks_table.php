@@ -16,7 +16,7 @@ class CreateFamilyTasksTable extends Migration
         Schema::connection('family')->create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('details')->default('');
+            $table->text('details')->nullable();
             $table->integer('member_id')->nullable();
             $table->integer('task_list_id')->nullable();
             $table->boolean('active')->default(true);

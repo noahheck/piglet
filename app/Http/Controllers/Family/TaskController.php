@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\Task;
+use App\Family\TaskList;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -17,12 +18,12 @@ class TaskController extends Controller
      */
     public function index(Family $family)
     {
-        $tasks = Task::all();
+        /*$tasks = Task::all();
 
         return view('family.tasks.home', [
             'family' => $family,
             'tasks'  => $tasks,
-        ]);
+        ]);*/
     }
 
     /**
@@ -30,9 +31,18 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family, TaskList $taskList)
     {
-        //
+        $task = new Task();
+
+        $task->task_list_id = $taskList->id;
+        $task->active       = true;
+
+        return view('family.tasks.new', [
+            'family'   => $family,
+            'taskList' => $taskList,
+            'task'     => $task,
+        ]);
     }
 
     /**
@@ -41,15 +51,25 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Family $family, TaskList $taskList, Request $request)
     {
-        //
+        $request->validate(Task::getValidations());
+
+        $task = new Task;
+
+        $task->fill($request->only($task->getFillable()));
+        $task->task_list_id = $taskList->id;
+        $task->active = $request->has('active');
+
+        $task->save();
+
+        return redirect()->route('family.taskLists.show', [$family, $taskList]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $familyTask
+     * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
     public function show(Task $familyTask)
@@ -60,7 +80,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $familyTask
+     * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
     public function edit(Task $familyTask)
@@ -72,7 +92,7 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $familyTask
+     * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Task $familyTask)
@@ -83,7 +103,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $familyTask
+     * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $familyTask)

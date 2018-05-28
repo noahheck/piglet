@@ -50,6 +50,10 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
 
     // Tasks
     Route::resource('/taskLists', 'TaskListController');
-    Route::resource('/tasks', 'TaskController');
+
+    Route::prefix('/taskLists/{taskList}')->group(function() {
+        Route::resource('/tasks', 'TaskController');
+    });
+
 
 });
