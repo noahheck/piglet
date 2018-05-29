@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Family;
 use App\Family;
 use App\Family\Task;
 use App\Family\TaskList;
+use App\Family\Member;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -38,10 +39,13 @@ class TaskController extends Controller
         $task->task_list_id = $taskList->id;
         $task->active       = true;
 
+        $members = Member::all();
+
         return view('family.tasks.new', [
             'family'   => $family,
             'taskList' => $taskList,
             'task'     => $task,
+            'members'  => $members,
         ]);
     }
 
@@ -85,10 +89,13 @@ class TaskController extends Controller
      */
     public function edit(Family $family, TaskList $taskList, Task $task)
     {
+        $members = Member::all();
+
         return view('family.tasks.edit', [
             'family'   => $family,
             'taskList' => $taskList,
             'task'     => $task,
+            'members'  => $members,
         ]);
     }
 

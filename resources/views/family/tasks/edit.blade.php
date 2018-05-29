@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} Tasks - Create New
+ - {{ $family->name }} Tasks - Edit Task
 @endsection
 
 @section('stylesheets')
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col">
             <h2>
-                Add new task
+                Edit task
             </h2>
         </div>
     </div>

@@ -16,17 +16,20 @@ class Task extends Model
         'details',
         'dueDate',
         'active',
+        'member_id',
     ];
 
     protected $casts = [
         'active' => 'boolean',
+        'member_id' => 'integer',
     ];
 
     public static function getValidations()
     {
         return [
-            'title'   => 'required|max:255',
-            'dueDate' => 'date|nullable',
+            'title'     => 'required|max:255',
+            'dueDate'   => 'date|nullable',
+            'member_id' => 'integer|nullable',
         ];
     }
 
