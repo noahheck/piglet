@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 trait HasDueDate
 {
@@ -17,12 +18,18 @@ trait HasDueDate
 
     public function isOverdue()
     {
-        /*$dueDate = $this->dueDate;
+        $dueDate = $this->dueDate;
 
         if (!$dueDate) {
             return false;
-        }*/
+        }
 
-        return ($dueDate = $this->dueDate) && $dueDate < new \DateTime();
+        $tz = Auth::user()->timezone;
+
+        $dueDate->endOfDay()->tz($tz);
+
+        $now = Carbon::now($tz)->endOfDay()->tz($tz);
+
+        return $now->diffInSeconds($dueDate) <= 0;
     }
 }
