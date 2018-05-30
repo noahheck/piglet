@@ -17,4 +17,20 @@ class HomeController extends Controller
             'members'    => Family\Member::all(),
         ]);
     }
+
+    /*
+    public function ajaxTest(Request $request)
+    {
+        return response()->json([
+            'success' => true,
+            'errors'  => [],
+            'data'    => [
+                'test'      => 'Something true',
+                'member'    => 1,
+                'attribute' => 'name',
+                'value'     => 'Noah',
+            ]
+        ]);
+    }
+    */
 }

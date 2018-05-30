@@ -8,9 +8,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-var $ = require("jquery");
+let $ = require("jquery");
+        require('./bootstrap');
 
-require('./bootstrap');
+let ajax = require('Services/ajax');
+
+
 
 $(function() {
 
@@ -19,5 +22,9 @@ $(function() {
     });
 
     console.log("Hello");
+
+    /*ajax.get("/ajax-test", {}).then((response) => {
+        console.log(response);
+    });*/
 
 });

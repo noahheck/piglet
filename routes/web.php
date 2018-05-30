@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Useful for debugging situations
+//Route::get('/ajax-test', 'Family\HomeController@ajaxTest');
+//Route::post('/ajax-test', 'Family\HomeController@ajaxTest');
+
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Auth::routes();
