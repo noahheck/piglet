@@ -52,7 +52,7 @@ class AjaxResponse implements JsonSerializable
      */
     public function success($success = null)
     {
-        if ($success) {
+        if (!is_null($success)) {
             return $this->setSuccess($success);
         }
 
@@ -65,7 +65,7 @@ class AjaxResponse implements JsonSerializable
      */
     public function errors($errors = null)
     {
-        if ($errors) {
+        if (!is_null($errors)) {
             return $this->setErrors($errors);
         }
 

@@ -19,7 +19,11 @@ function ajaxRequest(method, route, data) {
             type    : method,
             success : function(response) {
                 if (!response.success) {
-                    // Do something to log the error (at least)
+
+                    if (response.errors) {
+                        alert(response.errors.join("\n"));
+                    }
+
                     reject(response);
                 }
 

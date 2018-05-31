@@ -24,20 +24,15 @@ class HomeController extends Controller
     {
         $response = new AjaxResponse();
 
-        $response->success(true)->set('test', 'Something')->set('member', 1)->addError("Something went wrong");
+        $response->success(true)
+            ->set('test', 'Something')
+            ->set('member', 1)
+            ->addError("Something went wrong")
+            ->addError("Another problem")
+            ->success(false)
+        ;
 
         return response()->json($response);
-
-        /*return response()->json([
-            'success' => true,
-            'errors'  => [],
-            'data'    => [
-                'test'      => 'Something true',
-                'member'    => 1,
-                'attribute' => 'name',
-                'value'     => 'Noah',
-            ]
-        ]);
     }
     /**/
 }
