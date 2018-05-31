@@ -2,7 +2,7 @@
  * js/family/member/edit.js
  */
 
-var $ = require('jquery');
+let $ = require('jquery');
 
 $("#showChangePhotoFormButton").click(function() {
 

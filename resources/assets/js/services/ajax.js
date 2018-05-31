@@ -2,7 +2,9 @@
  * js/services/ajax.js
  */
 
-let $ = require('jquery');
+let $       = require('jquery');
+let routing = require('Services/routing');
+
 
 let ajax = {};
 
@@ -11,7 +13,7 @@ function ajaxRequest(method, route, data) {
     return new Promise((resolve, reject) => {
 
         let ajaxData = {
-            url     : route,
+            url     : routing.getUrl(route),
             dataType: 'json',
             data    : data,
             type    : method,
@@ -37,8 +39,17 @@ function ajaxRequest(method, route, data) {
     });
 }
 
+let csrf_token = $("meta[name='csrf-token']").attr('content');
 
 ajax.post = function(route, data) {
+
+    data = (data) ? data : {};
+
+    /**
+     * Ensure the csrf token is sent back with POST requests
+     */
+    data._token = csrf_token;
+
     return ajaxRequest('POST', route, data);
 };
 

@@ -21,9 +21,14 @@ $(function() {
         trigger: 'focus'
     });
 
-    console.log("Hello");
 
-    /*ajax.get("/ajax-test", {}).then((response) => {
+    /*let route = {
+        // url: '/ajax-test',
+        name: 'test.ajax.post',
+        params: {name: 'noah'}
+    };
+
+    ajax.post(route, {}).then((response) => {
         console.log(response);
     });*/
 

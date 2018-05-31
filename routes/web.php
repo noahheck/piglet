@@ -21,8 +21,8 @@ Route::get('/', function () {
 });
 
 // Useful for debugging situations
-//Route::get('/ajax-test', 'Family\HomeController@ajaxTest');
-//Route::post('/ajax-test', 'Family\HomeController@ajaxTest');
+//Route::get('/{family}/ajax-test', 'Family\HomeController@ajaxTest')->name('test.ajax.get');
+//Route::post('/{family}/{name}/ajax-test', 'Family\HomeController@ajaxTest')->name('test.ajax.post');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
