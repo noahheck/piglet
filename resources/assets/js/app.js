@@ -22,7 +22,9 @@ $(function() {
     });
 
 
-    /*let route = {
+    /*
+    let route = {
+
         // url: '/ajax-test',
         name: 'test.ajax.post',
         params: {name: 'noah'}
@@ -30,6 +32,7 @@ $(function() {
 
     ajax.post(route, {}).then((response) => {
         console.log(response);
-    });*/
+    });
+    /**/
 
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Family;
 
 use App\Family;
+use App\Http\Response\AjaxResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,13 @@ class HomeController extends Controller
     /*
     public function ajaxTest(Request $request)
     {
-        return response()->json([
+        $response = new AjaxResponse();
+
+        $response->success(true)->set('test', 'Something')->set('member', 1)->addError("Something went wrong");
+
+        return response()->json($response);
+
+        /*return response()->json([
             'success' => true,
             'errors'  => [],
             'data'    => [
