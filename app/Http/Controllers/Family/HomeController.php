@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Http\Response\AjaxResponse;
+use App\Mail\MailgunTest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -33,6 +35,13 @@ class HomeController extends Controller
         ;
 
         return response()->json($response);
+    }
+    /**/
+
+    /*
+    public function emailTest()
+    {
+        Mail::to(Auth::user())->send(new MailgunTest(Auth::user()));
     }
     /**/
 }

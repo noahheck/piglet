@@ -47,6 +47,8 @@ Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(Veri
 
     Route::get('/', 'HomeController@index')->name('home');
 
+//    Route::get('/emailTest', 'HomeController@emailTest')->name('email-test');
+
 
     // Family Members
     Route::resource('/members', 'MemberController');
