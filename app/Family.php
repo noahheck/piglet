@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Family\Member;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -163,7 +164,16 @@ class Family extends Model
 
         $connectService->connectToFamily($family)->migrate();
 
+        $member = new Member;
+        $member->family      = $family->id;
+        $member->user_id     = $user->id;
+        $member->firstName   = $user->firstName;
+        $member->lastName    = $user->lastName;
+        $member->allow_login = true;
+        $member->login_email = $user->email;
+        $member->color       = Member::COLOR_DEFAULT;
 
+        $member->save();
 
         // Save the uploaded family photo if provided
         if ($familyPhoto) {

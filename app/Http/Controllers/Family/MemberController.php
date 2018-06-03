@@ -41,7 +41,7 @@ class MemberController extends Controller
     {
         $member = new Member();
 
-        $member->color = '#6a8aaa';
+        $member->color = Member::COLOR_DEFAULT;
 
         return view('family.members.new', [
             'family' => $family,
@@ -71,6 +71,18 @@ class MemberController extends Controller
         $member->allow_login = $request->has('allow_login');
 
         $member->save();
+
+        if ($member->allow_login && $member->login_email) {
+            $invitation = new Invitation();
+
+            $invitation->family_id = $family->id;
+            $invitation->member_id = $member->id;
+            $invitation->email     = $member->login_email;
+
+            $invitation->save();
+
+            Mail::to($member->login_email)->send(new InvitationEmail(Auth::user(), $member));
+        }
 
         if ($photoFile = $request->file('memberPhoto')) {
             $member->uploadPhoto($photoFile, $photoUploaderService);

@@ -29,7 +29,7 @@ class HomeController extends Controller
         $user = Auth::user();
 
         $invitations = Invitation
-            ::where('email', $user->email)
+            ::where('email', '=', $user->email)
             ->whereNull('accepted_date')
             ->get()
         ;

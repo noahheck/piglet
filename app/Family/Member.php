@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Member extends Model
 {
+    const COLOR_DEFAULT = '#6a8aaa';
+
     use HasBirthdate;
 
     use IsPhotogenic {
