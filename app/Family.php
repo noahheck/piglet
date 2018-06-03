@@ -44,6 +44,11 @@ class Family extends Model
             ->using('App\FamilyUser');
     }
 
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class);
+    }
+
 
 
 

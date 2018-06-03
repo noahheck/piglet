@@ -94,8 +94,6 @@ trait IsPhotogenic
 
             endswitch;
 
-            \DebugBar::info(asset('/img/' . $this->$prop));
-
             return asset('/img/' . $this->$prop);
         }
 

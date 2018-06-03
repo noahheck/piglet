@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,8 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+
+        $invitations = Invitation
+            ::where('email', $user->email)
+            ->whereNull('accepted_date')
+            ->get()
+        ;
+
         return view('home', [
-            'families' => Auth::user()->families,
+            'families'    => $user->families,
+            'invitations' => $invitations,
         ]);
     }
 

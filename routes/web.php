@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/verify-email', 'MySettings\EmailController@verifyEmail')->name('user-settings.verify-email');
     Route::post('/request-email-verification', 'MySettings\EmailController@requestNewPin')->name('user-settings.new-email-pin');
 
+    Route::post('/invitation/{invitation}/accept', 'InvitationController@accept')->name('invitation.accept');
 
     Route::get('/my-settings', 'MySettings\SettingsController@index')->name('user-settings');
     Route::post('/my-settings', 'MySettings\SettingsController@update')->name('user-settings.update');

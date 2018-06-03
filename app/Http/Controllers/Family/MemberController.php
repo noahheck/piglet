@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\Member;
+use App\FamilyUser;
 use App\Invitation;
 use App\Mail\Invitation as InvitationEmail;
 use App\Service\PhotoUploaderService;
@@ -135,7 +136,7 @@ class MemberController extends Controller
         $grantAccess  = false;
         $removeAccess = false;
 
-        if ($member->isDirty('allow_login')) {
+        if ($member->isDirty('allow_login') || $member->isDirty('login_email')) {
 
             if ($member->allow_login) {
                 $grantAccess  = true;
@@ -144,17 +145,37 @@ class MemberController extends Controller
             }
         }
 
+        if ($member->isDirty('login_email')) {
+            $removeAccess = true;
+        }
+
         $member->save();
 
         if ($grantAccess) {
             $invitation = new Invitation();
 
             $invitation->family_id = $family->id;
+            $invitation->member_id = $member->id;
             $invitation->email     = $member->login_email;
 
             $invitation->save();
 
             Mail::to($member->login_email)->send(new InvitationEmail(Auth::user(), $member));
+        }
+
+        if ($removeAccess) {
+            Invitation::where([
+                    'family_id' => $family->id,
+                    'email'     => $oldLoginEmail,
+                ])
+                ->whereNull('accepted_date')
+                ->delete();
+
+
+            FamilyUser::where([
+                ['family_id', '=', $family->id],
+                ['user_id',   '=', $member->user_id],
+            ])->delete();
         }
 
         if ($photoFile = $request->file('memberPhoto')) {

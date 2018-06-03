@@ -16,6 +16,7 @@ class CreateFamilyFamilyMembersTable extends Migration
         Schema::connection('family')->create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('family');
+            $table->integer('user_id')->nullable();
             $table->string('firstName')->default('');
             $table->string('middleName')->nullable();
             $table->string('lastName')->nullable();
