@@ -58,6 +58,17 @@ class User extends Authenticatable
 
 
 
+    public function save(array $options = [])
+    {
+        /*if ($this->isDirty('email')) {
+            $this->setNewEmailVerificationPin();
+        }*/
+
+        return parent::save($options);
+    }
+
+
+
     public function families()
     {
         return $this->belongsToMany('App\Family')->using('App\FamilyUser');
@@ -83,6 +94,7 @@ class User extends Authenticatable
         $pin = random_int(100000, 999999);
 
         $this->email_verification = md5($pin);
+        $this->email_verified     = false;
         $this->save();
 
         return $pin;

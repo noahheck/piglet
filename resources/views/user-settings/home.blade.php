@@ -53,6 +53,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="user-settings_email">{{ __('user.email') }}</label>
+                                @if(!$user->email_verified)
+                                    <small>(You need to <a href="{{ route('user-settings.show-verify-email') }}">verify your email address</a>)</small>
+                                @endif
                                 <input type="email" class="form-control" id="user-settings_email" name='email' aria-describedby="emailHelp" placeholder="{{ __('user.email') }}" value="{{ old('email', $user->email) }}">
 
                                 @fieldError('email')

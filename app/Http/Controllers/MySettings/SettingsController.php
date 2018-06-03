@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\MySettings;
 
+use App\Mail\EmailVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class SettingsController extends Controller
 {
@@ -23,9 +25,18 @@ class SettingsController extends Controller
 
         $request->validate(User::getValidations($user->id));
 
-        $user->fill($request->only(['firstName', 'lastName', 'email']));
+        $user->fill($request->only(['firstName', 'lastName', 'email', 'timezone']));
+
+        $pin  = false;
+        if ($user->isDirty('email')) {
+            $pin = $user->setNewEmailVerificationPin();
+        }
 
         $user->save();
+
+        if ($pin !== false) {
+            Mail::to($user)->send(new EmailVerification($user, $pin));
+        }
 
         $request->session()->flash('user-settings-success', 'User details saved successfully');
 
