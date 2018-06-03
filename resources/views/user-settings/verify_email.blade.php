@@ -83,6 +83,9 @@
                                 <p>
                                     If you didn't receive an email with your PIN number, click here and we'll send you a new one:
                                 </p>
+
+                                @fieldError('newPin')
+
                                 <button class="btn btn-block btn-warning" type="submit">
                                     Request new PIN
                                 </button>

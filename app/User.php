@@ -63,6 +63,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Family')->using('App\FamilyUser');
     }
 
+
+
+
+
     public function verifyEmail($pin)
     {
         if ($this->email_verification !== md5($pin)) {

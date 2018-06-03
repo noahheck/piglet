@@ -40,7 +40,11 @@ class EmailController extends Controller
 
         $newPin = $user->setNewEmailVerificationPin();
 
-        Mail::to(Auth::user())->send(new EmailVerification($user, $newPin));
+        if (!$newPin) {
+            return redirect()->back()->withErrors(['newPin' => 'An error has occurred']);
+        }
+
+        Mail::to($user)->send(new EmailVerification($user, $newPin));
 
         $request->session()->flash('new-user-email-verification', 'A new PIN has been emailed to you');
 
