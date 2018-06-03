@@ -81,7 +81,7 @@
 
                             <div class="col">
                                 <p>
-                                    If you didn't receive an email with your PIN number, click here and we'll send you a new one.
+                                    If you didn't receive an email with your PIN number, click here and we'll send you a new one:
                                 </p>
                                 <button class="btn btn-block btn-warning" type="submit">
                                     Request new PIN
@@ -95,15 +95,6 @@
                 </div>
 
             </div>
-
-            {{--<hr>
-
-            <h4>{{ __('user-settings.other_options') }}:</h4>
-
-            <div class="list-group">
-                <a class="list-group-item list-group-item-action" href="{{ route('user-settings.photo') }}"><span class="fa fa-smile-o"></span> {{ __('user-settings.change_photo') }}</a>
-                <a class="list-group-item list-group-item-action" href="{{ route('user-settings.password') }}"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
-            </div>--}}
 
         </div>
 

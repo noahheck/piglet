@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\MySettings;
 
+use App\Mail\EmailVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
@@ -38,11 +40,7 @@ class EmailController extends Controller
 
         $newPin = $user->setNewEmailVerificationPin();
 
-        \DebugBar::info($newPin);
-
-        /**
-         * @todo Send email to the user with their new pin number
-         */
+        Mail::to(Auth::user())->send(new EmailVerification($user, $newPin));
 
         $request->session()->flash('new-user-email-verification', 'A new PIN has been emailed to you');
 
