@@ -60,6 +60,11 @@ class MemberController extends Controller
 
         $member->family = $family->id;
 
+        /**
+         * @todo If allow_login, grant access to this email (i.e. sent invitation and make accessible to user)
+         */
+        $member->allow_login = $request->has('allow_login');
+
         $member->save();
 
         if ($photoFile = $request->file('memberPhoto')) {
@@ -115,6 +120,11 @@ class MemberController extends Controller
         $member = Member::find($id);
 
         $member->fill($request->only($member->getFillable()));
+
+        /**
+         * @todo If allow_login, grant access to this email (i.e. sent invitation and make accessible to user)
+         */
+        $member->allow_login = $request->has('allow_login');
 
         $member->save();
 

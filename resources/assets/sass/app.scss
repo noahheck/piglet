@@ -66,3 +66,18 @@ img.thumbnail {
 .btn-warning:hover {
   color: #fff;
 }
+
+.nav-tabs .nav-link.active {
+  background-color: #fff;
+  border-color: transparent;
+  border-bottom: 2px solid $nav-active-color;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+  border-bottom: 2px solid $nav-inactive-color;
+}
+
+.nav-tabs .nav-link.active:hover {
+  border-bottom: 2px solid $nav-active-color;
+}

@@ -9,6 +9,10 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 $blue-text-color: #1373ff;
 
+// Borders
+$nav-active-color: #ff393c;
+$nav-inactive-color: #ff8983;
+
 // Utilities
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;

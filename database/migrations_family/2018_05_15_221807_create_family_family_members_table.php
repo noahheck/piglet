@@ -26,6 +26,8 @@ class CreateFamilyFamilyMembersTable extends Migration
             $table->string('image')->nullable();
             $table->dateTime('image_updated_at')->nullable();
             $table->string('color')->nullable();
+            $table->boolean('allow_login')->default(false);
+            $table->string('login_email')->nullable();
             $table->timestamps();
         });
     }

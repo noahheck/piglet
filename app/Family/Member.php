@@ -31,18 +31,20 @@ class Member extends Model
         'birthdate',
         'gender',
         'color',
+        'login_email',
     ];
 
     public static function getValidations()
     {
         return [
-            'firstName'  => 'required|max:255',
-            'middleName' => 'max:255',
-            'lastName'   => 'max:255',
-            'suffix'     => 'max:255',
-            'birthdate'  => 'date|nullable',
-            'gender'     => 'in:male,female|nullable',
-            'color'      => 'max:20',
+            'firstName'   => 'required|max:255',
+            'middleName'  => 'max:255',
+            'lastName'    => 'max:255',
+            'suffix'      => 'max:255',
+            'birthdate'   => 'date|nullable',
+            'gender'      => 'in:male,female|nullable',
+            'color'       => 'max:20',
+            'login_email' => 'email|nullable',
         ];
     }
 
