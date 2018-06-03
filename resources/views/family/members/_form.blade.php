@@ -111,9 +111,18 @@
 
                         <legend>Login Information</legend>
 
+                        @php
+                            $dummyAllowLogin = "";
+                            $disabled        = "";
+                            if ((int) Auth::user()->id === (int) $member->user_id) {
+                                $dummyAllowLogin = "<input type='hidden' name='allow_login' value='1'>";
+                                $disabled        = "disabled";
+                            }
+                        @endphp
+
                         <div class="form-check">
-                            {{-- @todo If the member is the logged in user, don't allow them to change this checkbox --}}
-                            <input class="form-check-input" type="checkbox" value="1" id="allow_login" name="allow_login" {{ ($member->allow_login) ? "checked" : "" }}>
+                            <input class="form-check-input" type="checkbox" value="1" id="allow_login" name="allow_login" {{ ($member->allow_login) ? "checked" : "" }} {{ $disabled }}>
+                            {!! $dummyAllowLogin !!}
                             <label class="form-check-label" for="allow_login">
                                 Allow this person to log in
                             </label>

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
+use App\Family\Member;
+
 use App\Traits\IsPhotogenic;
 use App\Traits\User\FormatsDates;
 
@@ -58,16 +60,10 @@ class User extends Authenticatable
 
 
 
-    public function save(array $options = [])
+    public function member()
     {
-        /*if ($this->isDirty('email')) {
-            $this->setNewEmailVerificationPin();
-        }*/
-
-        return parent::save($options);
+        return $this->hasOne(Member::class);
     }
-
-
 
     public function families()
     {

@@ -54,6 +54,10 @@ class Member extends Model
         'birthdate',
     ];
 
+    protected $casts = [
+        'allow_login' => 'boolean',
+    ];
+
 
 
     public function tasks()
