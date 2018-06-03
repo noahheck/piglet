@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\Member;
+use App\Invitation;
+use App\Mail\Invitation as InvitationEmail;
 use App\Service\PhotoUploaderService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class MemberController extends Controller
@@ -119,6 +123,8 @@ class MemberController extends Controller
 
         $member = Member::find($id);
 
+        $oldLoginEmail = $member->login_email;
+
         $member->fill($request->only($member->getFillable()));
 
         /**
@@ -126,7 +132,30 @@ class MemberController extends Controller
          */
         $member->allow_login = $request->has('allow_login');
 
+        $grantAccess  = false;
+        $removeAccess = false;
+
+        if ($member->isDirty('allow_login')) {
+
+            if ($member->allow_login) {
+                $grantAccess  = true;
+            } else {
+                $removeAccess = true;
+            }
+        }
+
         $member->save();
+
+        if ($grantAccess) {
+            $invitation = new Invitation();
+
+            $invitation->family_id = $family->id;
+            $invitation->email     = $member->login_email;
+
+            $invitation->save();
+
+            Mail::to($member->login_email)->send(new InvitationEmail(Auth::user(), $member));
+        }
 
         if ($photoFile = $request->file('memberPhoto')) {
             $member->uploadPhoto($photoFile, $photoUploaderService);

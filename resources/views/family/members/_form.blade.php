@@ -112,6 +112,7 @@
                         <legend>Login Information</legend>
 
                         <div class="form-check">
+                            {{-- @todo If the member is the logged in user, don't allow them to change this checkbox --}}
                             <input class="form-check-input" type="checkbox" value="1" id="allow_login" name="allow_login" {{ ($member->allow_login) ? "checked" : "" }}>
                             <label class="form-check-label" for="allow_login">
                                 Allow this person to log in
@@ -133,7 +134,6 @@
                     </fieldset>
 
                 </div>
-
 
             </div>
 
