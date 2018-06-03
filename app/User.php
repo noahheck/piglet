@@ -56,9 +56,32 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+
     public function families()
     {
         return $this->belongsToMany('App\Family')->using('App\FamilyUser');
+    }
+
+    public function verifyEmail($pin)
+    {
+        if ($this->email_verification !== md5($pin)) {
+            return false;
+        }
+
+        $this->email_verified = true;
+        $this->save();
+        return true;
+    }
+
+    public function setNewEmailVerificationPin()
+    {
+        $pin = random_int(100000, 999999);
+
+        $this->email_verification = md5($pin);
+        $this->save();
+
+        return $pin;
     }
 
 

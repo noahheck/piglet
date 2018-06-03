@@ -60,3 +60,9 @@ img.thumbnail {
 .has-bold-labels label {
   font-weight: bold;
 }
+
+// Bootstrap overrides
+.btn-warning,
+.btn-warning:hover {
+  color: #fff;
+}

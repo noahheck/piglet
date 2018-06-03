@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\VerifyFamilyAccess::class,
             \App\Http\Middleware\ConnectFamilyDatabase::class,
+//            \App\Http\Middleware\VerifyEmailVerification::class,
         ],
 
         'api' => [
@@ -61,5 +62,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth.email_verified' => \App\Http\Middleware\VerifyEmailVerification::class,
     ];
 }
