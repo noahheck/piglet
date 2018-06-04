@@ -29,9 +29,17 @@
 
             <div class="card shadow">
                 {!! $member->photo(['img-fluid', 'card-img-top']) !!}
-                @if ($member->birthdate)
+                @if ($member->birthdate || $member->allow_login)
                     <div class="card-body">
-                        {{ $member->age }} years - {{ ucfirst($member->gender) }}
+
+                        @if ($member->allow_login)
+                            <span class="fa fa-user-circle-o" title="This member can log in"></span> -
+                        @endif
+
+                        @if ($member->birthdate)
+                            {{ $member->age }} years - {{ ucfirst($member->gender) }}
+                        @endif
+                        
                     </div>
                 @endif
 

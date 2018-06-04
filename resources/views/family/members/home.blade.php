@@ -37,7 +37,12 @@
                 <a class="card shadow" href="{{ route('family.members.show', [$family, $member]) }}">
                     {!! $member->photo(['card-img-top']) !!}
                     <div class="card-footer text-muted">
-                        <p style="color: {{ $member->color }};">{{ $member->firstName }}</p>
+                        <p style="color: {{ $member->color }};">
+                            @if($member->allow_login)
+                                <span class="fa fa-user-circle-o" title="This member can log in"></span> -
+                            @endif
+                            {{ $member->firstName }}
+                        </p>
                     </div>
                 </a>
             </div>
