@@ -8,6 +8,7 @@ use App\FamilyUser;
 use App\Invitation;
 use App\Mail\Invitation as InvitationEmail;
 use App\Service\PhotoUploaderService;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
@@ -180,11 +181,11 @@ class MemberController extends Controller
                 ->whereNull('accepted_date')
                 ->delete();
 
+            if ($member->user_id) {
+                $user = User::find($member->user_id);
 
-            FamilyUser::where([
-                ['family_id', '=', $family->id],
-                ['user_id',   '=', $member->user_id],
-            ])->delete();
+                $user->families()->detach($family);
+            }
         }
 
         if ($photoFile = $request->file('memberPhoto')) {
