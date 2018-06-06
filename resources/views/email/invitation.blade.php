@@ -14,4 +14,5 @@ Dear {{ $member->firstName }},
 
 <p>Piglet (the team)</p>
 
-<p>P.S. If you feel you have received this email in error, you can simply ignore it :).</p>
+<p>P.S. If you feel you have received this email in error, you can simply ignore it :) (or come check out Piglet on your own!)</p>
+

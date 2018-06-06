@@ -155,6 +155,13 @@ class MemberController extends Controller
             }
         }
 
+        /**
+         * If the member hasn't accepted their invitation yet, we can re-invite them
+         */
+        if ($member->allow_login && !$member->user_id) {
+            $grantAccess = true;
+        }
+
         if ($member->isDirty('login_email')) {
             $removeAccess = true;
         }
@@ -162,15 +169,29 @@ class MemberController extends Controller
         $member->save();
 
         if ($grantAccess) {
-            $invitation = new Invitation();
 
-            $invitation->family_id = $family->id;
-            $invitation->member_id = $member->id;
-            $invitation->email     = $member->login_email;
+            $existingInvitation = Invitation::where([
+                ['family_id', '=', $family->id],
+                ['member_id', '=', $member->id],
+            ])->whereNull('accepted_date')
+            ->count();
 
-            $invitation->save();
+            if (!$existingInvitation) {
+                $invitation = new Invitation();
 
-            Mail::to($member->login_email)->send(new InvitationEmail(Auth::user(), $member));
+                $invitation->family_id = $family->id;
+                $invitation->member_id = $member->id;
+                $invitation->email     = $member->login_email;
+
+                $invitation->save();
+            }
+
+            /**
+             * If the member hasn't established an account yet, we'll email them the instructions on how to sign up
+             */
+            if (!$member->user_id) {
+                Mail::to($member->login_email)->send(new InvitationEmail(Auth::user(), $member));
+            }
         }
 
         if ($removeAccess) {

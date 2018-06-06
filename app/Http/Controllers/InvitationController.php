@@ -35,13 +35,10 @@ class InvitationController extends Controller
 
         $invitation->save();
 
-        $familyUser = new FamilyUser();
-        $familyUser->family_id       = $family->id;
-        $familyUser->user_id         = $user->id;
-        $familyUser->active          = true;
-        $familyUser->isAdministrator = false;
-
-        $familyUser->save();
+        $user->families()->attach($family, [
+            'active' => true,
+            'isAdministrator' => true,
+        ]);
 
         $service->connectToFamily($family);
 

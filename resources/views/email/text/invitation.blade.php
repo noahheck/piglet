@@ -14,4 +14,4 @@ Sincerely,
 
 Piglet (the team)
 
-P.S. If you feel you have received this email in error, you can simply ignore it :).
+P.S. If you feel you have received this email in error, you can simply ignore it :) (or come check out Piglet on your own!)
