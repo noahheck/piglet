@@ -136,6 +136,16 @@
                                 @fieldError('login_email')
                             </div>
 
+                            <hr>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="is_administrator" name="is_administrator" {{ ($member->is_administrator) ? "checked" : "" }} >
+                                <label class="form-check-label" for="is_administrator">
+                                    Administrator
+                                </label>
+                                - This will allow the user to make changes to your family configuration, including editing your family details and inviting additional members to your family
+                            </div>
+
                         </div>
 
                         <hr>

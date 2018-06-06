@@ -39,15 +39,17 @@
                         @if ($member->birthdate)
                             {{ $member->age }} years - {{ ucfirst($member->gender) }}
                         @endif
-                        
+
                     </div>
                 @endif
 
-                <a href="{{ route('family.members.edit', [$family, $member]) }}">
-                    <div class="card-footer text-right text-muted">
-                        <span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}
-                    </div>
-                </a>
+                @if (Auth::user()->member->is_administrator)
+                    <a href="{{ route('family.members.edit', [$family, $member]) }}">
+                        <div class="card-footer text-right text-muted">
+                            <span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}
+                        </div>
+                    </a>
+                @endif
 
             </div>
 

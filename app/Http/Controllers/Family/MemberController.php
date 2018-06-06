@@ -66,10 +66,8 @@ class MemberController extends Controller
 
         $member->family = $family->id;
 
-        /**
-         * @todo If allow_login, grant access to this email (i.e. sent invitation and make accessible to user)
-         */
-        $member->allow_login = $request->has('allow_login');
+        $member->allow_login      = $request->has('allow_login');
+        $member->is_administrator = $request->has('is_administrator');
 
         $member->save();
 
@@ -141,7 +139,8 @@ class MemberController extends Controller
 
         $member->fill($request->only($member->getFillable()));
 
-        $member->allow_login = $request->has('allow_login');
+        $member->allow_login      = $request->has('allow_login');
+        $member->is_administrator = $request->has('is_administrator');
 
         $grantAccess  = false;
         $removeAccess = false;

@@ -29,6 +29,7 @@ class CreateFamilyFamilyMembersTable extends Migration
             $table->string('color')->nullable();
             $table->boolean('allow_login')->default(false);
             $table->string('login_email')->nullable();
+            $table->boolean('is_administrator')->default(false);
             $table->timestamps();
         });
     }

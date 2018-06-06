@@ -57,7 +57,8 @@ class Member extends Model
     ];
 
     protected $casts = [
-        'allow_login' => 'boolean',
+        'allow_login'      => 'boolean',
+        'is_administrator' => 'boolean',
     ];
 
 
