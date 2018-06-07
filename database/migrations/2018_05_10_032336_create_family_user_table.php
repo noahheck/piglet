@@ -17,8 +17,6 @@ class CreateFamilyUserTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('family_id');
             $table->unsignedInteger('user_id');
-            $table->boolean('active')->default(true);
-            $table->boolean('isAdministrator')->default(false);
             $table->timestamps();
 
             $table->foreign('family_id')->references('id')->on('families');

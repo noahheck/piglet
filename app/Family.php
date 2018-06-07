@@ -41,7 +41,6 @@ class Family extends Model
     public function users()
     {
         return $this->belongsToMany('App\User')
-            ->withPivot(FamilyUser::PIVOT_ATTRIBUTES)
             ->using('App\FamilyUser');
     }
 
@@ -145,12 +144,7 @@ class Family extends Model
         $family->creator = $user->id;
         $family->save();
 
-        $familyUser                  = new FamilyUser;
-        $familyUser->family_id       = $family->id;
-        $familyUser->user_id         = $user->id;
-        $familyUser->active          = true;
-        $familyUser->isAdministrator = true;
-        $familyUser->save();
+        $user->families()->attach($family);
 
         // Create storage directory for this new family
         $disk = $family->storageDisk();
@@ -165,13 +159,14 @@ class Family extends Model
         $connectService->connectToFamily($family)->migrate();
 
         $member = new Member;
-        $member->family      = $family->id;
-        $member->user_id     = $user->id;
-        $member->firstName   = $user->firstName;
-        $member->lastName    = $user->lastName;
-        $member->allow_login = true;
-        $member->login_email = $user->email;
-        $member->color       = Member::COLOR_DEFAULT;
+        $member->family           = $family->id;
+        $member->user_id          = $user->id;
+        $member->firstName        = $user->firstName;
+        $member->lastName         = $user->lastName;
+        $member->allow_login      = true;
+        $member->is_administrator = true;
+        $member->login_email      = $user->email;
+        $member->color            = Member::COLOR_DEFAULT;
 
         $member->save();
 

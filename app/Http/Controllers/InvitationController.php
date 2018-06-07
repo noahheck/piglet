@@ -35,10 +35,7 @@ class InvitationController extends Controller
 
         $invitation->save();
 
-        $user->families()->attach($family, [
-            'active' => true,
-            'isAdministrator' => true,
-        ]);
+        $user->families()->attach($family);
 
         $service->connectToFamily($family);
 

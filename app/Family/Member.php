@@ -2,8 +2,6 @@
 
 namespace App\Family;
 
-use App\Family\Task;
-
 use App\Traits\HasBirthdate;
 use App\Traits\IsPhotogenic;
 use Illuminate\Support\Facades\Storage;

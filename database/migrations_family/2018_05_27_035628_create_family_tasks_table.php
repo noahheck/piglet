@@ -24,6 +24,9 @@ class CreateFamilyTasksTable extends Migration
             $table->date('scheduledDate')->nullable();
             $table->date('completedDate')->nullable();
 
+            $table->foreign('member_id')->references('id')->on('members');
+            $table->foreign('task_list_id')->references('id')->on('task_lists');
+
             $table->softDeletes();
             $table->timestamps();
         });

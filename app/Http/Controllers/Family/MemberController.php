@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\Member;
-use App\FamilyUser;
 use App\Invitation;
 use App\Mail\Invitation as InvitationEmail;
 use App\Service\PhotoUploaderService;

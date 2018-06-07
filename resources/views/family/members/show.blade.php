@@ -29,16 +29,25 @@
 
             <div class="card shadow">
                 {!! $member->photo(['img-fluid', 'card-img-top']) !!}
-                @if ($member->birthdate || $member->allow_login)
+                @if ($member->birthdate || $member->allow_login || $member->gender)
                     <div class="card-body">
 
-                        @if ($member->allow_login)
-                            <span class="fa fa-user-circle-o" title="This member can log in"></span> -
-                        @endif
+                        @php
+                            $bodyContent = [];
+                            if ($member->allow_login) {
+                                $bodyContent[] = '<span class="fa fa-user-circle-o" title="This member can log in"></span>';
+                            }
 
-                        @if ($member->birthdate)
-                            {{ $member->age }} years - {{ ucfirst($member->gender) }}
-                        @endif
+                            if ($member->birthdate) {
+                                $bodyContent[] = $member->age . ' years';
+                            }
+
+                            if ($member->gender) {
+                                $bodyContent[] = ucfirst($member->gender);
+                            }
+                        @endphp
+
+                        {!! implode(' - ', $bodyContent) !!}
 
                     </div>
                 @endif
