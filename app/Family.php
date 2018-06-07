@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Family\Member;
+use App\Service\FamilyConnectService;
+use App\Service\PhotoUploaderService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -133,11 +135,18 @@ class Family extends Model
      * @param array $fillables
      * @param \App\User $user
      * @param \Illuminate\Http\UploadedFile $familyPhoto
+     * @param PhotoUploaderService $photoUploaderService
+     * @param FamilyConnectService $connectService
      *
      * @return Family
      */
-    public static function createNew($fillables, $user, $familyPhoto = null, $photoUploaderService, $connectService)
-    {
+    public static function createNew(
+        $fillables,
+        $user,
+        $familyPhoto = null,
+        $photoUploaderService,
+        FamilyConnectService $connectService
+    ) {
         $family = new Family;
 
         $family->fill($fillables);
@@ -154,10 +163,16 @@ class Family extends Model
         $familyPhotosDirectory = $family->photoDirectory();
         $disk->makeDirectory($familyPhotosDirectory);
 
+        // Save the uploaded family photo if provided
+        if ($familyPhoto) {
+            $family->uploadPhoto($familyPhoto, $photoUploaderService);
+        }
+
         $disk->put($family->familyStorageDirectory() . '/db.sqlite', '');
 
         $connectService->connectToFamily($family)->migrate();
 
+        // Create a family member entry for the user who created the family
         $member = new Member;
         $member->family           = $family->id;
         $member->user_id          = $user->id;
@@ -169,12 +184,6 @@ class Family extends Model
         $member->color            = Member::COLOR_DEFAULT;
 
         $member->save();
-
-        // Save the uploaded family photo if provided
-        if ($familyPhoto) {
-            $family->uploadPhoto($familyPhoto, $photoUploaderService);
-        }
-
 
         return $family;
     }
