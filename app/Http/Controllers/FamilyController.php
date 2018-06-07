@@ -31,8 +31,6 @@ class FamilyController extends Controller
      */
     public function create()
     {
-        //
-
         return view('family/new', [
             'family' => new Family,
         ]);
@@ -85,9 +83,7 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        $familyUser = $family->familyUser(Auth::user());
-
-        if (!$familyUser->isAdministrator) {
+        if (!Auth::user()->member->is_administrator) {
             throw new AccessDeniedHttpException("You need to be an administrator to update this family");
         }
 
@@ -105,9 +101,7 @@ class FamilyController extends Controller
      */
     public function update(Request $request, Family $family, PhotoUploaderService $photoUploaderService)
     {
-        $familyUser = $family->familyUser(Auth::user());
-
-        if (!$familyUser->isAdministrator) {
+        if (!Auth::user()->member->is_administrator) {
             throw new AccessDeniedHttpException("You need to be an administrator to update this family");
         }
 
