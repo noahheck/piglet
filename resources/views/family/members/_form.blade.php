@@ -114,15 +114,18 @@
                         @php
                             $dummyAllowLogin = "";
                             $disabled        = "";
+                            $helpIcon        = "";
                             if ((int) Auth::user()->id === (int) $member->user_id) {
                                 $dummyAllowLogin = "<input type='hidden' name='allow_login' value='1'>";
                                 $disabled        = "disabled";
+                                $helpIcon        = '<a href="#" class="dismissable-popover" data-toggle="popover" data-content="You are unable to change the login setting for yourself. Doing so might lock you out permanently."><span class="fa fa-question-circle"></span></a>';
                             }
                         @endphp
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" id="allow_login" name="allow_login" {{ ($member->allow_login) ? "checked" : "" }} {{ $disabled }}>
                             {!! $dummyAllowLogin !!}
+                            {!! $helpIcon !!}
                             <label class="form-check-label" for="allow_login">
                                 Allow this person to log in
                             </label>
