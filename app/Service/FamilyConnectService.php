@@ -31,6 +31,9 @@ class FamilyConnectService
         return $this;
     }
 
+    /**
+     * Migrates the currently connected family database to the latest version
+     */
     public function migrate()
     {
         Artisan::call('migrate', [
@@ -39,5 +42,16 @@ class FamilyConnectService
         ]);
 
         return $this;
+    }
+
+    /**
+     * Rolls back the latest database change for the currently connected family database
+     */
+    public function rollback()
+    {
+        Artisan::call('migrate:rollback', [
+            '--database' => 'family',
+            '--path'     => 'database/migrations_family',
+        ]);
     }
 }
