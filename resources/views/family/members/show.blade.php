@@ -35,7 +35,7 @@
                         @php
                             $bodyContent = [];
                             if ($member->allow_login) {
-                                $bodyContent[] = '<span class="fa fa-user-circle-o" title="This member can log in"></span>';
+                                $bodyContent[] = '<span class="fa fa-user-circle-o" title="' . __('family-members.member_can_log_in') . '"></span>';
                             }
 
                             if ($member->birthdate) {

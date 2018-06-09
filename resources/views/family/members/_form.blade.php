@@ -40,10 +40,10 @@
             <ul class="nav nav-tabs" id="memberTabs" role="tablist">
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
+                    <a class="nav-link active" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">{{ __('family-members.details_tab') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="loginTab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">Login</a>
+                    <a class="nav-link" id="loginTab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">{{ __('family-members.login_tab') }}</a>
                 </li>
             </ul>
 
@@ -109,7 +109,7 @@
 
                     <fieldset>
 
-                        <legend>Login Information</legend>
+                        <legend>{{ __('family-members.login_information') }}</legend>
 
                         @php
                             $dummyAllowLogin = "";
@@ -118,7 +118,7 @@
                             if ((int) Auth::user()->id === (int) $member->user_id) {
                                 $dummyAllowLogin = "<input type='hidden' name='allow_login' value='1'>";
                                 $disabled        = "disabled";
-                                $helpIcon        = '<a href="#" class="dismissable-popover" data-toggle="popover" data-content="You are unable to change the login setting for yourself. Doing so might lock you out permanently."><span class="fa fa-question-circle"></span></a>';
+                                $helpIcon        = '<a href="#" class="dismissable-popover" data-toggle="popover" data-content="' . __('family-members.cant_change_own_login') . '"><span class="fa fa-question-circle"></span></a>';
                             }
                         @endphp
 
@@ -127,15 +127,15 @@
                             {!! $dummyAllowLogin !!}
                             {!! $helpIcon !!}
                             <label class="form-check-label" for="allow_login">
-                                Allow this person to log in
+                                {{ __('family-members.allow_to_log_in') }}
                             </label>
                         </div>
 
                         <div class="collapse" id="loginDetails">
 
                             <div class="form-group">
-                                <label for="login_email">Login Email</label>
-                                <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Login Email" value="{{ old('login_email', $member->login_email) }}">
+                                <label for="login_email">{{ __('family-members.login_email') }}</label>
+                                <input type="text" name="login_email" id="login_email" class="form-control" placeholder="{{ __('family-members.login_email') }}" value="{{ old('login_email', $member->login_email) }}">
                                 @fieldError('login_email')
                             </div>
 
@@ -144,9 +144,9 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="1" id="is_administrator" name="is_administrator" {{ ($member->is_administrator) ? "checked" : "" }} >
                                 <label class="form-check-label" for="is_administrator">
-                                    Administrator
+                                    {{ __('family-members.administrator') }}
                                 </label>
-                                - This will allow the user to make changes to your family configuration, including editing your family details and inviting additional members to your family
+                                - {{ __('family-members.administrator_desc') }}
                             </div>
 
                         </div>

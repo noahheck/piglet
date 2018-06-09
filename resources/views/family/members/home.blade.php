@@ -39,7 +39,7 @@
                     <div class="card-footer text-muted">
                         <p style="color: {{ $member->color }};">
                             @if($member->allow_login)
-                                <span class="fa fa-user-circle-o" title="This member can log in"></span> -
+                                <span class="fa fa-user-circle-o" title="{{ __('family-members.member_can_log_in') }}"></span> -
                             @endif
                             {{ $member->firstName }}
                         </p>

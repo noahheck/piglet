@@ -22,7 +22,7 @@
                         <div class="card">
 
                             <div class="card-header">
-                                You've been invited to be a part of:
+                                {{ __('family-settings.invited_to_family') }}:
                             </div>
                             <div class="card-body">
 
@@ -33,7 +33,7 @@
                                         <form action="{{ route("invitation.accept", $invitation) }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-block btn-primary">
-                                                Accept Invitation
+                                                {{ __('family-settings.accept_invitation') }}
                                             </button>
                                         </form>
                                     </div>
