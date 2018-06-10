@@ -51,6 +51,7 @@
                 'method'       => false,
                 'cancelRoute'  => route('family.taskLists.show', [$family, $taskList]),
                 'showComplete' => false,
+                'showDelete'   => false,
             ])
 
         </div>

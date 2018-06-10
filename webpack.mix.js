@@ -37,6 +37,7 @@ mix
     .sass('resources/assets/sass/family/member/home.scss', 'public/css/family/member')
 
 
+    .js('resources/assets/js/family/tasks/_form.js', 'public/js/family.tasks._form.js')
     .sass('resources/assets/sass/family/taskLists.scss', 'public/css/family.taskLists.css')
 
 

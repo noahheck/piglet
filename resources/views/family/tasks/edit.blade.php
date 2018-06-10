@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+    <script src="{{ asset("js/family.tasks._form.js") }}"></script>
 @endsection
 
 @section('content')
@@ -51,6 +51,7 @@
                 'method'       => 'PUT',
                 'cancelRoute'  => route('family.taskLists.show', [$family, $taskList]),
                 'showComplete' => true,
+                'showDelete'   => true,
             ])
 
         </div>

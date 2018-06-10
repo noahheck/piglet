@@ -7,10 +7,12 @@ use App\Family\Member;
 
 use App\Traits\HasDueDate;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
-    use HasDueDate;
+    use HasDueDate,
+        SoftDeletes;
 
     protected $fillable = [
         'title',

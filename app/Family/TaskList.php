@@ -95,13 +95,15 @@ class TaskList extends Model
     {
         $numTotal = $this->tasks->count();
 
-        $numActive = $this->tasks->filter(function($task) {
-            return $task->active;
-        })->count();
+        $numInactive = $this->inactiveTasks()->count();
+
+        $totalActive = $numTotal - $numInactive;
+
+        $numCompleted = $this->completedTasks()->count();
 
         return [
-            'total' => $numTotal,
-            'active' => $numActive,
+            'total'     => $totalActive,
+            'completed' => $numCompleted,
         ];
     }
 }

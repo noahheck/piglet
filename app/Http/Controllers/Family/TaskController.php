@@ -133,8 +133,10 @@ class TaskController extends Controller
      * @param  \App\Family\Task  $familyTask
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $familyTask)
+    public function destroy(Family $family, TaskList $taskList, Task $task)
     {
-        //
+        $task->delete();
+
+        return redirect()->route('family.taskLists.show', [$family, $taskList]);
     }
 }
