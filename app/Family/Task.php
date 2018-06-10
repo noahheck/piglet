@@ -6,6 +6,7 @@ use App\Family\TaskList;
 use App\Family\Member;
 
 use App\Traits\HasDueDate;
+use Carbon\Carbon;
 
 class Task extends Model
 {
@@ -20,8 +21,10 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'active' => 'boolean',
+        'active'    => 'boolean',
+        'completed' => 'boolean',
         'member_id' => 'integer',
+
     ];
 
     public static function getValidations()
@@ -37,9 +40,9 @@ class Task extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'completed_at',
         'dueDate',
         'scheduledDate',
-        'completedDate',
     ];
 
 
@@ -52,5 +55,31 @@ class Task extends Model
     public function member()
     {
         return $this->belongsTo(Member::class);
+    }
+
+
+
+    public function conclude()
+    {
+        if ($this->completed) {
+            return $this;
+        }
+
+        $this->completed    = true;
+        $this->completed_at = Carbon::now();
+
+        return $this;
+    }
+
+    public function reopen()
+    {
+        if (!$this->completed) {
+            return $this;
+        }
+
+        $this->completed    = false;
+        $this->completed_at = null;
+
+        return $this;
     }
 }

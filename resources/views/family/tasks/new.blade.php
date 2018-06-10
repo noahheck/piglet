@@ -46,10 +46,11 @@
         <div class="col-12 col-sm-6">
 
             @include('family.tasks._form', [
-                'legend'      => 'New task details',
-                'action'      => route('family.tasks.store', [$family, $taskList]),
-                'method'      => false,
-                'cancelRoute' => route('family.taskLists.show', [$family, $taskList]),
+                'legend'       => 'New task details',
+                'action'       => route('family.tasks.store', [$family, $taskList]),
+                'method'       => false,
+                'cancelRoute'  => route('family.taskLists.show', [$family, $taskList]),
+                'showComplete' => false,
             ])
 
         </div>

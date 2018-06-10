@@ -114,6 +114,14 @@ class TaskController extends Controller
 
         $task->active = $request->has('active');
 
+        if (!$task->completed && $request->has('completed')) {
+            $task->conclude();
+        }
+
+        if ($task->completed && !$request->has('completed')) {
+            $task->reopen();
+        }
+
         $task->save();
 
         return redirect()->route('family.taskLists.show', [$family, $taskList]);

@@ -42,6 +42,13 @@
             <label for="active">Active</label>
         </div>
 
+        @if ($showComplete)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" name="completed" id="completed" {{ ($task->completed) ? ' checked' : '' }}>
+                <label for="completed">Completed</label>
+            </div>
+        @endif
+
     </fieldset>
 
     <button type="submit" class="btn btn-primary">

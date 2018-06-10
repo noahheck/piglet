@@ -46,10 +46,11 @@
         <div class="col-12 col-sm-6">
 
             @include('family.tasks._form', [
-                'legend'      => 'Edit task details',
-                'action'      => route('family.tasks.update', [$family, $taskList, $task]),
-                'method'      => 'PUT',
-                'cancelRoute' => route('family.taskLists.show', [$family, $taskList]),
+                'legend'       => 'Edit task details',
+                'action'       => route('family.tasks.update', [$family, $taskList, $task]),
+                'method'       => 'PUT',
+                'cancelRoute'  => route('family.taskLists.show', [$family, $taskList]),
+                'showComplete' => true,
             ])
 
         </div>

@@ -45,23 +45,27 @@
                 </a>
             </h5>
 
-            @foreach ($taskList->tasks as $task)
+            <div class="activeTasks" id="activeTasks">
 
-                <p>
-                    <input type="checkbox">
-                    <a href="{{ route('family.tasks.edit', [$family, $taskList, $task]) }}">
-                        {{ $task->title }}
-                    </a>
-                    @if ($task->dueDate)
-                        <small class="text-muted">{{ Auth::user()->formatDate($task->dueDate) }}</small>
-                    @endif
+                @foreach ($taskList->activeTasks() as $task)
 
-                    @if ($task->member)
-                        {!! $task->member->icon() !!}
-                    @endif
-                </p>
+                    @include ('family.taskLists._task', ['task' => $task])
 
-            @endforeach
+                @endforeach
+
+            </div>
+
+            <hr>
+
+            <div class="completedTasks" id="completedTasks">
+
+                @foreach ($taskList->completedTasks() as $task)
+
+                    @include ('family.taskLists._task', ['task' => $task])
+
+                @endforeach
+
+            </div>
 
         </div>
     </div>

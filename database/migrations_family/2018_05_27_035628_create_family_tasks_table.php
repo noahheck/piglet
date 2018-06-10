@@ -20,9 +20,12 @@ class CreateFamilyTasksTable extends Migration
             $table->integer('member_id')->nullable();
             $table->integer('task_list_id')->nullable();
             $table->boolean('active')->default(true);
+
             $table->date('dueDate')->nullable();
             $table->date('scheduledDate')->nullable();
-            $table->date('completedDate')->nullable();
+
+            $table->boolean('completed')->default(false);
+            $table->dateTime('completed_at')->nullable();
 
             $table->foreign('member_id')->references('id')->on('members');
             $table->foreign('task_list_id')->references('id')->on('task_lists');

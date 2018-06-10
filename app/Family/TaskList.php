@@ -45,6 +45,39 @@ class TaskList extends Model
         return $this->hasMany(Task::class);
     }
 
+    /**
+     * Get the active, incomplete tasks for this list
+     */
+    public function activeTasks()
+    {
+        return $this->tasks->filter(function($task) {
+            return $task->active && !$task->completed;
+        });
+    }
+
+    /**
+     * Get the completed tasks for this list
+     */
+    public function completedTasks()
+    {
+        return $this->tasks->filter(function($task) {
+            return $task->completed;
+        });
+    }
+
+    /**
+     * Get the inactive tasks for this list
+     */
+    public function inactiveTasks()
+    {
+        return $this->tasks->filter(function($task) {
+            return !$task->active && !$task->completed;
+        });
+    }
+
+
+
+
 
 
     /**
