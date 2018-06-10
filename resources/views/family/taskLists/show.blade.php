@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+{{--    <script src="{{ asset("js/family.taskLists.show.js") }}"></script>--}}
 @endsection
 
 @section('content')

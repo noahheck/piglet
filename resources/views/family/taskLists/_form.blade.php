@@ -38,15 +38,32 @@
 
             </fieldset>
 
-            <button type="submit" class="btn btn-primary">
-                {{ __('form.save') }}
-            </button>
+            <div class="float-left">
 
-            <a class="btn btn-secondary" href="{{ $cancelRoute }}">
-                {{ __('form.cancel') }}
-            </a>
+                <button type="submit" class="btn btn-primary">
+                    {{ __('form.save') }}
+                </button>
+
+                <a class="btn btn-secondary" href="{{ $cancelRoute }}">
+                    {{ __('form.cancel') }}
+                </a>
+            </div>
 
         </form>
+
+        @if ($showDelete)
+            <form method="POST" action="{{ route('family.taskLists.destroy', [$family, $taskList]) }}" id="deleteTaskListForm" class="float-right">
+
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger">
+                    Delete
+                </button>
+
+            </form>
+        @endif
+
 
     </div>
 

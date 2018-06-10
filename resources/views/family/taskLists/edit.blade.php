@@ -35,6 +35,7 @@
         'action'      => route('family.taskLists.update', [$family, $taskList]),
         'method'      => 'PUT',
         'cancelRoute' => route('family.taskLists.show', [$family, $taskList]),
+        'showDelete'  => true,
     ])
 
 @endsection

@@ -119,9 +119,11 @@ class TaskListController extends Controller
      * @param  \App\Family\TaskList  $familyTaskList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TaskList $familyTaskList)
+    public function destroy(Family $family, TaskList $taskList)
     {
-        //
+        $taskList->delete();
+
+        return redirect()->route('family.taskLists.index', [$family]);
     }
 
 

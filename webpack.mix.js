@@ -38,8 +38,11 @@ mix
 
 
     .js('resources/assets/js/family/taskLists/home.js',  'public/js/family.taskLists.home.js')
+    .js('resources/assets/js/family/taskLists/show.js',  'public/js/family.taskLists.show.js')
     .js('resources/assets/js/family/taskLists/_form.js', 'public/js/family.taskLists._form.js')
+
     .js('resources/assets/js/family/tasks/_form.js',     'public/js/family.tasks._form.js')
+
     .sass('resources/assets/sass/family/taskLists.scss', 'public/css/family.taskLists.css')
 
 

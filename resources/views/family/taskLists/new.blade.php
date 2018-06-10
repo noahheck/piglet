@@ -34,6 +34,7 @@
         'action'      => route('family.taskLists.store', [$family]),
         'method'      => false,
         'cancelRoute' => route('family.taskLists.index', [$family]),
+        'showDelete'  => false,
     ])
 
 @endsection
