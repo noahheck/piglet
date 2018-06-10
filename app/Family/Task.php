@@ -61,6 +61,23 @@ class Task extends Model
 
 
 
+    public function isCompleted()
+    {
+        return $this->completed;
+    }
+
+    public function isActive()
+    {
+        return !$this->isCompleted() && $this->active;
+    }
+
+    public function isInactive()
+    {
+        return !$this->isCompleted() && !$this->active;
+    }
+
+
+
     public function conclude()
     {
         if ($this->completed) {

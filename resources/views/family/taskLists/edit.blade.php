@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+    <script src="{{ asset("js/family.taskLists._form.js") }}"></script>
 @endsection
 
 @section('content')
@@ -17,8 +17,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.taskLists.index', [$family]) => 'Task Lists',
+            route('family.taskLists.show', [$family, $taskList]) => $taskList->title,
         ],
-        'location'   => 'Add New',
+        'location'   => __('form.edit'),
     ])
 
     <div class="row">

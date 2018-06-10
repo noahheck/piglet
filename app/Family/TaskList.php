@@ -51,7 +51,7 @@ class TaskList extends Model
     public function activeTasks()
     {
         return $this->tasks->filter(function($task) {
-            return $task->active && !$task->completed;
+            return $task->isActive();
         });
     }
 
@@ -61,7 +61,7 @@ class TaskList extends Model
     public function completedTasks()
     {
         return $this->tasks->filter(function($task) {
-            return $task->completed;
+            return $task->isCompleted();
         });
     }
 
@@ -71,7 +71,7 @@ class TaskList extends Model
     public function inactiveTasks()
     {
         return $this->tasks->filter(function($task) {
-            return !$task->active && !$task->completed;
+            return $task->isInactive();
         });
     }
 
