@@ -20,7 +20,8 @@ class TaskList extends Model
     ];
 
     protected $casts = [
-        'active' => 'boolean',
+        'active'   => 'boolean',
+        'archived' => 'boolean',
     ];
 
     public static function getValidations()
@@ -36,6 +37,85 @@ class TaskList extends Model
         'updated_at',
         'dueDate',
     ];
+
+
+
+    public static function active()
+    {
+        return TaskList::where([
+            ['active',   '=', true],
+            ['archived', '=', false],
+        ])->get();
+    }
+
+    public static function inactiveAndArchived()
+    {
+        return TaskList::where('active', false)->orWhere('archived', true)->get();
+    }
+
+
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active && !$this->archived;
+    }
+
+
+
+    /**
+     * @return bool
+     */
+    public function canBeArchived()
+    {
+        if ($this->archived) {
+
+            return false;
+        }
+
+        $canBeArchived = true;
+
+        $this->tasks->each(function($task, $key) use (&$canBeArchived) {
+
+            if ($task->isActive()) {
+                $canBeArchived = false;
+
+                return false;
+            }
+
+            return true;
+        });
+
+        return $canBeArchived;
+    }
+
+    /**
+     * Archives the task list
+     *
+     * @return TaskList
+     */
+    public function archive()
+    {
+        $this->archived = true;
+        $this->save();
+
+        return $this;
+    }
+
+    /**
+     * Un-archives the task list
+     *
+     * @return TaskList
+     */
+    public function restore()
+    {
+        $this->archived = false;
+        $this->save();
+
+        return $this;
+    }
 
 
 

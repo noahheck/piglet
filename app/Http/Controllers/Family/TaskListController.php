@@ -17,11 +17,14 @@ class TaskListController extends Controller
      */
     public function index(Family $family)
     {
-        $taskLists = TaskList::all();
+        $taskLists = TaskList::active();
+
+        $inactiveAndArchived = TaskList::inactiveAndArchived();
 
         return view('family.taskLists.home', [
-            'family'    => $family,
-            'taskLists' => $taskLists,
+            'family'              => $family,
+            'taskLists'           => $taskLists,
+            'inactiveAndArchived' => $inactiveAndArchived,
         ]);
     }
 
@@ -119,5 +122,27 @@ class TaskListController extends Controller
     public function destroy(TaskList $familyTaskList)
     {
         //
+    }
+
+
+
+    /**
+     *
+     */
+    public function archive(Family $family, TaskList $taskList, Request $request)
+    {
+        $taskList->archive();
+
+        return redirect()->route('family.taskLists.index', [$family]);
+    }
+
+    /**
+     *
+     */
+    public function restore(Family $family, TaskList $taskList, Request $request)
+    {
+        $taskList->restore();
+
+        return redirect()->route('family.taskLists.show', [$family, $taskList]);
     }
 }

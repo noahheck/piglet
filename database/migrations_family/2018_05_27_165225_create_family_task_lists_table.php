@@ -18,6 +18,7 @@ class CreateFamilyTaskListsTable extends Migration
             $table->string('title');
             $table->text('details')->nullable();
             $table->boolean('active')->default(false);
+            $table->boolean('archived')->default(false);
             $table->date('dueDate')->nullable();
             $table->timestamps();
             $table->softDeletes();

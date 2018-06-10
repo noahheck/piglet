@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+    <script src="{{ asset("js/family.taskLists.home.js") }}"></script>
 @endsection
 
 @section('content')
@@ -30,22 +30,59 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
+    @if ($taskLists->count() > 0)
 
-        @foreach($taskLists as $list)
+        <h3>Active Task Lists</h3>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a class="card taskList {{ ($list->isOverdue()) ? 'isOverdue' : '' }} {{ ($list->isDueToday()) ? 'isDueToday' : '' }}" href="{{ route('family.taskLists.show', [$family, $list]) }}">
-                    <div class="card-body">
-                        <h5 class='card-title'>{{ $list->title }}</h5>
-                        <p class="dueDate">{{ Auth::user()->formatDate($list->dueDate) }}{{ ($list->isOverdue()) ? ' - Overdue' : '' }}</p>
-                        <p class="taskStats">{{ $list->taskStats()['completed'] }} / {{ $list->taskStats()['total'] }}</p>
-                    </div>
-                </a>
-            </div>
+        <div class="row justify-content-center">
 
-        @endforeach
+            @foreach($taskLists as $list)
 
-    </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <a class="card taskList {{ ($list->isOverdue()) ? 'isOverdue' : '' }} {{ ($list->isDueToday()) ? 'isDueToday' : '' }}" href="{{ route('family.taskLists.show', [$family, $list]) }}">
+                        <div class="card-body">
+                            <h5 class='card-title'>{{ $list->title }}</h5>
+                            <p class="dueDate">{{ Auth::user()->formatDate($list->dueDate) }}{{ ($list->isOverdue()) ? ' - Overdue' : '' }}</p>
+                            <p class="taskStats">{{ $list->taskStats()['completed'] }} / {{ $list->taskStats()['total'] }}</p>
+                        </div>
+                    </a>
+                </div>
+
+            @endforeach
+
+        </div>
+
+    @endif
+
+    @if ($inactiveAndArchived->count() > 0)
+
+        <h4 class="mt-5">
+            Inactive / Archived Task Lists
+
+            <button type="button" class="btn btn-sm btn-light" id="showInactiveListsButton">
+                Show Inactive / Archived Lists
+            </button>
+        </h4>
+
+        <div class="row justify-content-center d-none" id="inactiveTaskLists">
+
+            @foreach ($inactiveAndArchived as $list)
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <a class="card inactiveTaskList" href="{{ route('family.taskLists.show', [$family, $list]) }}">
+                        <div class="card-body">
+                            <h5 class='card-title'>
+                                <span class="fa {{ ($list->archived) ? 'fa-check-square-o' : 'fa-minus-square-o' }}"></span>
+                                {{ $list->title }}
+                            </h5>
+                        </div>
+                    </a>
+                </div>
+
+            @endforeach
+
+        </div>
+
+    @endif
 
 @endsection

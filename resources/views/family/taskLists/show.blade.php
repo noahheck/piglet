@@ -32,7 +32,33 @@
             </h2>
 
             @if($taskList->dueDate)
-                <p>Due {{ Auth::user()->formatDate($taskList->dueDate) }}</p>
+                <p class="{{ ($taskList->isActive() && $taskList->isOverdue() && !$taskList->canBeArchived()) ? 'isOverdue' : '' }}">Due: <span class="dueDate">{{ Auth::user()->formatDate($taskList->dueDate) }}</span></p>
+            @endif
+
+            @if ($taskList->canBeArchived())
+                <form method="POST" action="{{ route('family.taskList.archive', [$family, $taskList]) }}">
+
+                    @csrf
+
+                    <button type="submit" class="btn btn-info btn-sm">
+                        <span class="fa fa-archive"></span>
+                        Archive
+                    </button>
+
+                </form>
+            @endif
+
+            @if ($taskList->archived)
+                <form method="POST" action="{{ route('family.taskList.restore', [$family, $taskList]) }}">
+
+                    @csrf
+
+                    <button type="submit" class="btn btn-light btn-sm">
+                        <span class="fa fa-refresh"></span>
+                        Restore
+                    </button>
+
+                </form>
             @endif
 
             <p>{!! nl2br(e($taskList->details)) !!}</p>

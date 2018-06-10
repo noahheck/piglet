@@ -71,6 +71,10 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         Route::resource('/taskLists', 'TaskListController');
 
         Route::prefix('/taskLists/{taskList}')->group(function() {
+
+            Route::post('/archive', 'TaskListController@archive')->name('taskList.archive');
+            Route::post('/restore', 'TaskListController@restore')->name('taskList.restore');
+
             Route::resource('/tasks', 'TaskController');
         });
 
