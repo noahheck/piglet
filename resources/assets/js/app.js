@@ -10,6 +10,7 @@
 
 let $ = require("jquery");
         require('./bootstrap');
+        require('bootstrap-datepicker');
 
 let ajax = require('Services/ajax');
 
@@ -17,8 +18,12 @@ let ajax = require('Services/ajax');
 
 $(function() {
 
-    $(".dismissable-popover").click(() => {return false;}).popover({
+    $('.dismissable-popover').click(() => {return false;}).popover({
         trigger: 'focus'
+    });
+
+    $('.datepicker').datepicker({
+        autoclose: true
     });
 
 
