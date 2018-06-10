@@ -1,4 +1,4 @@
-<p>
+<p class="task">
     <input type="checkbox" {{ ($task->completed) ? ' checked' : '' }} data-task-id="{{ $task->id }}">
     <a href="{{ route('family.tasks.edit', [$family, $taskList, $task]) }}">
         {{ $task->title }}

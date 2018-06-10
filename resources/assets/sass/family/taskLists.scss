@@ -27,3 +27,11 @@
   color: #c00;
 }
 
+
+// TaskList show screen
+
+.completedTasks {
+  p.task a {
+    text-decoration: line-through;
+  }
+}

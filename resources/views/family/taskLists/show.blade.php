@@ -5,7 +5,7 @@
 @endsection
 
 @section('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family/home.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.taskLists.css') }}" />
 @endsection
 
 @section('scripts')
@@ -39,31 +39,37 @@
 
             <hr style="width: 75%;">
 
-            <h5>
-                <a href="{{ route('family.tasks.create', [$family, $taskList]) }}">
-                    <span class="fa fa-plus-circle"></span> Add Task
-                </a>
-            </h5>
+            <a href="{{ route('family.tasks.create', [$family, $taskList]) }}" class="btn btn-primary btn-">
+                <span class="fa fa-plus-circle"></span> Add Task
+            </a>
 
-            <div class="activeTasks" id="activeTasks">
+            <div class="row mt-4">
 
-                @foreach ($taskList->activeTasks() as $task)
+                <div class="col-12 col-sm-10 offset-sm-1">
 
-                    @include ('family.taskLists._task', ['task' => $task])
+                    <div class="activeTasks" id="activeTasks">
 
-                @endforeach
+                        @foreach ($taskList->activeTasks() as $task)
 
-            </div>
+                            @include ('family.taskLists._task', ['task' => $task])
 
-            <hr>
+                        @endforeach
 
-            <div class="completedTasks" id="completedTasks">
+                    </div>
 
-                @foreach ($taskList->completedTasks() as $task)
+                    <hr>
 
-                    @include ('family.taskLists._task', ['task' => $task])
+                    <div class="completedTasks" id="completedTasks">
 
-                @endforeach
+                        @foreach ($taskList->completedTasks() as $task)
+
+                            @include ('family.taskLists._task', ['task' => $task])
+
+                        @endforeach
+
+                    </div>
+
+                </div>
 
             </div>
 
