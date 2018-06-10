@@ -13,23 +13,44 @@ trait HasDueDate
             return $this->attributes['dueDate'] = null;
         }
 
-        return $this->attributes['dueDate'] = Carbon::createFromFormat('m/d/Y', $dueDate);
+        return $this->attributes['dueDate'] = Carbon::createFromFormat('m/d/Y', $dueDate)->setTime(0,0,0);
     }
 
+    /**
+     * Whether the item is due today
+     *
+     * @return bool
+     */
+    public function isDueToday()
+    {
+        $dueDate = $this->dueDate;
+
+        if (!$dueDate) {
+
+            return false;
+        }
+
+        $now = Carbon::now()->setTime(0,0,0);
+
+        return $dueDate->eq($now);
+    }
+
+    /**
+     * Whether the item is past due
+     *
+     * @return bool
+     */
     public function isOverdue()
     {
         $dueDate = $this->dueDate;
 
         if (!$dueDate) {
+
             return false;
         }
 
-        $tz = Auth::user()->timezone;
+        $now = Carbon::now()->setTime(0,0,0);
 
-        $dueDate->endOfDay()->tz($tz);
-
-        $now = Carbon::now($tz)->endOfDay()->tz($tz);
-
-        return $now->diffInSeconds($dueDate) <= 0;
+        return $dueDate->lt($now);
     }
 }

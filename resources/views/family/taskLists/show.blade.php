@@ -37,10 +37,8 @@
 
             <p>{!! nl2br(e($taskList->details)) !!}</p>
 
-            {{--<hr style="width: 75%;">--}}
-
             <hr>
-            
+
             <h4>Tasks ({{ $taskList->taskStats()['completed'] }} / {{ $taskList->taskStats()['total'] }})</h4>
 
             <a href="{{ route('family.tasks.create', [$family, $taskList]) }}" class="btn btn-sm btn-primary">

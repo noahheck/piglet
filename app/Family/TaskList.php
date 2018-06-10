@@ -5,10 +5,12 @@ namespace App\Family;
 use App\Family\Task;
 
 use App\Traits\HasDueDate;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TaskList extends Model
 {
-    use HasDueDate;
+    use HasDueDate,
+        SoftDeletes;
 
     protected $fillable = [
         'title',

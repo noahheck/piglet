@@ -2,6 +2,8 @@
  * sass/family/taskLists.scss
  */
 
+@import "~Css/variables";
+
 .isOverdue {
   background-color: #fff0f0;
 }
@@ -23,22 +25,43 @@
   font-weight: bold;
 }
 
+.taskList.isDueToday {
+
+  color: $blue-text-color;
+
+  .dueDate {
+    font-weight: bold;
+  }
+}
+
 .isOverdue .dueDate {
-  color: #c00;
+  color: $red-text-color;
 }
 
 
 // TaskList show screen
 
+.task .dueDate {
+  color: $gray-text-color;
+}
+
+.task.isOverdue .dueDate {
+  color: $red-text-color;
+}
+
+.task.isDueToday .dueDate {
+  font-weight: bold;
+}
+
 .completedTasks {
-  p.task a {
+  .task a {
     text-decoration: line-through;
   }
 }
 
 .inactiveTasks {
-  p.task a {
-    color: #666;
+  .task a {
+    color: $gray-text-color;
     text-decoration: line-through;
   }
 }

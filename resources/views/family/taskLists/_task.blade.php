@@ -1,4 +1,4 @@
-<p class="task">
+<p class="task {{ ($task->isActive() && $task->isOverdue()) ? 'isOverdue' : '' }} {{ ($task->isActive() && $task->isDueToday()) ? 'isDueToday' : '' }}">
 
     @if ($task->isCompleted())
         <span class="fa fa-check-square-o"></span>
@@ -13,7 +13,7 @@
     </a>
 
     @if ($task->dueDate)
-        <small class="text-muted">{{ Auth::user()->formatDate($task->dueDate) }}</small>
+        <small class="dueDate">{{ Auth::user()->formatDate($task->dueDate) }}</small>
     @endif
 
     @if ($task->member)

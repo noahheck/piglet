@@ -20,6 +20,7 @@ class CreateFamilyTaskListsTable extends Migration
             $table->boolean('active')->default(false);
             $table->date('dueDate')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

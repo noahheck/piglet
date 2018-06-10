@@ -35,7 +35,7 @@
         @foreach($taskLists as $list)
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a class="card taskList {{ ($list->isOverdue()) ? 'isOverdue' : '' }}" href="{{ route('family.taskLists.show', [$family, $list]) }}">
+                <a class="card taskList {{ ($list->isOverdue()) ? 'isOverdue' : '' }} {{ ($list->isDueToday()) ? 'isDueToday' : '' }}" href="{{ route('family.taskLists.show', [$family, $list]) }}">
                     <div class="card-body">
                         <h5 class='card-title'>{{ $list->title }}</h5>
                         <p class="dueDate">{{ Auth::user()->formatDate($list->dueDate) }}{{ ($list->isOverdue()) ? ' - Overdue' : '' }}</p>
