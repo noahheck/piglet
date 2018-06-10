@@ -4,13 +4,13 @@
  - {{ $family->name }} Task Lists - {{ $taskList->title }}
 @endsection
 
-@section('stylesheets')
+@push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/family.taskLists.css') }}" />
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
 {{--    <script src="{{ asset("js/family.taskLists.show.js") }}"></script>--}}
-@endsection
+@endpush
 
 @section('content')
 

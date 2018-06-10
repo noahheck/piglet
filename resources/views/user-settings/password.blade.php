@@ -4,13 +4,13 @@
 - {{ __('user-settings.my_settings') }} - {{ __('user-settings.password') }}
 @endsection
 
-@section('stylesheets')
+@push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/user-settings.css') }}" />
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
     <script src="{{ asset("js/user-settings-password.js") }}"></script>
-@endsection
+@endpush
 
 @section('content')
 

@@ -4,13 +4,13 @@
  - {{ $family->name }} Tasks - Create New
 @endsection
 
-@section('stylesheets')
+@push('stylesheets')
     {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family/home.css') }}" />--}}
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
     <script src="{{ asset("js/family.tasks._form.js") }}"></script>
-@endsection
+@endpush
 
 @section('content')
 

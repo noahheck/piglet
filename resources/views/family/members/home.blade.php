@@ -4,13 +4,13 @@
  - {{ $family->name }} - {{ __('family-members.family_members') }}
 @endsection
 
-@section('stylesheets')
+@push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/family/member/home.css') }}" />
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
 
-@endsection
+@endpush
 
 @section('content')
 

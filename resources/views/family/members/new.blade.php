@@ -4,13 +4,13 @@
  - {{ $family->name }} - {{ __('family-members.add_new_family_member') }}
 @endsection
 
-@section('stylesheets')
+@push('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/family.member._form.css') }}" />
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
     <script src="{{ asset("js/family.member._form.js") }}"></script>
-@endsection
+@endpush
 
 @section('content')
 

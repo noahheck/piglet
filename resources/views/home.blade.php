@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('scripts')
+@push('scripts')
     <script src="{{ asset("js/home.js") }}"></script>
-@endsection
+@endpush
 
 @section('content')
 

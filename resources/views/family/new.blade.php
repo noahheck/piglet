@@ -4,13 +4,13 @@
  - Create Family
 @endsection
 
-@section('stylesheets')
+@push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/family/form.css') }}" />
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
     <script src="{{ asset("js/family-details-form.js") }}"></script>
-@endsection
+@endpush
 
 @section('content')
 
