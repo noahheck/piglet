@@ -49,6 +49,8 @@
 
                     <div class="activeTasks" id="activeTasks">
 
+                        <h4 class="sr-only">Active Tasks</h4>
+
                         @foreach ($taskList->activeTasks() as $task)
 
                             @include ('family.taskLists._task', ['task' => $task])
@@ -61,6 +63,8 @@
 
                     <div class="completedTasks" id="completedTasks">
 
+                        <h4 class="sr-only">Completed Tasks</h4>
+
                         @foreach ($taskList->completedTasks() as $task)
 
                             @include ('family.taskLists._task', ['task' => $task])
@@ -68,6 +72,24 @@
                         @endforeach
 
                     </div>
+
+                    @if ($taskList->hasInactiveTasks())
+
+                        <hr>
+
+                        <div class="inactiveTasks" id="inactiveTasks">
+
+                            <h4 class="sr-only">Inactive Tasks</h4>
+
+                            @foreach ($taskList->inactiveTasks() as $task)
+
+                                @include ('family.taskLists._task', ['task' => $task])
+
+                            @endforeach
+
+                        </div>
+
+                    @endif
 
                 </div>
 

@@ -35,3 +35,10 @@
     text-decoration: line-through;
   }
 }
+
+.inactiveTasks {
+  p.task a {
+    color: #666;
+    text-decoration: line-through;
+  }
+}

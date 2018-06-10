@@ -75,6 +75,14 @@ class TaskList extends Model
         });
     }
 
+    /**
+     * Whether this list has any inactive tasks
+     */
+    public function hasInactiveTasks()
+    {
+        return ($this->inactiveTasks()->count() > 0) ? true : false;
+    }
+
 
 
 
