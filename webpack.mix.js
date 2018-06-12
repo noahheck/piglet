@@ -56,8 +56,9 @@ mix
 mix.webpackConfig({
     resolve: {
         alias: {
-            "Services": path.resolve(__dirname, "resources/assets/js/services/"),
-            "Css":      path.resolve(__dirname, "resources/assets/sass/")
+            "Services" : path.resolve(__dirname, "resources/assets/js/services/"),
+            "Component": path.resolve(__dirname, "resources/assets/js/component/"),
+            "Css"      : path.resolve(__dirname, "resources/assets/sass/")
         }
     }
 });

@@ -17,6 +17,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
         'location'   => __('family-members.family_members'),
+        'menu' => [
+            ['icon' => 'fa fa-plus-circle', 'href' => route('family.members.create', [$family]), 'text' => 'Add New'],
+        ]
     ])
 
     <div class="row">

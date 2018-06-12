@@ -12,8 +12,9 @@ let $ = require("jquery");
         require('./bootstrap');
         require('bootstrap-datepicker');
 
-let ajax = require('Services/ajax');
+let pageMenu = require('Component/pageMenu');
 
+let ajax = require('Services/ajax');
 
 
 $(function() {
