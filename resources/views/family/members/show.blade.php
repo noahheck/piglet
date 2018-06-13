@@ -14,11 +14,22 @@
 
 @section('content')
 
+    @php
+        $menu = null;
+
+        if (Auth::user()->member->is_administrator) {
+            $menu = [
+                ['type' => 'link', 'href' => route('family.members.edit', [$family, $member]), 'icon' => 'fa fa-pencil-square-o', 'text' => ucwords(__('form.edit_details'))],
+            ];
+        }
+    @endphp
+
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.members.index', [$family]) => __('family-members.family_members'),
         ],
-        'location' => $member->firstName
+        'location' => $member->firstName,
+        'menu' => $menu,
     ])
 
     <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>

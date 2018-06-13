@@ -16,12 +16,22 @@
 
                             @if (isset($item['type']) && $item['type'] === 'delete')
                                 <li>
-                                    <form action="{{ $item['href'] }}" method="POST">
+                                    <form action="{{ $item['href'] }}" method="POST" id="pageMenuDeleteForm">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" class="d-none" id="pageMenuDeleteButton">
                                         <label for="pageMenuDeleteButton" class="delete-label d-block" style="cursor: pointer;">
                                             <span class="fa fa-trash-o"></span> {{ (isset($item['text'])) ? $item['text'] : 'Delete' }}
+                                        </label>
+                                    </form>
+                                </li>
+                            @elseif (isset($item['type']) && $item['type'] === 'form')
+                                <li>
+                                    <form action="{{ $item['href'] }}" method="POST">
+                                        @csrf
+                                        <input type="submit" class="d-none" id="{{ $item['id'] }}">
+                                        <label for="{{ $item['id'] }}" class="d-block" style="cursor: pointer;">
+                                            <span class="{{ $item['icon'] }}"></span> {{ $item['text'] }}
                                         </label>
                                     </form>
                                 </li>

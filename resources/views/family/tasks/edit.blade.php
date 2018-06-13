@@ -20,6 +20,9 @@
             route('family.taskLists.show', [$family, $taskList]) => $taskList->title,
         ],
         'location'   => 'Edit Task',
+        'menu' => [
+            ['type' => 'delete', 'href' => route('family.tasks.destroy', [$family, $taskList, $task]), 'text' => 'Delete Task'],
+        ]
     ])
 
     <div class="row">
@@ -51,7 +54,6 @@
                 'method'       => 'PUT',
                 'cancelRoute'  => route('family.taskLists.show', [$family, $taskList]),
                 'showComplete' => true,
-                'showDelete'   => true,
             ])
 
         </div>

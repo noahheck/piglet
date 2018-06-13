@@ -17,15 +17,15 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
         'location'   => 'Task Lists',
+        'menu' => [
+            ['type' => 'link'  , 'href' => route('family.taskLists.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New'],
+        ]
     ])
 
     <div class="row">
         <div class="col">
             <h2>
                 Task Lists
-                <a href="{{ route('family.taskLists.create', [$family]) }}" class='btn btn-sm btn-primary'>
-                    <span class="fa fa-plus-circle"></span> Add New
-                </a>
             </h2>
         </div>
     </div>

@@ -64,17 +64,3 @@
     </div>
 
 </form>
-
-@if ($showDelete)
-    <form action="{{ route('family.tasks.destroy', [$family, $taskList, $task]) }}" method="POST" id="deleteTaskForm">
-
-        @csrf
-
-        @method('DELETE')
-
-        <button type="submit" class="btn btn-danger float-right">
-            Delete
-        </button>
-
-    </form>
-@endif
