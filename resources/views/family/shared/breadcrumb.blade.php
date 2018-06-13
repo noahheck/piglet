@@ -4,18 +4,38 @@
 
         @if (isset($menu))
             <div class="page-menu-container" id="pageMenuContainer">
-                <span class="fa fa-chevron-down dropdown-trigger rounded-circle" id="pageMenuDropdownTrigger"></span>
-                <ul class="dropdown-content" id="pageMenuDropdownContent">
-                    <a href="#"><li>Test</li></a>
-                    <a href="#"><li>Test 2</li></a>
+                {{--<span class="dropdown-trigger">--}}
+                    <span class="fa fa-chevron-down rounded-circle dropdown-trigger" id="pageMenuDropdownTrigger"></span>
+                {{--</span>--}}
+                <div class="dropdown-content" id="pageMenuDropdownContent">
+                    <span class="fa fa-chevron-up dropdown-trigger rounded-circle" id="pageMenuDropdownTrigger"></span>
+                    <ul>
+                        {{--<li><a href="#"><span class="fa fa-check-square-o"></span> Edit this</a></li>
+                        <li><a href="#"><span class="fa fa-trash-o"></span> Delete</a></li>--}}
+                        @foreach ($menu as $item)
 
-                    @foreach ($menu as $item)
-                        <a href="{{ $item['href'] }}">
-                            <li><span class="{{ $item['icon'] }}"></span> {{ $item['text'] }}</li>
-                        </a>
-                    @endforeach
+                            @if (isset($item['type']) && $item['type'] === 'delete')
+                                <li>
+                                    <form action="{{ $item['href'] }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="d-none" id="pageMenuDeleteButton">
+                                        <label for="pageMenuDeleteButton" class="delete-label d-block" style="cursor: pointer;">
+                                            <span class="fa fa-trash-o"></span> {{ (isset($item['text'])) ? $item['text'] : 'Delete' }}
+                                        </label>
+                                    </form>
+                                </li>
+                            @elseif (isset($item['type']) && $item['type'] === 'link')
+                                <li>
+                                    <a href="{{ $item['href'] }}">
+                                        <span class="{{ $item['icon'] }}"></span> {{ $item['text'] }}
+                                    </a>
+                                </li>
+                            @endif
 
-                </ul>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         @endif
 

@@ -18,7 +18,8 @@
         'breadcrumb' => [],
         'location'   => __('family-members.family_members'),
         'menu' => [
-            ['icon' => 'fa fa-plus-circle', 'href' => route('family.members.create', [$family]), 'text' => 'Add New'],
+            ['type' => 'link'  , 'href' => route('family.members.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New'],
+            /*['type' => 'delete', 'href' => route('family.members.create', [$family]), 'text' => 'Delete Family'],*/
         ]
     ])
 
@@ -26,9 +27,6 @@
         <div class="col">
             <h2>
                 {{ __('family-members.family_members') }}
-                <a class="btn btn-sm btn-primary" href="{{ route('family.members.create', [$family]) }}">
-                    <span class="fa fa-plus-circle"></span> {{ __('form.add_new') }}
-                </a>
             </h2>
         </div>
     </div>

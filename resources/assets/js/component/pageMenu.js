@@ -5,9 +5,7 @@
 let $ = require('jquery');
 
 $(function() {
-    $("#pageMenuDropdownTrigger").click(function() {
-        $(this).toggleClass("fa-chevron-down fa-chevron-up");
-
+    $("#pageMenuContainer .dropdown-trigger").click(function() {
         $("#pageMenuDropdownContent").slideToggle(150);
     })
 });
