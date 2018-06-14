@@ -46,12 +46,12 @@
                 </div>
             </div>
 
-            <div class="card shadow">
+            <a class="card shadow" href="{{ route('family.money-matters', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">Budget <small class="text-muted">- Coming Soon!</small></h5>
-                    Money Matters
+                    <h5 class="card-title">Money Matters</h5>
+                    Budgeting, Tracking, and Saving
                 </div>
-            </div>
+            </a>
 
             <a class="card shadow" href="{{ route('family.taskLists.index', $family) }}">
                 <div class="card-body">
