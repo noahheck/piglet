@@ -81,6 +81,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
 
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');
+        Route::resource('/merchants', 'MerchantController');
 
 
     });
