@@ -41,6 +41,6 @@ class CreateFamilyFamilyMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('members');
+        Schema::connection('family')->dropIfExists('members');
     }
 }

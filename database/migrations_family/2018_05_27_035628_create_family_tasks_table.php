@@ -42,6 +42,6 @@ class CreateFamilyTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::connection('family')->dropIfExists('tasks');
     }
 }
