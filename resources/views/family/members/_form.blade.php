@@ -49,7 +49,7 @@
 
             <div class="tab-content" id="memberTabsContent">
 
-                <div class="tab-pane show active" id="details" role="tabpanel" aria-labelledby="detailsTab">
+                <div class="tab-pane show active fade" id="details" role="tabpanel" aria-labelledby="detailsTab">
 
                     <fieldset>
                         <legend>{{ $legend }}</legend>

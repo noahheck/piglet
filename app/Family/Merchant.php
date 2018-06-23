@@ -16,4 +16,24 @@ class Merchant extends Model
         HasPhoneNumber::formatForOutput insteadof HasSecondaryPhoneNumber;
     }
 
+    protected $fillable = [
+        'name',
+        'details',
+        'address1',
+        'address2',
+        'city',
+        'state',
+        'zip',
+        'phone',
+        'secondaryPhone',
+        'url',
+    ];
+
+    public static function getValidations()
+    {
+        return [
+            'name' => 'required',
+
+        ];
+    }
 }

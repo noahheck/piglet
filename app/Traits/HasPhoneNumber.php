@@ -13,6 +13,10 @@ trait HasPhoneNumber
 
     public function getPhoneAttribute()
     {
+        if (!isset($this->attributes['phone'])) {
+            return '';
+        }
+
         return $this->formatForOutput($this->attributes['phone']);
     }
 }

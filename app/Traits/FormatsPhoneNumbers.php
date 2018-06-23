@@ -6,6 +6,10 @@ trait FormatsPhoneNumbers
 {
     public function formatForDatabase($number)
     {
+        if (!$number) {
+            return null;
+        }
+
         return preg_replace("/(^1|\D)/", '', $number);
     }
 

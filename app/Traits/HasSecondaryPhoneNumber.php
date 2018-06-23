@@ -13,6 +13,10 @@ trait HasSecondaryPhoneNumber
 
     public function getSecondaryPhoneAttribute()
     {
+        if (!isset($this->attributes['secondaryPhone'])) {
+            return '';
+        }
+
         return $this->formatForOutput($this->attributes['secondaryPhone']);
     }
 }

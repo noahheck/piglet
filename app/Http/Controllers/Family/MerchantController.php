@@ -17,8 +17,11 @@ class MerchantController extends Controller
      */
     public function index(Family $family)
     {
+        $merchants = Merchant::orderBy('name')->get();
+
         return view('family.merchants.home', [
             'family' => $family,
+            'merchants' => $merchants,
         ]);
     }
 
@@ -27,9 +30,14 @@ class MerchantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family)
     {
-        //
+        $merchant = new Merchant;
+
+        return view('family.merchants.new', [
+            'family'   => $family,
+            'merchant' => $merchant,
+        ]);
     }
 
     /**
@@ -38,9 +46,17 @@ class MerchantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Family $family)
     {
-        //
+        $request->validate(Merchant::getValidations());
+
+        $merchant = new Merchant();
+
+        $merchant->fill($request->only($merchant->getFillable()));
+
+        $merchant->save();
+
+        return redirect()->route('family.merchants.show', [$family, $merchant]);
     }
 
     /**
@@ -49,7 +65,7 @@ class MerchantController extends Controller
      * @param  \App\Family\Merchant  $merchant
      * @return \Illuminate\Http\Response
      */
-    public function show(Merchant $merchant)
+    public function show(Family $family, Merchant $merchant)
     {
         //
     }
