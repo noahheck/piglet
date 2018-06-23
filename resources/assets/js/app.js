@@ -12,7 +12,8 @@ let $ = require("jquery");
         require('./bootstrap');
         require('bootstrap-datepicker');
 
-let pageMenu = require('Component/pageMenu');
+let pageMenu  = require('Component/pageMenu');
+let domSearch = require('Component/domSearch');
 
 let ajax = require('Services/ajax');
 
@@ -25,6 +26,12 @@ $(function() {
 
     $('.datepicker').datepicker({
         autoclose: true
+    });
+
+    $('.dom-search').each(function() {
+        let jThis = $(this);
+
+        domSearch.attach(jThis, {searchItems: jThis.data('searchItems')});
     });
 
 

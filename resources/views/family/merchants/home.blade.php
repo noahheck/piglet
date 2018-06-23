@@ -9,7 +9,7 @@
 @endpush
 
 @push('scripts')
-
+<script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>
 @endpush
 
 @section('content')
@@ -40,18 +40,26 @@
                 <p>You haven't added any merchants yet. Go ahead and <a href="{{ route('family.merchants.create', [$family]) }}">add your first merchant</a> now.</p>
             @else
 
-                <table class="table table-striped">
+                <h2>Merchants</h2>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><span class="fa fa-search"></span></div>
+                    </div>
+                    <input type="text" class="form-control dom-search" data-search-items="#merchantsTable tr.merchant" id="merchantSearch" placeholder="Search Merchants">
+                </div>
+
+                <table class="table table-striped" id="merchantsTable">
 
                     <thead>
                         <tr>
                             <th>Name</th>
-                            {{--<th></th>--}}
                         </tr>
                     </thead>
 
                     @foreach ($merchants as $merchant)
 
-                        <tr>
+                        <tr class="merchant" data-search-content="{{ $merchant->name }}">
                             <td>
                                 <a href="{{ route('family.merchants.show', [$family, $merchant]) }}">
                                     {{ $merchant->name }}
