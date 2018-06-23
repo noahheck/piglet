@@ -43,19 +43,13 @@
 
                     <h2>{{ $merchant->name }}</h2>
 
-                    <hr>
-
-                    @if ($merchant->url)
-                        <p><a href="{{ $merchant->url }}" target="_blank">{{ $merchant->url }}</a></p>
-                    @endif
-
                     <p>{{ $merchant->details }}</p>
 
                 </div>
 
                 <div class="col-12 col-md-5">
 
-                    @if ($merchant->phone || $merchant->secondaryPhone || $merchant->address)
+                    @if ($merchant->url || $merchant->phone || $merchant->secondaryPhone || $merchant->address)
 
                         <div class="card shadow">
 
@@ -64,6 +58,10 @@
                             <div class="card-body">
 
                                 <dl>
+                                    @if ($merchant->url)
+                                        <dt>Website:</dt>
+                                        <dd><a href="{{ $merchant->url }}" target="_blank">{{ $merchant->url }}</a></dd>
+                                    @endif
                                     @if ($merchant->phone || $merchant->secondaryPhone)
                                         <dt>Phone:</dt>
                                         <dd>{{ $merchant->phone }} {{ ($merchant->secondaryPhone) ? '|' : '' }} {{ $merchant->secondaryPhone }}</dd>

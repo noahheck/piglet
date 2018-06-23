@@ -35,6 +35,7 @@ class Merchant extends Model
     {
         return [
             'name' => 'required',
+            'url'  => 'url|nullable',
 
         ];
     }

@@ -100,13 +100,9 @@ class TaskListController extends Controller
     {
         $request->validate($taskList->getValidations());
 
-        \DebugBar::info($request->only($taskList->getFillable()));
-
         $taskList->fill($request->only($taskList->getFillable()));
 
         $taskList->active = $request->has('active');
-
-        \DebugBar::info($taskList);
 
         $taskList->save();
 

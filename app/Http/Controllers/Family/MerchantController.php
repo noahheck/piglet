@@ -81,7 +81,10 @@ class MerchantController extends Controller
      */
     public function edit(Family $family, Merchant $merchant)
     {
-        //
+        return view('family.merchants.edit', [
+            'family'   => $family,
+            'merchant' => $merchant,
+        ]);
     }
 
     /**
@@ -93,7 +96,13 @@ class MerchantController extends Controller
      */
     public function update(Request $request, Family $family, Merchant $merchant)
     {
-        //
+        $request->validate($merchant->getValidations());
+
+        $merchant->fill($request->only($merchant->getFillable()));
+
+        $merchant->save();
+
+        return redirect()->route('family.merchants.show', [$family, $merchant]);
     }
 
     /**

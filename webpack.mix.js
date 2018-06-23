@@ -47,6 +47,7 @@ mix
 
 
     .js('resources/assets/js/family/merchants/index.js', 'public/js/family.merchants.index.js')
+    .js('resources/assets/js/family/merchants/_form.js', 'public/js/family.merchants._form.js')
 
 
     // Things to put in vendor file
