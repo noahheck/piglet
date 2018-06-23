@@ -66,9 +66,12 @@
                                 </a>
                             </td>
                         </tr>
+
                     @endforeach
 
                 </table>
+
+                <hr>
 
             @endif
 

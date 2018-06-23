@@ -15,7 +15,8 @@ let $ = require("jquery");
 let pageMenu  = require('Component/pageMenu');
 let domSearch = require('Component/domSearch');
 
-let ajax = require('Services/ajax');
+let phone = require('Services/phone');
+let ajax  = require('Services/ajax');
 
 
 $(function() {
@@ -32,6 +33,12 @@ $(function() {
         let jThis = $(this);
 
         domSearch.attach(jThis, {searchItems: jThis.data('searchItems')});
+    });
+
+    $('.phone-field').keyup(function() {
+        let jThis = $(this);
+
+        jThis.val(phone.format(jThis.val()));
     });
 
 
