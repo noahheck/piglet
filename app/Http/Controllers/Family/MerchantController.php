@@ -67,7 +67,10 @@ class MerchantController extends Controller
      */
     public function show(Family $family, Merchant $merchant)
     {
-        //
+        return view('family.merchants.show', [
+            'family'   => $family,
+            'merchant' => $merchant,
+        ]);
     }
 
     /**
@@ -76,7 +79,7 @@ class MerchantController extends Controller
      * @param  \App\Family\Merchant  $merchant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Merchant $merchant)
+    public function edit(Family $family, Merchant $merchant)
     {
         //
     }
@@ -88,7 +91,7 @@ class MerchantController extends Controller
      * @param  \App\Family\Merchant  $merchant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Merchant $merchant)
+    public function update(Request $request, Family $family, Merchant $merchant)
     {
         //
     }
@@ -99,7 +102,7 @@ class MerchantController extends Controller
      * @param  \App\Family\Merchant  $merchant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Merchant $merchant)
+    public function destroy(Family $family, Merchant $merchant)
     {
         //
     }
