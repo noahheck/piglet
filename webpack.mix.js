@@ -46,6 +46,10 @@ mix
     .sass('resources/assets/sass/family/taskLists.scss', 'public/css/family.taskLists.css')
 
 
+    .js('resources/assets/js/family/money-matters/nav.js',       'public/js/family.money-matters.nav.js')
+    .sass('resources/assets/sass/family/money-matters/nav.scss', 'public/css/family.money-matters.nav.css')
+
+
     .js('resources/assets/js/family/merchants/index.js', 'public/js/family.merchants.index.js')
     .js('resources/assets/js/family/merchants/_form.js', 'public/js/family.merchants._form.js')
 

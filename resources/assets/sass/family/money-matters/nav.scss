@@ -1,0 +1,26 @@
+/**
+ * sass/family/money-matters/nav.scss
+ */
+
+.settingsItem {
+  .settings-hidden {
+    display: none;
+  }
+
+  .settings-shown {
+    display: inline;
+  }
+}
+
+.settingsItem.settingsActive {
+  .settings-hidden {
+    display: inline;
+  }
+  .settings-shown {
+    display: none;
+  }
+}
+
+.settings-item {
+  padding-left: 30px;
+}
