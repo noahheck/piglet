@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Money Matters
+    - {{ $family->name }} - {{ __('money-matters.money-matters') }}
 @endsection
 
 @push('stylesheets')
@@ -16,25 +16,19 @@
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
-        'location'   => 'Money Matters',
+        'location'   => __('money-matters.money-matters'),
     ])
-        {{--'menu' => [
-            ['type' => 'link', 'href' => '#', 'icon' => 'fa fa-bar-chart', 'text' => 'Reports'],
-            ['type' => 'link', 'href' => '#', 'icon' => 'fa fa-building', 'text' => 'Merchants'],
-            ['type' => 'link', 'href' => '#', 'icon' => 'fa fa-cogs', 'text' => 'Settings'],
-        ]--}}
-            {{--['type' => 'link', 'href' => route('family.members.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New'],--}}
 
     <div class="row">
 
-        <div class="col-12 col-md-3 col-lg-2">
+        <div class="col-12 col-md-3 col-xl-2">
 
             @include('family.shared.money-matters-nav', ['active' => 'home'])
 
         </div>
 
-        <div class="col-12 col-md-9 col-lg-10">
-            Charts and shit
+        <div class="col-12 col-md-9 col-xl-10">
+            Charts and stuff
         </div>
 
     </div>

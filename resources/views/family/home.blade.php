@@ -48,8 +48,8 @@
 
             <a class="card shadow" href="{{ route('family.money-matters', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">Money Matters</h5>
-                    Budgeting, Tracking, and Saving
+                    <h5 class="card-title">{{ __('money-matters.money-matters') }}</h5>
+                    {{ __('money-matters.money-matters-shortDesc') }}
                 </div>
             </a>
 

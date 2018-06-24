@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Merchants
+    - {{ $family->name }} - {{ __('merchants.merchants') }} - {{ $merchant->name }}
 @endsection
 
 @push('stylesheets')
@@ -9,33 +9,31 @@
 @endpush
 
 @push('scripts')
-<script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>
 @endpush
 
 @section('content')
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
-            route('family.money-matters', [$family])   => 'Money Matters',
-            route('family.merchants.index', [$family]) => 'Merchants',
+            route('family.money-matters', [$family])   => __('money-matters.money-matters'),
+            route('family.merchants.index', [$family]) => __('merchants.merchants'),
         ],
         'location'   => $merchant->name,
         'menu' => [
-            ['type' => 'link', 'href' => route('family.merchants.edit', [$family, $merchant]), 'icon' => 'fa fa-pencil-square-o', 'text' => 'Edit'],
+            ['type' => 'link', 'href' => route('family.merchants.edit', [$family, $merchant]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
         ]
     ])
-            {{--['type' => 'link', 'href' => '#', 'icon' => 'fa fa-building', 'text' => 'Merchants'],
-            ['type' => 'link', 'href' => '#', 'icon' => 'fa fa-cogs', 'text' => 'Settings'],--}}
 
     <div class="row">
 
-        <div class="col-12 col-md-3 col-lg-2">
+        <div class="col-12 col-md-3 col-xl-2">
 
             @include('family.shared.money-matters-nav', ['active' => 'merchants'])
 
         </div>
 
-        <div class="col-12 col-md-9 col-lg-10">
+        <div class="col-12 col-md-9 col-xl-10">
 
             <div class="row">
 
@@ -53,21 +51,21 @@
 
                         <div class="card shadow">
 
-                            <h5 class="card-header">Contact</h5>
+                            <h5 class="card-header">{{ __('merchants.contact') }}</h5>
 
                             <div class="card-body">
 
                                 <dl>
                                     @if ($merchant->url)
-                                        <dt>Website:</dt>
+                                        <dt>{{ __('merchants.website') }}:</dt>
                                         <dd><a href="{{ $merchant->url }}" target="_blank">{{ $merchant->url }}</a></dd>
                                     @endif
                                     @if ($merchant->phone || $merchant->secondaryPhone)
-                                        <dt>Phone:</dt>
+                                        <dt>{{ __('merchants.phone') }}:</dt>
                                         <dd>{{ $merchant->phone }} {{ ($merchant->secondaryPhone) ? '|' : '' }} {{ $merchant->secondaryPhone }}</dd>
                                     @endif
                                     @if ($merchant->address)
-                                        <dt>Address:</dt>
+                                        <dt>{{ __('merchants.address') }}:</dt>
                                         <dd>{!! nl2br(e($merchant->address)) !!}</dd>
                                     @endif
                                 </dl>
@@ -83,7 +81,6 @@
             </div>
 
         <hr>
-
 
 
 

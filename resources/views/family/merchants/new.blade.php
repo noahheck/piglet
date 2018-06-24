@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Merchants
+    - {{ $family->name }} - {{ __('merchants.merchants') }} - {{ __('merchants.create-new') }}
 @endsection
 
 @push('stylesheets')
@@ -16,14 +16,11 @@
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
-            route('family.money-matters',   [$family]) => 'Money Matters',
-            route('family.merchants.index', [$family]) => 'Merchants',
+            route('family.money-matters',   [$family]) => __('money-matters.money-matters'),
+            route('family.merchants.index', [$family]) => __('merchants.merchants'),
         ],
-        'location'   => 'Create New',
+        'location'   => __('merchants.create-new'),
     ])
-        {{--'menu' => [
-            ['type' => 'link', 'href' => route('family.merchants.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New Merchant'],
-        ]--}}
 
     <div class="row justify-content-center">
 

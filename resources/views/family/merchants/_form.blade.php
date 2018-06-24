@@ -1,5 +1,5 @@
 @push('scripts')
-<script type="text/javascript" src="{{ asset('js/family.merchants._form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/family.merchants._form.js') }}"></script>
 @endpush
 
 <form name="merchant" action="{{ $action }}" method="POST" class="has-bold-labels">
@@ -15,10 +15,10 @@
     <ul class="nav nav-tabs" id="merchantTabs" role="tablist">
 
         <li class="nav-item">
-            <a class="nav-link active" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
+            <a class="nav-link active" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">{{ __('merchants.details') }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="contactTab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+            <a class="nav-link" id="contactTab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">{{ __('merchants.contact') }}</a>
         </li>
 
     </ul>
@@ -28,11 +28,11 @@
         <div class="tab-pane show active fade" id="details" role="tabpanel" aria-labelledby="detailsTab">
 
             <fieldset>
-                <legend>Merchant Details</legend>
+                <legend>{{ __('merchants.merchant-details') }}</legend>
 
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ old('name', $merchant->name) }}">
+                    <label for="name">{{ __('merchants.name') }}</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="{{ __('merchants.name') }}" value="{{ old('name', $merchant->name) }}">
                     @fieldError('name')
                 </div>
 
@@ -41,8 +41,8 @@
                 --}}
 
                 <div class="form-group">
-                    <label for="merchantDetails">Details</label>
-                    <textarea name="details" id="merchantDetails" class="form-control" placeholder="Merchant Details, Notes, etc..." rows="6">{{ old('details', $merchant->details) }}</textarea>
+                    <label for="merchantDetails">{{ __('merchants.details') }}</label>
+                    <textarea name="details" id="merchantDetails" class="form-control" placeholder="{{ __('merchants.details-desc') }}" rows="6">{{ old('details', $merchant->details) }}</textarea>
                     @fieldError('details')
                 </div>
 
@@ -53,53 +53,53 @@
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contactTab">
 
             <fieldset>
-                <legend>Contact Information</legend>
+                <legend>{{ __('merchants.contact-information') }}</legend>
 
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" name="phone" id="phone" class="form-control phone-field" placeholder="Phone" value="{{ old('phone', $merchant->phone) }}">
+                    <label for="phone">{{ __('merchants.phone') }}</label>
+                    <input type="text" name="phone" id="phone" class="form-control phone-field" placeholder="{{ __('merchants.phone') }}" value="{{ old('phone', $merchant->phone) }}">
                     @fieldError('phone')
                 </div>
 
                 <div class="form-group">
-                    <label for="secondarPhone">Secondary Phone</label>
-                    <input type="text" name="secondaryPhone" id="secondaryPhone" class="form-control phone-field" placeholder="Secondary Phone" value="{{ old('secondaryPhone', $merchant->secondaryPhone) }}">
+                    <label for="secondaryPhone">{{ __('merchants.secondaryPhone') }}</label>
+                    <input type="text" name="secondaryPhone" id="secondaryPhone" class="form-control phone-field" placeholder="{{ __('merchants.secondaryPhone') }}" value="{{ old('secondaryPhone', $merchant->secondaryPhone) }}">
                     @fieldError('secondaryPhone')
                 </div>
 
                 <div class="form-group">
-                    <label for="url">Website</label>
-                    <input type="text" name="url" id="url" class="form-control" placeholder="Website" value="{{ old('url', $merchant->url) }}">
+                    <label for="url">{{ __('merchants.website') }}</label>
+                    <input type="text" name="url" id="url" class="form-control" placeholder="{{ __('merchants.website') }}" value="{{ old('url', $merchant->url) }}">
                     @fieldError('url')
                 </div>
 
                 <div class="form-group">
-                    <label for="address1">Address Line 1</label>
-                    <input type="text" name="address1" id="address1" class="form-control" placeholder="Address Line 1" value="{{ old('address1', $merchant->address1) }}">
+                    <label for="address1">{{ __('merchants.address1') }}</label>
+                    <input type="text" name="address1" id="address1" class="form-control" placeholder="{{ __('merchants.address1') }}" value="{{ old('address1', $merchant->address1) }}">
                     @fieldError('address1')
                 </div>
 
                 <div class="form-group">
-                    <label for="address2">Address Line 2</label>
-                    <input type="text" name="address2" id="address2" class="form-control" placeholder="Address Line 2" value="{{ old('address2', $merchant->address2) }}">
+                    <label for="address2">{{ __('merchants.address2') }}</label>
+                    <input type="text" name="address2" id="address2" class="form-control" placeholder="{{ __('merchants.address2') }}" value="{{ old('address2', $merchant->address2) }}">
                     @fieldError('address2')
                 </div>
 
                 <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" name="city" id="city" class="form-control" placeholder="City" value="{{ old('city', $merchant->city) }}">
+                    <label for="city">{{ __('merchants.city') }}</label>
+                    <input type="text" name="city" id="city" class="form-control" placeholder="{{ __('merchants.city') }}" value="{{ old('city', $merchant->city) }}">
                     @fieldError('city')
                 </div>
 
                 <div class="form-group">
-                    <label for="state">State</label>
-                    <input type="text" name="state" id="state" class="form-control" placeholder="State" value="{{ old('state', $merchant->state) }}">
+                    <label for="state">{{ __('merchants.state') }}</label>
+                    <input type="text" name="state" id="state" class="form-control" placeholder="{{ __('merchants.state') }}" value="{{ old('state', $merchant->state) }}">
                     @fieldError('state')
                 </div>
 
                 <div class="form-group">
-                    <label for="zip">Zip</label>
-                    <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip" value="{{ old('zip', $merchant->zip) }}">
+                    <label for="zip">{{ __('merchants.zip') }}</label>
+                    <input type="text" name="zip" id="zip" class="form-control" placeholder="{{ __('merchants.zip') }}" value="{{ old('zip', $merchant->zip) }}">
                     @fieldError('zip')
                 </div>
 
