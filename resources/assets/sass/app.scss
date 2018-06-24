@@ -91,3 +91,28 @@ img.thumbnail {
 .nav-tabs .nav-link.active:hover {
   border-bottom: 2px solid $nav-active-color;
 }
+
+
+.list-group {
+
+  .list-group-item:first-child,
+  .list-group-item:last-child {
+    border-radius: 0;
+  }
+
+  .list-group-item-action {
+    border-left-width: 2px;
+  }
+
+  .list-group-item-action:hover {
+    border-left: 2px solid $nav-inactive-color;
+  }
+
+  .active,
+  .active:hover {
+    border-color: rgba(0,0,0,0.125);
+    border-left: 2px solid $nav-active-color;
+    background-color: #f8f9fa;
+    color: #495057;
+  }
+}
