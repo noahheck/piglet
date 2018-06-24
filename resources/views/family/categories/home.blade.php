@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('merchants.merchants') }}
+    - {{ $family->name }} - Categories
 @endsection
 
 @push('stylesheets')
@@ -9,7 +9,7 @@
 @endpush
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>--}}
 @endpush
 
 @section('content')
@@ -18,9 +18,9 @@
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
         ],
-        'location'   => __('merchants.merchants'),
+        'location'   => 'Categories',
         'menu' => [
-            ['type' => 'link', 'href' => route('family.merchants.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('merchants.add-new-merchant')],
+            ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New Category'],
         ]
     ])
 
@@ -28,24 +28,24 @@
 
         <div class="col-12 col-md-3 col-xl-2">
 
-            @include('family.shared.money-matters-nav', ['active' => 'merchants'])
+            @include('family.shared.money-matters-nav', ['active' => 'categories'])
 
         </div>
 
         <div class="col-12 col-md-9 col-xl-10">
 
-            <h2>{{ __('merchants.merchants') }}</h2>
+            <h2>Categories</h2>
 
             <hr>
 
-            @if (count($merchants) === 0)
-
-                <p>{{ __('merchants.no-merchants-create') }}</p>
+            @if (count($categories) === 0)
+                <p>You haven't added any categories yet. Go ahead and create your first one now:</p>
                 <p class="text-center">
-                    <a class="btn btn-primary" href="{{ route('family.merchants.create', $family) }}"><span class="fa fa-plus-circle"></span> {{ __('merchants.add-new-merchant') }}</a>
+                    <a class="btn btn-primary" href="{{ route('family.categories.create', $family) }}"><span class="fa fa-plus-circle"></span> Add New Category</a>
                 </p>
-
             @else
+
+                {{--<h2>{{ __('merchants.merchants') }}</h2>
 
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -76,7 +76,7 @@
 
                 </table>
 
-                <hr>
+                <hr>--}}
 
             @endif
 
