@@ -21,6 +21,7 @@
         ],
         'location'   => $merchant->name,
         'menu' => [
+            ['type' => 'link', 'href' => route('family.merchants.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('merchants.add-new-merchant')],
             ['type' => 'link', 'href' => route('family.merchants.edit', [$family, $merchant]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
         ]
     ])

@@ -20,7 +20,7 @@ function ajaxRequest(method, route, data) {
             success : function(response) {
                 if (!response.success) {
 
-                    if (response.errors) {
+                    if (response.errors.length > 0) {
                         alert(response.errors.join("\n"));
                     }
 

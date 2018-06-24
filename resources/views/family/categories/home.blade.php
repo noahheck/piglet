@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family/member/home.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.categories.index.css') }}" />
 @endpush
 
 @push('scripts')
-    {{--<script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('js/family.categories.index.js') }}"></script>
 @endpush
 
 @section('content')
@@ -45,38 +45,42 @@
                 </p>
             @else
 
-                {{--<h2>{{ __('merchants.merchants') }}</h2>
+                <div class="row justify-content-center">
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><span class="fa fa-search"></span></div>
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+                        @if ($categories->where('active', true)->count() > 0)
+                            <h4>Active Categories</h4>
+                        @endif
+
+                        <ul class="list-group shadow active-categories" id="activeCategories">
+
+                            @foreach ($categories->where('active', true) as $category)
+                                <li class="list-group-item" data-category-id="{{ $category->id }}">
+                                    <span class="fa fa-sort sort-handle"></span>
+                                    <a href="{{ route('family.categories.show', [$family, $category]) }}">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+
+                        @if ($categories->where('active', false)->count() > 0)
+                            <h4>Inactive Categories</h4>
+                        @endif
+
+                        <ul class="list-group shadow inactive-categories" id="inactiveCategories">
+
+                            @foreach ($categories->where('active', false) as $category)
+                                <li class="list-group-item" data-category-id="{{ $category->id }}">
+                                    <a href="{{ route('family.categories.show', [$family, $category]) }}">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+
                     </div>
-                    <input type="text" class="form-control dom-search" data-search-items="#merchantsTable tr.merchant" id="merchantSearch" placeholder="{{ __('merchants.search-merchants') }}">
+
                 </div>
-
-                <table class="table table-striped" id="merchantsTable">
-
-                    <thead>
-                        <tr>
-                            <th>{{ __('merchants.name') }}</th>
-                        </tr>
-                    </thead>
-
-                    @foreach ($merchants as $merchant)
-
-                        <tr class="merchant" data-search-content="{{ $merchant->name }}">
-                            <td>
-                                <a href="{{ route('family.merchants.show', [$family, $merchant]) }}">
-                                    {{ $merchant->name }}
-                                </a>
-                            </td>
-                        </tr>
-
-                    @endforeach
-
-                </table>
-
-                <hr>--}}
 
             @endif
 

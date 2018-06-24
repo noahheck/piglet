@@ -21,6 +21,7 @@
         ],
         'location'   => $category->name,
         'menu' => [
+            ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-pencil-square-o', 'text' => 'Add New Category'],
             ['type' => 'link', 'href' => route('family.categories.edit', [$family, $category]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
         ]
     ])

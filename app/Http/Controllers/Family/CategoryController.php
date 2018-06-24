@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Family;
 use App\Family;
 use App\Family\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Response\AjaxResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -120,5 +121,30 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+
+
+    /**
+     * Updates the d_order for the categories
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateOrder(Request $request)
+    {
+        $response = new AjaxResponse();
+
+        $orderedCategories = $request->get('orderedCategories');
+
+        $flipped = array_flip($orderedCategories);
+
+        $categories = Category::find($orderedCategories);
+
+        foreach ($categories as $category) {
+            $category->d_order = $flipped[$category->id] + 1;
+            $category->save();
+        }
+
+        return response()->json($response->success(true)->set('orderedCategories', $orderedCategories));
     }
 }
