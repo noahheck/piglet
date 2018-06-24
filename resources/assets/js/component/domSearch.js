@@ -28,7 +28,7 @@ domSearch.attach = function(element, config) {
 
             let jItem = $(this);
 
-            let content = (jItem.data('searchContent')) ? jItem.data('searchContent') : jItem.html();
+            let content = (jItem.data('searchContent')) ? jItem.data('searchContent') : jItem.text();
 
             if (!regex.test(content)) {
                 jItem.hide();
