@@ -20,6 +20,7 @@ class Merchant extends Model
 
     protected $fillable = [
         'name',
+        'default_category_id',
         'details',
         'address1',
         'address2',
@@ -34,9 +35,16 @@ class Merchant extends Model
     public static function getValidations()
     {
         return [
-            'name' => 'required',
-            'url'  => 'url|nullable',
-
+            'name'                => 'required',
+            'url'                 => 'url|nullable',
+            'default_category_id' => 'integer|nullable',
         ];
+    }
+
+
+
+    public function defaultCategory()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

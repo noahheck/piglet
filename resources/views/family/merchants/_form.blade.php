@@ -2,6 +2,10 @@
     <script type="text/javascript" src="{{ asset('js/family.merchants._form.js') }}"></script>
 @endpush
 
+@php
+$categories = \App\Family\Category::where('active', true)->orderBy('d_order')->get();
+@endphp
+
 <form name="merchant" action="{{ $action }}" method="POST" class="has-bold-labels">
 
     @csrf
@@ -37,8 +41,18 @@
                 </div>
 
                 {{--
-                    This is where I should put the recurring checkbox and the default category, when I get there
+                    This is where I should put the recurring checkbox when I get there
                 --}}
+
+                <div class="form-group">
+                    <label for="default_category_id">Default Category</label>
+                    <select class="custom-select" name="default_category_id" id="default_category_id">
+                        <option value="">--</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ (old('default_category_id', ($merchant->defaultCategory) ? $merchant->defaultCategory->id : '') == $category->id) ? "selected" : "" }}>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="merchantDetails">{{ __('merchants.details') }}</label>

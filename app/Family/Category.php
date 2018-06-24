@@ -25,4 +25,11 @@ class Category extends Model
             'name' => 'required',
         ];
     }
+
+
+
+    public function merchants()
+    {
+        return $this->hasMany(Merchant::class, 'default_category_id');
+    }
 }

@@ -16,6 +16,8 @@ class CreateMerchantsTable extends Migration
         Schema::connection('family')->create('merchants', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('default_category_id')->nullable();
+            $table->text('details')->nullable();
             $table->string('phone')->nullable();
             $table->string('secondaryPhone')->nullable();
             $table->string('address1')->nullable();
@@ -24,9 +26,9 @@ class CreateMerchantsTable extends Migration
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('url')->nullable();
-            $table->text('details')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('default_category_id')->references('id')->on('categories');
         });
     }
 
