@@ -29,9 +29,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family)
     {
-        //
+        $category = new Category();
+        $category->active = true;
+
+        return view('family.categories.new', [
+            'family'   => $family,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -40,9 +46,21 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Family $family)
     {
-        //
+        $request->validate(Category::getValidations());
+
+        $category = new Category();
+
+        $category->fill($request->only($category->getFillable()));
+
+        $category->active  = $request->has('active');
+
+        $category->d_order = Category::max('d_order') + 1;
+
+        $category->save();
+
+        return redirect()->route('family.categories.show', [$family, $category]);
     }
 
     /**
@@ -51,9 +69,12 @@ class CategoryController extends Controller
      * @param  \App\Family\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Family $family, Category $category)
     {
-        //
+        return view('family.categories.show', [
+            'family'   => $family,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -62,9 +83,12 @@ class CategoryController extends Controller
      * @param  \App\Family\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Family $family, Category $category)
     {
-        //
+        return view('family.categories.edit', [
+            'family'   => $family,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -74,9 +98,17 @@ class CategoryController extends Controller
      * @param  \App\Family\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Family $family, Category $category)
     {
-        //
+        $request->validate(Category::getValidations());
+
+        $category->fill($request->only($category->getFillable()));
+
+        $category->active = $request->has('active');
+
+        $category->save();
+
+        return redirect()->route('family.categories.show', [$family, $category]);
     }
 
     /**

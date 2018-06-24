@@ -54,6 +54,9 @@ mix
     .js('resources/assets/js/family/merchants/_form.js', 'public/js/family.merchants._form.js')
 
 
+    .js('resources/assets/js/family/categories/_form.js', 'public/js/family.categories._form.js')
+
+
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
 

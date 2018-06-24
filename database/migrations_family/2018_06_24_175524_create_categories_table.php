@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('active');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('d_order');
             $table->timestamps();
             $table->softDeletes();

@@ -9,4 +9,20 @@ class Category extends Model
     use SoftDeletes
 
         ;
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
+    public static function getValidations()
+    {
+        return [
+            'name' => 'required',
+        ];
+    }
 }
