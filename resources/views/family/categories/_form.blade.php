@@ -13,24 +13,24 @@
     @formError
 
     <fieldset>
-        <legend>Details</legend>
+        <legend>{{ __('categories.details') }}</legend>
 
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ old('name', $category->name) }}">
+            <label for="name">{{ __('categories.name') }}</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="{{ __('categories.name') }}" value="{{ old('name', $category->name) }}">
             @fieldError('name')
         </div>
 
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="1" id="active" name="active" {{ ($category->active) ? "checked" : "" }}>
             <label class="form-check-label" for="active">
-                Active
+                {{ __('categories.active') }}
             </label>
         </div>
 
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-control" placeholder="Description" rows="3">{{ old('description', $category->description) }}</textarea>
+            <label for="description">{{ __('categories.description') }}</label>
+            <textarea name="description" id="description" class="form-control" placeholder="{{ __('categories.description') }}" rows="3">{{ old('description', $category->description) }}</textarea>
             @fieldError('description')
         </div>
 

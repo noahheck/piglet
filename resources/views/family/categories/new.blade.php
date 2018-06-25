@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Categories - Create New
+    - {{ $family->name }} - {{ __('categories.categories') }} - {{ __('categories.create-new') }}
 @endsection
 
 @push('stylesheets')
@@ -17,9 +17,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters',    [$family]) => __('money-matters.money-matters'),
-            route('family.categories.index', [$family]) => 'Categories',
+            route('family.categories.index', [$family]) => __('categories.categories'),
         ],
-        'location'   => 'Create New',
+        'location'   => __('categories.create-new'),
     ])
 
     <div class="row justify-content-center">

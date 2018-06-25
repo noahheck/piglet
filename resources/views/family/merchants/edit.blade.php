@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Merchants
+    - {{ $family->name }} - {{ __('merchants.merchants') }} - {{ $merchant->name }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -20,7 +20,7 @@
             route('family.merchants.index', [$family]) => 'Merchants',
             route('family.merchants.show',  [$family, $merchant]) => $merchant->name,
         ],
-        'location'   => 'Edit',
+        'location'   => __('form.edit'),
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.merchants.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New Merchant'],

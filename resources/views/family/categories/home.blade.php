@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Categories
+    - {{ $family->name }} - {{ __('categories.categories') }}
 @endsection
 
 @push('stylesheets')
@@ -18,9 +18,9 @@
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
         ],
-        'location'   => 'Categories',
+        'location'   => __('categories.categories'),
         'menu' => [
-            ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New Category'],
+            ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
         ]
     ])
 
@@ -34,14 +34,14 @@
 
         <div class="col-12 col-md-9 col-xl-10">
 
-            <h2>Categories</h2>
+            <h2>{{ __('categories.categories') }}</h2>
 
             <hr>
 
             @if (count($categories) === 0)
-                <p>You haven't added any categories yet. Go ahead and create your first one now:</p>
+                <p>{{ __('categories.no-categories-create') }}</p>
                 <p class="text-center">
-                    <a class="btn btn-primary" href="{{ route('family.categories.create', $family) }}"><span class="fa fa-plus-circle"></span> Add New Category</a>
+                    <a class="btn btn-primary" href="{{ route('family.categories.create', $family) }}"><span class="fa fa-plus-circle"></span> {{ __('categories.add-new-category') }}</a>
                 </p>
             @else
 
@@ -50,7 +50,7 @@
                     <div class="col-12 col-md-10 col-lg-8 col-xl-6">
 
                         @if ($categories->where('active', true)->count() > 0)
-                            <h4>Active Categories</h4>
+                            <h4>{{ __('categories.active-categories') }}</h4>
                         @endif
 
                         <ul class="list-group shadow active-categories" id="activeCategories">
@@ -65,7 +65,7 @@
                         </ul>
 
                         @if ($categories->where('active', false)->count() > 0)
-                            <h4>Inactive Categories</h4>
+                            <h4>{{ __('categories.inactive-categories') }}</h4>
                         @endif
 
                         <ul class="list-group shadow inactive-categories" id="inactiveCategories">

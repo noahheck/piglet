@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Categories - {{ $category->name }}
+    - {{ $family->name }} - {{ __('categories.categories') }} - {{ $category->name }}
 @endsection
 
 @push('stylesheets')
@@ -17,11 +17,11 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters',    [$family]) => __('money-matters.money-matters'),
-            route('family.categories.index', [$family]) => 'Categories',
+            route('family.categories.index', [$family]) => __('categories.categories'),
         ],
         'location'   => $category->name,
         'menu' => [
-            ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-pencil-square-o', 'text' => 'Add New Category'],
+            ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('categories.add-new-category')],
             ['type' => 'link', 'href' => route('family.categories.edit', [$family, $category]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
         ]
     ])
@@ -39,9 +39,9 @@
             <h2>{{ $category->name }}</h2>
 
             @if ($category->active)
-                <p><span class="fa fa-check-square-o" title="Active"></span> Active</p>
+                <p><span class="fa fa-check-square-o" title="{{ __('categories.active') }}"></span> {{ __('categories.active') }}</p>
             @else
-                <p class="text-muted"><span class="fa fa-square-o" title="Inactive"></span> Inactive</p>
+                <p class="text-muted"><span class="fa fa-square-o" title="{{ __('categories.inactive') }}"></span> {{ __('categories.inactive') }}</p>
             @endif
 
             <hr>

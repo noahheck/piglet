@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Categories - {{ $category->name }} - Edit
+    - {{ $family->name }} - {{ __('categories.categories') }} - {{ $category->name }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -17,10 +17,10 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters',    [$family]) => __('money-matters.money-matters'),
-            route('family.categories.index', [$family]) => 'Categories',
+            route('family.categories.index', [$family]) => __('categories.categories'),
             route('family.categories.show',  [$family, $category]) => $category->name,
         ],
-        'location'   => 'Edit',
+        'location'   => __('form.edit'),
     ])
 
     <div class="row justify-content-center">
