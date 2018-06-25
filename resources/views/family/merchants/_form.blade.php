@@ -45,7 +45,7 @@ $categories = \App\Family\Category::where('active', true)->orderBy('d_order')->g
                 --}}
 
                 <div class="form-group">
-                    <label for="default_category_id">Default Category</label>
+                    <label for="default_category_id">{{ __('merchants.default-category') }}</label>
                     <select class="custom-select" name="default_category_id" id="default_category_id">
                         <option value="">--</option>
                         @foreach ($categories as $category)
