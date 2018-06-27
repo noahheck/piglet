@@ -8,7 +8,12 @@ return [
     'inactive-categories'  => 'Inactive Categories',
     'create-new'           => 'Create New',
 
-    'details' => 'Details',
+    'sub-categories-desc'  => 'Sub-categories allow you to further characterize your expenses into appropriate groups.',
+    'add-sub-category'     => 'Add Sub-Category',
+
+    'details'        => 'Details',
+    'sub-categories' => 'Sub-Categories',
+
 
     'name'         => 'Name',
     'active'       => 'Active',

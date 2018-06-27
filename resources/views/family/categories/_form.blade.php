@@ -18,7 +18,7 @@
             <a class="nav-link active" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">{{ __('categories.details') }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="subCategoryTab" data-toggle="tab" href="#subCategory" role="tab" aria-controls="subCategory" aria-selected="false">Sub-Categories</a>
+            <a class="nav-link" id="subCategoryTab" data-toggle="tab" href="#subCategory" role="tab" aria-controls="subCategory" aria-selected="false">{{ __('categories.sub-categories') }}</a>
         </li>
 
     </ul>
@@ -56,14 +56,14 @@
         <div class="tab-pane fade" id="subCategory" role="tabpanel" aria-labelledby="subCategoryTab">
 
             <fieldset>
-                <legend>Sub-Categories</legend>
+                <legend>{{ __('categories.sub-categories') }}</legend>
 
-                <p>Sub-categories allow you to further characterize your expenses into appropriate groups.</p>
+                <p>{{ __('categories.sub-categories-desc') }}</p>
 
                 <div class="input-group">
-                    <input type="text" id="newSubCategory" class="form-control" placeholder="Add Sub-Category" aria-label="Add Sub-Category">
+                    <input type="text" id="newSubCategory" class="form-control" placeholder="{{ __('categories.add-sub-category') }}" aria-label="{{ __('categories.add-sub-category') }}">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" id="addNewSubCategory">Add Sub-Category</button>
+                        <button class="btn btn-primary" type="button" id="addNewSubCategory">{{ __('categories.add-sub-category') }}</button>
                     </div>
                 </div>
 

@@ -44,6 +44,10 @@
                 <p class="text-muted"><span class="fa fa-square-o" title="{{ __('categories.inactive') }}"></span> {{ __('categories.inactive') }}</p>
             @endif
 
+            <p class="{{ ($category->active) ? "" : "text-muted" }}">
+                <strong>{{ __('categories.sub-categories') }}</strong>: {{ implode(', ', $category->sub_categories) }}
+            </p>
+
             <hr>
 
             <p>{{ $category->description }}</p>
