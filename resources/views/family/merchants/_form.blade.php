@@ -55,6 +55,20 @@ $categories = \App\Family\Category::where('active', true)->orderBy('d_order')->g
                 </div>
 
                 <div class="form-group">
+                    <label for="default_sub_category">{{ __('merchants.default-sub-category') }}</label>
+                    <select class="custom-select" name="default_sub_category" id="default_sub_category">
+                        <option value="">--</option>
+                        @foreach ($categories as $category)
+                            @if ($category->sub_categories)
+                                @foreach ($category->sub_categories as $subCategory)
+                                    <option class="sub-category" data-category-id="{{ $category->id }}" value="{{ $subCategory }}" {{ (old('default_sub_category', ($merchant->default_sub_category) ? $merchant->default_sub_category : '') == $subCategory) ? "selected" : "" }}>{{ $subCategory }}</option>
+                                @endforeach
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="merchantDetails">{{ __('merchants.details') }}</label>
                     <textarea name="details" id="merchantDetails" class="form-control" placeholder="{{ __('merchants.details-desc') }}" rows="6">{{ old('details', $merchant->details) }}</textarea>
                     @fieldError('details')

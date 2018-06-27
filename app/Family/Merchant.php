@@ -21,6 +21,7 @@ class Merchant extends Model
     protected $fillable = [
         'name',
         'default_category_id',
+        'default_sub_category',
         'details',
         'address1',
         'address2',

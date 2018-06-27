@@ -43,7 +43,7 @@
                     <h2>{{ $merchant->name }}</h2>
 
                     @if ($merchant->defaultCategory)
-                        <p><strong>{{ __('merchants.default-category') }}:</strong> {{ $merchant->defaultCategory->name }}</p>
+                        <p><strong>{{ __('merchants.default-category') }}:</strong> {{ $merchant->defaultCategory->name }} {{ $merchant->default_sub_category ? ' - ' . $merchant->default_sub_category : '' }}</p>
                     @endif
 
                     <p>{{ $merchant->details }}</p>
