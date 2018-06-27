@@ -24,64 +24,62 @@ class CreateCategoriesTable extends Migration
             $table->softDeletes();
         });
 
-        /*Schema::connection('family')->create('sub_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->integer('category_id');
-            $table->integer('d_order');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('category_id')->references('id')->on('categories');
-        });*/
-
         \Illuminate\Support\Facades\DB::connection('family')->table('categories')->insert(
             [[
-                'name'        => 'Food',
-                'active'      => 1,
-                'description' => 'Restaurants, Groceries',
-                'd_order'     => '1',
+                'name'           => 'Food',
+                'active'         => 1,
+                'description'    => 'Food expenses',
+                'd_order'        => '1',
+                'sub_categories' => '["Groceries","Restaurants"]',
             ],
             [
-                'name'        => 'Housing',
-                'active'      => 1,
-                'description' => 'Rent/Mortgage, HOA Dues, Repairs/Maintenance',
-                'd_order'     => '2',
+                'name'           => 'Housing',
+                'active'         => 1,
+                'description'    => "Expenses related to owning or renting your home and it's upkeep",
+                'd_order'        => '2',
+                'sub_categories' => '["Mortgage","Rent","Repairs","Maintenance","Taxes","HOA Dues"]',
             ],
             [
-                'name'        => 'Utilities',
-                'active'      => 1,
-                'description' => 'Electricity, Gas, Water, Phone, Internet',
-                'd_order'     => '3',
+                'name'           => 'Utilities',
+                'active'         => 1,
+                'description'    => 'Expenses related to operating the equipment in your home',
+                'd_order'        => '3',
+                'sub_categories' => '["Electricity","Gas","Water","Cable","Internet"]',
             ],
             [
-                'name'        => 'Transportation',
-                'active'      => 1,
-                'description' => 'Car Payments, Fuel, Oil Changes, Repairs, Licenses, Taxes',
-                'd_order'     => '4',
+                'name'           => 'Transportation',
+                'active'         => 1,
+                'description'    => 'Expenses related to maintaining your vehicle or using public transportation',
+                'd_order'        => '4',
+                'sub_categories' => '["Car Payment","Bus Pass","Taxi","Fuel","Oil Changes","Repairs","Licenses","Taxes"]',
             ],
             [
-                'name'        => 'Personal',
-                'active'      => 1,
-                'description' => 'Toiletries, Cosmetics, Household Supplies, Pet Supplies',
-                'd_order'     => '5',
+                'name'           => 'Personal',
+                'active'         => 1,
+                'description'    => 'Household/Living expenses',
+                'd_order'        => '5',
+                'sub_categories' => '["Toiletries","Cosmetics","Household Supplies","Pet Supplies"]',
             ],
             [
-                'name'        => 'Health Care',
-                'active'      => 1,
-                'description' => 'Medical/Dental/Vision, Prescriptions',
-                'd_order'     => '6',
+                'name'           => 'Health Care',
+                'active'         => 1,
+                'description'    => 'Expenses for your professional healthcare services',
+                'd_order'        => '6',
+                'sub_categories' => '["Medical","Dental","Vision","Prescriptions","Orthodontic"]',
             ],
             [
-                'name'        => 'Insurance',
-                'active'      => 1,
-                'description' => 'Medical, Dental, Vision, Life, Homeowner, Automobile Premiums',
-                'd_order'     => '7',
+                'name'           => 'Insurance',
+                'active'         => 1,
+                'description'    => 'Premiums paid for maintaining insurance policies',
+                'd_order'        => '7',
+                'sub_categories' => '["Medical","Dental","Vision","Life","Homeowner","Automobile"]',
             ],
             [
-                'name'        => 'Recreation',
-                'active'      => 1,
-                'description' => 'Vacation, Sports, Entertainment, Subscriptions, Hobbies',
-                'd_order'     => '8',
+                'name'           => 'Recreation',
+                'active'         => 1,
+                'description'    => 'All the things that make life worth living',
+                'd_order'        => '8',
+                'sub_categories' => '["Vacation","Sports","Entertainment","Subscriptions","Hobbies"]',
             ]]
         );
     }
@@ -94,6 +92,5 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::connection('family')->dropIfExists('categories');
-//        Schema::connection('family')->dropIfExists('sub_categories');
     }
 }
