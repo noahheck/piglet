@@ -17,6 +17,7 @@ class CreateMerchantsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('default_category_id')->nullable();
+            $table->integer('default_sub_category_id')->nullable();
             $table->text('details')->nullable();
             $table->string('phone')->nullable();
             $table->string('secondaryPhone')->nullable();

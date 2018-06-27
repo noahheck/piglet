@@ -18,10 +18,21 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->boolean('active');
             $table->text('description')->nullable();
+            $table->text('sub_categories')->default('[]')->nullable();
             $table->integer('d_order');
             $table->timestamps();
             $table->softDeletes();
         });
+
+        /*Schema::connection('family')->create('sub_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('category_id');
+            $table->integer('d_order');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('category_id')->references('id')->on('categories');
+        });*/
 
         \Illuminate\Support\Facades\DB::connection('family')->table('categories')->insert(
             [[
@@ -83,5 +94,6 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::connection('family')->dropIfExists('categories');
+//        Schema::connection('family')->dropIfExists('sub_categories');
     }
 }

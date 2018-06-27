@@ -8,11 +8,6 @@
   margin-bottom: 20px;
 }
 
-.sort-handle {
-  float: right;
-  padding: 6px;
-  cursor: move;
-}
 
 .inactive-categories {
 
@@ -23,10 +18,4 @@
   }
 }
 
-.sortable-ghost {
-  background-color: $primary-blue;
 
-  a {
-    color: #fff !important;
-  }
-}

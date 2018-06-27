@@ -47,4 +47,9 @@ class Merchant extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function defaultSubCategory()
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
 }

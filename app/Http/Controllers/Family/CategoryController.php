@@ -57,6 +57,8 @@ class CategoryController extends Controller
 
         $category->active  = $request->has('active');
 
+        $category->sub_categories = $request->has('sub_categories') ? $request->get('sub_categories') : [];
+
         $category->d_order = Category::max('d_order') + 1;
 
         $category->save();
@@ -106,6 +108,8 @@ class CategoryController extends Controller
         $category->fill($request->only($category->getFillable()));
 
         $category->active = $request->has('active');
+
+        $category->sub_categories = $request->has('sub_categories') ? $request->get('sub_categories') : [];
 
         $category->save();
 

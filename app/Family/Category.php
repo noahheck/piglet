@@ -6,23 +6,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use SoftDeletes
-
-        ;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
         'description',
+        'sub_categories',
     ];
 
     protected $casts = [
-        'active' => 'boolean',
+        'active'         => 'boolean',
+        'sub_categories' => 'array',
     ];
 
     public static function getValidations()
     {
         return [
             'name' => 'required',
+            'sub_categories' => 'array|nullable',
         ];
     }
 
@@ -32,4 +33,5 @@ class Category extends Model
     {
         return $this->hasMany(Merchant::class, 'default_category_id');
     }
+
 }

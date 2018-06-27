@@ -32,6 +32,15 @@ body {
   background-size: 13px, 29px, 37px, 53px;
 }
 
+.template {
+  display: none;
+}
+
+.delete-icon {
+  color: #c00;
+  cursor: pointer;
+}
+
 // Header
 
 // right-side drowpdown menu
@@ -115,4 +124,20 @@ img.thumbnail {
     background-color: #f8f9fa;
     color: #495057;
   }
+}
+
+// Sortable stuff - .sortable handle should always be first in the list (?)
+.sortable-ghost {
+  background-color: $primary-blue;
+  color: #fff !important;
+
+  a {
+    color: #fff !important;
+  }
+}
+
+.sort-handle {
+  float: right;
+  padding: 6px;
+  cursor: move;
 }
