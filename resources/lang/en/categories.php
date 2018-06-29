@@ -16,6 +16,8 @@ return [
 
 
     'name'         => 'Name',
+    'color'        => 'Color',
+    'color_desc'   => 'Color used to represent this category on the charts',
     'active'       => 'Active',
         'inactive' => 'Inactive',
     'description'  => 'Description',

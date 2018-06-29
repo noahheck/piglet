@@ -36,7 +36,7 @@
 
         <div class="col-12 col-md-9 col-xl-10">
 
-            <h2>{{ $category->name }}</h2>
+            <h2 style="padding-left: 7px; border-left: 4px solid {{ $category->color }}">{{ $category->name }}</h2>
 
             @if ($category->active)
                 <p><span class="fa fa-check-square-o" title="{{ __('categories.active') }}"></span> {{ __('categories.active') }}</p>

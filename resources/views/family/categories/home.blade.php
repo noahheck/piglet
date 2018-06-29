@@ -56,7 +56,7 @@
                         <ul class="list-group shadow active-categories" id="activeCategories">
 
                             @foreach ($categories->where('active', true) as $category)
-                                <li class="list-group-item" data-category-id="{{ $category->id }}">
+                                <li class="list-group-item" data-category-id="{{ $category->id }}" style="border-left: 4px solid {{ $category->color }}">
                                     <span class="fa fa-sort sort-handle"></span>
                                     <a href="{{ route('family.categories.show', [$family, $category]) }}">{{ $category->name }}</a>
                                 </li>

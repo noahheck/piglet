@@ -44,6 +44,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="color">{{ __('categories.color') }}</label>
+                    <a href="#" class="dismissable-popover" data-toggle="popover" data-content="{{ __('categories.color_desc') }}"><span class="fa fa-question-circle"></span></a>
+                    <input type="color" name="color" id="color" class="form-control" placeholder="{{ __('categories.color') }}" value="{{ old('color', $category->color) }}">
+                    @fieldError('color')
+                </div>
+
+                <div class="form-group">
                     <label for="description">{{ __('categories.description') }}</label>
                     <textarea name="description" id="description" class="form-control" placeholder="{{ __('categories.description') }}" rows="3">{{ old('description', $category->description) }}</textarea>
                     @fieldError('description')
