@@ -34,7 +34,7 @@ return [
 
     'default.utilities'           => 'Utilities',
     'default.utilities.desc'      => 'Expenses related to operating the equipment in your home',
-    'default.utilities.subs'      => '["Electricity","Gas","Water","Cable","Internet"]',
+    'default.utilities.subs'      => '["Electricity","Gas","Water","Phone","Cable","Internet"]',
 
     'default.transportation'      => 'Transportation',
     'default.transportation.desc' => 'Expenses related to maintaining a personal vehicle or other means of personal transportation',

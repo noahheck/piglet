@@ -81,10 +81,13 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
 
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');
-        Route::resource('/merchants', 'MerchantController');
-        Route::resource('/categories', 'CategoryController');
 
+        Route::resource('/merchants', 'MerchantController');
+
+        Route::resource('/categories', 'CategoryController');
         Route::post('/categories/update-order', 'CategoryController@updateOrder')->name('categories.update-order');
+
+        Route::resource('/budgets', 'BudgetController');
 
 
     });
