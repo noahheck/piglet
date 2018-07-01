@@ -49,7 +49,7 @@ $categories = \App\Family\Category::where('active', true)->orderBy('d_order')->g
                     <select class="custom-select" name="default_category_id" id="default_category_id">
                         <option value="">--</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ (old('default_category_id', ($merchant->defaultCategory) ? $merchant->defaultCategory->id : '') == $category->id) ? "selected" : "" }}>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" data-options="{{ implode('|', $category->sub_categories) }}" {{ (old('default_category_id', ($merchant->defaultCategory) ? $merchant->defaultCategory->id : '') == $category->id) ? "selected" : "" }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -58,13 +58,16 @@ $categories = \App\Family\Category::where('active', true)->orderBy('d_order')->g
                     <label for="default_sub_category">{{ __('merchants.default-sub-category') }}</label>
                     <select class="custom-select" name="default_sub_category" id="default_sub_category">
                         <option value="">--</option>
-                        @foreach ($categories as $category)
+                        @if (old('default_sub_category', $merchant->default_sub_category))
+                            <option selected value="{{ old('default_sub_category', $merchant->default_sub_category) }}">{{ old('default_sub_category', $merchant->default_sub_category) }}</option>
+                        @endif
+                        {{--@foreach ($categories as $category)
                             @if ($category->sub_categories)
                                 @foreach ($category->sub_categories as $subCategory)
                                     <option class="sub-category" data-category-id="{{ $category->id }}" value="{{ $subCategory }}" {{ (old('default_sub_category', ($merchant->default_sub_category) ? $merchant->default_sub_category : '') == $subCategory) ? "selected" : "" }}>{{ $subCategory }}</option>
                                 @endforeach
                             @endif
-                        @endforeach
+                        @endforeach--}}
                     </select>
                 </div>
 

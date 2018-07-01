@@ -5,31 +5,31 @@
 let $ = require('jquery');
 
 function showAppropriateSubCategories() {
-    let catId = $('#default_category_id').val();
+
+    let defaultCategory = $('#default_category_id');
+    let catId           = defaultCategory.val();
 
     let defaultSubCategory = $('#default_sub_category');
-    let options            = $('.sub-category');
+    let curSubCategory     = defaultSubCategory.val();
 
-    options.hide();
+    defaultSubCategory.val('').find('option').remove();
+    defaultSubCategory.append(new Option('--', ''));
 
     if (!catId) {
-        defaultSubCategory.val('');
+
         return;
     }
 
-    let selOption = $('#default_sub_category option:selected');
+    let subCategories = defaultCategory.find('option:selected').data('options').split('|');
 
-    if (selOption.data('categoryId') != catId) {
-        defaultSubCategory.val('');
+    for (let x = 0; x < subCategories.length; x++) {
+
+        let subCategory = subCategories[x];
+
+        defaultSubCategory.append(new Option(subCategory, subCategory));
     }
 
-    options.each(function() {
-        let jThis = $(this);
-
-        if (jThis.data('categoryId') == catId) {
-            jThis.show();
-        }
-    });
+    defaultSubCategory.val(curSubCategory);
 }
 
 $(function() {
