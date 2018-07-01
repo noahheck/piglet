@@ -12,8 +12,9 @@ let $ = require("jquery");
         require('./bootstrap');
         require('bootstrap-datepicker');
 
-let pageMenu  = require('Component/pageMenu');
-let domSearch = require('Component/domSearch');
+let pageMenu   = require('Component/pageMenu');
+let domSearch  = require('Component/domSearch');
+let moneyField = require('Component/moneyField');
 
 let phone = require('Services/phone');
 let ajax  = require('Services/ajax');
@@ -34,6 +35,11 @@ $(function() {
 
         domSearch.attach(jThis, {searchItems: jThis.data('searchItems')});
     });
+
+    $('.money-field').each(function() {
+        moneyField.attach(this);
+    });
+
 
     $('.phone-field').keyup(function() {
         let jThis = $(this);
