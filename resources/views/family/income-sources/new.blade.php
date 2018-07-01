@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Income Sources - Create New
+    - {{ $family->name }} - {{ __('income-sources.income-sources') }} - {{ __('income-sources.create-new') }}
 @endsection
 
 @push('stylesheets')
@@ -17,9 +17,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters',   [$family]) => __('money-matters.money-matters'),
-            route('family.income-sources.index', [$family]) => 'Income Sources',
+            route('family.income-sources.index', [$family]) => __('income-sources.income-sources'),
         ],
-        'location'   => 'Create New',
+        'location'   => __('income-sources.create-new'),
     ])
 
     <div class="row justify-content-center">

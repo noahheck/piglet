@@ -18,7 +18,7 @@ class CreateIncomeSourcesTable extends Migration
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->float('default_amount')->nullable();
-            $table->text('details')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

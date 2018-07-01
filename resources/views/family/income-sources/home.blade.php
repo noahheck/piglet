@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Income Sources
+    - {{ $family->name }} - {{ __('income-sources.income-sources') }}
 @endsection
 
 @push('stylesheets')
@@ -18,9 +18,9 @@
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
         ],
-        'location'   => 'Income Sources',
+        'location'   => __('income-sources.income-sources'),
         'menu' => [
-            ['type' => 'link', 'href' => route('family.income-sources.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New Income Source'],
+            ['type' => 'link', 'href' => route('family.income-sources.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
         ]
     ])
 
@@ -34,15 +34,15 @@
 
         <div class="col-12 col-md-9 col-xl-10">
 
-            <h2>Income Sources</h2>
+            <h2>{{ __('income-sources.income-sources') }}</h2>
 
             <hr>
 
             @if (count($incomeSources) === 0)
 
-                <p>You haven't added any income sources. You can go ahead and create your first one now:</p>
+                <p>{{ __('income-sources.no-income-sources-create') }}</p>
                 <p class="text-center">
-                    <a class="btn btn-primary" href="{{ route('family.income-sources.create', $family) }}"><span class="fa fa-plus-circle"></span> Add New Income Source</a>
+                    <a class="btn btn-primary" href="{{ route('family.income-sources.create', $family) }}"><span class="fa fa-plus-circle"></span> {{ __('income-sources.add-new-income-source') }}</a>
                 </p>
 
             @else
@@ -51,14 +51,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><span class="fa fa-search"></span></div>
                     </div>
-                    <input type="text" class="form-control dom-search" data-search-items="#incomeSourcesTable tr.income-source" id="incomeSourceSearch" placeholder="Search Income Sources">
+                    <input type="text" class="form-control dom-search" data-search-items="#incomeSourcesTable tr.income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}">
                 </div>
 
                 <table class="table table-striped" id="incomeSourcesTable">
 
                     <thead>
                         <tr>
-                            <th>Source</th>
+                            <th>{{ __('income-sources.income-source') }}</th>
                         </tr>
                     </thead>
 

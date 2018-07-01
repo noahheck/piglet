@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Income Sources - {{ $incomeSource->name }} - Edit
+    - {{ $family->name }} - {{ __('income-sources.income-sources') }} - {{ $incomeSource->name }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -17,10 +17,10 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters',   [$family]) => __('money-matters.money-matters'),
-            route('family.income-sources.index', [$family]) => 'Income Sources',
+            route('family.income-sources.index', [$family]) => __('income-sources.income-sources'),
             route('family.income-sources.show', [$family, $incomeSource]) => $incomeSource->name,
         ],
-        'location'   => 'Edit',
+        'location'   => __('form.edit'),
     ])
 
     <div class="row justify-content-center">
