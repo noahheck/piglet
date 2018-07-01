@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Budgets
+    - {{ $family->name }} - Budgets - {{ $budget->month }}-{{ $budget->year }}
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family.categories.index.css') }}" />--}}
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.categories.index.css') }}" />--}}
 @endpush
 
 @push('scripts')
-    {{--<script type="text/javascript" src="{{ asset('js/family.categories.index.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('js/family.categories.index.js') }}"></script>--}}
 @endpush
 
 
@@ -38,8 +38,9 @@ $months = [
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
+            route('family.budgets.index', [$family]) => 'Budgets',
         ],
-        'location'   => 'Budgets',
+        'location'   => $budget->month . '-' . $budget->year,
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
@@ -55,11 +56,37 @@ $months = [
 
         <div class="col-12 col-md-9 col-xl-10">
 
-            <h2>Budgets</h2>
+            <h2>Budget - {{ $budget->month }}-{{ $budget->year }}</h2>
 
             <hr>
 
-            <div class="accordion" id="budgetsAccordion">
+            <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="overviewTab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="projectionsTab" data-toggle="tab" href="#projections" role="tab" aria-controls="projections" aria-selected="false">Projections</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Actual</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overviewTab">
+                    Overview
+                </div>
+
+                <div class="tab-pane fade" id="projections" role="tabpanel" aria-labelledby="projectionsTab">
+                    Projections
+                </div>
+
+                <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
+                    Actual
+                </div>
+            </div>
+
+            {{--<div class="accordion" id="budgetsAccordion">
 
                 @foreach ($years as $year)
 
@@ -103,7 +130,7 @@ $months = [
 
                 @endforeach
 
-            </div>
+            </div>--}}
 
         </div>
 

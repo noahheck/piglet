@@ -25,9 +25,7 @@ class BudgetController extends Controller
 
         $minYear = ($minExisting && $curYear > $minExisting) ? $minExisting : $curYear;
 
-        $years = range($minYear, $nextYear);
-
-        \DebugBar::info($years);
+        $years = array_reverse(range($minYear, $nextYear));
 
         return view('family.budgets.home', [
             'family'  => $family,
@@ -63,9 +61,12 @@ class BudgetController extends Controller
      * @param  \App\Family\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function show(Budget $budget)
+    public function show(Family $family, Budget $budget)
     {
-        //
+        return view('family.budgets.show', [
+            'family' => $family,
+            'budget' => $budget,
+        ]);
     }
 
     /**
