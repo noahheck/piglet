@@ -1,5 +1,7 @@
 /**
  * js/component/moneyField.js
+ *
+ * Took keycodes from https://css-tricks.com/snippets/javascript/javascript-keycodes/
  */
 
 let $ = require('jquery');

@@ -1,5 +1,5 @@
 @push('scripts')
-    {{--<script type="text/javascript" src="{{ asset('js/family.merchants._form.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('js/family.income-sources._form.js') }}"></script>
 @endpush
 
 <form name="incomeSource" action="{{ $action }}" method="POST" class="has-bold-labels">
@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="default_amount" id="default_amount" class="form-control money-field" placeholder="Default Amount" value="{{ old('default_amount', $incomeSource->default_amount) }}">
+                <input type="text" name="default_amount" id="default_amount" class="form-control money-field" placeholder="Default Amount" value="{{ old('default_amount', number_format($incomeSource->default_amount, 2, '.', '')) }}">
             </div>
             @fieldError('default_amount')
         </div>
@@ -37,6 +37,12 @@
             <label class="form-check-label" for="active">
                 Active
             </label>
+        </div>
+
+        <div class="form-group">
+            <label for="details">Details</label>
+            <textarea name="details" id="details" class="form-control" placeholder="Details" rows="3">{{ old('details', $incomeSource->details) }}</textarea>
+            @fieldError('details')
         </div>
 
     </fieldset>

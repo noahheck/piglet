@@ -68,7 +68,10 @@ class IncomeSourceController extends Controller
      */
     public function show(Family $family, IncomeSource $incomeSource)
     {
-        //
+        return view('family.income-sources.show', [
+            'family'       => $family,
+            'incomeSource' => $incomeSource
+        ]);
     }
 
     /**
@@ -79,7 +82,10 @@ class IncomeSourceController extends Controller
      */
     public function edit(Family $family, IncomeSource $incomeSource)
     {
-        //
+        return view('family.income-sources.edit', [
+            'family'       => $family,
+            'incomeSource' => $incomeSource,
+        ]);
     }
 
     /**
@@ -91,7 +97,15 @@ class IncomeSourceController extends Controller
      */
     public function update(Request $request, Family $family, IncomeSource $incomeSource)
     {
-        //
+        $request->validate($incomeSource->getValidations());
+
+        $incomeSource->fill($request->only($incomeSource->getFillable()));
+
+        $incomeSource->active = $request->has('active');
+
+        $incomeSource->save();
+
+        return redirect()->route('family.income-sources.show', [$family, $incomeSource]);
     }
 
     /**

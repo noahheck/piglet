@@ -11,6 +11,7 @@ class IncomeSource extends Model
     protected $fillable = [
         'name',
         'default_amount',
+        'details',
     ];
 
     protected $casts = [

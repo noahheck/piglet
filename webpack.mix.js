@@ -57,6 +57,8 @@ mix
     .sass('resources/assets/sass/family/categories/index.scss', 'public/css/family.categories.index.css')
     .js('resources/assets/js/family/categories/_form.js', 'public/js/family.categories._form.js')
 
+    .js('resources/assets/js/family/income-sources/_form.js', 'public/js/family.income-sources._form.js')
+
 
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
