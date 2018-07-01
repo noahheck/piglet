@@ -9,7 +9,7 @@
 @php
     $settingsActive = false;
 
-    if (in_array($active, ['categories', 'methods', 'accounts'])) {
+    if (in_array($active, ['categories', 'methods', 'accounts', 'income-sources'])) {
         $settingsActive = true;
     }
 @endphp
@@ -27,6 +27,8 @@
         Settings
     </a>
     <a href="{{ route('family.categories.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'categories') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('categories.categories') }}</a>
+    <a href="{{ route('family.income-sources.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'income-sources') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Income Sources</a>
+
     <a href="#" class="list-group-item-action list-group-item settings-item {{ ($active === 'methods'   ) ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Methods (!!)</a>
     <a href="#" class="list-group-item-action list-group-item settings-item {{ ($active === 'accounts'  ) ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Accounts (!!)</a>
 

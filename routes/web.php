@@ -87,6 +87,8 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         Route::resource('/categories', 'CategoryController');
         Route::post('/categories/update-order', 'CategoryController@updateOrder')->name('categories.update-order');
 
+        Route::resource('/income-sources', 'IncomeSourceController');
+
         Route::resource('/budgets', 'BudgetController');
 
 
