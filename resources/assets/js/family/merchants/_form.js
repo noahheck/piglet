@@ -27,9 +27,12 @@ function showAppropriateSubCategories() {
         let subCategory = subCategories[x];
 
         defaultSubCategory.append(new Option(subCategory, subCategory));
+
+        if (curSubCategory === subCategory) {
+            defaultSubCategory.val(curSubCategory);
+        }
     }
 
-    defaultSubCategory.val(curSubCategory);
 }
 
 $(function() {
