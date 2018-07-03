@@ -44,7 +44,7 @@
                 <p class="text-muted"><span class="fa fa-square-o" title="Inactive"></span> {{ __('income-sources.inactive') }}
             @endif
 
-                {{ ($incomeSource->default_amount) ? '- $' . number_format($incomeSource->default_amount, 2) : '' }}
+                {{ ($incomeSource->default_amount) ? '- ' . Auth::user()->formatCurrency($incomeSource->default_amount, true) : '' }}
             </p>
 
             <p>{!! nl2br(e($incomeSource->description)) !!}</p>

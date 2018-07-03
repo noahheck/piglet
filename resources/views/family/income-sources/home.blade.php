@@ -51,23 +51,44 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><span class="fa fa-search"></span></div>
                     </div>
-                    <input type="text" class="form-control dom-search" data-search-items="#incomeSourcesTable tr.income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}">
+                    <input type="text" class="form-control dom-search" data-search-items="#incomeSources .income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}">
                 </div>
 
-                <table class="table table-striped" id="incomeSourcesTable">
+                {{--<ul class="list-group" id="incomeSources">
+
+                    @foreach ($incomeSources as $source)
+
+                        <li class="income-source list-group-item">
+                            <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
+                                {{ $source->name }}
+                                {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
+                            </a>
+                        </li>
+
+                    @endforeach
+
+                </ul>--}}
+
+                <table class="table table-striped" id="incomeSources">
 
                     <thead>
                         <tr>
                             <th>{{ __('income-sources.income-source') }}</th>
+                            <th>Default Amount</th>
                         </tr>
                     </thead>
 
                     @foreach ($incomeSources as $source)
 
-                        <tr class="income-source" data-search-content="{{ $source->name }}">
+                        <tr class="income-source" data-search-content="{{ $source->name }} {{ Auth::user()->formatCurrency($source->default_amount) }}">
                             <td>
                                 <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
                                     {{ $source->name }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
+                                    {{ ($source->default_amount) ? Auth::user()->formatCurrency($source->default_amount, true) : '' }}
                                 </a>
                             </td>
                         </tr>

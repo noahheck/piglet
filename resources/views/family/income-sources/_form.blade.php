@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="default_amount" id="default_amount" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}" value="{{ old('default_amount', number_format($incomeSource->default_amount, 2, '.', '')) }}">
+                <input type="text" name="default_amount" id="default_amount" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}" value="{{ old('default_amount', Auth::user()->formatCurrency($incomeSource->default_amount, false)) }}">
             </div>
             @fieldError('default_amount')
         </div>

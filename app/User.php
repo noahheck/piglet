@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\User\FormatsCurrency;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,9 @@ class User extends Authenticatable
 {
     use Notifiable,
         IsPhotogenic,
-        FormatsDates;
+        FormatsDates,
+        FormatsCurrency
+        ;
 
     const MIN_PASSWORD_LENGTH = 8;
 
