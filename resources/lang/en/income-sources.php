@@ -5,6 +5,8 @@ return [
     'income-source'            => 'Income Source',
     'add-new-income-source'    => 'Add New Income Source',
     'no-income-sources-create' => "You haven't added any income sources yet. Go ahead and create your first one now.",
+    'active-income-sources'    => 'Active Income Sources',
+    'inactive-income-sources'  => 'Inactive Income Sources',
     'search-income-sources'    => 'Search Income Sources',
 
     'create-new' => 'Create New',

@@ -14,7 +14,7 @@
     }
 @endphp
 
-<div class="list-group shadow">
+<div class="list-group">
 
     <a href="{{ route('family.money-matters', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'home') ? 'active' : '' }}">{{ __('money-matters.money-matters') }}</a>
     <a href="{{ route('family.budgets.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'budget') ? 'active' : '' }}">Monthly Budget</a>

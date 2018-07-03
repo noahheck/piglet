@@ -47,29 +47,62 @@
 
             @else
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><span class="fa fa-search"></span></div>
+
+                <div class="row justify-content-center mt-3">
+
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="fa fa-search"></span></div>
+                            </div>
+                            <input type="text" class="form-control dom-search" data-search-items="#activeIncomeSources .income-source, #inactiveIncomeSources .income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}">
+                        </div>
+
+                        @if ($incomeSources->where('active', true)->count() > 0)
+                            <h4 class="mt-3">{{ __('income-sources.active-income-sources') }}</h4>
+                        @endif
+
+                        <ul class="list-group shadow active-income-sources" id="activeIncomeSources">
+
+                            @foreach ($incomeSources->where('active', true) as $source)
+
+                                <li class="income-source list-group-item">
+                                    <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
+                                        {{ $source->name }}
+                                        {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
+                                    </a>
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+
+                        @if ($incomeSources->where('active', false)->count() > 0)
+                            <hr class="mt-3">
+                            <h4 class="mt-3">{{ __('income-sources.inactive-income-sources') }}</h4>
+                        @endif
+
+                        <ul class="list-group shadow inactive-income-sources" id="inactiveIncomeSources">
+
+                            @foreach ($incomeSources->where('active', false) as $source)
+
+                                <li class="income-source list-group-item">
+                                    <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
+                                        {{ $source->name }}
+                                        {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
+                                    </a>
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+
                     </div>
-                    <input type="text" class="form-control dom-search" data-search-items="#incomeSources .income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}">
+
                 </div>
 
-                {{--<ul class="list-group" id="incomeSources">
-
-                    @foreach ($incomeSources as $source)
-
-                        <li class="income-source list-group-item">
-                            <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
-                                {{ $source->name }}
-                                {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
-                            </a>
-                        </li>
-
-                    @endforeach
-
-                </ul>--}}
-
-                <table class="table table-striped" id="incomeSources">
+                {{--<table class="table table-striped" id="incomeSources">
 
                     <thead>
                         <tr>
@@ -97,7 +130,7 @@
 
                 </table>
 
-                <hr>
+                <hr>--}}
 
             @endif
 
