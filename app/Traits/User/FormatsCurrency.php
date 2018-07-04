@@ -15,7 +15,7 @@ trait FormatsCurrency
         }
 
         if (!$amount) {
-            return $sigil . '0.00';
+            return ($withFormatting) ? $sigil . '0.00' : null;
         }
 
         return $sigil . number_format($amount, 2, '.', $separator);
