@@ -69,7 +69,10 @@ class RecurringExpenseController extends Controller
      */
     public function show(Family $family, RecurringExpense $recurringExpense)
     {
-        //
+        return view('family.recurring-expenses.show', [
+            'family'           => $family,
+            'recurringExpense' => $recurringExpense,
+        ]);
     }
 
     /**
@@ -80,7 +83,10 @@ class RecurringExpenseController extends Controller
      */
     public function edit(Family $family, RecurringExpense $recurringExpense)
     {
-        //
+        return view('family.recurring-expenses.edit', [
+            'family'           => $family,
+            'recurringExpense' => $recurringExpense,
+        ]);
     }
 
     /**
@@ -92,7 +98,15 @@ class RecurringExpenseController extends Controller
      */
     public function update(Request $request, Family $family, RecurringExpense $recurringExpense)
     {
-        //
+        $request->validate($recurringExpense->getValidations());
+
+        $recurringExpense->fill($request->only($recurringExpense->getFillable()));
+
+        $recurringExpense->active = $request->has('active');
+
+        $recurringExpense->save();
+
+        return redirect()->route('family.recurring-expenses.show', [$family, $recurringExpense]);
     }
 
     /**

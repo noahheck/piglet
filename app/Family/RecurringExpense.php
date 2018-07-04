@@ -26,13 +26,13 @@ class RecurringExpense extends Model
         'active' => 'boolean',
     ];
 
-    public function defaultCategory()
+    public function merchant()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Merchant::class);
     }
 
-    public function defaultSubCategory()
+    public function category()
     {
-        return $this->belongsTo(SubCategory::class);
+        return $this->belongsTo(Category::class);
     }
 }

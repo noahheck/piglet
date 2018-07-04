@@ -49,8 +49,8 @@ class Merchant extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function defaultSubCategory()
+    public function recurringExpenses()
     {
-        return $this->belongsTo(SubCategory::class);
+        return $this->hasMany(RecurringExpense::class);
     }
 }

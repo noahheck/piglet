@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('income-sources.income-sources') }} - {{ $incomeSource->name }}
+    - {{ $family->name }} - {{ __('recurring-expenses.recurring-expenses') }} - {{ $recurringExpense->name }}
 @endsection
 
 @push('stylesheets')
@@ -17,12 +17,12 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family])   => __('money-matters.money-matters'),
-            route('family.income-sources.index', [$family]) => __('income-sources.income-sources'),
+            route('family.recurring-expenses.index', [$family]) => __('recurring-expenses.recurring-expenses'),
         ],
-        'location'   => $incomeSource->name,
+        'location'   => $recurringExpense->name,
         'menu' => [
-            ['type' => 'link', 'href' => route('family.income-sources.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
-            ['type' => 'link', 'href' => route('family.income-sources.edit', [$family, $incomeSource]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
+            ['type' => 'link', 'href' => route('family.recurring-expenses.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('recurring-expenses.add-new-recurring-expense')],
+            ['type' => 'link', 'href' => route('family.recurring-expenses.edit', [$family, $recurringExpense]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
         ]
     ])
 
@@ -30,24 +30,26 @@
 
         <div class="col-12 col-md-3">
 
-            @include('family.shared.money-matters-nav', ['active' => 'income-sources'])
+            @include('family.shared.money-matters-nav', ['active' => 'recurring-expenses'])
 
         </div>
 
         <div class="col-12 col-md-9">
 
-            <h2>{{ $incomeSource->name }}</h2>
+            <h2>{{ $recurringExpense->name }}</h2>
 
-            @if ($incomeSource->active)
-                <p><span class="fa fa-check-square-o" title="Active"></span> {{ __('income-sources.active') }}
+            @if ($recurringExpense->active)
+                <p><span class="fa fa-check-square-o" title="Active"></span> {{ __('recurring-expenses.active') }}
             @else
-                <p class="text-muted"><span class="fa fa-square-o" title="Inactive"></span> {{ __('income-sources.inactive') }}
+                <p class="text-muted"><span class="fa fa-square-o" title="Inactive"></span> {{ __('recurring-expenses.inactive') }}
             @endif
 
-                {{ ($incomeSource->default_amount) ? '- ' . Auth::user()->formatCurrency($incomeSource->default_amount, true) : '' }}
+                {{ ($recurringExpense->default_amount) ? '- ' . Auth::user()->formatCurrency($recurringExpense->default_amount, true) : '' }}
+                {{ ($recurringExpense->category) ? '- ' . $recurringExpense->category->name : '' }}
+                {{ ($recurringExpense->sub_category) ? '- ' . $recurringExpense->sub_category : '' }}
             </p>
 
-            <p>{!! nl2br(e($incomeSource->description)) !!}</p>
+            <p>{!! nl2br(e($recurringExpense->description)) !!}</p>
 
         </div>
 
