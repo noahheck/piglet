@@ -9,7 +9,7 @@
 @php
     $settingsActive = false;
 
-    if (in_array($active, ['categories', 'methods', 'accounts', 'income-sources'])) {
+    if (in_array($active, ['categories', 'methods', 'accounts', 'income-sources', 'recurring-expenses'])) {
         $settingsActive = true;
     }
 @endphp
