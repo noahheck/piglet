@@ -40,10 +40,6 @@ $categories = \App\Family\Category::where('active', true)->orderBy('d_order')->g
                     @fieldError('name')
                 </div>
 
-                {{--
-                    This is where I should put the recurring checkbox when I get there
-                --}}
-
                 <div class="form-group">
                     <label for="default_category_id">{{ __('merchants.default-category') }}</label>
                     <select class="custom-select" name="default_category_id" id="default_category_id">
@@ -61,13 +57,6 @@ $categories = \App\Family\Category::where('active', true)->orderBy('d_order')->g
                         @if (old('default_sub_category', $merchant->default_sub_category))
                             <option selected value="{{ old('default_sub_category', $merchant->default_sub_category) }}">{{ old('default_sub_category', $merchant->default_sub_category) }}</option>
                         @endif
-                        {{--@foreach ($categories as $category)
-                            @if ($category->sub_categories)
-                                @foreach ($category->sub_categories as $subCategory)
-                                    <option class="sub-category" data-category-id="{{ $category->id }}" value="{{ $subCategory }}" {{ (old('default_sub_category', ($merchant->default_sub_category) ? $merchant->default_sub_category : '') == $subCategory) ? "selected" : "" }}>{{ $subCategory }}</option>
-                                @endforeach
-                            @endif
-                        @endforeach--}}
                     </select>
                 </div>
 

@@ -1,16 +1,17 @@
 /**
- * js/family/merchants/_form.js
+ * js/component/category-subcategory-select-map.js
  */
 
-let $           = require('jquery');
-let categoryMap = require('Component/category-subcategory-select-map');
+let $ = require('jquery');
 
-/*function showAppropriateSubCategories() {
+let selectMap = {};
 
-    let defaultCategory = $('#default_category_id');
+function showAppropriateSubCategories(categoryField, subCategoryField) {
+
+    let defaultCategory = $(categoryField);
     let catId           = defaultCategory.val();
 
-    let defaultSubCategory = $('#default_sub_category');
+    let defaultSubCategory = $(subCategoryField);
     let curSubCategory     = defaultSubCategory.val();
 
     defaultSubCategory.val('').find('option').remove();
@@ -33,16 +34,18 @@ let categoryMap = require('Component/category-subcategory-select-map');
             defaultSubCategory.val(curSubCategory);
         }
     }
+}
 
-}*/
+selectMap.attach = function(categoryField, subCategoryField) {
 
-$(function() {
+    $(categoryField).change(function() {
+        showAppropriateSubCategories(categoryField, subCategoryField);
+    });
 
-    $('#name').focus();
+    $(function() {
+        showAppropriateSubCategories(categoryField, subCategoryField);
+    });
 
-    categoryMap.attach('#default_category_id', '#default_sub_category');
+};
 
-    // $('#default_category_id').change(showAppropriateSubCategories);
-    //
-    // showAppropriateSubCategories();
-});
+module.exports = selectMap;

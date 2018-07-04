@@ -16,7 +16,12 @@ class RecurringExpenseController extends Controller
      */
     public function index(Family $family)
     {
-        //
+        $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        return view('family.recurring-expenses.home', [
+            'family'            => $family,
+            'recurringExpenses' => $recurringExpenses,
+        ]);
     }
 
     /**
@@ -26,7 +31,13 @@ class RecurringExpenseController extends Controller
      */
     public function create(Family $family)
     {
-        //
+        $recurringExpense = new RecurringExpense();
+        $recurringExpense->active = true;
+
+        return view('family.recurring-expenses.new', [
+            'family'           => $family,
+            'recurringExpense' => $recurringExpense,
+        ]);
     }
 
     /**
@@ -37,7 +48,17 @@ class RecurringExpenseController extends Controller
      */
     public function store(Request $request, Family $family)
     {
-        //
+        $request->validate(RecurringExpense::getValidations());
+
+        $recurringExpense = new RecurringExpense();
+
+        $recurringExpense->fill($request->only($recurringExpense->getFillable()));
+
+        $recurringExpense->active = $request->has('active');
+
+        $recurringExpense->save();
+
+        return redirect()->route('family.recurring-expenses.show', [$family, $recurringExpense]);
     }
 
     /**

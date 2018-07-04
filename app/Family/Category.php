@@ -35,4 +35,9 @@ class Category extends Model
         return $this->hasMany(Merchant::class, 'default_category_id');
     }
 
+    public function recurringExpenses()
+    {
+        return $this->hasMany(RecurringExpense::class);
+    }
+
 }

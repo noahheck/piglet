@@ -24,6 +24,9 @@ class CreateRecurringExpensesTable extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('merchant_id')->references('id')->on('merchants');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
