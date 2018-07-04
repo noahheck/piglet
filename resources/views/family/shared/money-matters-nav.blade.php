@@ -28,6 +28,7 @@
     </a>
     <a href="{{ route('family.categories.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'categories') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('categories.categories') }}</a>
     <a href="{{ route('family.income-sources.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'income-sources') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('income-sources.income-sources') }}</a>
+    <a href="{{ route('family.recurring-expenses.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'recurring-expenses') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Recurring Expenses</a>
 
     <a href="#" class="list-group-item-action list-group-item settings-item {{ ($active === 'methods'   ) ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Methods (!!)</a>
     <a href="#" class="list-group-item-action list-group-item settings-item {{ ($active === 'accounts'  ) ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Accounts (!!)</a>

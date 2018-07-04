@@ -47,13 +47,13 @@ $months = [
 
     <div class="row">
 
-        <div class="col-12 col-md-3 col-xl-2">
+        <div class="col-12 col-md-3">
 
             @include('family.shared.money-matters-nav', ['active' => 'budget'])
 
         </div>
 
-        <div class="col-12 col-md-9 col-xl-10">
+        <div class="col-12 col-md-9">
 
             <h2>Budgets</h2>
 

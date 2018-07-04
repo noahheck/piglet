@@ -89,6 +89,8 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         Route::resource('/income-sources', 'IncomeSourceController');
 
+        Route::resource('/recurring-expenses', 'RecurringExpenseController');
+
         Route::resource('/budgets', 'BudgetController');
 
 
