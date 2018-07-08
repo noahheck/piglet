@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Budgets - {{ $budget->month }}-{{ $budget->year }}
+    - {{ $family->name }} - Budgets - {{ __('months.' . $budget->month) }} {{ $budget->year }}
 @endsection
 
 @push('stylesheets')
@@ -40,7 +40,7 @@ $months = [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
             route('family.budgets.index', [$family]) => 'Budgets',
         ],
-        'location'   => $budget->month . '-' . $budget->year,
+        'location'   => __('months.' . $budget->month) . ' ' . $budget->year,
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
@@ -56,19 +56,17 @@ $months = [
 
         <div class="col-12 col-md-9">
 
-            <h2>Budget - {{ $budget->month }}-{{ $budget->year }}</h2>
-
-            <hr>
+            <h2>{{ __('months.' . $budget->month) }} {{ $budget->year }}</h2>
 
             <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="overviewTab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="projectionsTab" data-toggle="tab" href="#projections" role="tab" aria-controls="projections" aria-selected="false">Projections</a>
+                    <a class="nav-link" id="planningTab" data-toggle="tab" href="#planning" role="tab" aria-controls="planning" aria-selected="false">Planning</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Actual</a>
+                    <a class="nav-link" id="trackingTab" data-toggle="tab" href="#tracking" role="tab" aria-controls="tracking" aria-selected="false">Tracking</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -77,12 +75,12 @@ $months = [
                     Overview
                 </div>
 
-                <div class="tab-pane fade" id="projections" role="tabpanel" aria-labelledby="projectionsTab">
-                    Projections
+                <div class="tab-pane fade" id="planning" role="tabpanel" aria-labelledby="planningTab">
+                    Planning
                 </div>
 
-                <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
-                    Actual
+                <div class="tab-pane fade" id="tracking" role="tabpanel" aria-labelledby="trackingTab">
+                    Tracking
                 </div>
             </div>
 
