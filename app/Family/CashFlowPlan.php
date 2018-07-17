@@ -8,4 +8,6 @@ class CashFlowPlan extends Model
 {
     use SoftDeletes
         ;
+
+
 }

@@ -61,6 +61,7 @@ mix
 
     .js('resources/assets/js/family/recurring-expenses/_form.js', 'public/js/family.recurring-expenses._form.js')
 
+    .sass('resources/assets/sass/family/cash-flow-plans/show.scss', 'public/css/family.cash-flow-plans.show.css')
 
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])

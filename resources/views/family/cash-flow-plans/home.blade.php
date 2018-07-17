@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Budgets
+    - {{ $family->name }} - Cash Flow Plans
 @endsection
 
 @push('stylesheets')
@@ -39,7 +39,7 @@ $months = [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
         ],
-        'location'   => 'Budgets',
+        'location'   => 'Cash Flow Plans',
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
@@ -55,7 +55,7 @@ $months = [
 
         <div class="col-12 col-md-9">
 
-            <h2>Budgets</h2>
+            <h2>Cash Flow Plans</h2>
 
             <hr>
 

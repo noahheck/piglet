@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Budgets - {{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}
+    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}
 @endsection
 
 @push('stylesheets')
-{{--    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.categories.index.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.cash-flow-plans.show.css') }}" />
 @endpush
 
 @push('scripts')
@@ -38,7 +38,7 @@ $months = [
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
-            route('family.cash-flow-plans.index', [$family]) => 'Budgets',
+            route('family.cash-flow-plans.index', [$family]) => 'Cash Flow Plans',
         ],
         'location'   => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
     ])
@@ -66,69 +66,34 @@ $months = [
                     <a class="nav-link" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="false">Budget</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="expensesTab" data-toggle="tab" href="#expenses" role="tab" aria-controls="expenses" aria-selected="false">Expenses</a>
+                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Actual</a>
                 </li>
             </ul>
+
+
             <div class="tab-content" id="myTabContent">
 
                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overviewTab">
                     Overview
                 </div>
 
+
                 <div class="tab-pane fade" id="budget" role="tabpanel" aria-labelledby="budgetTab">
-                    Budget
-                </div>
 
-                <div class="tab-pane fade" id="expenses" role="tabpanel" aria-labelledby="expensesTab">
-                    Expenses
-                </div>
-            </div>
+                    <div id="budget_incomeSources" class="section budget-section">
 
-            {{--<div class="accordion" id="budgetsAccordion">
-
-                @foreach ($years as $year)
-
-                    <div class="card" id="heading_{{ $year }}">
-                        <div class="card-header">
-                            <h5>
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_{{ $year }}">
-                                    {{ $year }}
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapse_{{ $year }}" class="collapse" data-parent="#budgetsAccordion">
-
-                            <ul class="list-group list-group-flush">
-
-                                @foreach($months as $key => $month)
-
-                                    @php
-                                        $budget = $cash-flow-plans->where('year', $year)->firstWhere('month', $key);
-                                    @endphp
-
-                                    <li class="list-group-item">
-
-                                        @if ($budget)
-
-                                            <a href="{{ route('family.cash-flow-plans.show', [$family, $budget]) }}">{{ $key }}/{{ $budget->year }}</a>
-
-                                        @else
-                                            No budget found - Create one now
-                                        @endif
-                                    </li>
-
-                                @endforeach
-
-                            </ul>
-
-                        </div>
+                        <h3><a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">Income Sources</a></h3>
 
                     </div>
 
-                @endforeach
+                </div>
 
-            </div>--}}
+
+                <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
+                    Actual
+                </div>
+
+            </div>
 
         </div>
 
