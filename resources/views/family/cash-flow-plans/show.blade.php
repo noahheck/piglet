@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Budgets - {{ __('months.' . $budget->month) }} {{ $budget->year }}
+    - {{ $family->name }} - Budgets - {{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}
 @endsection
 
 @push('stylesheets')
@@ -38,9 +38,9 @@ $months = [
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
-            route('family.budgets.index', [$family]) => 'Budgets',
+            route('family.cash-flow-plans.index', [$family]) => 'Budgets',
         ],
-        'location'   => __('months.' . $budget->month) . ' ' . $budget->year,
+        'location'   => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
@@ -50,23 +50,23 @@ $months = [
 
         <div class="col-12 col-md-3">
 
-            @include('family.shared.money-matters-nav', ['active' => 'budget'])
+            @include('family.shared.money-matters-nav', ['active' => 'cash-flow-plans'])
 
         </div>
 
         <div class="col-12 col-md-9">
 
-            <h2>{{ __('months.' . $budget->month) }} {{ $budget->year }}</h2>
+            <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
 
             <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="overviewTab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="planningTab" data-toggle="tab" href="#planning" role="tab" aria-controls="planning" aria-selected="false">Planning</a>
+                    <a class="nav-link" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="false">Budget</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="trackingTab" data-toggle="tab" href="#tracking" role="tab" aria-controls="tracking" aria-selected="false">Tracking</a>
+                    <a class="nav-link" id="expensesTab" data-toggle="tab" href="#expenses" role="tab" aria-controls="expenses" aria-selected="false">Expenses</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -75,12 +75,12 @@ $months = [
                     Overview
                 </div>
 
-                <div class="tab-pane fade" id="planning" role="tabpanel" aria-labelledby="planningTab">
-                    Planning
+                <div class="tab-pane fade" id="budget" role="tabpanel" aria-labelledby="budgetTab">
+                    Budget
                 </div>
 
-                <div class="tab-pane fade" id="tracking" role="tabpanel" aria-labelledby="trackingTab">
-                    Tracking
+                <div class="tab-pane fade" id="expenses" role="tabpanel" aria-labelledby="expensesTab">
+                    Expenses
                 </div>
             </div>
 
@@ -104,14 +104,14 @@ $months = [
                                 @foreach($months as $key => $month)
 
                                     @php
-                                        $budget = $budgets->where('year', $year)->firstWhere('month', $key);
+                                        $budget = $cash-flow-plans->where('year', $year)->firstWhere('month', $key);
                                     @endphp
 
                                     <li class="list-group-item">
 
                                         @if ($budget)
 
-                                            <a href="{{ route('family.budgets.show', [$family, $budget]) }}">{{ $key }}/{{ $budget->year }}</a>
+                                            <a href="{{ route('family.cash-flow-plans.show', [$family, $budget]) }}">{{ $key }}/{{ $budget->year }}</a>
 
                                         @else
                                             No budget found - Create one now

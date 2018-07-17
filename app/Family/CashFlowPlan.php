@@ -4,7 +4,7 @@ namespace App\Family;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Budget extends Model
+class CashFlowPlan extends Model
 {
     use SoftDeletes
         ;

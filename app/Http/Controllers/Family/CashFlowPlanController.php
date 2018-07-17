@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Family;
 
 use App\Family;
-use App\Family\Budget;
+use App\Family\CashFlowPlan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BudgetController extends Controller
+class CashFlowPlanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +16,21 @@ class BudgetController extends Controller
      */
     public function index(Family $family)
     {
-        $budgets = Budget::all();
+        $cashFlowPlans = CashFlowPlan::all();
 
         $curYear  = date('Y');
         $nextYear = $curYear + 1;
 
-        $minExisting = $budgets->min('year');
+        $minExisting = $cashFlowPlans->min('year');
 
         $minYear = ($minExisting && $curYear > $minExisting) ? $minExisting : $curYear;
 
         $years = array_reverse(range($minYear, $nextYear));
 
-        return view('family.budgets.home', [
-            'family'  => $family,
-            'budgets' => $budgets,
-            'years'   => $years,
+        return view('family.cash-flow-plans.home', [
+            'family'        => $family,
+            'cashFlowPlans' => $cashFlowPlans,
+            'years'         => $years,
         ]);
     }
 
@@ -39,7 +39,7 @@ class BudgetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Family $family)
     {
         //
     }
@@ -50,7 +50,7 @@ class BudgetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Family $family)
     {
         //
     }
@@ -58,24 +58,24 @@ class BudgetController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Family\Budget  $budget
+     * @param  \App\Family\CashFlowPlan $cashFlowPlan
      * @return \Illuminate\Http\Response
      */
-    public function show(Family $family, Budget $budget)
+    public function show(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        return view('family.budgets.show', [
-            'family' => $family,
-            'budget' => $budget,
+        return view('family.cash-flow-plans.show', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Family\Budget  $budget
+     * @param  \App\Family\CashFlowPlan $cashFlowPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Budget $budget)
+    public function edit(Family $family, CashFlowPlan $cashFlowPlan)
     {
         //
     }
@@ -84,10 +84,10 @@ class BudgetController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Family\Budget  $budget
+     * @param  \App\Family\CashFlowPlan $cashFlowPlan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Budget $budget)
+    public function update(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
         //
     }
@@ -95,10 +95,10 @@ class BudgetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Family\Budget  $budget
+     * @param  \App\Family\CashFlowPlan $cashFlowPlan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Budget $budget)
+    public function destroy(CashFlowPlan $cashFlowPlan)
     {
         //
     }

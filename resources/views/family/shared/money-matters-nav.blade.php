@@ -17,7 +17,7 @@
 <div class="list-group">
 
     <a href="{{ route('family.money-matters', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'home') ? 'active' : '' }}">{{ __('money-matters.money-matters') }}</a>
-    <a href="{{ route('family.budgets.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'budget') ? 'active' : '' }}">Monthly Budget</a>
+    <a href="{{ route('family.cash-flow-plans.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'cash-flow-plans') ? 'active' : '' }}">Cash Flow Plans</a>
     <a href="{{ route('family.merchants.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'merchants') ? 'active' : '' }}">{{ __('merchants.merchants') }}</a>
     <a href="#" class="list-group-item-action list-group-item settingsItem {{ ($settingsActive) ? 'settingsActive' : '' }}" id="settingsItem">
         <span class="float-right">

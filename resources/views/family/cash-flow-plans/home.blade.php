@@ -49,7 +49,7 @@ $months = [
 
         <div class="col-12 col-md-3">
 
-            @include('family.shared.money-matters-nav', ['active' => 'budget'])
+            @include('family.shared.money-matters-nav', ['active' => 'cash-flow-plans'])
 
         </div>
 
@@ -79,17 +79,17 @@ $months = [
                                 @foreach($months as $key => $month)
 
                                     @php
-                                        $budget = $budgets->where('year', $year)->firstWhere('month', $key);
+                                        $cashFlowPlan = $cashFlowPlans->where('year', $year)->firstWhere('month', $key);
                                     @endphp
 
                                     <li class="list-group-item">
 
-                                        @if ($budget)
+                                        @if ($cashFlowPlan)
 
-                                            <a href="{{ route('family.budgets.show', [$family, $budget]) }}">{{ $key }}/{{ $budget->year }}</a>
+                                            <a href="{{ route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) }}">{{ $key }}/{{ $cashFlowPlan->year }}</a>
 
                                         @else
-                                            No budget found - Create one now
+                                            No cash flow plan found - Create one now
                                         @endif
                                     </li>
 

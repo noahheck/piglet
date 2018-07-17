@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBudgetsTable extends Migration
+class CreateCashFlowPlansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBudgetsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('family')->create('budgets', function (Blueprint $table) {
+        Schema::connection('family')->create('cash_flow_plans', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year');
             $table->integer('month');
@@ -30,6 +30,6 @@ class CreateBudgetsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('family')->dropIfExists('budgets');
+        Schema::connection('family')->dropIfExists('cash_flow_plans');
     }
 }

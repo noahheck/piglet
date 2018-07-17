@@ -91,7 +91,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         Route::resource('/recurring-expenses', 'RecurringExpenseController');
 
-        Route::resource('/budgets', 'BudgetController');
+        Route::resource('/cash-flow-plans', 'CashFlowPlanController');
 
 
     });
