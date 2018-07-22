@@ -4,14 +4,10 @@
 
         @if (isset($menu))
             <div class="page-menu-container" id="pageMenuContainer">
-                {{--<span class="dropdown-trigger">--}}
-                    <span class="fa fa-chevron-down rounded-circle dropdown-trigger" id="pageMenuDropdownTrigger"></span>
-                {{--</span>--}}
+                <span class="fa fa-chevron-down rounded-circle dropdown-trigger" id="pageMenuDropdownTrigger"></span>
                 <div class="dropdown-content" id="pageMenuDropdownContent">
                     <span class="fa fa-chevron-up dropdown-trigger rounded-circle" id="pageMenuDropdownTrigger"></span>
                     <ul>
-                        {{--<li><a href="#"><span class="fa fa-check-square-o"></span> Edit this</a></li>
-                        <li><a href="#"><span class="fa fa-trash-o"></span> Delete</a></li>--}}
                         @foreach ($menu as $item)
 
                             @if (isset($item['type']) && $item['type'] === 'delete')
@@ -52,7 +48,7 @@
         <a href="{{ route('family.home', [$family]) }}">{{ __('family.family_home') }}</a> &gt;
 
         @foreach ($breadcrumb as $href => $text)
-            <a href="{{ $href }}">{{ $text }}</a> >
+            <a href="{{ $href }}">{{ $text }}</a> &gt;
         @endforeach
         {{ $location }}
 

@@ -17,7 +17,8 @@ class CreateCashFlowPlanIncomeSourcesTable extends Migration
             $table->increments('id');
             $table->integer('cash_flow_plan_id');
             $table->integer('income_source_id')->nullable();
-            $table->string('type')->default('projected');
+            $table->string('type')->default('budget');
+            $table->string('name');
             $table->decimal('amount');
             $table->text('detail')->nullable();
             $table->timestamps();

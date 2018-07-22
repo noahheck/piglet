@@ -25,4 +25,9 @@ class IncomeSource extends Model
             'default_amount' => 'numeric|nullable',
         ];
     }
+
+    public function incomeSourceInstances()
+    {
+        return $this->hasMany(\App\Family\CashFlowPlan\IncomeSource::class);
+    }
 }

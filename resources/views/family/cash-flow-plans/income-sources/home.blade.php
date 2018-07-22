@@ -57,12 +57,87 @@ $months = [
 
         <div class="col-12 col-md-9">
 
-            <h2>Cash Flow Plan Income Sources</h2>
+            <h2>{{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} Income Sources</h2>
 
-            <hr>
+            <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="true">Budget</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Actual</a>
+                </li>
+            </ul>
 
-            <div class="accordion" id="budgetsAccordion">
+            <div class="tab-content" id="myTabContent">
 
+                <div class="tab-pane fade show active" id="budget" role="tabpanel" aria-labelledby="budgetTab">
+
+                    <div class="row justify-content-center mt-3">
+
+                        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+                            {{--<h4>
+                                Budgeted
+                                <a href="{{ route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]) }}" class="btn btn-sm btn-primary">
+                                    <span class="fa fa-plus-circle"></span> Create New
+                                </a>
+                            </h4>--}}
+
+                            @if ($cashFlowPlan->incomeSources->where('type', 'budget')->count() === 0)
+
+                                Create your first budgeted income source for this month...
+
+                            @else
+
+                                <ul class="list-group shadow income-sources" id="budgeted-income-sources">
+                                    @foreach ($cashFlowPlan->incomeSources->where('type', 'budget') as $source)
+                                        <li class="list-group-item">
+                                            <a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $source]) }}">
+                                                {{ $source->name }} - {{ Auth::user()->formatCurrency($source->amount, true) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            @endif
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
+
+                    <div class="row justify-content-center mt-3">
+
+                        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+                            @if ($cashFlowPlan->incomeSources->where('type', 'actual')->count() === 0)
+
+                                Create your first actual income source for this month...
+
+                            @else
+
+                                <ul class="list-group shadow income-sources" id="actual-income-sources">
+                                    @foreach ($cashFlowPlan->incomeSources->where('type', 'actual') as $source)
+                                        <li class="list-group-item">
+                                            <a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $source]) }}">
+                                                {{ $source->name }} - {{ Auth::user()->formatCurrency($source->amount, true) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            @endif
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
