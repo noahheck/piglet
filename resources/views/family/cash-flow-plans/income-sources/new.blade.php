@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - Income Sources - {{ __('form.add_new') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }} - {{ __('form.add_new') }}
 @endsection
 
 @push('stylesheets')
@@ -17,9 +17,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
-            route('family.cash-flow-plans.index', [$family]) => 'Cash Flow Plans',
+            route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
-            route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) => 'Income Sources',
+            route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) => __('income-sources.income-sources'),
         ],
         'location'   => __('form.add_new'),
         /*'menu' => [

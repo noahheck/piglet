@@ -22,7 +22,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
         <legend>{{ __('income-sources.details') }}</legend>
 
         <div class="form-group">
-            <label for="type">Income Source Type</label>
+            <label for="type">{{ __('income-sources.income-source-type') }}</label>
             <select class="custom-select" name="type" id="type">
                 @foreach ($incomeSource::$typeDescriptions as $type => $description)
                     <option value="{{ $type }}" {{ (old('type', $incomeSource->type) === $type) ? 'selected' : '' }}>{{ $description }}</option>
@@ -31,12 +31,12 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
         </div>
 
         <div class="form-group">
-            <label for="income_source_id">Income Source</label>
+            <label for="income_source_id">{{ __('income-sources.income-source') }}</label>
             <select class="custom-select" name="income_source_id" id="income_source_id">
                 @foreach ($incomeSourceTemplates as $template)
                     <option value="{{ $template->id }}" data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}">{{ $template->name }} ({{ Auth::user()->formatCurrency($template->default_amount, true) }})</option>
                 @endforeach
-                <option value="">Other</option>
+                <option value="">{{ __('form.other') }}</option>
             </select>
         </div>
 

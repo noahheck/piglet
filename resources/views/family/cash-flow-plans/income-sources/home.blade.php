@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - Income Sources
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }}
 @endsection
 
 @push('stylesheets')
@@ -13,37 +13,17 @@
 @endpush
 
 
-@php
-
-$months = [
-    '01' => 'January',
-    '02' => 'February',
-    '03' => 'March',
-    '04' => 'April',
-    '05' => 'May',
-    '06' => 'June',
-    '07' => 'July',
-    '08' => 'August',
-    '09' => 'September',
-    '10' => 'October',
-    '11' => 'November',
-    '12' => 'December',
-];
-
-@endphp
-
-
 @section('content')
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
-            route('family.cash-flow-plans.index', [$family]) => 'Cash Flow Plans',
+            route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
         ],
-        'location'   => 'Income Sources',
+        'location'   => __('income-sources.income-sources'),
         'menu' => [
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New Income Source'],
+            ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
         ]
     ])
 
@@ -57,14 +37,14 @@ $months = [
 
         <div class="col-12 col-md-9">
 
-            <h2>{{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} Income Sources</h2>
+            <h2>{{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} {{ __('income-sources.income-sources') }}</h2>
 
             <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="true">Budget</a>
+                    <a class="nav-link active" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="true">{{ __('cash-flow-plans.budget') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Actual</a>
+                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">{{ __('cash-flow-plans.actual') }}</a>
                 </li>
             </ul>
 
@@ -78,7 +58,13 @@ $months = [
 
                             @if ($cashFlowPlan->incomeSources->where('type', 'budget')->count() === 0)
 
-                                Create your first budgeted income source for this month...
+                                {{ __('income-sources.no-income-sources-create') }}
+                                <p class="text-center">
+                                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]) }}">
+                                        <span class="fa fa-plus-circle"></span>
+                                        {{ __('income-sources.add-new-income-source') }}
+                                    </a>
+                                </p>
 
                             @else
 
@@ -94,7 +80,7 @@ $months = [
 
                                 <hr>
 
-                                <h5>Total: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'budget')->sum('amount'), true) }}</h5>
+                                <h5>{{ __('cash-flow-plans.total') }}: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'budget')->sum('amount'), true) }}</h5>
 
                             @endif
 
@@ -114,7 +100,13 @@ $months = [
 
                             @if ($cashFlowPlan->incomeSources->where('type', 'actual')->count() === 0)
 
-                                Create your first actual income source for this month...
+                                {{ __('income-sources.no-income-sources-create') }}
+                                <p class="text-center">
+                                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]) }}">
+                                        <span class="fa fa-plus-circle"></span>
+                                        {{ __('income-sources.add-new-income-source') }}
+                                    </a>
+                                </p>
 
                             @else
 
@@ -130,7 +122,7 @@ $months = [
 
                                 <hr>
 
-                                <h5>Total: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'actual')->sum('amount'), true) }}</h5>
+                                <h5>{{ __('cash-flow-plans.total') }}: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'actual')->sum('amount'), true) }}</h5>
 
 
                             @endif
