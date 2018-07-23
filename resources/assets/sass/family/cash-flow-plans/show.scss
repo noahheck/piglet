@@ -7,6 +7,8 @@
   padding-top: 15px;
 }
 
-.budget-section {
-  border-bottom: 1px solid $light-gray-border;
+.section {
+  border: 1px solid $light-gray-border;
+  padding: 15px;
+  @include shadow;
 }

@@ -108,7 +108,7 @@ $months = [
 
                 <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
 
-                    <div id="budget_incomeSources" class="section budget-section">
+                    <div id="budget_incomeSources" class="section actual-section">
 
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
