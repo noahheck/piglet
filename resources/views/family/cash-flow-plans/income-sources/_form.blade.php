@@ -4,6 +4,10 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
 
 @endphp
 
+@push('scripts')
+    <script type="text/javascript" src="{{ asset('js/family.cash-flow-plans.income-sources._form.js') }}"></script>
+@endpush
+
 <form name="incomeSource" action="{{ $action }}" method="POST" class="has-bold-labels">
 
     @csrf
@@ -30,7 +34,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
             <label for="income_source_id">Income Source</label>
             <select class="custom-select" name="income_source_id" id="income_source_id">
                 @foreach ($incomeSourceTemplates as $template)
-                    <option value="{{ $template->id }}" data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}">{{ $template->name }} - {{ Auth::user()->formatCurrency($template->default_amount, false) }}</option>
+                    <option value="{{ $template->id }}" data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}">{{ $template->name }} ({{ Auth::user()->formatCurrency($template->default_amount, true) }})</option>
                 @endforeach
                 <option value="">Other</option>
             </select>
