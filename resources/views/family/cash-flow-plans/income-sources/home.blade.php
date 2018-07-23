@@ -85,12 +85,16 @@ $months = [
                                 <ul class="list-group shadow income-sources" id="budgeted-income-sources">
                                     @foreach ($cashFlowPlan->incomeSources->where('type', 'budget') as $source)
                                         <li class="list-group-item">
-                                            <a href="{{ route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $source]) }}">
+                                            <a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $source]) }}">
                                                 {{ $source->name }} - {{ Auth::user()->formatCurrency($source->amount, true) }}
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <hr>
+
+                                <h5>Total: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'budget')->sum('amount'), true) }}</h5>
 
                             @endif
 
@@ -123,6 +127,11 @@ $months = [
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <hr>
+
+                                <h5>Total: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'actual')->sum('amount'), true) }}</h5>
+
 
                             @endif
 

@@ -30,7 +30,19 @@ class IncomeSourceController extends Controller
      */
     public function create(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $template     = Family\IncomeSource::first();
+
+        $incomeSource = new IncomeSource();
+
+        $incomeSource->type   = 'budget';
+        $incomeSource->name   = $template->name;
+        $incomeSource->amount = $template->default_amount;
+
+        return view('family.cash-flow-plans.income-sources.new', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'incomeSource' => $incomeSource,
+        ]);
     }
 
     /**
@@ -39,9 +51,19 @@ class IncomeSourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $request->validate(IncomeSource::getValidations());
+
+        $incomeSource = new IncomeSource();
+
+        $incomeSource->cash_flow_plan_id = $cashFlowPlan->id;
+
+        $incomeSource->fill($request->only($incomeSource->getFillable()));
+
+        $incomeSource->save();
+
+        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -89,7 +111,7 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
-        return redirect()->route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $incomeSource]);
+        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
     }
 
     /**
