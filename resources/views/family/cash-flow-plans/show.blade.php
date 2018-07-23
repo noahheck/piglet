@@ -82,7 +82,24 @@ $months = [
 
                     <div id="budget_incomeSources" class="section budget-section">
 
-                        <h3><a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">Income Sources</a></h3>
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
+                        </h3>
+
+                        <table class="table table-sm">
+                            <caption>{{ __('cash-flow-plans.budget') }} {{ __('income-sources.income-sources') }}</caption>
+                            @foreach ($cashFlowPlan->incomeSources->where('type', 'budget') as $incomeSource)
+                                <tr>
+                                    <td>{{ $incomeSource->name }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->amount, true) }}</td>
+                                </tr>
+                            @endforeach
+
+                            <tr>
+                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'budget')->sum('amount'), true) }}</strong></td>
+                            </tr>
+                        </table>
 
                     </div>
 
@@ -90,7 +107,30 @@ $months = [
 
 
                 <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
-                    Actual
+
+                    <div id="budget_incomeSources" class="section budget-section">
+
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
+                        </h3>
+
+                        <table class="table table-sm">
+                            <caption>{{ __('cash-flow-plans.actual') }} {{ __('income-sources.income-sources') }}</caption>
+                            @foreach ($cashFlowPlan->incomeSources->where('type', 'actual') as $incomeSource)
+                                <tr>
+                                    <td>{{ $incomeSource->name }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->amount, true) }}</td>
+                                </tr>
+                            @endforeach
+
+                            <tr>
+                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'actual')->sum('amount'), true) }}</strong></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
                 </div>
 
             </div>
