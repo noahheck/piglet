@@ -17,13 +17,9 @@ class IncomeSourceController extends Controller
      */
     public function index(Family $family, CashFlowPlan $cashFlowPlan)
     {
-//        $cashFlowPlanIncomeSources = $cashFlowPlan->
-        $cashFlowPlanIncomeSources = false;
-
         return view('family.cash-flow-plans.income-sources.home', [
-            'family'                    => $family,
-            'cashFlowPlan'              => $cashFlowPlan,
-            'cashFlowPlanIncomeSources' => $cashFlowPlanIncomeSources,
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
         ]);
     }
 
@@ -56,8 +52,6 @@ class IncomeSourceController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
-        \DebugBar::info($incomeSource);
-
         return view('family.cash-flow-plans.income-sources.show', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,
@@ -71,9 +65,13 @@ class IncomeSourceController extends Controller
      * @param  \App\Family\IncomeSource  $cashFlowPlanIncomeSource
      * @return \Illuminate\Http\Response
      */
-    public function edit(IncomeSource $cashFlowPlanIncomeSource)
+    public function edit(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
-        //
+        return view('family.cash-flow-plans.income-sources.edit', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'incomeSource' => $incomeSource,
+        ]);
     }
 
     /**
@@ -83,9 +81,15 @@ class IncomeSourceController extends Controller
      * @param  \App\Family\IncomeSource  $cashFlowPlanIncomeSource
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IncomeSource $cashFlowPlanIncomeSource)
+    public function update(Request $request, Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
-        //
+        $request->validate(IncomeSource::getValidations());
+
+        $incomeSource->fill($request->only($incomeSource->getFillable()));
+
+        $incomeSource->save();
+
+        return redirect()->route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $incomeSource]);
     }
 
     /**

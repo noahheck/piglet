@@ -15,6 +15,7 @@ return [
 
     'name'           => 'Name',
     'default-amount' => 'Default Amount',
+    'amount'         => 'Amount',
     'active'         => 'Active',
         'inactive'   => 'Inactive',
     'description'    => 'Description',

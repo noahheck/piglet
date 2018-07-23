@@ -9,14 +9,32 @@ class IncomeSource extends Model
 {
     protected $table = 'cash_flow_plan_income_sources';
 
-    protected $typeDescriptions = [
+    protected $fillable = [
+        'income_source_id',
+        'name',
+        'type',
+        'amount',
+        'detail',
+    ];
+
+    public static function getValidations()
+    {
+        return [
+            'name'             => 'required',
+            'income_source_id' => 'integer|nullable',
+            'type'             => 'required|in:budget,actual',
+            'amount'           => 'numeric',
+        ];
+    }
+
+    public static $typeDescriptions = [
         'budget' => 'Budgeted',
         'actual' => 'Actual',
     ];
 
     public function typeDescription()
     {
-        return $this->typeDescriptions[$this->type];
+        return self::$typeDescriptions[$this->type];
     }
 
 

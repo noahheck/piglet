@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - Income Sources - {{ $incomeSource->name }} ({{ $incomeSource->typeDescription() }})
+    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - Income Sources - {{ $incomeSource->name }} ({{ $incomeSource->typeDescription() }}) - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -20,15 +20,30 @@
             route('family.cash-flow-plans.index', [$family]) => 'Cash Flow Plans',
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) => 'Income Sources',
+            route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $incomeSource]) => $incomeSource->name . ' (' . $incomeSource->typeDescription() . ')',
         ],
-        'location'   => $incomeSource->name . ' (' . $incomeSource->typeDescription() . ')',
-        'menu' => [
+        'location'   => __('form.edit'),
+        /*'menu' => [
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
-        ]
+        ]*/
     ])
 
-    <div class="row">
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+
+            @include('family.cash-flow-plans.income-sources._form', [
+                'action'      => route('family.cash-flow-plans.income-sources.update', [$family, $cashFlowPlan, $incomeSource]),
+                'method'      => 'PUT',
+                'cancelRoute' => route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $incomeSource]),
+            ])
+
+        </div>
+
+    </div>
+
+    {{--<div class="row">
 
         <div class="col-12 col-md-3">
 
@@ -50,6 +65,6 @@
 
         <hr>
 
-    </div>
+    </div>--}}
 
 @endsection
