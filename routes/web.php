@@ -80,6 +80,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
 
 
+        // Money Matters
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');
 
         Route::resource('/merchants', 'MerchantController');
@@ -94,7 +95,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         Route::resource('/cash-flow-plans', 'CashFlowPlanController');
 
         Route::namespace('CashFlowPlan')->prefix('/cash-flow-plans/{cashFlowPlan}')->name('cash-flow-plans.')->group(function() {
-            Route::resource('income-sources', 'IncomeSourceController');
+            Route::resource('/income-sources', 'IncomeSourceController');
         });
 
 

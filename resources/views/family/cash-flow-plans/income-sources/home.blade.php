@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans
+    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - Income Sources
 @endsection
 
 @push('stylesheets')
@@ -76,13 +76,6 @@ $months = [
 
                         <div class="col-12 col-md-10 col-lg-8 col-xl-6">
 
-                            {{--<h4>
-                                Budgeted
-                                <a href="{{ route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]) }}" class="btn btn-sm btn-primary">
-                                    <span class="fa fa-plus-circle"></span> Create New
-                                </a>
-                            </h4>--}}
-
                             @if ($cashFlowPlan->incomeSources->where('type', 'budget')->count() === 0)
 
                                 Create your first budgeted income source for this month...
@@ -92,7 +85,7 @@ $months = [
                                 <ul class="list-group shadow income-sources" id="budgeted-income-sources">
                                     @foreach ($cashFlowPlan->incomeSources->where('type', 'budget') as $source)
                                         <li class="list-group-item">
-                                            <a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $source]) }}">
+                                            <a href="{{ route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $source]) }}">
                                                 {{ $source->name }} - {{ Auth::user()->formatCurrency($source->amount, true) }}
                                             </a>
                                         </li>

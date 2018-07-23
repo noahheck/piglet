@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Family\CashFlowPlan;
 
 use App\Family;
 use App\Family\CashFlowPlan;
-use App\Family\IncomeSource;
+use App\Family\CashFlowPlan\IncomeSource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -54,9 +54,15 @@ class IncomeSourceController extends Controller
      * @param  \App\Family\IncomeSource  $cashFlowPlanIncomeSource
      * @return \Illuminate\Http\Response
      */
-    public function show(IncomeSource $cashFlowPlanIncomeSource)
+    public function show(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
-        //
+        \DebugBar::info($incomeSource);
+
+        return view('family.cash-flow-plans.income-sources.show', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'incomeSource' => $incomeSource,
+        ]);
     }
 
     /**

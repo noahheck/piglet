@@ -3,11 +3,21 @@
 namespace App\Family\CashFlowPlan;
 
 use App\Family\CashFlowPlan;
-use Illuminate\Database\Eloquent\Model;
+use App\Family\Model;
 
 class IncomeSource extends Model
 {
     protected $table = 'cash_flow_plan_income_sources';
+
+    protected $typeDescriptions = [
+        'budget' => 'Budgeted',
+        'actual' => 'Actual',
+    ];
+
+    public function typeDescription()
+    {
+        return $this->typeDescriptions[$this->type];
+    }
 
 
     public function cashFlowPlan()
