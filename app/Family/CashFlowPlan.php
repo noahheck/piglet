@@ -15,4 +15,14 @@ class CashFlowPlan extends Model
     {
         return $this->hasMany(IncomeSource::class);
     }
+
+    public function budgetIncomeSourcesTotal()
+    {
+        return $this->incomeSources->where('type', 'budget')->sum('amount');
+    }
+
+    public function actualIncomeSourcesTotal()
+    {
+        return $this->incomeSources->where('type', 'actual')->sum('amount');
+    }
 }

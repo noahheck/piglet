@@ -97,7 +97,7 @@ $months = [
 
                             <tr>
                                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'budget')->sum('amount'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->budgetIncomeSourcesTotal(), true) }}</strong></td>
                             </tr>
                         </table>
 
@@ -125,7 +125,7 @@ $months = [
 
                             <tr>
                                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'actual')->sum('amount'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
                             </tr>
                         </table>
 
