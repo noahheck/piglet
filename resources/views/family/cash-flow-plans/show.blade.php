@@ -83,7 +83,7 @@ $months = [
                     <div id="budget_incomeSources" class="section budget-section">
 
                         <h3>
-                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
+                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}#budget">{{ __('income-sources.income-sources') }}</a>
                         </h3>
 
                         <table class="table table-sm">
@@ -111,7 +111,7 @@ $months = [
                     <div id="budget_incomeSources" class="section actual-section">
 
                         <h3>
-                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
+                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}#actual">{{ __('income-sources.income-sources') }}</a>
                         </h3>
 
                         <table class="table table-sm">
