@@ -63,7 +63,7 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
-        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
+        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan, '#' . $incomeSource->type]);
     }
 
     /**
@@ -111,7 +111,7 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
-        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
+        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan, '#' . $incomeSource->type]);
     }
 
     /**
@@ -120,8 +120,12 @@ class IncomeSourceController extends Controller
      * @param  \App\Family\IncomeSource  $cashFlowPlanIncomeSource
      * @return \Illuminate\Http\Response
      */
-    public function destroy(IncomeSource $cashFlowPlanIncomeSource)
+    public function destroy(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
-        //
+        $type = $incomeSource->type;
+
+        $incomeSource->delete();
+
+        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan, '#' . $type]);
     }
 }

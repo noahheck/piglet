@@ -8,6 +8,7 @@ return [
     'edit'         => 'Edit',
     'edit_details' => 'Edit details',
     'details'      => 'Details',
+    'delete'       => 'Delete',
     'other'        => 'Other',
 
     'photo'        => 'Photo',

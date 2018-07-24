@@ -4,9 +4,12 @@ namespace App\Family\CashFlowPlan;
 
 use App\Family\CashFlowPlan;
 use App\Family\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class IncomeSource extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'cash_flow_plan_income_sources';
 
     protected $fillable = [
