@@ -40,4 +40,9 @@ class Category extends Model
         return $this->hasMany(RecurringExpense::class);
     }
 
+    public function recurringExpenseInstances()
+    {
+        return $this->hasMany(\App\Family\CashFlowPlan\RecurringExpense::class);
+    }
+
 }
