@@ -98,23 +98,23 @@
 
                         <div class="col-12 col-md-10 col-lg-8 col-xl-6">
 
-                            @if ($cashFlowPlan->incomeSources->where('type', 'actual')->count() === 0)
+                            @if ($cashFlowPlan->recurringExpenses->where('type', 'actual')->count() === 0)
 
-                                {{ __('income-sources.no-income-sources-create') }}
+                                {{ __('recurring-expenses.no-recurring-expenses-create') }}
                                 <p class="text-center">
-                                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]) }}">
+                                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan]) }}">
                                         <span class="fa fa-plus-circle"></span>
-                                        {{ __('income-sources.add-new-income-source') }}
+                                        {{ __('recurring-expenses.add-new-recurring-expense') }}
                                     </a>
                                 </p>
 
                             @else
 
-                                <ul class="list-group shadow income-sources" id="actual-income-sources">
-                                    @foreach ($cashFlowPlan->incomeSources->where('type', 'actual') as $source)
+                                <ul class="list-group shadow income-sources" id="budgeted-income-sources">
+                                    @foreach ($cashFlowPlan->recurringExpenses->where('type', 'actual') as $expense)
                                         <li class="list-group-item">
-                                            <a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $source]) }}">
-                                                {{ $source->name }} - {{ Auth::user()->formatCurrency($source->amount, true) }}
+                                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $expense]) }}">
+                                                {{ $expense->name }} - {{ Auth::user()->formatCurrency($expense->amount, true) }}
                                             </a>
                                         </li>
                                     @endforeach
@@ -122,8 +122,7 @@
 
                                 <hr>
 
-                                <h5>{{ __('cash-flow-plans.total') }}: {{ Auth::user()->formatCurrency($cashFlowPlan->incomeSources->where('type', 'actual')->sum('amount'), true) }}</h5>
-
+                                <h5>{{ __('cash-flow-plans.total') }}: {{ Auth::user()->formatCurrency($cashFlowPlan->recurringExpenses->where('type', 'actual')->sum('amount'), true) }}</h5>
 
                             @endif
 

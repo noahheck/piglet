@@ -5,6 +5,7 @@ namespace App\Family\CashFlowPlan;
 use App\Family\Category;
 use App\Family\Merchant;
 use App\Family\Model;
+use App\Traits\HasDateField;
 use App\Traits\PopulatesCashFlowPlan;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,13 +14,10 @@ use App\Family\CashFlowPlan;
 class RecurringExpense extends Model
 {
     use SoftDeletes,
+        HasDateField,
         PopulatesCashFlowPlan;
 
     protected $table = 'cash_flow_plan_recurring_expenses';
-
-    protected $dates = [
-        'date',
-    ];
 
     protected $fillable = [
         'recurring_expense_id',
