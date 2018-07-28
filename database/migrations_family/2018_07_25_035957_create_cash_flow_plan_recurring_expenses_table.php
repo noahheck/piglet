@@ -21,7 +21,8 @@ class CreateCashFlowPlanRecurringExpensesTable extends Migration
             $table->integer('category_id');
             $table->string('sub_category');
             $table->string('type')->default('budget');
-            $table->date('date');
+            $table->string('name');
+            $table->date('date')->nullable();
             $table->decimal('amount');
             $table->string('payment_detail')->nullable();
             $table->text('detail')->nullable();

@@ -103,6 +103,15 @@ $months = [
 
                     </div>
 
+                    <div id="budget_recurringExpenses" class="section budget-section">
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">Recurring Expenses</a>
+                        </h3>
+
+
+
+                    </div>
+
                 </div>
 
 

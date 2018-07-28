@@ -21,6 +21,4 @@ return [
     'description'    => 'Description',
 
 
-    'income-source-type' => 'Income Source Type',
-
 ];

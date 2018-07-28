@@ -7,4 +7,6 @@ return [
     'budget' => 'Budget',
     'actual' => 'Actual',
     'total'  => 'Total',
+
+    'type'   => 'Type',
 ];

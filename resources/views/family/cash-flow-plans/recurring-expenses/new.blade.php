@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }} - {{ __('form.add_new') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('recurring-expenses.recurring-expenses') }} - {{ __('form.add_new') }}
 @endsection
 
 @push('stylesheets')
@@ -19,7 +19,7 @@
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
             route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
-            route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) => __('income-sources.income-sources'),
+            route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) => __('recurring-expenses.recurring-expenses'),
         ],
         'location'   => __('form.add_new'),
         /*'menu' => [
@@ -32,10 +32,10 @@
 
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
-            @include('family.cash-flow-plans.income-sources._form', [
-                'action'      => route('family.cash-flow-plans.income-sources.store', [$family, $cashFlowPlan]),
+            @include('family.cash-flow-plans.recurring-expenses._form', [
+                'action'      => route('family.cash-flow-plans.recurring-expenses.store', [$family, $cashFlowPlan]),
                 'method'      => false,
-                'cancelRoute' => route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]),
+                'cancelRoute' => route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]),
             ])
 
         </div>

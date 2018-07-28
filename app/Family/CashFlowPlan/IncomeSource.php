@@ -4,11 +4,13 @@ namespace App\Family\CashFlowPlan;
 
 use App\Family\CashFlowPlan;
 use App\Family\Model;
+use App\Traits\PopulatesCashFlowPlan;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class IncomeSource extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        PopulatesCashFlowPlan;
 
     protected $table = 'cash_flow_plan_income_sources';
 
@@ -29,17 +31,6 @@ class IncomeSource extends Model
             'amount'           => 'numeric',
         ];
     }
-
-    public static $typeDescriptions = [
-        'budget' => 'Budgeted',
-        'actual' => 'Actual',
-    ];
-
-    public function typeDescription()
-    {
-        return self::$typeDescriptions[$this->type];
-    }
-
 
     public function cashFlowPlan()
     {

@@ -18,7 +18,10 @@ class RecurringExpenseController extends Controller
      */
     public function index(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        return view('family.cash-flow-plans.recurring-expenses.home', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+        ]);
     }
 
     /**
@@ -28,7 +31,13 @@ class RecurringExpenseController extends Controller
      */
     public function create(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $recurringExpense = new RecurringExpense();
+
+        return view('family.cash-flow-plans.recurring-expenses.new', [
+            'family'           => $family,
+            'cashFlowPlan'     => $cashFlowPlan,
+            'recurringExpense' => $recurringExpense,
+        ]);
     }
 
     /**
@@ -39,7 +48,19 @@ class RecurringExpenseController extends Controller
      */
     public function store(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $request->validate(RecurringExpense::getValidations());
+
+        $recurringExpense = new RecurringExpense();
+
+        $recurringExpense->cash_flow_plan_id = $cashFlowPlan->id;
+
+        $recurringExpense->fill($request->only($recurringExpense->getFillable()));
+
+        $recurringExpense->save();
+
+        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan, '#' . $recurringExpense->type]);
+
+
     }
 
     /**

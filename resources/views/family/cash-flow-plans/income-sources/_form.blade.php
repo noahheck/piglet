@@ -22,7 +22,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
         <legend>{{ __('income-sources.details') }}</legend>
 
         <div class="form-group">
-            <label for="type">{{ __('income-sources.income-source-type') }}</label>
+            <label for="type">{{ __('income-sources.income-source') }} {{ __('cash-flow-plans.type') }}</label>
             <select class="custom-select" name="type" id="type">
                 @foreach ($incomeSource::$typeDescriptions as $type => $description)
                     <option value="{{ $type }}" {{ (old('type', $incomeSource->type) === $type) ? 'selected' : '' }}>{{ $description }}</option>

@@ -10,5 +10,7 @@
 .section {
   border: 1px solid $light-gray-border;
   padding: 15px;
+  margin-bottom: 20px;
   @include shadow;
+
 }

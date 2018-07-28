@@ -21,6 +21,7 @@ return [
     'merchant'       => 'Merchant',
     'category'       => 'Category',
     'sub-category'   => 'Sub-Category',
-
-
+    'amount'         => 'Amount',
+    'date'           => 'Date',
+    'payment-detail' => 'Payment Detail',
 ];
