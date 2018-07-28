@@ -52,6 +52,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                                 data-sub-category="{{ $template->sub_category }}"
                                 data-name="{{ $template->name }}"
                                 data-description="{{ $template->description }}"
+                                {{ ($template->id === old('recurring_expense_id', $recurringExpense->recurring_expense_id)) ? 'selected' : '' }}
                             >{{ $template->name }}</option>
                         @endforeach
 
@@ -59,6 +60,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                 @endforeach
 
             </select>
+            @fieldError('recurring_expense_id')
         </div>
 
         <hr>
@@ -75,7 +77,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
             <select class="custom-select" name="merchant_id_select" id="merchant_id_select" disabled>
                 <option value="">--</option>
                 @foreach ($merchants as $merchant)
-                    <option value="{{ $merchant->id }}">{{ $merchant->name }}</option>
+                    <option value="{{ $merchant->id }}" {{ ($merchant->id === old('merchant_id', $recurringExpense->merchant_id)) ? 'selected' : '' }}>{{ $merchant->name }}</option>
                 @endforeach
             </select>
             @fieldError('merchant_id')
@@ -87,7 +89,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
             <select class="custom-select" name="category_id_select" id="category_id_select" disabled>
                 <option value="">--</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ ($category->id === old('category_id', $recurringExpense->category_id)) ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
             @fieldError('category_id')

@@ -56,6 +56,11 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->fill($request->only($recurringExpense->getFillable()));
 
+        if ($recurringExpense->type === 'budget') {
+            $recurringExpense->date = null;
+            $recurringExpense->payment_detail = null;
+        }
+
         $recurringExpense->save();
 
         return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan, '#' . $recurringExpense->type]);

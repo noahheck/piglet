@@ -44,6 +44,18 @@ class RecurringExpense extends Model
         ];
     }
 
+    public function fill(array $attributes = [])
+    {
+        parent::fill($attributes);
+
+        if ($this->type === 'budget') {
+            $this->date           = null;
+            $this->payment_detail = null;
+        }
+
+        return $this;
+    }
+
     public function cashFlowPlan()
     {
         return $this->belongsTo(CashFlowPlan::class);
