@@ -12,9 +12,10 @@ let $ = require("jquery");
         require('./bootstrap');
         require('bootstrap-datepicker');
 
-let pageMenu   = require('Component/pageMenu');
-let domSearch  = require('Component/domSearch');
-let moneyField = require('Component/moneyField');
+let pageMenu     = require('Component/pageMenu');
+let domSearch    = require('Component/domSearch');
+let moneyField   = require('Component/moneyField');
+let tabNavOnLoad = require('Component/tabNavOnLoad');
 
 let phone = require('Services/phone');
 let ajax  = require('Services/ajax');
