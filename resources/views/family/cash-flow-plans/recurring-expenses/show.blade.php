@@ -71,23 +71,6 @@
 
         </div>
 
-        <hr>
-
-    </div>
-
-    <div class="row justify-content-center">
-
-        <div class="col-12 col-md-10 col-lg-8 col-xl-7">
-
-            {{--@include('family.cash-flow-plans.recurring-expenses._form', [
-                'action'      => route('family.cash-flow-plans.recurring-expenses.update', [$family, $cashFlowPlan, $recurringExpense]),
-                'method'      => 'PUT',
-                'editing'     => true,
-                'cancelRoute' => route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]),
-            ])--}}
-
-        </div>
-
     </div>
 
 @endsection

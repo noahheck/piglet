@@ -19,7 +19,6 @@ class CashFlowPlan extends Model
         return $this->hasMany(IncomeSource::class);
     }
 
-
     public function budgetIncomeSourcesTotal()
     {
         return $this->incomeSources->where('type', 'budget')->sum('amount');
@@ -31,8 +30,19 @@ class CashFlowPlan extends Model
     }
 
 
+
     public function recurringExpenses()
     {
         return $this->hasMany(RecurringExpense::class);
+    }
+
+    public function budgetRecurringExpensesTotal()
+    {
+        return $this->recurringExpenses->where('type', 'budget')->sum('amount');
+    }
+
+    public function actualRecurringExpensesTotal()
+    {
+        return $this->recurringExpenses->where('type', 'actual')->sum('amount');
     }
 }

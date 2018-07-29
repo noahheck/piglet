@@ -105,10 +105,23 @@ $months = [
 
                     <div id="budget_recurringExpenses" class="section budget-section">
                         <h3>
-                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">Recurring Expenses</a>
+                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}#budget">Recurring Expenses</a>
                         </h3>
 
+                        <table class="table table-sm">
+                            <caption>{{ __('cash-flow-plans.budget') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
+                            @foreach ($cashFlowPlan->recurringExpenses->where('type', 'budget') as $recurringExpense)
+                                <tr>
+                                    <td>{{ $recurringExpense->name }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->amount, true) }}</td>
+                                </tr>
+                            @endforeach
 
+                            <tr>
+                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->budgetRecurringExpensesTotal(), true) }}</strong></td>
+                            </tr>
+                        </table>
 
                     </div>
 
@@ -117,7 +130,7 @@ $months = [
 
                 <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
 
-                    <div id="budget_incomeSources" class="section actual-section">
+                    <div id="actual_incomeSources" class="section actual-section">
 
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}#actual">{{ __('income-sources.income-sources') }}</a>
@@ -139,6 +152,35 @@ $months = [
                         </table>
 
                     </div>
+
+
+
+
+
+                    <div id="actual_recurringExpenses" class="section actual-section">
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}#actual">Recurring Expenses</a>
+                        </h3>
+
+                        <table class="table table-sm">
+                            <caption>{{ __('cash-flow-plans.actual') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
+                            @foreach ($cashFlowPlan->recurringExpenses->where('type', 'actual') as $recurringExpense)
+                                <tr>
+                                    <td>{{ $recurringExpense->name }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->amount, true) }}</td>
+                                </tr>
+                            @endforeach
+
+                            <tr>
+                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+
+
 
                 </div>
 
