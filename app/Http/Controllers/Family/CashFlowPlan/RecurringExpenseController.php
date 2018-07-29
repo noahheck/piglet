@@ -69,7 +69,11 @@ class RecurringExpenseController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
     {
-        //
+        return view('family.cash-flow-plans.recurring-expenses.show', [
+            'family'           => $family,
+            'cashFlowPlan'     => $cashFlowPlan,
+            'recurringExpense' => $recurringExpense,
+        ]);
     }
 
     /**
