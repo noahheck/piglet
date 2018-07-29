@@ -26,16 +26,17 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
 
         <div class="form-group">
             <label for="type">{{ __('recurring-expenses.recurring-expense') }} {{ __('cash-flow-plans.type') }}</label>
-            <select class="custom-select" name="type" id="type">
+            <select class="custom-select" name="type" id="type" {{ ($editing) ? 'disabled' : '' }}>
                 @foreach ($recurringExpense::$typeDescriptions as $type => $description)
                     <option value="{{ $type }}" {{ (old('type', $recurringExpense->type) === $type) ? 'selected' : '' }}>{{ $description }}</option>
                 @endforeach
             </select>
+            @fieldError('type')
         </div>
 
         <div class="form-group">
             <label for="recurring_expense_id">{{ __('recurring-expenses.recurring-expense') }}</label>
-            <select class="custom-select" name="recurring_expense_id" id="recurring_expense_id">
+            <select class="custom-select" name="recurring_expense_id" id="recurring_expense_id" {{ ($editing) ? 'disabled' : '' }}>
 
                 <option value="">Select a recurring expense</option>
 
@@ -52,7 +53,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                                 data-sub-category="{{ $template->sub_category }}"
                                 data-name="{{ $template->name }}"
                                 data-description="{{ $template->description }}"
-                                {{ ($template->id === old('recurring_expense_id', $recurringExpense->recurring_expense_id)) ? 'selected' : '' }}
+                                {{ ($template->id == old('recurring_expense_id', $recurringExpense->recurring_expense_id)) ? 'selected' : '' }}
                             >{{ $template->name }}</option>
                         @endforeach
 
@@ -77,7 +78,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
             <select class="custom-select" name="merchant_id_select" id="merchant_id_select" disabled>
                 <option value="">--</option>
                 @foreach ($merchants as $merchant)
-                    <option value="{{ $merchant->id }}" {{ ($merchant->id === old('merchant_id', $recurringExpense->merchant_id)) ? 'selected' : '' }}>{{ $merchant->name }}</option>
+                    <option value="{{ $merchant->id }}" {{ ($merchant->id == old('merchant_id', $recurringExpense->merchant_id)) ? 'selected' : '' }}>{{ $merchant->name }}</option>
                 @endforeach
             </select>
             @fieldError('merchant_id')
@@ -89,7 +90,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
             <select class="custom-select" name="category_id_select" id="category_id_select" disabled>
                 <option value="">--</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ ($category->id === old('category_id', $recurringExpense->category_id)) ? 'selected' : '' }}>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ ($category->id == old('category_id', $recurringExpense->category_id)) ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
             @fieldError('category_id')

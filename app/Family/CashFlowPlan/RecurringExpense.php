@@ -6,6 +6,7 @@ use App\Family\Category;
 use App\Family\Merchant;
 use App\Family\Model;
 use App\Traits\HasDateField;
+use App\Traits\HasUnchangeableProperties;
 use App\Traits\PopulatesCashFlowPlan;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,9 +16,18 @@ class RecurringExpense extends Model
 {
     use SoftDeletes,
         HasDateField,
-        PopulatesCashFlowPlan;
+        PopulatesCashFlowPlan,
+        HasUnchangeableProperties
+    ;
 
     protected $table = 'cash_flow_plan_recurring_expenses';
+
+    protected $dates = [
+        'date',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     protected $fillable = [
         'recurring_expense_id',
@@ -30,6 +40,15 @@ class RecurringExpense extends Model
         'date',
         'payment_detail',
         'detail',
+    ];
+
+    protected $unchangeable = [
+        'recurring_expense_id',
+        'merchant_id',
+        'category_id',
+        'sub_category',
+        'name',
+        'type',
     ];
 
     public static function getValidations()

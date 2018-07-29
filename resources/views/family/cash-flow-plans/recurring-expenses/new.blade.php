@@ -35,6 +35,7 @@
             @include('family.cash-flow-plans.recurring-expenses._form', [
                 'action'      => route('family.cash-flow-plans.recurring-expenses.store', [$family, $cashFlowPlan]),
                 'method'      => false,
+                'editing'     => false,
                 'cancelRoute' => route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]),
             ])
 

@@ -56,16 +56,9 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->fill($request->only($recurringExpense->getFillable()));
 
-        if ($recurringExpense->type === 'budget') {
-            $recurringExpense->date = null;
-            $recurringExpense->payment_detail = null;
-        }
-
         $recurringExpense->save();
 
         return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan, '#' . $recurringExpense->type]);
-
-
     }
 
     /**
@@ -87,7 +80,11 @@ class RecurringExpenseController extends Controller
      */
     public function edit(Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
     {
-        //
+        return view('family.cash-flow-plans.recurring-expenses.edit', [
+            'family'           => $family,
+            'cashFlowPlan'     => $cashFlowPlan,
+            'recurringExpense' => $recurringExpense,
+        ]);
     }
 
     /**
@@ -99,7 +96,13 @@ class RecurringExpenseController extends Controller
      */
     public function update(Request $request, Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
     {
-        //
+        $request->validate($recurringExpense->getUpdateableValidations());
+
+        $recurringExpense->fill($request->only($recurringExpense->getUpdateableProperties()));
+
+        $recurringExpense->save();
+
+        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan, '#' . $recurringExpense->type]);
     }
 
     /**
