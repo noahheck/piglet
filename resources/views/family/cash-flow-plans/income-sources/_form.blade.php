@@ -34,7 +34,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
             <label for="income_source_id">{{ __('income-sources.income-source') }}</label>
             <select class="custom-select" name="income_source_id" id="income_source_id">
                 @foreach ($incomeSourceTemplates as $template)
-                    <option value="{{ $template->id }}" data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}">{{ $template->name }} ({{ Auth::user()->formatCurrency($template->default_amount, true) }})</option>
+                    <option value="{{ $template->id }}" data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}" {{ ($template->id == old('income_source_id', $incomeSource->income_source_id)) ? 'selected' : '' }}>{{ $template->name }} ({{ Auth::user()->formatCurrency($template->default_amount, true) }})</option>
                 @endforeach
                 <option value="">{{ __('form.other') }}</option>
             </select>
