@@ -63,10 +63,7 @@ $months = [
                     <a class="nav-link active" id="overviewTab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="false">Budget</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Actual</a>
+                    <a class="nav-link" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Details</a>
                 </li>
             </ul>
 
@@ -78,75 +75,35 @@ $months = [
                 </div>
 
 
-                <div class="tab-pane fade" id="budget" role="tabpanel" aria-labelledby="budgetTab">
 
-                    <div id="budget_incomeSources" class="section budget-section">
+                <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="detailsTab">
+
+                    <div id="incomeSources" class="section">
 
                         <h3>
-                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}#budget">{{ __('income-sources.income-sources') }}</a>
+                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
                         </h3>
 
                         <table class="table table-sm">
-                            <caption>{{ __('cash-flow-plans.budget') }} {{ __('income-sources.income-sources') }}</caption>
-                            @foreach ($cashFlowPlan->incomeSources->where('type', 'budget') as $incomeSource)
+                            <caption>{{ __('income-sources.income-sources') }}</caption>
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td class="text-center">Name</td>
+                                    <td class="text-right">Projected</td>
+                                    <td class="text-right">Actual</td>
+                                </tr>
+                            </thead>
+                            @foreach ($cashFlowPlan->incomeSources as $incomeSource)
                                 <tr>
                                     <td>{{ $incomeSource->name }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->amount, true) }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->projected, true) }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->actual, true) }}</td>
                                 </tr>
                             @endforeach
 
                             <tr>
                                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->budgetIncomeSourcesTotal(), true) }}</strong></td>
-                            </tr>
-                        </table>
-
-                    </div>
-
-                    <div id="budget_recurringExpenses" class="section budget-section">
-                        <h3>
-                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}#budget">Recurring Expenses</a>
-                        </h3>
-
-                        <table class="table table-sm">
-                            <caption>{{ __('cash-flow-plans.budget') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
-                            @foreach ($cashFlowPlan->recurringExpenses->where('type', 'budget') as $recurringExpense)
-                                <tr>
-                                    <td>{{ $recurringExpense->name }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->amount, true) }}</td>
-                                </tr>
-                            @endforeach
-
-                            <tr>
-                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->budgetRecurringExpensesTotal(), true) }}</strong></td>
-                            </tr>
-                        </table>
-
-                    </div>
-
-                </div>
-
-
-                <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
-
-                    <div id="actual_incomeSources" class="section actual-section">
-
-                        <h3>
-                            <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}#actual">{{ __('income-sources.income-sources') }}</a>
-                        </h3>
-
-                        <table class="table table-sm">
-                            <caption>{{ __('cash-flow-plans.actual') }} {{ __('income-sources.income-sources') }}</caption>
-                            @foreach ($cashFlowPlan->incomeSources->where('type', 'actual') as $incomeSource)
-                                <tr>
-                                    <td>{{ $incomeSource->name }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->amount, true) }}</td>
-                                </tr>
-                            @endforeach
-
-                            <tr>
-                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</strong></td>
                                 <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
                             </tr>
                         </table>

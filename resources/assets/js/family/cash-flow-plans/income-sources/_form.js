@@ -14,7 +14,8 @@ $(function() {
         let amount = option.data('defaultAmount');
 
         $('#name').val(name);
-        $('#amount').val(amount);
+        $('#projected').val(amount);
+        $('#actual').val(amount);
 
     });
 

@@ -47,14 +47,25 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
         </div>
 
         <div class="form-group">
-            <label for="amount">{{ __('income-sources.amount') }}</label>
+            <label for="projected">{{ __('income-sources.projected') }}</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="amount" id="amount" class="form-control money-field" placeholder="{{ __('income-sources.amount') }}" value="{{ old('amount', Auth::user()->formatCurrency($incomeSource->amount, false)) }}">
+                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('income-sources.projected') }}" value="{{ old('projected', Auth::user()->formatCurrency($incomeSource->projected, false)) }}">
             </div>
-            @fieldError('amount')
+            @fieldError('projected')
+        </div>
+
+        <div class="form-group">
+            <label for="actual">{{ __('income-sources.actual') }}</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><span class="fa fa-dollar"></span></div>
+                </div>
+                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('income-sources.actual') }}" value="{{ old('actual', Auth::user()->formatCurrency($incomeSource->actual, false)) }}">
+            </div>
+            @fieldError('actual')
         </div>
 
         <div class="form-group">

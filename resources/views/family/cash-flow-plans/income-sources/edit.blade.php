@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }} - {{ $incomeSource->name }} ({{ $incomeSource->typeDescription() }}) - {{ __('form.edit') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }} - {{ $incomeSource->name }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -20,7 +20,7 @@
             route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) => __('income-sources.income-sources'),
-            route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $incomeSource]) => $incomeSource->name . ' (' . $incomeSource->typeDescription() . ')',
+            route('family.cash-flow-plans.income-sources.show', [$family, $cashFlowPlan, $incomeSource]) => $incomeSource->name,
         ],
         'location'   => __('form.edit'),
         'menu' => [

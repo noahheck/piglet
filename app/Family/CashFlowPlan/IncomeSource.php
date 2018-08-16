@@ -14,11 +14,17 @@ class IncomeSource extends Model
 
     protected $table = 'cash_flow_plan_income_sources';
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     protected $fillable = [
         'income_source_id',
         'name',
-        'type',
-        'amount',
+        'projected',
+        'actual',
         'detail',
     ];
 
@@ -27,8 +33,8 @@ class IncomeSource extends Model
         return [
             'name'             => 'required',
             'income_source_id' => 'integer|nullable',
-            'type'             => 'required|in:budget,actual',
-            'amount'           => 'numeric',
+            'projected'        => 'numeric|nullable',
+            'actual'           => 'numeric|nullable',
         ];
     }
 

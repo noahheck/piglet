@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }} - {{ $incomeSource->name }} ({{ $incomeSource->typeDescription() }})
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('income-sources.income-sources') }} - {{ $incomeSource->name }}
 @endsection
 
 @push('stylesheets')
@@ -21,7 +21,7 @@
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) => __('income-sources.income-sources'),
         ],
-        'location'   => $incomeSource->name . ' (' . $incomeSource->typeDescription() . ')',
+        'location'   => $incomeSource->name,
         'menu' => [
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],
@@ -42,7 +42,11 @@
             <h2>{{ $incomeSource->name }}</h2>
 
             <p>
-                {{ $incomeSource->typeDescription() . ' - ' . Auth::user()->formatCurrency($incomeSource->amount, true) }}
+                Projected: {{ Auth::user()->formatCurrency($incomeSource->projected, true) }}
+            </p>
+
+            <p>
+                Actual: {{ Auth::user()->formatCurrency($incomeSource->actual, true) }}
             </p>
 
             <p>{!! nl2br(e($incomeSource->detail)) !!}</p>

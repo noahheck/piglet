@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\CashFlowPlan;
+use App\Family\RecurringExpense;
+use App\Family\IncomeSource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -56,6 +58,20 @@ class CashFlowPlanController extends Controller
             $request->session()->flash('error', "The cash flow plan for {$year}-{$month} has already been created");
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
+
+        // Get current set of income sources to show to the user
+        $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
+
+        // Get current set of recurring expenses to show to the user
+        $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        return view('family.cash-flow-plans.new', [
+            'family' => $family,
+            'year'   => $year,
+            'month'  => $month,
+            'incomeSources'     => $incomeSources,
+            'recurringExpenses' => $recurringExpenses,
+        ]);
     }
 
     /**

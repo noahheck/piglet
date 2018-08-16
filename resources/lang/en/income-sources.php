@@ -16,6 +16,8 @@ return [
     'name'           => 'Name',
     'default-amount' => 'Default Amount',
     'amount'         => 'Amount',
+    'actual'         => 'Actual',
+    'projected'      => 'Projected',
     'active'         => 'Active',
         'inactive'   => 'Inactive',
     'description'    => 'Description',
