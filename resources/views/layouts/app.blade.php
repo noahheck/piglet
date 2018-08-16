@@ -83,5 +83,12 @@
 
     {{--@yield('scripts')--}}
     @stack('scripts')
+
+    @if (session('error'))
+        <script type="text/javascript">
+            alert("Error: \n\n{{ session('error') }}");
+        </script>
+    @endif
+
 </body>
 </html>

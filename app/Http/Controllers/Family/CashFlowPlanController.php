@@ -25,7 +25,9 @@ class CashFlowPlanController extends Controller
 
         $minYear = ($minExisting && $curYear > $minExisting) ? $minExisting : $curYear;
 
-        $years = array_reverse(range($minYear, $nextYear));
+        $years = array_merge(range($minYear, $nextYear), [$curYear]);
+
+        $years = array_unique(array_reverse($years));
 
         return view('family.cash-flow-plans.home', [
             'family'        => $family,
@@ -41,7 +43,19 @@ class CashFlowPlanController extends Controller
      */
     public function create(Family $family)
     {
-        //
+        // This one shouldn't ever be hit; if it is, we'll just ignore it
+    }
+
+    public function createPlan(Request $request, Family $family, $year, $month)
+    {
+        $existingPlan = CashFlowPlan::where(['year' => $year, 'month' => $month])->get();
+
+        \DebugBar::info($existingPlan);
+
+        if ($existingPlan->count()) {
+            $request->session()->flash('error', "The cash flow plan for {$year}-{$month} has already been created");
+            return redirect()->route('family.cash-flow-plans.index', [$family]);
+        }
     }
 
     /**

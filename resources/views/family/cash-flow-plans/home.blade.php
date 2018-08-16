@@ -5,7 +5,7 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family.categories.index.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.cash-flow-plans.index.css') }}" />
 @endpush
 
 @push('scripts')
@@ -14,6 +14,9 @@
 
 
 @php
+
+$curYear  = date('Y');
+$curMonth = (string) date('m');
 
 $months = [
     '01' => 'January',
@@ -59,6 +62,48 @@ $months = [
 
             <hr>
 
+            @foreach ($years as $year)
+
+                <h3>{{ $year }}</h3>
+
+                <div class="row">
+
+                    @foreach ($months as $key => $month)
+
+                        @php
+                            $cashFlowPlan = $cashFlowPlans->where('year', $year)->firstWhere('month', $key);
+
+                            if ($cashFlowPlan) {
+                                $href = route('family.cash-flow-plans.show', [$family, $cashFlowPlan]);
+                            } else {
+                                $href = route('family.cash-flow-plans.create-plan', [$family, $year, $key]);
+                            }
+
+                            $curMonthClass = '';
+                            if ($curYear == $year && $curMonth == $key) {
+                                $curMonthClass = 'current-month';
+                            }
+                        @endphp
+
+                        <div class="col-6 col-sm-4 col-lg-3 mb-3">
+
+                            <a href="{{ $href }}">
+                                <div class="card shadow {{ $curMonthClass }}">
+                                    <div class="card-body">
+                                        {{ $month }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            @endforeach
+
+            {{--<hr>
+
             <div class="accordion" id="budgetsAccordion">
 
                 @foreach ($years as $year)
@@ -103,7 +148,7 @@ $months = [
 
                 @endforeach
 
-            </div>
+            </div>--}}
 
         </div>
 

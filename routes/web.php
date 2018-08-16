@@ -93,6 +93,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         Route::resource('/recurring-expenses', 'RecurringExpenseController');
 
         Route::resource('/cash-flow-plans', 'CashFlowPlanController');
+        Route::get('/cash-flow-plans/create/{year}/{month}', 'CashFlowPlanController@createPlan')->name('cash-flow-plans.create-plan');
 
         Route::namespace('CashFlowPlan')->prefix('/cash-flow-plans/{cashFlowPlan}')->name('cash-flow-plans.')->group(function() {
             Route::resource('/income-sources', 'IncomeSourceController');
