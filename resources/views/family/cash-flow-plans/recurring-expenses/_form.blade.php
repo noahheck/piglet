@@ -25,16 +25,6 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
         <legend>{{ __('recurring-expenses.details') }}</legend>
 
         <div class="form-group">
-            <label for="type">{{ __('recurring-expenses.recurring-expense') }} {{ __('cash-flow-plans.type') }}</label>
-            <select class="custom-select" name="type" id="type" {{ ($editing) ? 'disabled' : '' }}>
-                @foreach ($recurringExpense::$typeDescriptions as $type => $description)
-                    <option value="{{ $type }}" {{ (old('type', $recurringExpense->type) === $type) ? 'selected' : '' }}>{{ $description }}</option>
-                @endforeach
-            </select>
-            @fieldError('type')
-        </div>
-
-        <div class="form-group">
             <label for="recurring_expense_id">{{ __('recurring-expenses.recurring-expense') }}</label>
             <select class="custom-select" name="recurring_expense_id" id="recurring_expense_id" {{ ($editing) ? 'disabled' : '' }}>
 
@@ -105,29 +95,43 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
         <hr>
 
         <div class="form-group">
-            <label for="amount">{{ __('recurring-expenses.amount') }}</label>
+            <label for="projected">{{ __('recurring-expenses.projected') }}</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="amount" id="amount" class="form-control money-field" placeholder="{{ __('recurring-expenses.amount') }}" value="{{ old('amount', Auth::user()->formatCurrency($recurringExpense->amount, false)) }}">
+                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('recurring-expenses.projected') }}" value="{{ old('projected', Auth::user()->formatCurrency($recurringExpense->projected, false)) }}">
             </div>
-            @fieldError('amount')
+            @fieldError('projected')
         </div>
 
 
-        <div class="form-group actual-field">
+
+        <hr>
+
+        <div class="form-group">
+            <label for="actual">{{ __('recurring-expenses.actual') }}</label><button type="button" class="btn btn-sm btn-link" id="copyFromProjected">Copy from projected</button>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><span class="fa fa-dollar"></span></div>
+                </div>
+                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('recurring-expenses.actual') }}" value="{{ old('actual', Auth::user()->formatCurrency($recurringExpense->actual, false)) }}">
+            </div>
+            @fieldError('actual')
+        </div>
+
+
+        <div class="form-group">
             <label for="date">{{ __('recurring-expenses.date') }} <small class="text-muted">mm/dd/yyyy</small></label>
             <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('recurring-expenses.date') }}" value="{{ old('date', Auth::user()->formatDate($recurringExpense->date)) }}">
             @fieldError('date')
         </div>
 
-        <div class="form-group actual-field">
+        <div class="form-group">
             <label for="payment_detail">{{ __('recurring-expenses.payment-detail') }}</label>
             <input type="text" name="payment_detail" id="payment_detail" class="form-control" placeholder="{{ __('recurring-expenses.payment-detail') }}" value="{{ old('payment_detail', $recurringExpense->payment_detail) }}">
             @fieldError('payment_detail')
         </div>
-
 
         <div class="form-group">
             <label for="detail">{{ __('recurring-expenses.details') }}</label>

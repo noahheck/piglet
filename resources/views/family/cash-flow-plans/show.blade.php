@@ -116,20 +116,29 @@ $months = [
 
                     <div id="actual_recurringExpenses" class="section actual-section">
                         <h3>
-                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}#actual">Recurring Expenses</a>
+                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
                         </h3>
 
                         <table class="table table-sm">
                             <caption>{{ __('cash-flow-plans.actual') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
-                            @foreach ($cashFlowPlan->recurringExpenses->where('type', 'actual') as $recurringExpense)
+                            <thead>
+                                <tr>
+                                    <td class="text-center">Name</td>
+                                    <td class="text-right">Projected</td>
+                                    <td class="text-right">Actual</td>
+                                </tr>
+                            </thead>
+                            @foreach ($cashFlowPlan->recurringExpenses as $recurringExpense)
                                 <tr>
                                     <td>{{ $recurringExpense->name }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->amount, true) }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
                                 </tr>
                             @endforeach
 
                             <tr>
                                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
                                 <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
                             </tr>
                         </table>

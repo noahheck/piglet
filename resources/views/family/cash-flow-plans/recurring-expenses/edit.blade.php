@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('recurring-expenses.recurring-expenses') }} - {{ $recurringExpense->name }} ({{ $recurringExpense->typeDescription() }}) - {{ __('form.edit') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('recurring-expenses.recurring-expenses') }} - {{ $recurringExpense->name }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -20,7 +20,7 @@
             route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) => __('recurring-expenses.recurring-expenses'),
-            route('family.cash-flow-plans.recurring-expenses.show', [$family, $cashFlowPlan, $recurringExpense]) => $recurringExpense->name . ' (' . $recurringExpense->typeDescription() . ')',
+            route('family.cash-flow-plans.recurring-expenses.show', [$family, $cashFlowPlan, $recurringExpense]) => $recurringExpense->name,
         ],
         'location'   => __('form.edit'),
         'menu' => [

@@ -35,8 +35,8 @@ class RecurringExpense extends Model
         'category_id',
         'sub_category',
         'name',
-        'type',
-        'amount',
+        'projected',
+        'actual',
         'date',
         'payment_detail',
         'detail',
@@ -48,7 +48,6 @@ class RecurringExpense extends Model
         'category_id',
         'sub_category',
         'name',
-        'type',
     ];
 
     public static function getValidations()
@@ -56,21 +55,10 @@ class RecurringExpense extends Model
         return [
             'name'                 => 'required',
             'recurring_expense_id' => 'integer|nullable',
-            'type'                 => 'required|in:budget,actual',
             'date'                 => 'date|nullable',
+            'projected'            => 'numeric|nullable',
+            'actual'               => 'numeric|nullable',
         ];
-    }
-
-    public function fill(array $attributes = [])
-    {
-        parent::fill($attributes);
-
-        if ($this->type === 'budget') {
-            $this->date           = null;
-            $this->payment_detail = null;
-        }
-
-        return $this;
     }
 
     public function cashFlowPlan()

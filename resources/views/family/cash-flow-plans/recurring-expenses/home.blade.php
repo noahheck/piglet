@@ -39,7 +39,47 @@
 
             <h2>{{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} {{ __('recurring-expenses.recurring-expenses') }}</h2>
 
-            <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
+            @if ($cashFlowPlan->recurringExpenses->count() === 0)
+
+                {{ __('recurring-expenses.no-recurring-expenses-create') }}
+                <p class="text-center">
+                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan]) }}">
+                        <span class="fa fa-plus-circle"></span>
+                        {{ __('recurring-expenses.add-new-recurring-expense') }}
+                    </a>
+                </p>
+
+            @else
+
+                <table class="table table-sm">
+                    <caption>{{ __('cash-flow-plans.actual') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
+                    <thead>
+                    <tr>
+                        <td class="text-center">Name</td>
+                        <td class="text-right">Projected</td>
+                        <td class="text-right">Actual</td>
+                    </tr>
+                    </thead>
+                    @foreach ($cashFlowPlan->recurringExpenses as $recurringExpense)
+                        <tr>
+                            <td><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
+                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
+                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                        </tr>
+                    @endforeach
+
+                    <tr>
+                        <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
+                    </tr>
+                </table>
+
+        </div>
+
+            @endif
+
+            {{--<ul class="nav nav-tabs" id="budgetTabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="true">{{ __('cash-flow-plans.budget') }}</a>
                 </li>
@@ -132,7 +172,7 @@
 
                 </div>
 
-            </div>
+            </div>--}}
 
         </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('recurring-expenses.recurring-expenses') }} - {{ $recurringExpense->name }} ({{ $recurringExpense->typeDescription() }})
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('recurring-expenses.recurring-expenses') }} - {{ $recurringExpense->name }}
 @endsection
 
 @push('stylesheets')
@@ -21,7 +21,7 @@
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) => __('recurring-expenses.recurring-expenses'),
         ],
-        'location'   => $recurringExpense->name . ' (' . $recurringExpense->typeDescription() . ')',
+        'location'   => $recurringExpense->name,
         'menu' => [
             /*['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],*/
             ['type' => 'link', 'href' => route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('recurring-expenses.add-new-recurring-expense')],
@@ -42,11 +42,14 @@
             <h2>{{ $recurringExpense->name }}</h2>
 
             <dl>
-                <dt>{{ __('cash-flow-plans.type') }}</dt>
-                <dd>{{ $recurringExpense->typeDescription() }}</dd>
 
-                <dt>{{ __('recurring-expenses.amount') }}</dt>
-                <dd>{{ Auth::user()->formatCurrency($recurringExpense->amount, true) }}</dd>
+                <dt>{{ __('recurring-expenses.projected') }}</dt>
+                <dd>{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</dd>
+
+                @if ($recurringExpense->actual)
+                    <dt>{{ __('recurring-expenses.actual') }}</dt>
+                    <dd>{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</dd>
+                @endif
 
                 @if ($recurringExpense->date)
                     <dt>{{ __('recurring-expenses.date') }}</dt>

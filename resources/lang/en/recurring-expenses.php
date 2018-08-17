@@ -22,6 +22,8 @@ return [
     'category'       => 'Category',
     'sub-category'   => 'Sub-Category',
     'amount'         => 'Amount',
+    'actual'         => 'Actual',
+    'projected'      => 'Projected',
     'date'           => 'Date',
     'payment-detail' => 'Payment Detail',
 ];

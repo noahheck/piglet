@@ -4,25 +4,7 @@
 
 let $ = require('jquery');
 
-let actualFields = $('.actual-field');
-
-function showFields(expenseType) {
-    if (expenseType === 'budget') {
-        actualFields.hide();
-    } else {
-        actualFields.show();
-    }
-}
-
 $(function() {
-
-    let typeField = $('#type');
-
-    showFields(typeField.val());
-
-    typeField.change(function() {
-        showFields($(this).val());
-    });
 
     $('#recurring_expense_id').change(function() {
 
@@ -47,10 +29,17 @@ $(function() {
 
         $('#sub_category').val(subCategory);
 
-        $('#amount').val(amount);
+        $('#projected').val(amount);
+        // $('#actual').val(amount);
 
         $('#detail').val(detail);
 
+    });
+
+    $('#copyFromProjected').click(function() {
+        $('#actual').val(
+            $('#projected').val()
+        ).focus();
     });
 
 });
