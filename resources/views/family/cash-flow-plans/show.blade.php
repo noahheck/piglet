@@ -120,7 +120,7 @@ $months = [
                         </h3>
 
                         <table class="table table-sm">
-                            <caption>{{ __('cash-flow-plans.actual') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
+                            <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                             <thead>
                                 <tr>
                                     <td class="text-center">Name</td>
