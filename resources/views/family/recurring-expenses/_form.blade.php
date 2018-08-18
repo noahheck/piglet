@@ -50,7 +50,7 @@
             <select name="merchant_id" id="merchant_id" class="custom-select">
                 <option value="">--</option>
                 @foreach ($merchants as $merchant)
-                    <option value="{{ $merchant->id }}" {{ ($recurringExpense->merchant_id == $merchant->id) ? ' selected' : '' }}>{{ $merchant->name }}</option>
+                    <option value="{{ $merchant->id }}" {{ ($recurringExpense->merchant_id == $merchant->id) ? ' selected' : '' }} data-default-category="{{ $merchant->default_category_id }}" data-default-sub-category="{{ $merchant->default_sub_category }}">{{ $merchant->name }}</option>
                 @endforeach
             </select>
             @fieldError('merchant_id')
