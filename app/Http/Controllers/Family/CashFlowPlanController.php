@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Family;
 
 use App\Family;
+use App\Family\Category;
 use App\Family\CashFlowPlan;
 use App\Family\RecurringExpense;
 use App\Family\IncomeSource;
@@ -93,9 +94,15 @@ class CashFlowPlanController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan)
     {
+        $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
+
+        $recurringExpenses = $cashFlowPlan->recurringExpenses;
+
         return view('family.cash-flow-plans.show', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,
+            'categories'   => $categories,
+            'recurringExpenses' => $recurringExpenses,
         ]);
     }
 

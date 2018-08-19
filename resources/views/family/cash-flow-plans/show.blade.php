@@ -128,12 +128,14 @@ $months = [
                                     <td class="text-right">Actual</td>
                                 </tr>
                             </thead>
-                            @foreach ($cashFlowPlan->recurringExpenses as $recurringExpense)
-                                <tr>
-                                    <td>{{ $recurringExpense->name }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
-                                </tr>
+                            @foreach ($categories as $category)
+                                @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
+                                    <tr>
+                                        <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}">{{ $recurringExpense->name }}</td>
+                                        <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
+                                        <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                                    </tr>
+                                @endforeach
                             @endforeach
 
                             <tr>
