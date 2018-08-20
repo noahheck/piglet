@@ -122,7 +122,7 @@ $months = [
                         <table class="table table-sm">
                             <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                             <thead>
-                                <tr>
+                                <tr class="font-weight-bold">
                                     <td class="text-center">Name</td>
                                     <td class="text-right">Projected</td>
                                     <td class="text-right">Actual</td>
@@ -130,7 +130,7 @@ $months = [
                             </thead>
                             @foreach ($categories as $category)
                                 @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
-                                    <tr>
+                                    <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                                         <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}">{{ $recurringExpense->name }}</td>
                                         <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
                                         <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>

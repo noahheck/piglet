@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Family\CashFlowPlan;
 
+use App\Family\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,9 +19,15 @@ class RecurringExpenseController extends Controller
      */
     public function index(Family $family, CashFlowPlan $cashFlowPlan)
     {
+        $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
+
+        $recurringExpenses = $cashFlowPlan->recurringExpenses()->orderBy('name')->get();
+
         return view('family.cash-flow-plans.recurring-expenses.home', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,
+            'categories'   => $categories,
+            'recurringExpenses' => $recurringExpenses,
         ]);
     }
 

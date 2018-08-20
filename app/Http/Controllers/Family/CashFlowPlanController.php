@@ -96,7 +96,7 @@ class CashFlowPlanController extends Controller
     {
         $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
 
-        $recurringExpenses = $cashFlowPlan->recurringExpenses;
+        $recurringExpenses = $cashFlowPlan->recurringExpenses()->orderBy('name')->get();
 
         return view('family.cash-flow-plans.show', [
             'family'       => $family,

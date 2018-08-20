@@ -39,7 +39,7 @@
 
             <h2>{{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} {{ __('recurring-expenses.recurring-expenses') }}</h2>
 
-            @if ($cashFlowPlan->recurringExpenses->count() === 0)
+            @if ($recurringExpenses->count() === 0)
 
                 {{ __('recurring-expenses.no-recurring-expenses-create') }}
                 <p class="text-center">
@@ -54,18 +54,21 @@
                 <table class="table table-sm">
                     <caption>{{ __('cash-flow-plans.actual') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
                     <thead>
-                    <tr>
+                    <tr class="font-weight-bold">
                         <td class="text-center">Name</td>
                         <td class="text-right">Projected</td>
                         <td class="text-right">Actual</td>
                     </tr>
                     </thead>
-                    @foreach ($cashFlowPlan->recurringExpenses as $recurringExpense)
-                        <tr>
-                            <td><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
-                        </tr>
+
+                    @foreach ($categories as $category)
+                        @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
+                            <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
+                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                            </tr>
+                        @endforeach
                     @endforeach
 
                     <tr>
@@ -75,104 +78,7 @@
                     </tr>
                 </table>
 
-        </div>
-
             @endif
-
-            {{--<ul class="nav nav-tabs" id="budgetTabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="budgetTab" data-toggle="tab" href="#budget" role="tab" aria-controls="budget" aria-selected="true">{{ __('cash-flow-plans.budget') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="actualTab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">{{ __('cash-flow-plans.actual') }}</a>
-                </li>
-            </ul>
-
-            <div class="tab-content" id="myTabContent">
-
-                <div class="tab-pane fade show active" id="budget" role="tabpanel" aria-labelledby="budgetTab">
-
-                    <div class="row justify-content-center mt-3">
-
-                        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
-
-                            @if ($cashFlowPlan->recurringExpenses->where('type', 'budget')->count() === 0)
-
-                                {{ __('recurring-expenses.no-recurring-expenses-create') }}
-                                <p class="text-center">
-                                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan]) }}">
-                                        <span class="fa fa-plus-circle"></span>
-                                        {{ __('recurring-expenses.add-new-recurring-expense') }}
-                                    </a>
-                                </p>
-
-                            @else
-
-                                <ul class="list-group shadow income-sources" id="budgeted-income-sources">
-                                    @foreach ($cashFlowPlan->recurringExpenses->where('type', 'budget') as $expense)
-                                        <li class="list-group-item">
-                                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $expense]) }}">
-                                                {{ $expense->name }} - {{ Auth::user()->formatCurrency($expense->amount, true) }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-
-                                <hr>
-
-                                <h5>{{ __('cash-flow-plans.total') }}: {{ Auth::user()->formatCurrency($cashFlowPlan->recurringExpenses->where('type', 'budget')->sum('amount'), true) }}</h5>
-
-                            @endif
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actualTab">
-
-                    <div class="row justify-content-center mt-3">
-
-                        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
-
-                            @if ($cashFlowPlan->recurringExpenses->where('type', 'actual')->count() === 0)
-
-                                {{ __('recurring-expenses.no-recurring-expenses-create') }}
-                                <p class="text-center">
-                                    <a class="btn btn-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan]) }}">
-                                        <span class="fa fa-plus-circle"></span>
-                                        {{ __('recurring-expenses.add-new-recurring-expense') }}
-                                    </a>
-                                </p>
-
-                            @else
-
-                                <ul class="list-group shadow income-sources" id="budgeted-income-sources">
-                                    @foreach ($cashFlowPlan->recurringExpenses->where('type', 'actual') as $expense)
-                                        <li class="list-group-item">
-                                            <a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $expense]) }}">
-                                                {{ $expense->name }} - {{ Auth::user()->formatCurrency($expense->amount, true) }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-
-                                <hr>
-
-                                <h5>{{ __('cash-flow-plans.total') }}: {{ Auth::user()->formatCurrency($cashFlowPlan->recurringExpenses->where('type', 'actual')->sum('amount'), true) }}</h5>
-
-                            @endif
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>--}}
 
         </div>
 
