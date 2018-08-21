@@ -53,12 +53,13 @@ class CashFlowPlanController extends Controller
     {
         $existingPlan = CashFlowPlan::where(['year' => $year, 'month' => $month])->get();
 
-        \DebugBar::info($existingPlan);
-
         if ($existingPlan->count()) {
             $request->session()->flash('error', "The cash flow plan for {$year}-{$month} has already been created");
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
+
+        // Get list of categories to organize expenses
+        $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
 
         // Get current set of income sources to show to the user
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
@@ -70,6 +71,7 @@ class CashFlowPlanController extends Controller
             'family' => $family,
             'year'   => $year,
             'month'  => $month,
+            'categories'        => $categories,
             'incomeSources'     => $incomeSources,
             'recurringExpenses' => $recurringExpenses,
         ]);
@@ -83,7 +85,32 @@ class CashFlowPlanController extends Controller
      */
     public function store(Request $request, Family $family)
     {
-        //
+        // This one shouldn't ever be hit; if it is, we'll just ignore it
+    }
+
+    public function storePlan(Request $request, Family $family, $year, $month)
+    {
+        $existingPlan = CashFlowPlan::where(['year' => $year, 'month' => $month])->get();
+
+        if ($existingPlan->count()) {
+            $request->session()->flash('error', "The cash flow plan for {$year}-{$month} has already been created");
+            return redirect()->route('family.cash-flow-plans.index', [$family]);
+        }
+
+        // Get current set of income sources to show to the user
+        $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
+
+        // Get current set of recurring expenses to show to the user
+        $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $recurringExpenses);
+
+        if (!$cashFlowPlan) {
+            $request->session()->flash('error', "Unable to create the cash flow plan for {$year}-{$month}");
+            return redirect()->route('family.cash-flow-plans.index', [$family]);
+        }
+
+        return redirect()->route('family.cash-flow-plans.show', [$family, $cashFlowPlan]);
     }
 
     /**

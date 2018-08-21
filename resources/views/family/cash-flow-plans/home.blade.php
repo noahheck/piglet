@@ -19,18 +19,18 @@ $curYear  = date('Y');
 $curMonth = (string) date('m');
 
 $months = [
-    '01' => 'January',
-    '02' => 'February',
-    '03' => 'March',
-    '04' => 'April',
-    '05' => 'May',
-    '06' => 'June',
-    '07' => 'July',
-    '08' => 'August',
-    '09' => 'September',
-    '10' => 'October',
-    '11' => 'November',
-    '12' => 'December',
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
 ];
 
 @endphp
@@ -68,19 +68,22 @@ $months = [
 
                 <div class="row">
 
-                    @foreach ($months as $key => $month)
+                    @foreach ($months as $month)
 
                         @php
-                            $cashFlowPlan = $cashFlowPlans->where('year', $year)->firstWhere('month', $key);
+                            $cashFlowPlan = $cashFlowPlans->where('year', $year)->firstWhere('month', $month);
+
+                            $hasPlan = false;
 
                             if ($cashFlowPlan) {
                                 $href = route('family.cash-flow-plans.show', [$family, $cashFlowPlan]);
+                                $hasPlan = true;
                             } else {
-                                $href = route('family.cash-flow-plans.create-plan', [$family, $year, $key]);
+                                $href = route('family.cash-flow-plans.create-plan', [$family, $year, $month]);
                             }
 
                             $curMonthClass = '';
-                            if ($curYear == $year && $curMonth == $key) {
+                            if ($curYear == $year && $curMonth == $month) {
                                 $curMonthClass = 'current-month';
                             }
                         @endphp
@@ -90,7 +93,16 @@ $months = [
                             <a href="{{ $href }}">
                                 <div class="card shadow {{ $curMonthClass }}">
                                     <div class="card-body">
-                                        {{ $month }}
+                                        {{ __('months.' .$month) }}
+                                        <hr>
+
+                                        @if ($hasPlan)
+
+                                            {{ Auth::user()->formatCurrency($cashFlowPlan->allActualExpensesTotal(), true) }}
+
+                                        @else
+                                            Begin Plan
+                                        @endif
                                     </div>
                                 </div>
                             </a>

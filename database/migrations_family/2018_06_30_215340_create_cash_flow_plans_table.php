@@ -17,7 +17,7 @@ class CreateCashFlowPlansTable extends Migration
             $table->increments('id');
             $table->integer('year');
             $table->integer('month');
-            $table->text('details');
+            $table->text('details')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -63,6 +63,7 @@ mix
 
     .sass('resources/assets/sass/family/cash-flow-plans/index.scss', 'public/css/family.cash-flow-plans.index.css')
     .sass('resources/assets/sass/family/cash-flow-plans/show.scss', 'public/css/family.cash-flow-plans.show.css')
+    .sass('resources/assets/sass/family/cash-flow-plans/create.scss', 'public/css/family.cash-flow-plans.create.css')
 
     .js('resources/assets/js/family/cash-flow-plans/income-sources/index.js', 'public/js/family.cash-flow-plans.income-sources.index.js')
     .js('resources/assets/js/family/cash-flow-plans/income-sources/_form.js', 'public/js/family.cash-flow-plans.income-sources._form.js')
