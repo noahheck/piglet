@@ -57,7 +57,7 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
-        return redirect()->route('family.income-sources.show', [$family, $incomeSource]);
+        return redirect()->route('family.income-sources.index', [$family]);
     }
 
     /**
@@ -105,7 +105,7 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
-        return redirect()->route('family.income-sources.show', [$family, $incomeSource]);
+        return redirect()->route('family.income-sources.index', [$family]);
     }
 
     /**

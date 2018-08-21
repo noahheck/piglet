@@ -68,7 +68,7 @@
                             @foreach ($recurringExpenses->where('active', true) as $expense)
 
                                 <li class="recurring-expense list-group-item">
-                                    <a href="{{ route('family.recurring-expenses.show', [$family, $expense]) }}">
+                                    <a href="{{ route('family.recurring-expenses.edit', [$family, $expense]) }}">
                                         {{ $expense->name }}
                                         {{ ($expense->default_amount) ? ' - ' . Auth::user()->formatCurrency($expense->default_amount, true) : '' }}
                                     </a>
@@ -88,7 +88,7 @@
                             @foreach ($recurringExpenses->where('active', false) as $expense)
 
                                 <li class="recurring-expense list-group-item">
-                                    <a href="{{ route('family.recurring-expenses.show', [$family, $expense]) }}">
+                                    <a href="{{ route('family.recurring-expenses.edit', [$family, $expense]) }}">
                                         {{ $expense->name }}
                                         {{ ($expense->default_amount) ? ' - ' . Auth::user()->formatCurrency($expense->default_amount, true) : '' }}
                                     </a>

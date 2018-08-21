@@ -68,7 +68,7 @@
                             @foreach ($incomeSources->where('active', true) as $source)
 
                                 <li class="income-source list-group-item">
-                                    <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
+                                    <a href="{{ route('family.income-sources.edit', [$family, $source]) }}">
                                         {{ $source->name }}
                                         {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
                                     </a>
@@ -88,7 +88,7 @@
                             @foreach ($incomeSources->where('active', false) as $source)
 
                                 <li class="income-source list-group-item">
-                                    <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
+                                    <a href="{{ route('family.income-sources.edit', [$family, $source]) }}">
                                         {{ $source->name }}
                                         {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
                                     </a>

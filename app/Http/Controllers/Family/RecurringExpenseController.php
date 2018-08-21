@@ -58,7 +58,7 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
-        return redirect()->route('family.recurring-expenses.show', [$family, $recurringExpense]);
+        return redirect()->route('family.recurring-expenses.index', [$family]);
     }
 
     /**
@@ -106,7 +106,7 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
-        return redirect()->route('family.recurring-expenses.show', [$family, $recurringExpense]);
+        return redirect()->route('family.recurring-expenses.index', [$family]);
     }
 
     /**
