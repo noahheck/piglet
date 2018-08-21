@@ -28,7 +28,8 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
             <label for="recurring_expense_id">{{ __('recurring-expenses.recurring-expense') }}</label>
             <select class="custom-select" name="recurring_expense_id" id="recurring_expense_id" {{ ($editing) ? 'disabled' : '' }}>
 
-                <option value="">Select a recurring expense</option>
+                <option value="">{{ __('recurring-expenses.select-recurring-expense') }}</option>
+                <option value="">{{ __('form.other') }}</option>
 
                 @foreach ($categories as $category)
                     @continue($recurringExpenseTemplates->where('category_id', $category->id)->count() === 0)
@@ -110,7 +111,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
         <hr>
 
         <div class="form-group">
-            <label for="actual">{{ __('recurring-expenses.actual') }}</label><button type="button" class="btn btn-sm btn-link" id="copyFromProjected">Copy from projected</button>
+            <label for="actual">{{ __('recurring-expenses.actual') }}</label><button type="button" class="btn btn-sm btn-link" id="copyFromProjected">{{ __('recurring-expenses.copy-from-projected') }}</button>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>

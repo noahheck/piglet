@@ -52,12 +52,12 @@
             @else
 
                 <table class="table table-sm">
-                    <caption>{{ __('cash-flow-plans.actual') }} {{ __('recurring-expenses.recurring-expenses') }}</caption>
+                    <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                     <thead>
                     <tr class="font-weight-bold">
-                        <td class="text-center">Name</td>
-                        <td class="text-right">Projected</td>
-                        <td class="text-right">Actual</td>
+                        <td class="text-center">{{ __('recurring-expenses.name') }}</td>
+                        <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
+                        <td class="text-right">{{ __('recurring-expenses.actual') }}</td>
                     </tr>
                     </thead>
 

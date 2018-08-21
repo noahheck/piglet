@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans - {{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}
 @endsection
 
 @push('stylesheets')
@@ -18,7 +18,7 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
-            route('family.cash-flow-plans.index', [$family]) => 'Cash Flow Plans',
+            route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
         ],
         'location'   => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
     ])
@@ -40,10 +40,10 @@
 
             <ul class="nav nav-tabs" id="budgetTabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="overviewTab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                    <a class="nav-link active" id="overviewTab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ __('cash-flow-plans.overview') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Details</a>
+                    <a class="nav-link" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">{{ __('cash-flow-plans.details') }}</a>
                 </li>
             </ul>
 
@@ -51,7 +51,7 @@
             <div class="tab-content" id="myTabContent">
 
                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overviewTab">
-                    Overview
+                    {{ __('cash-flow-plans.overview') }}
                 </div>
 
 
@@ -68,9 +68,9 @@
                             <caption>{{ __('income-sources.income-sources') }}</caption>
                             <thead>
                                 <tr class="font-weight-bold">
-                                    <td class="text-center">Name</td>
-                                    <td class="text-right">Projected</td>
-                                    <td class="text-right">Actual</td>
+                                    <td class="text-center">{{ __('income-sources.name') }}</td>
+                                    <td class="text-right">{{ __('income-sources.projected') }}</td>
+                                    <td class="text-right">{{ __('income-sources.actual') }}</td>
                                 </tr>
                             </thead>
                             @foreach ($cashFlowPlan->incomeSources as $incomeSource)
@@ -92,8 +92,6 @@
 
 
 
-
-
                     <div id="actual_recurringExpenses" class="section actual-section">
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
@@ -103,9 +101,9 @@
                             <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                             <thead>
                                 <tr class="font-weight-bold">
-                                    <td class="text-center">Name</td>
-                                    <td class="text-right">Projected</td>
-                                    <td class="text-right">Actual</td>
+                                    <td class="text-center">{{ __('recurring-expenses.name') }}</td>
+                                    <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
+                                    <td class="text-right">{{ __('recurring-expenses.actual') }}</td>
                                 </tr>
                             </thead>
                             @foreach ($categories as $category)
@@ -126,9 +124,6 @@
                         </table>
 
                     </div>
-
-
-
 
                 </div>
 

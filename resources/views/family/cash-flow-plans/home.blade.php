@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }}
 @endsection
 
 @push('stylesheets')
@@ -42,7 +42,7 @@ $months = [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
         ],
-        'location'   => 'Cash Flow Plans',
+        'location'   => __('cash-flow-plans.cash-flow-plans'),
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
@@ -58,7 +58,7 @@ $months = [
 
         <div class="col-12 col-md-9">
 
-            <h2>Cash Flow Plans</h2>
+            <h2>{{ __('cash-flow-plans.cash-flow-plans') }}</h2>
 
             <hr>
 
@@ -101,7 +101,7 @@ $months = [
                                             {{ Auth::user()->formatCurrency($cashFlowPlan->allActualExpensesTotal(), true) }}
 
                                         @else
-                                            Begin Plan
+                                            {{ __('cash-flow-plans.create-plan') }}
                                         @endif
                                     </div>
                                 </div>
@@ -113,54 +113,6 @@ $months = [
                 </div>
 
             @endforeach
-
-            {{--<hr>
-
-            <div class="accordion" id="budgetsAccordion">
-
-                @foreach ($years as $year)
-
-                    <div class="card" id="heading_{{ $year }}">
-                        <div class="card-header">
-                            <h5>
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_{{ $year }}">
-                                    {{ $year }}
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapse_{{ $year }}" class="collapse" data-parent="#budgetsAccordion">
-
-                            <ul class="list-group list-group-flush">
-
-                                @foreach($months as $key => $month)
-
-                                    @php
-                                        $cashFlowPlan = $cashFlowPlans->where('year', $year)->firstWhere('month', $key);
-                                    @endphp
-
-                                    <li class="list-group-item">
-
-                                        @if ($cashFlowPlan)
-
-                                            <a href="{{ route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) }}">{{ $key }}/{{ $cashFlowPlan->year }}</a>
-
-                                        @else
-                                            No cash flow plan found - Create one now
-                                        @endif
-                                    </li>
-
-                                @endforeach
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                @endforeach
-
-            </div>--}}
 
         </div>
 

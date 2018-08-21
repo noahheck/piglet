@@ -8,8 +8,10 @@ return [
     'active-recurring-expenses'    => 'Active Recurring Expenses',
     'inactive-recurring-expenses'  => 'Inactive Recurring Expenses',
     'search-recurring-expenses'    => 'Search Recurring Expenses',
+    'select-recurring-expense'     => 'Select Recurring Expense',
 
     'create-new' => 'Create New',
+    'copy-from-projected' => 'Copy from projected',
 
     'details' => 'Details',
 

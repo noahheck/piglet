@@ -52,9 +52,9 @@
                     <caption>{{ __('income-sources.income-sources') }}</caption>
                     <thead>
                         <tr class="font-weight-bold">
-                            <td class="text-center">Name</td>
-                            <td class="text-right">Projected</td>
-                            <td class="text-right">Actual</td>
+                            <td class="text-center">{{ __('income-sources.name') }}</td>
+                            <td class="text-right">{{ __('income-sources.projected') }}</td>
+                            <td class="text-right">{{ __('income-sources.actual') }}</td>
                         </tr>
                     </thead>
 

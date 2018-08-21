@@ -42,11 +42,11 @@
             <h2>{{ $incomeSource->name }}</h2>
 
             <p>
-                Projected: {{ Auth::user()->formatCurrency($incomeSource->projected, true) }}
+                {{ __('income-sources.projected') }}: {{ Auth::user()->formatCurrency($incomeSource->projected, true) }}
             </p>
 
             <p>
-                Actual: {{ Auth::user()->formatCurrency($incomeSource->actual, true) }}
+                {{ __('income-sources.actual') }}: {{ Auth::user()->formatCurrency($incomeSource->actual, true) }}
             </p>
 
             <p>{!! nl2br(e($incomeSource->detail)) !!}</p>

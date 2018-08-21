@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - Cash Flow Plans - Create - {{ __('months.' . $month) }} {{ $year }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('form.create') }} - {{ __('months.' . $month) }} {{ $year }}
 @endsection
 
 @push('stylesheets')
@@ -18,9 +18,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
-            route('family.cash-flow-plans.index', [$family]) => 'Cash Flow Plans',
+            route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
         ],
-        'location'   => 'Create - ' .__('months.' . $month) . ' ' . $year,
+        'location'   => __('form.create') . ' - ' .__('months.' . $month) . ' ' . $year,
     ])
         {{--'menu' => [
             ['type' => 'link', 'href' => route('family.categories.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('categories.add-new-category')],
@@ -36,25 +36,23 @@
 
         <div class="col-12 col-md-9">
 
-            <h2>Create Cash Flow Plan for {{ __('months.' . $month) }} {{ $year }}</h2>
+            <h2>{{ __('cash-flow-plans.create-for-month-year', ['month' => __('months.' . $month), 'year' => $year]) }}</h2>
 
             <hr>
 
             <p>
-                The Cash Flow Plan will be created with the following entries:
-                <br>
-                <small class="text-muted">(Note: you'll be able to modify these entries later)</small>
+                {{ __('cash-flow-plans.created-with-entries') }}:
             </p>
 
             <div class="section">
-                <h3>Income Sources</h3>
+                <h3>{{ __('income-sources.income-sources') }}</h3>
 
                 <table class="table table-sm">
                     <caption>{{ __('income-sources.income-sources') }}</caption>
                     <thead>
                     <tr class="font-weight-bold">
-                        <td class="text-center">Name</td>
-                        <td class="text-right">Projected</td>
+                        <td class="text-center">{{ __('income-sources.name') }}</td>
+                        <td class="text-right">{{ __('income-sources.projected') }}</td>
                     </tr>
                     </thead>
                     @foreach ($incomeSources as $incomeSource)
@@ -73,14 +71,14 @@
             </div>
 
             <div class="section">
-                <h3>Recurring Expenses</h3>
+                <h3>{{ __('recurring-expenses.recurring-expenses') }}</h3>
 
                 <table class="table table-sm">
                     <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                     <thead>
                     <tr class="font-weight-bold">
-                        <td class="text-center">Name</td>
-                        <td class="text-right">Projected</td>
+                        <td class="text-center">{{ __('recurring-expenses.name') }}</td>
+                        <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
                     </tr>
                     </thead>
                     @foreach ($categories as $category)
@@ -102,17 +100,17 @@
 
             <hr>
 
-            <p>Are you sure you want to create this cash flow plan?</p>
+            <p>{{ __('cash-flow-plans.create-plan-confirmation') }}</p>
 
             <form action="{{ route('family.cash-flow-plans.store-plan', [$family, $year, $month]) }}" method="POST">
 
                 @csrf
 
                 <button type="submit" class="btn btn-primary">
-                    Create Plan
+                    {{ __('cash-flow-plans.create-plan') }}
                 </button>
 
-                <a href="{{ route('family.cash-flow-plans.index', [$family]) }}" class="btn btn-secondary">Cancel</a>
+                <a href="{{ route('family.cash-flow-plans.index', [$family]) }}" class="btn btn-secondary">{{ __('form.cancel') }}</a>
 
             </form>
 
