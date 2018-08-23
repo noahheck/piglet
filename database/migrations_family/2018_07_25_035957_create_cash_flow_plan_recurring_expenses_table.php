@@ -17,9 +17,9 @@ class CreateCashFlowPlanRecurringExpensesTable extends Migration
             $table->increments('id');
             $table->integer('cash_flow_plan_id');
             $table->integer('recurring_expense_id');
-            $table->integer('merchant_id');
-            $table->integer('category_id');
-            $table->string('sub_category');
+            $table->integer('merchant_id')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->string('sub_category')->nullable();
             $table->string('name');
             $table->date('date')->nullable();
             $table->decimal('projected')->nullable();

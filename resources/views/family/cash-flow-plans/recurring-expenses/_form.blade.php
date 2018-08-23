@@ -29,7 +29,25 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
             <select class="custom-select" name="recurring_expense_id" id="recurring_expense_id" {{ ($editing) ? 'disabled' : '' }}>
 
                 <option value="">{{ __('recurring-expenses.select-recurring-expense') }}</option>
-                <option value="">{{ __('form.other') }}</option>
+
+                @if ($recurringExpenseTemplates->where('category_id', null)->count() > 0)
+                    <optgroup label="-- {{ __('recurring-expenses.uncategorized') }} --">
+
+                        @foreach ($recurringExpenseTemplates->where('category_id', null) as $template)
+                            <option
+                                value="{{ $template->id }}"
+                                data-merchant-id="{{ $template->merchant_id }}"
+                                data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}"
+                                data-category=""
+                                data-sub-category=""
+                                data-name="{{ $template->name }}"
+                                data-description="{{ $template->description }}"
+                                {{ ($template->id == old('recurring_expense_id', $recurringExpense->recurring_expense_id)) ? 'selected' : '' }}
+                            >{{ $template->name }}</option>
+                        @endforeach
+
+                    </optgroup>
+                @endif
 
                 @foreach ($categories as $category)
                     @continue($recurringExpenseTemplates->where('category_id', $category->id)->count() === 0)
@@ -39,7 +57,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                             <option
                                 value="{{ $template->id }}"
                                 data-merchant-id="{{ $template->merchant_id }}"
-                                data-default-amount="{{ $template->default_amount }}"
+                                data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}"
                                 data-category="{{ $template->category_id }}"
                                 data-sub-category="{{ $template->sub_category }}"
                                 data-name="{{ $template->name }}"

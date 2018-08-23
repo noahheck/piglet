@@ -8,6 +8,7 @@ return [
     'active-income-sources'    => 'Active Income Sources',
     'inactive-income-sources'  => 'Inactive Income Sources',
     'search-income-sources'    => 'Search Income Sources',
+    'select-income-source'     => 'Select Income Source',
 
     'create-new' => 'Create New',
 

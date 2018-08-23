@@ -122,10 +122,8 @@ class IncomeSourceController extends Controller
      */
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
-        $type = $incomeSource->type;
-
         $incomeSource->delete();
 
-        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan, '#' . $type]);
+        return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
     }
 }

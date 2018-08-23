@@ -106,6 +106,15 @@
                                     <td class="text-right">{{ __('recurring-expenses.actual') }}</td>
                                 </tr>
                             </thead>
+
+                            @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
+                                <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
+                                    <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                                </tr>
+                            @endforeach
+
                             @foreach ($categories as $category)
                                 @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
                                     <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">

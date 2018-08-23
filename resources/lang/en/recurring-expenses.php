@@ -21,6 +21,7 @@ return [
         'inactive'   => 'Inactive',
     'description'    => 'Description',
     'merchant'       => 'Merchant',
+    'uncategorized'  => 'Uncategorized',
     'category'       => 'Category',
     'sub-category'   => 'Sub-Category',
     'amount'         => 'Amount',

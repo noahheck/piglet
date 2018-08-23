@@ -113,7 +113,7 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
-        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan, '#' . $recurringExpense->type]);
+        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -124,6 +124,8 @@ class RecurringExpenseController extends Controller
      */
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
     {
-        //
+        $recurringExpense->delete();
+
+        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]);
     }
 }
