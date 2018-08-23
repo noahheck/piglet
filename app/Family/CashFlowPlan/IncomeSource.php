@@ -4,17 +4,20 @@ namespace App\Family\CashFlowPlan;
 
 use App\Family\CashFlowPlan;
 use App\Family\Model;
+use App\Traits\HasDateField;
 use App\Traits\PopulatesCashFlowPlan;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class IncomeSource extends Model
 {
     use SoftDeletes,
+        HasDateField,
         PopulatesCashFlowPlan;
 
     protected $table = 'cash_flow_plan_income_sources';
 
     protected $dates = [
+        'date',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -25,6 +28,7 @@ class IncomeSource extends Model
         'name',
         'projected',
         'actual',
+        'date',
         'detail',
     ];
 
@@ -35,6 +39,7 @@ class IncomeSource extends Model
             'income_source_id' => 'integer|nullable',
             'projected'        => 'numeric|nullable',
             'actual'           => 'numeric|nullable',
+            'date'             => 'date|nullable',
         ];
     }
 

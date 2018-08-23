@@ -20,6 +20,7 @@ class CreateCashFlowPlanIncomeSourcesTable extends Migration
             $table->string('name');
             $table->decimal('projected')->nullable();
             $table->decimal('actual')->nullable();
+            $table->date('date')->nullable();
             $table->text('detail')->nullable();
             $table->timestamps();
             $table->softDeletes();

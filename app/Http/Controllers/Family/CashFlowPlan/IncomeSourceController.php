@@ -30,13 +30,7 @@ class IncomeSourceController extends Controller
      */
     public function create(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        $template     = Family\IncomeSource::first();
-
         $incomeSource = new IncomeSource();
-
-        $incomeSource->type   = 'budget';
-        $incomeSource->name   = $template->name;
-        $incomeSource->amount = $template->default_amount;
 
         return view('family.cash-flow-plans.income-sources.new', [
             'family'       => $family,

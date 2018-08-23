@@ -19,6 +19,7 @@ return [
     'amount'         => 'Amount',
     'actual'         => 'Actual',
     'projected'      => 'Projected',
+    'date'           => 'Date',
     'active'         => 'Active',
         'inactive'   => 'Inactive',
     'description'    => 'Description',

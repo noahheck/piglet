@@ -21,9 +21,9 @@ class CreateCashFlowPlanRecurringExpensesTable extends Migration
             $table->integer('category_id')->nullable();
             $table->string('sub_category')->nullable();
             $table->string('name');
-            $table->date('date')->nullable();
             $table->decimal('projected')->nullable();
             $table->decimal('actual')->nullable();
+            $table->date('date')->nullable();
             $table->string('payment_detail')->nullable();
             $table->text('detail')->nullable();
             $table->timestamps();
