@@ -57,7 +57,7 @@
                     </thead>
                     @foreach ($incomeSources as $incomeSource)
                         <tr>
-                            <td>{{ $incomeSource->name }}</td>
+                            <td><a href="{{ route('family.income-sources.edit', [$family, $incomeSource]) }}">{{ $incomeSource->name }}</a></td>
                             <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->default_amount, true) }}</td>
                         </tr>
                     @endforeach
@@ -81,10 +81,18 @@
                         <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
                     </tr>
                     </thead>
+
+                    @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
+                        <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
+                            <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.recurring-expenses.edit', [$family, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
+                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->default_amount, true) }}</td>
+                        </tr>
+                    @endforeach
+
                     @foreach ($categories as $category)
                         @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
                             <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
-                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}">{{ $recurringExpense->name }}</td>
+                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.recurring-expenses.edit', [$family, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
                                 <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->default_amount, true) }}</td>
                             </tr>
                         @endforeach
