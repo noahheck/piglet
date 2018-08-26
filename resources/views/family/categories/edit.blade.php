@@ -30,7 +30,7 @@
             @include('family.categories._form', [
                 'action'      => route('family.categories.update', [$family, $category]),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.categories.show', [$family, $category]),
+                'cancelRoute' => route('family.categories.index', [$family]),
             ])
 
         </div>

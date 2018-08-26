@@ -63,7 +63,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect()->route('family.categories.show', [$family, $category]);
+        return redirect()->route('family.categories.index', [$family]);
     }
 
     /**
@@ -113,7 +113,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect()->route('family.categories.show', [$family, $category]);
+        return redirect()->route('family.categories.index', [$family]);
     }
 
     /**

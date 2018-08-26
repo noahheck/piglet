@@ -58,7 +58,7 @@
                             @foreach ($categories->where('active', true) as $category)
                                 <li class="list-group-item" data-category-id="{{ $category->id }}" style="border-left: 4px solid {{ $category->color }}">
                                     <span class="fa fa-sort sort-handle"></span>
-                                    <a href="{{ route('family.categories.show', [$family, $category]) }}">{{ $category->name }}</a>
+                                    <a href="{{ route('family.categories.edit', [$family, $category]) }}">{{ $category->name }}</a>
                                 </li>
                             @endforeach
 
@@ -72,7 +72,7 @@
 
                             @foreach ($categories->where('active', false) as $category)
                                 <li class="list-group-item" data-category-id="{{ $category->id }}">
-                                    <a href="{{ route('family.categories.show', [$family, $category]) }}">{{ $category->name }}</a>
+                                    <a href="{{ route('family.categories.edit', [$family, $category]) }}">{{ $category->name }}</a>
                                 </li>
                             @endforeach
 
