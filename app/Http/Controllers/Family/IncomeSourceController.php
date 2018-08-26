@@ -105,6 +105,10 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
         return redirect()->route('family.income-sources.index', [$family]);
     }
 

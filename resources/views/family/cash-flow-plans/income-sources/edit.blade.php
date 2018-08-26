@@ -35,7 +35,7 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.income-sources._form', [
-                'action'      => route('family.cash-flow-plans.income-sources.update', [$family, $cashFlowPlan, $incomeSource]),
+                'action'      => route('family.cash-flow-plans.income-sources.update', [$family, $cashFlowPlan, $incomeSource]) . '?' . app('request')->getQueryString(),
                 'method'      => 'PUT',
                 'cancelRoute' => route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]),
             ])
