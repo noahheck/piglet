@@ -51,7 +51,37 @@
             <div class="tab-content" id="myTabContent">
 
                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overviewTab">
-                    {{ __('cash-flow-plans.overview') }}
+
+                    <div class="section">
+
+                        <h3>{{ __('cash-flow-plans.overview') }}</h3>
+
+                        <table class="table table-sm">
+                            <caption>{{ __('cash-flow-plans.overview') }}</caption>
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td>&nbsp;</td>
+                                    <td class="text-right">{{ __('cash-flow-plans.projected') }}</td>
+                                    <td class="text-right">{{ __('cash-flow-plans.actual') }}</td>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td>{{ __('income-sources.income-sources') }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ __('recurring-expenses.recurring-expenses') }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
                 </div>
 
 
@@ -92,7 +122,7 @@
 
 
 
-                    <div id="actual_recurringExpenses" class="section actual-section">
+                    <div id="recurringExpenses" class="section">
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
                         </h3>
@@ -131,6 +161,28 @@
                                 <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
                             </tr>
                         </table>
+
+                    </div>
+
+                    <hr>
+
+                    <h3>Variable Expenses</h3>
+
+                    <div class="section variable-expense-section">
+
+                        <h3>Food <small class="float-right"> $400.00</small></h3>
+
+                    </div>
+
+                    <div class="section variable-expense-section">
+
+                        <h3>Gas <small class="float-right"> $150.00</small></h3>
+
+                    </div>
+
+                    <div class="section variable-expense-section">
+
+                        <h3>Household Expenses <small class="float-right"> $125.00</small></h3>
 
                     </div>
 

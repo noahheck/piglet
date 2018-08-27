@@ -7,9 +7,10 @@ return [
     'overview' => 'Overview',
     'details'  => 'Details',
 
-    'budget' => 'Budget',
-    'actual' => 'Actual',
-    'total'  => 'Total',
+    'budget'    => 'Budget',
+    'actual'    => 'Actual',
+    'projected' => 'Projected',
+    'total'     => 'Total',
 
     'type'   => 'Type',
 
