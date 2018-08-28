@@ -92,6 +92,8 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         Route::resource('/recurring-expenses', 'RecurringExpenseController');
 
+        Route::resource('/expense-groups', 'ExpenseGroupController');
+
         Route::resource('/cash-flow-plans', 'CashFlowPlanController');
         Route::get('/cash-flow-plans/create/{year}/{month}', 'CashFlowPlanController@createPlan')->name('cash-flow-plans.create-plan');
         Route::post('/cash-flow-plans/create/{year}/{month}', 'CashFlowPlanController@storePlan')->name('cash-flow-plans.store-plan');

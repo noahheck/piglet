@@ -9,7 +9,7 @@
 @php
     $settingsActive = false;
 
-    if (in_array($active, ['categories', 'methods', 'accounts', 'income-sources', 'recurring-expenses'])) {
+    if (in_array($active, ['categories', 'methods', 'accounts', 'income-sources', 'recurring-expenses', 'expense-groups'])) {
         $settingsActive = true;
     }
 @endphp
@@ -28,9 +28,7 @@
     </a>
     <a href="{{ route('family.categories.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'categories') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('categories.categories') }}</a>
     <a href="{{ route('family.income-sources.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'income-sources') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('income-sources.income-sources') }}</a>
-    <a href="{{ route('family.recurring-expenses.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'recurring-expenses') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Recurring Expenses</a>
-
-    {{--<a href="#" class="list-group-item-action list-group-item settings-item {{ ($active === 'methods'   ) ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Methods (!!)</a>
-    <a href="#" class="list-group-item-action list-group-item settings-item {{ ($active === 'accounts'  ) ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Accounts (!!)</a>--}}
+    <a href="{{ route('family.recurring-expenses.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'recurring-expenses') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
+    <a href="{{ route('family.expense-groups.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'expense-groups') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">Expense Groups</a>
 
 </div>
