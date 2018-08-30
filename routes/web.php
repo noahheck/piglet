@@ -101,6 +101,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         Route::namespace('CashFlowPlan')->prefix('/cash-flow-plans/{cashFlowPlan}')->name('cash-flow-plans.')->group(function() {
             Route::resource('/income-sources', 'IncomeSourceController');
             Route::resource('/recurring-expenses', 'RecurringExpenseController');
+            Route::resource('/expense-groups', 'ExpenseGroupController');
         });
 
 

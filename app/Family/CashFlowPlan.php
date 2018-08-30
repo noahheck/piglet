@@ -2,6 +2,7 @@
 
 namespace App\Family;
 
+use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\CashFlowPlan\RecurringExpense;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -49,9 +50,17 @@ class CashFlowPlan extends Model
     }
 
 
+
     public function allActualExpensesTotal()
     {
         return $this->actualRecurringExpensesTotal();
+    }
+
+
+
+    public function expenseGroups()
+    {
+        return $this->hasMany(ExpenseGroup::class);
     }
 
 
@@ -61,9 +70,10 @@ class CashFlowPlan extends Model
      * @param $month
      * @param Collection $incomeSources
      * @param Collection $recurringExpenses
+     * @param Collection $expenseGroups
      * @return CashFlowPlan
      */
-    public static function createNew($year, $month, $incomeSources, $recurringExpenses)
+    public static function createNew($year, $month, $incomeSources, $recurringExpenses, $expenseGroups)
     {
         $cashFlowPlan = new CashFlowPlan();
 
@@ -100,6 +110,21 @@ class CashFlowPlan extends Model
             ]);
 
             $recurringExpense->save();
+        });
+
+        $expenseGroups->each(function($expenseGroupTemplate) use ($cashFlowPlan) {
+            $expenseGroup = new ExpenseGroup();
+
+            $expenseGroup->cash_flow_plan_id = $cashFlowPlan->id;
+            $expenseGroup->fill([
+                'expense_group_id' => $expenseGroupTemplate->id,
+                'category_id'      => $expenseGroupTemplate->category_id,
+                'sub_category'     => $expenseGroupTemplate->sub_category,
+                'name'             => $expenseGroupTemplate->name,
+                'projected'        => $expenseGroupTemplate->default_amount,
+            ]);
+
+            $expenseGroup->save();
         });
 
         return $cashFlowPlan;

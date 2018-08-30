@@ -102,13 +102,16 @@ class CashFlowPlanController extends Controller
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
 
-        // Get current set of income sources to show to the user
+        // Get current set of income sources to add to the plan
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
 
-        // Get current set of recurring expenses to show to the user
+        // Get current set of recurring expenses to add to the plan
         $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
 
-        $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $recurringExpenses);
+        // Get current set of expense groups to add to the plan
+        $expenseGroups = ExpenseGroup::where('active', true)->orderBy('name')->get();
+
+        $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $recurringExpenses, $expenseGroups);
 
         if (!$cashFlowPlan) {
             $request->session()->flash('error', "Unable to create the cash flow plan for {$year}-{$month}");

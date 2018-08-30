@@ -34,4 +34,9 @@ class ExpenseGroup extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function expenseGroupInstances()
+    {
+        return $this->hasMany(\App\Family\CashFlowPlan\ExpenseGroup::class);
+    }
 }
