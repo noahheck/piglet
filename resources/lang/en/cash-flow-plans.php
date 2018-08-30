@@ -11,6 +11,7 @@ return [
     'actual'    => 'Actual',
     'projected' => 'Projected',
     'total'     => 'Total',
+    'totals'    => 'Totals',
 
     'type'   => 'Type',
 

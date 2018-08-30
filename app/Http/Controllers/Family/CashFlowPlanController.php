@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Family;
 use App\Family;
 use App\Family\Category;
 use App\Family\CashFlowPlan;
+use App\Family\ExpenseGroup;
 use App\Family\RecurringExpense;
 use App\Family\IncomeSource;
 use App\Http\Controllers\Controller;
@@ -67,6 +68,9 @@ class CashFlowPlanController extends Controller
         // Get current set of recurring expenses to show to the user
         $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
 
+        // Get current set of expense groups to show to the user
+        $expenseGroups = ExpenseGroup::where('active', true)->orderBy('name')->get();
+
         return view('family.cash-flow-plans.new', [
             'family' => $family,
             'year'   => $year,
@@ -74,6 +78,7 @@ class CashFlowPlanController extends Controller
             'categories'        => $categories,
             'incomeSources'     => $incomeSources,
             'recurringExpenses' => $recurringExpenses,
+            'expenseGroups'     => $expenseGroups,
         ]);
     }
 

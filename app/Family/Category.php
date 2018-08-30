@@ -45,4 +45,9 @@ class Category extends Model
         return $this->hasMany(\App\Family\CashFlowPlan\RecurringExpense::class);
     }
 
+    public function expenseGroups()
+    {
+        return $this->hasMany(ExpenseGroup::class);
+    }
+
 }

@@ -11,11 +11,14 @@ return [
     'select-expense-groups'    => 'Select Expense Group',
 
     'create-new' => 'Create New',
+    'total'      => 'Total',
 
     'details' => 'Details',
 
     'name'           => 'Name',
     'default-amount' => 'Default Amount',
+    'actual'         => 'Actual',
+    'projected'      => 'Projected',
     'active'         => 'Active',
         'inactive'   => 'Inactive',
     'description'    => 'Description',
@@ -23,4 +26,5 @@ return [
     'uncategorized'  => 'Uncategorized',
     'category'       => 'Category',
     'sub-category'   => 'Sub-Category',
+
 ];

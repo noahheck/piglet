@@ -50,10 +50,10 @@
                 <table class="table table-sm">
                     <caption>{{ __('income-sources.income-sources') }}</caption>
                     <thead>
-                    <tr class="font-weight-bold">
-                        <td class="text-center">{{ __('income-sources.name') }}</td>
-                        <td class="text-right">{{ __('income-sources.projected') }}</td>
-                    </tr>
+                        <tr class="font-weight-bold">
+                            <td class="text-center">{{ __('income-sources.name') }}</td>
+                            <td class="text-right">{{ __('income-sources.projected') }}</td>
+                        </tr>
                     </thead>
                     @foreach ($incomeSources as $incomeSource)
                         <tr>
@@ -76,10 +76,10 @@
                 <table class="table table-sm">
                     <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                     <thead>
-                    <tr class="font-weight-bold">
-                        <td class="text-center">{{ __('recurring-expenses.name') }}</td>
-                        <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
-                    </tr>
+                        <tr class="font-weight-bold">
+                            <td class="text-center">{{ __('recurring-expenses.name') }}</td>
+                            <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
+                        </tr>
                     </thead>
 
                     @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
@@ -106,7 +106,99 @@
 
             </div>
 
+            <div class="section">
+                <h3>{{ __('expense-groups.expense-groups') }}</h3>
+
+                <table class="table table-sm">
+                    <caption>{{ __('expense-groups.expense-groups') }}</caption>
+                    <thead>
+                        <tr class="font-weight-bold">
+                            <td>{{ __('expense-groups.name') }}</td>
+                            <td class="text-right">{{ __('expense-groups.projected') }}</td>
+                        </tr>
+                    </thead>
+
+                    @foreach ($expenseGroups->where('category_id', null) as $expenseGroup)
+
+                        @php
+                            $title = $expenseGroup->name . ' - ' . __('expense-groups.uncategorized');
+                            $style = '';
+                        @endphp
+
+                        <tr>
+                            <td title="{{ $title }}" style="{{ $style }}"><a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a></td>
+                            <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->default_amount, true) }}</td>
+                        </tr>
+                    @endforeach
+
+                    @foreach ($categories as $category)
+                        @foreach ($expenseGroups->where('category_id', $category->id) as $expenseGroup)
+                            @php
+                                $title = $expenseGroup->name . ' - ' . $category->name;
+                                $style = 'border-left: 4px solid ' . $category->color . ';';
+                            @endphp
+
+                            <tr>
+                                <td title="{{ $title }}" style="{{ $style }}"><a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a></td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->default_amount, true) }}</td>
+                            </tr>
+
+                        @endforeach
+                    @endforeach
+
+                    <tr class="font-weight-bold">
+                        <td>{{ __('expense-groups.total') }}</td>
+                        <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroups->sum('default_amount'), true) }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
             <hr>
+
+            <div class="section">
+                <h3>{{ __('cash-flow-plans.totals') }}</h3>
+
+                <table class="table table-sm">
+                    <caption>{{ __('cash-flow-plans.totals') }}</caption>
+
+                    {{--<thead>
+                        <tr class="font-weight-bold">
+                            <td></td>
+                        </tr>
+                    </thead>--}}
+
+                    <tr>
+                        <td>{{ __('income-sources.income-sources') }}</td>
+                        <td class="text-right">{{ Auth::user()->formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
+                        <td class="text-right">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ __('recurring-expenses.recurring-expenses') }}</td>
+                        <td class="text-right">&nbsp;</td>
+                        <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpenses->sum('default_amount'), true) }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ __('expense-groups.expense-groups') }}</td>
+                        <td class="text-right">&nbsp;</td>
+                        <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroups->sum('default_amount'), true) }}</td>
+                    </tr>
+
+                    <tr class="font-weight-bold">
+                        <td>{{ __('cash-flow-plans.totals') }}</td>
+                        <td class="text-right">{{ Auth::user()->formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
+                        <td class="text-right">{{ Auth::user()->formatCurrency(
+                                  $expenseGroups->sum('default_amount')
+                                + $recurringExpenses->sum('default_amount')
+                            , true) }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
 
             <p>{{ __('cash-flow-plans.create-plan-confirmation') }}</p>
 
