@@ -179,7 +179,7 @@
 
                         <div class="section">
                             <h3>
-                                <a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a>
+                                <a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a>
                                 <small class="float-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</small></h3>
                         </div>
 
