@@ -27,6 +27,15 @@ class ExpenseGroup extends Model
         'projected',
     ];
 
+    public static function getValidations()
+    {
+        return [
+            'name'             => 'required',
+            'expense_group_id' => 'integer|nullable',
+            'projected'        => 'numeric|nullable',
+        ];
+    }
+
     public function cashFlowPlan()
     {
         return $this->belongsTo(CashFlowPlan::class);

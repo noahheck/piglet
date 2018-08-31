@@ -65,7 +65,7 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
-        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan, '#' . $recurringExpense->type]);
+        return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]);
     }
 
     /**

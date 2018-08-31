@@ -92,6 +92,13 @@
 
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]) }}">{{ __('income-sources.income-sources') }}</a>
+                            {{--<small class="float-right text-muted">
+                                <small>
+                                {{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}
+                                /
+                                {{ Auth::user()->formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}
+                                </small>
+                            </small>--}}
                         </h3>
 
                         <table class="table table-sm">
@@ -166,25 +173,17 @@
 
                     <hr>
 
-                    <h3>Variable Expenses</h3>
+                    <h3><a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expense Groups</a></h3>
 
-                    <div class="section variable-expense-section">
+                    @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
-                        <h3>Food <small class="float-right"> $400.00</small></h3>
+                        <div class="section">
+                            <h3>
+                                <a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a>
+                                <small class="float-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</small></h3>
+                        </div>
 
-                    </div>
-
-                    <div class="section variable-expense-section">
-
-                        <h3>Gas <small class="float-right"> $150.00</small></h3>
-
-                    </div>
-
-                    <div class="section variable-expense-section">
-
-                        <h3>Household Expenses <small class="float-right"> $125.00</small></h3>
-
-                    </div>
+                    @endforeach
 
                 </div>
 

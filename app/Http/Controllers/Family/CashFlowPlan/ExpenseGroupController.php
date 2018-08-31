@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Family\CashFlowPlan;
 use App\Family;
 use App\Family\CashFlowPlan;
 use App\Family\CashFlowPlan\ExpenseGroup;
+use App\Family\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,16 @@ class ExpenseGroupController extends Controller
      */
     public function index(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
+
+        $expenseGroups = $cashFlowPlan->expenseGroups()->orderBy('name')->get();
+
+        return view('family.cash-flow-plans.expense-groups.home', [
+            'family'        => $family,
+            'cashFlowPlan'  => $cashFlowPlan,
+            'categories'    => $categories,
+            'expenseGroups' => $expenseGroups,
+        ]);
     }
 
     /**
@@ -27,7 +37,13 @@ class ExpenseGroupController extends Controller
      */
     public function create(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $expenseGroup = new ExpenseGroup();
+
+        return view('family.cash-flow-plans.expense-groups.new', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'expenseGroup' => $expenseGroup,
+        ]);
     }
 
     /**
@@ -38,7 +54,17 @@ class ExpenseGroupController extends Controller
      */
     public function store(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $request->validate(ExpenseGroup::getValidations());
+
+        $expenseGroup = new ExpenseGroup();
+
+        $expenseGroup->cash_flow_plan_id = $cashFlowPlan->id;
+
+        $expenseGroup->fill($request->only($expenseGroup->getFillable()));
+
+        $expenseGroup->save();
+
+        return redirect()->route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -49,7 +75,11 @@ class ExpenseGroupController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan, ExpenseGroup $expenseGroup)
     {
-        //
+        return view('family.cash-flow-plans.expense-groups.show', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'expenseGroup' => $expenseGroup,
+        ]);
     }
 
     /**
@@ -60,7 +90,11 @@ class ExpenseGroupController extends Controller
      */
     public function edit(Family $family, CashFlowPlan $cashFlowPlan, ExpenseGroup $expenseGroup)
     {
-        //
+        return view('family.cash-flow-plans.expense-groups.edit', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'expenseGroup' => $expenseGroup,
+        ]);
     }
 
     /**
@@ -72,7 +106,17 @@ class ExpenseGroupController extends Controller
      */
     public function update(Request $request, Family $family, CashFlowPlan $cashFlowPlan, ExpenseGroup $expenseGroup)
     {
-        //
+        $request->validate($expenseGroup->getValidations());
+
+        $expenseGroup->fill($request->only($expenseGroup->getFillable()));
+
+        $expenseGroup->save();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -83,6 +127,8 @@ class ExpenseGroupController extends Controller
      */
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, ExpenseGroup $expenseGroup)
     {
-        //
+        $expenseGroup->delete();
+
+        return redirect()->route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]);
     }
 }
