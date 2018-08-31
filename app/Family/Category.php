@@ -2,6 +2,7 @@
 
 namespace App\Family;
 
+use App\Family\CashFlowPlan\Expense;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
@@ -55,4 +56,8 @@ class Category extends Model
         return $this->hasMany(\App\Family\CashFlowPlan\ExpenseGroup::class);
     }
 
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 }

@@ -102,6 +102,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
             Route::resource('/income-sources', 'IncomeSourceController');
             Route::resource('/recurring-expenses', 'RecurringExpenseController');
             Route::resource('/expense-groups', 'ExpenseGroupController');
+            Route::resource('/expenses', 'ExpenseController');
         });
 
 

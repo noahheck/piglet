@@ -2,6 +2,7 @@
 
 namespace App\Family;
 
+use App\Family\CashFlowPlan\Expense;
 use App\Traits\HasAddress;
 use App\Traits\HasPhoneNumber;
 use App\Traits\HasSecondaryPhoneNumber;
@@ -57,5 +58,10 @@ class Merchant extends Model
     public function recurringExpenseInstances()
     {
         return $this->hasMany(\App\Family\CashFlowPlan\RecurringExpense::class);
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
     }
 }
