@@ -227,6 +227,10 @@
                                 </tr>
 
                             </table>
+
+                            <div class="text-right">
+                                <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">{{ __('expenses.add-new-expense') }}</a>
+                            </div>
                         </div>
 
                     @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Family\CashFlowPlan;
 use App\Family;
 use App\Family\CashFlowPlan;
 use App\Family\CashFlowPlan\Expense;
+use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,9 +38,20 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Family $family, CashFlowPlan $cashFlowPlan)
+    public function create(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
         $expense = new Expense();
+
+        if ($request->query('expense_group_id')) {
+            $expense_group_id = $request->query('expense_group_id');
+
+            $expense->expense_group_id = $expense_group_id;
+
+            $expenseGroup = ExpenseGroup::find($expense_group_id);
+
+            $expense->category_id = $expenseGroup->category_id;
+            $expense->sub_category = $expenseGroup->sub_category;
+        }
 
         return view('family.cash-flow-plans.expenses.new', [
             'family'       => $family,
