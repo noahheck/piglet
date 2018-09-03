@@ -1,18 +1,7 @@
 @extends('layouts.app')
 
-@php
-    $merchantDate = __('expenses.no-merchant');
-    if ($expense->merchant) {
-        $merchantDate = $expense->merchant->name;
-    }
-
-    if ($expense->date) {
-        $merchantDate .= ' (' . Auth::user()->formatDate($expense->date) . ')';
-    }
-@endphp
-
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('expenses.expenses') }} - {{ $merchantDate }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('expenses.expenses') }} - {{ $expense->title() }}
 @endsection
 
 @push('stylesheets')
@@ -32,7 +21,7 @@
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) => __('expenses.expenses'),
         ],
-        'location'   => $merchantDate,
+        'location'   => $expense->title(),
         'menu' => [
             /*['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],*/
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('expenses.add-new-expense')],
@@ -50,12 +39,10 @@
 
         <div class="col-12 col-md-9">
 
-            @if ($expense->merchant)
-                <h2>{{ $expense->merchant->name }} {{ ($expense->date) ? '(' . Auth::user()->formatDate($expense->date) . ')' : '' }}</h2>
-            @endif
+            <h2>{{ $expense->title() }}</h2>
 
-            @if ($expense->description)
-                <h3>{{ $expense->description }}</h3>
+            @if ($expense->date)
+                <h3>{{ Auth::user()->formatDate($expense->date) }}</h3>
             @endif
 
             <dl>

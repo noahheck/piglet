@@ -201,7 +201,7 @@
                                 @foreach ($expenseGroup->expenses->where('category_id', null) as $expense)
                                     <tr>
                                         <td style="border-left: 4px solid transparent">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
                                         <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                         <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                     </tr>
@@ -211,7 +211,7 @@
                                     @foreach ($expenseGroup->expenses->where('category_id', $category->id) as $expense)
                                         <tr>
                                             <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
                                             <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                             <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                         </tr>
@@ -266,7 +266,7 @@
                                 @endphp
                                 <tr>
                                     <td style="border-left: 4px solid transparent"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
-                                    <td><a href="{{ $link }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                    <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
                                     <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                     <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                 </tr>
@@ -279,7 +279,7 @@
                                     @endphp
                                     <tr>
                                         <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
-                                        <td><a href="{{ $link }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                        <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
                                         <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                         <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                     </tr>

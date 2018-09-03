@@ -69,4 +69,23 @@ class Expense extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+
+
+    public function title()
+    {
+        $title = '';
+
+        if ($this->description) {
+            $title = $this->description;
+        }
+
+        if ($this->merchant) {
+            $title .= ($title) ? ' - ' . $this->merchant->name : $this->merchant->name;
+        }
+
+        $title = ($title) ? $title : __('expenses.no-merchant');
+
+        return $title;
+    }
 }

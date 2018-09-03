@@ -66,8 +66,8 @@
                     @foreach ($expenses->where('category_id', null) as $expense)
 
                         <tr id="expense_{{ $expense->id }}" data-expense-id="{{ $expense->id }}">
-                            <td style="border-left: 4px solid transparent" title="{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }} - {{ __('expenses.uncategorized') }}">{{ Auth::user()->formatDate($expense->date) }}</td>
-                            <td title="{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }} - {{ __('expenses.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense]) }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                            <td style="border-left: 4px solid transparent" title="{{ $expense->title()  }} - {{ __('expenses.uncategorized') }}">{{ Auth::user()->formatDate($expense->date) }}</td>
+                            <td title="{{ $expense->title() }} - {{ __('expenses.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense]) }}">{{ $expense->title() }}</a></td>
                             <td class="text-right">{{ Auth::user()->formatCurrency($expense->projected, true) }}</td>
                             <td class="text-right">{{ Auth::user()->formatCurrency($expense->actual, true) }}</td>
                         </tr>
@@ -77,8 +77,8 @@
                     @foreach ($categories as $category)
                         @foreach ($expenses->where('category_id', $category->id) as $expense)
                             <tr id="expense_{{ $expense->id }}" data-expense-id="{{ $expense->id }}">
-                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }} - {{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                <td title="{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense]) }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ $expense->title() }} - {{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
+                                <td title="{{ $expense->title() }}"><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense]) }}">{{ $expense->title() }}</a></td>
                                 <td class="text-right">{{ Auth::user()->formatCurrency($expense->projected, true) }}</td>
                                 <td class="text-right">{{ Auth::user()->formatCurrency($expense->actual, true) }}</td>
                             </tr>
