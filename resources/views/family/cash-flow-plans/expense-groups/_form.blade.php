@@ -76,7 +76,7 @@
                 </div>
                 <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('expense-groups.projected-amount') }}" value="{{ old('projected', Auth::user()->formatCurrency($expenseGroup->projected, false)) }}">
             </div>
-            @fieldError('default_amount')
+            @fieldError('projected')
         </div>
 
         <div class="form-group">
@@ -94,7 +94,7 @@
             <label for="sub_category">{{ __('expense-groups.sub-category') }}</label>
             <select class="custom-select" name="sub_category" id="sub_category">
                 <option value="">--</option>
-                @if (old('default_sub_category', $expenseGroup->sub_category))
+                @if (old('sub_category', $expenseGroup->sub_category))
                     <option selected value="{{ old('sub_category', $expenseGroup->sub_category) }}">{{ old('sub_category', $expenseGroup->sub_category) }}</option>
                 @endif
             </select>

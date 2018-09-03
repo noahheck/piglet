@@ -16,6 +16,7 @@ return [
     'actual'               => 'Actual',
     'projected'            => 'Projected',
     'detail'               => 'Detail',
+    'payment-detail'       => 'Payment Detail',
     'description'          => 'Description',
     'merchant'             => 'Merchant',
     'uncategorized'        => 'Uncategorized',

@@ -20,11 +20,11 @@ class CreateCashFlowPlanExpensesTable extends Migration
             $table->integer('merchant_id')->nullable();
             $table->integer('category_id')->nullable();
             $table->string('sub_category')->nullable();
+            $table->string('description')->nullable();
             $table->decimal('projected')->nullable();
             $table->decimal('actual')->nullable();
             $table->date('date')->nullable();
             $table->string('payment_detail')->nullable();
-            $table->string('description')->nullable();
             $table->text('detail')->nullable();
             $table->timestamps();
             $table->softDeletes();

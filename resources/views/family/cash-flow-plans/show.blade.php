@@ -22,7 +22,7 @@
         ],
         'location'   => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
         'menu' => [
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('expenses.add-new-expense')],
+            ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-plus-circle', 'text' => __('expenses.add-new-expense')],
         ]
     ])
 
@@ -166,7 +166,9 @@
 
                     <hr>
 
-                    <h3><a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expense Groups</a></h3>
+                    <h3>
+                        <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expense Groups</a>
+                    </h3>
 
                     @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
@@ -190,7 +192,7 @@
                                 @foreach ($expenseGroup->expenses->where('category_id', null) as $expense)
                                     <tr>
                                         <td style="border-left: 4px solid transparent">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense]) }}">{{ $expense->merchant->name }}</a></td>
+                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->merchant->name }}</a></td>
                                         <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                         <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                     </tr>
@@ -200,7 +202,7 @@
                                     @foreach ($expenseGroup->expenses->where('category_id', $category->id) as $expense)
                                         <tr>
                                             <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense]) }}">{{ $expense->merchant->name }}</a></td>
+                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->merchant->name }}</a></td>
                                             <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                             <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                         </tr>
@@ -217,6 +219,18 @@
                         </div>
 
                     @endforeach
+
+                    <hr>
+
+                    <h3>
+                        <a href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">Other Expenses</a>
+                    </h3>
+
+                    <div class="section">
+
+
+
+                    </div>
 
                 </div>
 

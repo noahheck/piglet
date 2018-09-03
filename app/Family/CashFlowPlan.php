@@ -2,6 +2,7 @@
 
 namespace App\Family;
 
+use App\Family\CashFlowPlan\Expense;
 use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\CashFlowPlan\RecurringExpense;
 use Illuminate\Database\Eloquent\Collection;
@@ -61,6 +62,12 @@ class CashFlowPlan extends Model
     public function expenseGroups()
     {
         return $this->hasMany(ExpenseGroup::class);
+    }
+
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
     }
 
 

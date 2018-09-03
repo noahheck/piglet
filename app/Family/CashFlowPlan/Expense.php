@@ -24,6 +24,32 @@ class Expense extends Model
         'date',
     ];
 
+    protected $fillable = [
+        'expense_group_id',
+        'merchant_id',
+        'category_id',
+        'sub_category',
+        'name',
+        'projected',
+        'actual',
+        'date',
+        'payment_detail',
+        'description',
+        'detail',
+    ];
+
+    public static function getValidations()
+    {
+        return [
+            'expense_group_id' => 'integer|nullable',
+            'merchant_id'      => 'integer|nullable',
+            'category_id'      => 'integer|nullable',
+            'projected'        => 'numeric|nullable',
+            'actual'           => 'numeric|nullable',
+            'date'             => 'date|nullable',
+        ];
+    }
+
     public function cashFlowPlan()
     {
         return $this->belongsTo(CashFlowPlan::class);

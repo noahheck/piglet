@@ -74,6 +74,8 @@ mix
 
     .js('resources/assets/js/family/cash-flow-plans/expense-groups/_form.js', 'public/js/family.cash-flow-plans.expense-groups._form.js')
 
+    .js('resources/assets/js/family/cash-flow-plans/expenses/_form.js', 'public/js/family.cash-flow-plans.expenses._form.js')
+
     // Things to put in vendor file
     .extract(['jquery', 'bootstrap'])
 
