@@ -22,6 +22,7 @@
         ],
         'location'   => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
         'menu' => [
+            ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-money', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-folder-open-o', 'text' => __('expense-groups.add-new-expense-group')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-plus-circle', 'text' => __('expenses.add-new-expense')],
         ]
@@ -118,6 +119,10 @@
                                 <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
                             </tr>
                         </table>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('income-sources.add-new-income-source') }}</a>
+                        </div>
 
                     </div>
 

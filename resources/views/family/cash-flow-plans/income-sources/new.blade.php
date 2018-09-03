@@ -33,7 +33,7 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.income-sources._form', [
-                'action'      => route('family.cash-flow-plans.income-sources.store', [$family, $cashFlowPlan]),
+                'action'      => route('family.cash-flow-plans.income-sources.store', [$family, $cashFlowPlan]) . '?' . app('request')->getQueryString(),
                 'method'      => false,
                 'cancelRoute' => route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]),
             ])

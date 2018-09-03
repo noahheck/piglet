@@ -57,6 +57,10 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
         return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan, '#' . $incomeSource->type]);
     }
 
