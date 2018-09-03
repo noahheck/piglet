@@ -9,6 +9,8 @@ return [
     'create-new' => 'Create New',
     'total'      => 'Total',
 
+    'no-merchant' => '--No Merchant--',
+
     'details' => 'Details',
 
     'name'                 => 'Name',

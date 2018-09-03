@@ -1,7 +1,18 @@
 @extends('layouts.app')
 
+@php
+    $merchantDate = __('expenses.no-merchant');
+    if ($expense->merchant) {
+        $merchantDate = $expense->merchant->name;
+    }
+
+    if ($expense->date) {
+        $merchantDate .= ' (' . Auth::user()->formatDate($expense->date) . ')';
+    }
+@endphp
+
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('expenses.expenses') }} - {{ $expense->merchant->name }} ({{ Auth::user()->formatDate($expense->date) }}) - {{ __('form.edit') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('expenses.expenses') }} - {{ $merchantDate }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -20,7 +31,7 @@
             route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) => __('expenses.expenses'),
-            route('family.cash-flow-plans.expenses.show', [$family, $cashFlowPlan, $expense]) => $expense->merchant->name . ' (' . Auth::user()->formatDate($expense->date) . ')',
+            route('family.cash-flow-plans.expenses.show', [$family, $cashFlowPlan, $expense]) => $merchantDate,
         ],
         'location'   => __('form.edit'),
         'menu' => [

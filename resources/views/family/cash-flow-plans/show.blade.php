@@ -177,9 +177,11 @@
 
                     <hr>
 
-                    <h3>
+                    {{--<h3>
                         <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expense Groups</a>
-                    </h3>
+                    </h3>--}}
+
+                    <h2>Expenses</h2>
 
                     @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
@@ -203,7 +205,7 @@
                                 @foreach ($expenseGroup->expenses->where('category_id', null) as $expense)
                                     <tr>
                                         <td style="border-left: 4px solid transparent">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->merchant->name }}</a></td>
+                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
                                         <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                         <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                     </tr>
@@ -213,7 +215,7 @@
                                     @foreach ($expenseGroup->expenses->where('category_id', $category->id) as $expense)
                                         <tr>
                                             <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
-                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->merchant->name }}</a></td>
+                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
                                             <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
                                             <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
                                         </tr>
@@ -237,13 +239,64 @@
 
                     <hr>
 
-                    <h3>
-                        <a href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">Other Expenses</a>
-                    </h3>
-
                     <div class="section">
 
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">Other Expenses</a>
+                        </h3>
 
+                        <table class="table table-sm">
+                            <caption>Other Expenses</caption>
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td>{{ __('expenses.date') }}</td>
+                                    <td>{{ __('expenses.merchant') }}</td>
+                                    <td class="text-right">{{ __('expenses.projected') }}</td>
+                                    <td class="text-right">{{ __('expenses.actual') }}</td>
+                                </tr>
+                            </thead>
+
+                            @php
+                                $nonGroupedExpenses = $cashFlowPlan->expenses->where('expense_group_id', null);
+                            @endphp
+
+                            @foreach ($nonGroupedExpenses->where('category_id', null) as $expense)
+                                @php
+                                    $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
+                                @endphp
+                                <tr>
+                                    <td style="border-left: 4px solid transparent"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
+                                    <td><a href="{{ $link }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                    <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
+                                    <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                                </tr>
+                            @endforeach
+
+                            @foreach ($categories as $category)
+                                @foreach ($nonGroupedExpenses->where('category_id', $category->id) as $expense)
+                                    @php
+                                        $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
+                                    @endphp
+                                    <tr>
+                                        <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
+                                        <td><a href="{{ $link }}">{{ ($expense->merchant) ? $expense->merchant->name : __('expenses.no-merchant') }}</a></td>
+                                        <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
+                                        <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+
+                            <tr>
+                                <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($nonGroupedExpenses->sum('projected'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($nonGroupedExpenses->sum('actual'), true) }}</strong></td>
+                            </tr>
+
+                        </table>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expenses.add-new-expense') }}</a>
+                        </div>
 
                     </div>
 
