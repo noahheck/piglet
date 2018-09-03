@@ -81,7 +81,11 @@ class ExpenseController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan, Expense $expense)
     {
-        //
+        return view('family.cash-flow-plans.expenses.show', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'expense'      => $expense,
+        ]);
     }
 
     /**
@@ -127,8 +131,14 @@ class ExpenseController extends Controller
      * @param  \App\Family\CashFlowPlan\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $family, CashFlowPlan $cashFlowPlan, Expense $expense)
+    public function destroy(Request $request, Family $family, CashFlowPlan $cashFlowPlan, Expense $expense)
     {
-        //
+        $expense->delete();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]);
     }
 }
