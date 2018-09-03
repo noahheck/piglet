@@ -177,10 +177,6 @@
 
                     <hr>
 
-                    {{--<h3>
-                        <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expense Groups</a>
-                    </h3>--}}
-
                     <h2>Expenses</h2>
 
                     @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
@@ -236,6 +232,10 @@
                         </div>
 
                     @endforeach
+
+                    <div class="text-right">
+                        <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expense-groups.add-new-expense-group') }}</a>
+                    </div>
 
                     <hr>
 
