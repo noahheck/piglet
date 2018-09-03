@@ -22,6 +22,7 @@
         ],
         'location'   => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
         'menu' => [
+            ['type' => 'link', 'href' => route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-folder-open-o', 'text' => __('expense-groups.add-new-expense-group')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-plus-circle', 'text' => __('expenses.add-new-expense')],
         ]
     ])
