@@ -31,15 +31,27 @@ $(function() {
         let category    = option.data('category');
         let subCategory = option.data('subCategory');
 
+        let expenseGroupOption = $('#expense_group_id').find('option:selected');
+        let expenseGroupCategory = expenseGroupOption.data('category');
+        let expenseGroupSubCategory = expenseGroupOption.data('subCategory');
+
+
+
         let curCategory = categorySelect.val();
 
-        if (!curCategory && category) {
+        if (   (!expenseGroupCategory && category)
+            || (expenseGroupCategory != curCategory)
+            || !curCategory
+        ) {
             categorySelect.val(category).change();
         }
 
         let curSubCategory = subCategorySelect.val();
 
-        if (!curSubCategory && subCategory) {
+        if (   !expenseGroupSubCategory
+            || (expenseGroupSubCategory != curSubCategory)
+            || !curSubCategory
+        ) {
             subCategorySelect.val(subCategory);
         }
     });
