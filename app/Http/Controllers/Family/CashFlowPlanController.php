@@ -133,6 +133,8 @@ class CashFlowPlanController extends Controller
 
         $recurringExpenses = $cashFlowPlan->recurringExpenses()->orderBy('name')->get();
 
+        $cashFlowPlan->expenseGroups->load('expenses');
+
         return view('family.cash-flow-plans.show', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,
