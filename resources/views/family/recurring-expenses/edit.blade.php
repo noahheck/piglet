@@ -28,9 +28,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.recurring-expenses._form', [
-                'action'      => route('family.recurring-expenses.update', [$family, $recurringExpense]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.recurring-expenses.update', [$family, $recurringExpense, 'return' => url()->previous()]),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.recurring-expenses.show', [$family, $recurringExpense]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

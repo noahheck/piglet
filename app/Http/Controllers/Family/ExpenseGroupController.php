@@ -59,6 +59,10 @@ class ExpenseGroupController extends Controller
 
         $expenseGroup->save();
 
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
         return redirect()->route('family.expense-groups.index', [$family]);
     }
 

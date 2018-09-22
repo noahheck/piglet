@@ -28,9 +28,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.expense-groups._form', [
-                'action'      => route('family.expense-groups.update', [$family, $expenseGroup]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.expense-groups.update', [$family, $expenseGroup, 'return' => url()->previous()]),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.expense-groups.index', [$family, $expenseGroup]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

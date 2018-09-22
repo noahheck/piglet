@@ -29,7 +29,7 @@
             @include('family.income-sources._form', [
                 'action'      => route('family.income-sources.store', [$family]),
                 'method'      => false,
-                'cancelRoute' => route('family.income-sources.index', [$family]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

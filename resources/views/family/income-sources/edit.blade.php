@@ -28,9 +28,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.income-sources._form', [
-                'action'      => route('family.income-sources.update', [$family, $incomeSource]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.income-sources.update', [$family, $incomeSource, 'return' => url()->previous()]),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.income-sources.show', [$family, $incomeSource]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

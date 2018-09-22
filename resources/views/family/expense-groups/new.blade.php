@@ -29,7 +29,7 @@
             @include('family.expense-groups._form', [
                 'action'      => route('family.expense-groups.store', [$family]),
                 'method'      => false,
-                'cancelRoute' => route('family.expense-groups.index', [$family]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>
