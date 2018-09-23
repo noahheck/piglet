@@ -53,6 +53,9 @@ mix
     .js('resources/assets/js/family/merchants/index.js', 'public/js/family.merchants.index.js')
     .js('resources/assets/js/family/merchants/_form.js', 'public/js/family.merchants._form.js')
 
+    .sass('resources/assets/sass/family/piggy-banks/index.scss', 'public/css/family.piggy-banks.index.css')
+
+
     .js('resources/assets//js/family/categories/index.js',      'public/js/family.categories.index.js')
     .sass('resources/assets/sass/family/categories/index.scss', 'public/css/family.categories.index.css')
     .js('resources/assets/js/family/categories/_form.js', 'public/js/family.categories._form.js')
