@@ -15,6 +15,7 @@ class PiggyBank extends Model
         'name',
         'starting_amount',
         'target_amount',
+        'monthly_contribution',
         'description',
         'dueDate',
         'active',
@@ -29,10 +30,11 @@ class PiggyBank extends Model
     public static function getValidations()
     {
         return [
-            'name'            => 'required|max:255',
-            'dueDate'         => 'date|nullable',
-            'target_amount'   => 'numeric|nullable',
-            'starting_amount' => 'numeric|nullable',
+            'name'                 => 'required|max:255',
+            'dueDate'              => 'date|nullable',
+            'target_amount'        => 'numeric|nullable',
+            'starting_amount'      => 'numeric|nullable',
+            'monthly_contribution' => 'numeric|nullable',
         ];
     }
 

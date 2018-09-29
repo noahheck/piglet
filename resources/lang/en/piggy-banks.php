@@ -15,6 +15,7 @@ return [
     'name'            => 'Name',
     'description'     => 'Description',
     'starting-amount' => 'Starting Amount',
+    'monthly-contribution' => 'Monthly Contribution',
     'target-amount'   => 'Target Amount',
     'dueDate'         => 'Due Date',
     'active'          => 'Active',

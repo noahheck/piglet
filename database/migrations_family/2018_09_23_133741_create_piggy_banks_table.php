@@ -19,6 +19,7 @@ class CreatePiggyBanksTable extends Migration
             $table->text('description')->nullable();
             $table->decimal('starting_amount')->nullable();
             $table->decimal('target_amount')->nullable();
+            $table->decimal('monthly_contribution')->nullable();
             $table->date('dueDate')->nullable();
             $table->boolean('completed')->default(false);
             $table->boolean('active')->default(true);

@@ -48,6 +48,17 @@
         </div>
 
         <div class="form-group">
+            <label for="monthly_contribution">{{ __('piggy-banks.monthly-contribution') }}</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><span class="fa fa-dollar"></span></div>
+                </div>
+                <input type="text" name="monthly_contribution" id="monthly_contribution" class="form-control money-field" placeholder="{{ __('piggy-banks.monthly-contribution') }}" value="{{ old('monthly_contribution', Auth::user()->formatCurrency($piggyBank->monthly_contribution, false)) }}">
+            </div>
+            @fieldError('monthly_contribution')
+        </div>
+
+        <div class="form-group">
             <label for="dueDate">{{ __('piggy-banks.dueDate') }} <small class="text-muted">mm/dd/yyyy</small></label>
             <input type="text" name="dueDate" id="dueDate" class="form-control dateField datepicker" placeholder="{{ __('piggy-banks.dueDate') }}" value="{{ old('dueDate', Auth::user()->formatDate($piggyBank->dueDate)) }}">
             @fieldError('dueDate')

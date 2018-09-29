@@ -67,7 +67,7 @@ class CashFlowPlan extends Model
 
     public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Expense::class)->orderBy('date');
     }
 
 

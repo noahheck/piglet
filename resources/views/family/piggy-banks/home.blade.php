@@ -66,15 +66,20 @@
 
                                             <h5 class="card-title">{{ $piggyBank->name }}</h5>
 
-                                            <p class="card-text">
+                                            <p class="card-text text-dark">
                                                 {{ Auth::user()->formatDate($piggyBank->dueDate) }}
+                                                @if ($piggyBank->monthly_contribution)
+                                                    ({{ Auth::user()->formatCurrency($piggyBank->monthly_contribution, true) }} / {{ __('months.month') }})
+                                                @endif
                                             </p>
 
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ Auth::user()->formatCurrency($piggyBank->target_amount, false) }}"></div>
                                             </div>
 
-                                            <p class="card-text">
+                                            <hr>
+
+                                            <p class="card-text text-dark">
                                                 {{ Auth::user()->formatCurrency($piggyBank->balance, true) }} / {{ Auth::user()->formatCurrency($piggyBank->target_amount, true) }}
                                             </p>
 
@@ -117,6 +122,8 @@
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ Auth::user()->formatCurrency($piggyBank->target_amount, false) }}"></div>
                                             </div>
+
+                                            <hr>
 
                                             <p class="card-text">
                                                 {{ Auth::user()->formatCurrency($piggyBank->balance, true) }} / {{ Auth::user()->formatCurrency($piggyBank->target_amount, true) }}

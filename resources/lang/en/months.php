@@ -2,6 +2,8 @@
 
 return [
 
+    'month' => 'month',
+
     '01' => 'January',
      '1' => 'January',
     '02' => 'February',
