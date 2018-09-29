@@ -53,7 +53,7 @@
 
             <div class="tab-content" id="myTabContent">
 
-                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overviewTab">
+                <div class="tab-pane show active" id="overview" role="tabpanel" aria-labelledby="overviewTab">
 
                     <div class="section">
 
@@ -75,10 +75,59 @@
                                 <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</td>
                             </tr>
 
-                            <tr>
-                                <td>{{ __('recurring-expenses.recurring-expenses') }}</td>
+                            @php
+                                $statusClass = '';
+                                $srText      = '';
+
+                                if ($cashFlowPlan->recurringExpensesOverspent()) {
+                                    $statusClass = 'text-danger';
+                                    $srText      = __('cash-flow-plans.overspent');
+                                } elseif ($cashFlowPlan->recurringExpensesCloseToOverspent()) {
+                                    $statusClass = 'text-warning';
+                                    $srText      = __('cash-flow-plans.almost-overspent');
+                                }
+
+                            @endphp
+
+                            <tr class="{{ $statusClass }}">
+                                <td>{{ __('recurring-expenses.recurring-expenses') }} <span class="sr-only">{{ $srText }}</span></td>
                                 <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</td>
                                 <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</td>
+                            </tr>
+
+                            @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
+
+                                @php
+                                    $statusClass = '';
+                                    $srText      = '';
+
+                                    if ($expenseGroup->isOverspent()) {
+                                        $statusClass = 'bg-danger text-white';
+                                        $srText      = __('cash-flow-plans.overspent');
+                                    } elseif ($expenseGroup->isCloseToOverspent()) {
+                                        $statusClass = 'bg-warning';
+                                        $srText      = __('cash-flow-plans.almost-overspent');
+                                    }
+
+                                @endphp
+
+                                <tr class="{{ $statusClass }}">
+                                    <td>{{ $expenseGroup->name }} <span class="sr-only">{{ $srText }}</span></td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</td>
+                                    <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->actualTotal(), true) }}</td>
+                                </tr>
+                            @endforeach
+
+                            @php
+                                $statusClass = '';
+
+
+                            @endphp
+
+                            <tr>
+                                <td>{{ __('cash-flow-plans.other-expenses') }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), true) }}</td>
+                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), true) }}</td>
                             </tr>
 
                         </table>
@@ -89,7 +138,7 @@
 
 
 
-                <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="detailsTab">
+                <div class="tab-pane" id="details" role="tabpanel" aria-labelledby="detailsTab">
 
                     <div id="incomeSources" class="section">
 
@@ -246,7 +295,7 @@
                         </h3>
 
                         <table class="table table-sm">
-                            <caption>Other Expenses</caption>
+                            <caption>{{ __('cash-flow-plans.other-expenses') }}</caption>
                             <thead>
                                 <tr class="font-weight-bold">
                                     <td>{{ __('expenses.date') }}</td>
@@ -256,11 +305,7 @@
                                 </tr>
                             </thead>
 
-                            @php
-                                $nonGroupedExpenses = $cashFlowPlan->expenses->where('expense_group_id', null);
-                            @endphp
-
-                            @foreach ($nonGroupedExpenses->where('category_id', null) as $expense)
+                            @foreach ($cashFlowPlan->nonGroupedExpenses()->where('category_id', null) as $expense)
                                 @php
                                     $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
                                 @endphp
@@ -273,7 +318,7 @@
                             @endforeach
 
                             @foreach ($categories as $category)
-                                @foreach ($nonGroupedExpenses->where('category_id', $category->id) as $expense)
+                                @foreach ($cashFlowPlan->nonGroupedExpenses()->where('category_id', $category->id) as $expense)
                                     @php
                                         $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
                                     @endphp
@@ -288,8 +333,8 @@
 
                             <tr>
                                 <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($nonGroupedExpenses->sum('projected'), true) }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($nonGroupedExpenses->sum('actual'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('projected'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('actual'), true) }}</strong></td>
                             </tr>
 
                         </table>

@@ -50,6 +50,16 @@ class CashFlowPlan extends Model
         return $this->recurringExpenses->sum('actual');
     }
 
+    public function recurringExpensesOverspent()
+    {
+        return $this->actualRecurringExpensesTotal() > $this->projectedRecurringExpensesTotal();
+    }
+
+    public function recurringExpensesCloseToOverspent()
+    {
+        return (($this->actualRecurringExpensesTotal() / $this->projectedRecurringExpensesTotal()) * 100) >= 90;
+    }
+
 
 
     public function allActualExpensesTotal()
@@ -65,9 +75,27 @@ class CashFlowPlan extends Model
     }
 
 
+
     public function expenses()
     {
         return $this->hasMany(Expense::class)->orderBy('date');
+    }
+
+
+
+    public function nonGroupedExpenses()
+    {
+        return $this->expenses->where('expense_group_id', null);
+    }
+
+    public function nonGroupedExpensesProjectedTotal()
+    {
+        return $this->nonGroupedExpenses()->sum('projected');
+    }
+
+    public function nonGroupedExpensesActualTotal()
+    {
+        return $this->nonGroupedExpenses()->sum('actual');
     }
 
 

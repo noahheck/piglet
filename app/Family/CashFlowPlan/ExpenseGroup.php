@@ -36,6 +36,26 @@ class ExpenseGroup extends Model
         ];
     }
 
+
+
+
+    public function isOverspent()
+    {
+        return $this->actualTotal() > $this->projected;
+    }
+
+    public function isCloseToOverspent()
+    {
+        return (($this->actualTotal() / $this->projected) * 100) >= 90;
+    }
+
+    public function actualTotal()
+    {
+        return $this->expenses->sum('actual');
+    }
+
+
+
     public function cashFlowPlan()
     {
         return $this->belongsTo(CashFlowPlan::class);
