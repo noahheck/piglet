@@ -65,7 +65,7 @@
                     @foreach ($expenseGroups->where('category_id', null) as $expenseGroup)
 
                         <tr id="expenseGroup_{{ $expenseGroup->id }}" data-expense-group-id="{{ $expenseGroup->id }}">
-                            <td style="border-left: 4px solid transparent" title="{{ $expenseGroup->name }} - {{ __('expense-groups.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a></td>
+                            <td style="border-left: 4px solid transparent" title="{{ $expenseGroup->name }} - {{ __('expense-groups.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a></td>
                             <td class="text-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</td>
                             <td class="text-right">{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</td>
                         </tr>
@@ -75,7 +75,7 @@
                     @foreach ($categories as $category)
                         @foreach ($expenseGroups->where('category_id', $category->id) as $expenseGroup)
                             <tr id="expenseGroup_{{ $expenseGroup->id }}" data-expense-group-id="{{ $expenseGroup->id }}">
-                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ $expenseGroup->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a></td>
+                                <td style="border-left: 4px solid {{ $category->color }}" title="{{ $expenseGroup->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a></td>
                                 <td class="text-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</td>
                                 <td class="text-right">{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</td>
                             </tr>

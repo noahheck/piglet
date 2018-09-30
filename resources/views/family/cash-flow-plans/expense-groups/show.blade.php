@@ -46,22 +46,49 @@
 
         <div class="col-12 col-md-9">
 
-            <h2>{{ $expenseGroup->name }}</h2>
+            <div class="row mt-5 mt-md-0 mb-5">
 
-            <dl>
+                <div class="col-12">
 
-                <dt>{{ __('expense-groups.actual') }} / {{ __('expense-groups.projected') }}</dt>
-                <dd>{{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}</dd>
+                    <div class="card shadow" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
 
-                <dt>{{ __('recurring-expenses.category') }}</dt>
-                <dd>{{ $expenseGroup->category ? $expenseGroup->category->name : ''}} {{ ($expenseGroup->sub_category) ? '(' . $expenseGroup->sub_category . ')' : '' }}</dd>
+                        <div class="card-body">
 
-            </dl>
+                            @if ($expenseGroup->category)
+                                <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
+                            @endif
 
-            @if ($expenseGroup->detail)
-                {!! nl2br(e($expenseGroup->detail)) !!}
-            @endif
+                            <h2>{{ $expenseGroup->name }}</h2>
 
+                                <p class="card-text">
+                                    {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
+                                </p>
+
+                                <div class="progress">
+
+                                    @php
+                                        $statusClass = '';
+                                        if ($expenseGroup->isOverspent()) {
+                                            $statusClass = 'bg-danger';
+                                        } elseif ($expenseGroup->isCloseToOverspent()) {
+                                            $statusClass = 'bg-warning';
+                                        }
+                                    @endphp
+
+                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
+                                </div>
+
+                        </div>
+
+                        @if ($expenseGroup->detail)
+                            {!! nl2br(e($expenseGroup->detail)) !!}
+                        @endif
+
+                    </div>
+
+                </div>
+
+            </div>
 
             <table class="table table-sm">
                 <caption>{{ $expenseGroup->name }}</caption>

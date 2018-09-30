@@ -224,88 +224,81 @@
 
                     </div>
 
-                    <hr>
-
-                    <h2>Expenses</h2>
 
 
+                    <div class="section">
 
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expenses</a>
+                        </h3>
 
+                        <div class="row">
 
+                            @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
-                    <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="card shadow mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
 
-                        @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
+                                        <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
 
-                            <div class="col-12 col-lg-6">
-                                <div class="card shadow mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
+                                            @if ($expenseGroup->category)
+                                                <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
+                                            @endif
 
-                                    <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
+                                            <h3>
+                                                {{ $expenseGroup->name }}
+                                            </h3>
 
-                                        @if ($expenseGroup->category)
-                                            <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
-                                        @endif
+                                            <p class="text-dark card-text">
+                                                {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
+                                            </p>
 
-                                        <h3>
-                                            {{ $expenseGroup->name }}
-                                        </h3>
+                                            <div class="progress">
 
-                                        <p class="text-dark card-text">
-                                            {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
-                                        </p>
+                                                @php
+                                                    $statusClass = '';
+                                                    if ($expenseGroup->isOverspent()) {
+                                                        $statusClass = 'bg-danger';
+                                                    } elseif ($expenseGroup->isCloseToOverspent()) {
+                                                        $statusClass = 'bg-warning';
+                                                    }
+                                                @endphp
 
-                                        <div class="progress">
+                                                <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
+                                            </div>
 
-                                            @php
-                                                $statusClass = '';
-                                                if ($expenseGroup->isOverspent()) {
-                                                    $statusClass = 'bg-danger';
-                                                } elseif ($expenseGroup->isCloseToOverspent()) {
-                                                    $statusClass = 'bg-warning';
-                                                }
-                                            @endphp
+                                        </a>
 
-                                            <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
-                                        </div>
+                                        <div class="card-footer p0">
 
-                                    </a>
+                                            <div class="row">
 
-                                    <div class="card-footer p0">
+                                                <a class="col text-center p-322 pl-022" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
+                                                    <span class="fa fa-edit"></span> {{ __('form.edit') }}
+                                                </a>
 
-                                        <div class="row">
+                                                <a class="col text-center p-322 pr-022 border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
+                                                    <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                                </a>
 
-                                            <a class="col text-center p-322 pl-022" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
-                                                <span class="fa fa-edit"></span> {{ __('form.edit') }}
-                                            </a>
-
-                                            <a class="col text-center p-322 pr-022 border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
-                                                <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                            </a>
+                                            </div>
 
                                         </div>
 
                                     </div>
-
                                 </div>
-                            </div>
 
-                        @endforeach
+                            @endforeach
+
+                        </div>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expense-groups.add-new-expense-group') }}</a>
+                        </div>
 
                     </div>
 
 
-
-
-
-
-
-
-
-                    <div class="text-right">
-                        <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expense-groups.add-new-expense-group') }}</a>
-                    </div>
-
-                    <hr>
 
                     <div class="section">
 
