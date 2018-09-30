@@ -58,13 +58,13 @@
                     @foreach ($incomeSources as $incomeSource)
                         <tr>
                             <td><a href="{{ route('family.income-sources.edit', [$family, $incomeSource, 'return' => url()->current()]) }}">{{ $incomeSource->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->default_amount, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($incomeSource->default_amount, true) }}</td>
                         </tr>
                     @endforeach
 
                     <tr>
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($incomeSources->sum('default_amount'), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($incomeSources->sum('default_amount'), true) }}</strong></td>
                     </tr>
                 </table>
 
@@ -85,7 +85,7 @@
                     @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
                         <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                             <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.recurring-expenses.edit', [$family, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->default_amount, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($recurringExpense->default_amount, true) }}</td>
                         </tr>
                     @endforeach
 
@@ -93,14 +93,14 @@
                         @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
                             <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                                 <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.recurring-expenses.edit', [$family, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->default_amount, true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($recurringExpense->default_amount, true) }}</td>
                             </tr>
                         @endforeach
                     @endforeach
 
                     <tr>
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($recurringExpenses->sum('default_amount'), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($recurringExpenses->sum('default_amount'), true) }}</strong></td>
                     </tr>
                 </table>
 
@@ -127,7 +127,7 @@
 
                         <tr>
                             <td title="{{ $title }}" style="{{ $style }}"><a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->default_amount, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($expenseGroup->default_amount, true) }}</td>
                         </tr>
                     @endforeach
 
@@ -140,7 +140,7 @@
 
                             <tr>
                                 <td title="{{ $title }}" style="{{ $style }}"><a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a></td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->default_amount, true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($expenseGroup->default_amount, true) }}</td>
                             </tr>
 
                         @endforeach
@@ -148,7 +148,7 @@
 
                     <tr class="font-weight-bold">
                         <td>{{ __('expense-groups.total') }}</td>
-                        <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroups->sum('default_amount'), true) }}</td>
+                        <td class="text-right">{{ App\formatCurrency($expenseGroups->sum('default_amount'), true) }}</td>
                     </tr>
 
                 </table>
@@ -171,26 +171,26 @@
 
                     <tr>
                         <td>{{ __('income-sources.income-sources') }}</td>
-                        <td class="text-right">{{ Auth::user()->formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
+                        <td class="text-right">{{ App\formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
                         <td class="text-right">&nbsp;</td>
                     </tr>
 
                     <tr>
                         <td>{{ __('recurring-expenses.recurring-expenses') }}</td>
                         <td class="text-right">&nbsp;</td>
-                        <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpenses->sum('default_amount'), true) }}</td>
+                        <td class="text-right">{{ App\formatCurrency($recurringExpenses->sum('default_amount'), true) }}</td>
                     </tr>
 
                     <tr>
                         <td>{{ __('expense-groups.expense-groups') }}</td>
                         <td class="text-right">&nbsp;</td>
-                        <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroups->sum('default_amount'), true) }}</td>
+                        <td class="text-right">{{ App\formatCurrency($expenseGroups->sum('default_amount'), true) }}</td>
                     </tr>
 
                     <tr class="font-weight-bold">
                         <td>{{ __('cash-flow-plans.totals') }}</td>
-                        <td class="text-right">{{ Auth::user()->formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
-                        <td class="text-right">{{ Auth::user()->formatCurrency(
+                        <td class="text-right">{{ App\formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
+                        <td class="text-right">{{ App\formatCurrency(
                                   $expenseGroups->sum('default_amount')
                                 + $recurringExpenses->sum('default_amount')
                             , true) }}</td>

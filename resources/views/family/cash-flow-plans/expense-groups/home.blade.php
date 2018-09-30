@@ -66,8 +66,8 @@
 
                         <tr id="expenseGroup_{{ $expenseGroup->id }}" data-expense-group-id="{{ $expenseGroup->id }}">
                             <td style="border-left: 4px solid transparent" title="{{ $expenseGroup->name }} - {{ __('expense-groups.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->actual, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</td>
                         </tr>
 
                     @endforeach
@@ -76,16 +76,16 @@
                         @foreach ($expenseGroups->where('category_id', $category->id) as $expenseGroup)
                             <tr id="expenseGroup_{{ $expenseGroup->id }}" data-expense-group-id="{{ $expenseGroup->id }}">
                                 <td style="border-left: 4px solid {{ $category->color }}" title="{{ $expenseGroup->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">{{ $expenseGroup->name }}</a></td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->actual, true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</td>
                             </tr>
                         @endforeach
                     @endforeach
 
                     <tr>
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($expenseGroups->sum('projected'), true) }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency(0, true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($expenseGroups->sum('projected'), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($expenseGroups->reduce(function($carry, $expenseGroup) { return $carry + $expenseGroup->actualTotal();}), true) }}</strong></td>
                     </tr>
                 </table>
 

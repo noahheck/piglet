@@ -26,7 +26,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
             <select class="custom-select" name="income_source_id" id="income_source_id">
                 <option value="">{{ __('income-sources.select-income-source') }}</option>
                 @foreach ($incomeSourceTemplates as $template)
-                    <option value="{{ $template->id }}" data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}" {{ ($template->id == old('income_source_id', $incomeSource->income_source_id)) ? 'selected' : '' }}>{{ $template->name }} ({{ Auth::user()->formatCurrency($template->default_amount, true) }})</option>
+                    <option value="{{ $template->id }}" data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}" data-name="{{ $template->name }}" {{ ($template->id == old('income_source_id', $incomeSource->income_source_id)) ? 'selected' : '' }}>{{ $template->name }} ({{ App\formatCurrency($template->default_amount, true) }})</option>
                 @endforeach
                 <option value="">{{ __('form.other') }}</option>
             </select>
@@ -44,7 +44,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('income-sources.projected') }}" value="{{ old('projected', Auth::user()->formatCurrency($incomeSource->projected, false)) }}">
+                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('income-sources.projected') }}" value="{{ old('projected', App\formatCurrency($incomeSource->projected, false)) }}">
             </div>
             @fieldError('projected')
         </div>
@@ -57,7 +57,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('income-sources.actual') }}" value="{{ old('actual', Auth::user()->formatCurrency($incomeSource->actual, false)) }}">
+                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('income-sources.actual') }}" value="{{ old('actual', App\formatCurrency($incomeSource->actual, false)) }}">
             </div>
             @fieldError('actual')
         </div>

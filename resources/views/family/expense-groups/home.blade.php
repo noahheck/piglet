@@ -69,7 +69,7 @@
                                 <li class="expense-group list-group-item">
                                     <a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup]) }}">
                                         {{ $expenseGroup->name }}
-                                        {{ ($expenseGroup->default_amount) ? ' - ' . Auth::user()->formatCurrency($expenseGroup->default_amount, true) : '' }}
+                                        {{ ($expenseGroup->default_amount) ? ' - ' . App\formatCurrency($expenseGroup->default_amount, true) : '' }}
                                     </a>
                                 </li>
 
@@ -89,7 +89,7 @@
                                 <li class="expense-group list-group-item">
                                     <a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup]) }}">
                                         {{ $expenseGroup->name }}
-                                        {{ ($expenseGroup->default_amount) ? ' - ' . Auth::user()->formatCurrency($expenseGroup->default_amount, true) : '' }}
+                                        {{ ($expenseGroup->default_amount) ? ' - ' . App\formatCurrency($expenseGroup->default_amount, true) : '' }}
                                     </a>
                                 </li>
 

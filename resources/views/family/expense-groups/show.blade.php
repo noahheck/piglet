@@ -44,7 +44,7 @@
                 <p class="text-muted"><span class="fa fa-square-o" title="Inactive"></span> {{ __('expense-groups.inactive') }}
             @endif
 
-                {{ ($expenseGroup->default_amount) ? '- ' . Auth::user()->formatCurrency($expenseGroup->default_amount, true) : '' }}
+                {{ ($expenseGroup->default_amount) ? '- ' . App\formatCurrency($expenseGroup->default_amount, true) : '' }}
                 {{ ($expenseGroup->category)       ? '- ' . $expenseGroup->category->name : '' }}
                 {{ ($expenseGroup->sub_category)   ? '- ' . $expenseGroup->sub_category : '' }}
             </p>

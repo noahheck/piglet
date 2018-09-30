@@ -33,7 +33,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="default_amount" id="default_amount" class="form-control money-field" placeholder="{{ __('recurring-expenses.default-amount') }}" value="{{ old('default_amount', Auth::user()->formatCurrency($recurringExpense->default_amount, false)) }}">
+                <input type="text" name="default_amount" id="default_amount" class="form-control money-field" placeholder="{{ __('recurring-expenses.default-amount') }}" value="{{ old('default_amount', App\formatCurrency($recurringExpense->default_amount, false)) }}">
             </div>
             @fieldError('default_amount')
         </div>

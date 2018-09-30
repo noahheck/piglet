@@ -37,7 +37,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                             <option
                                 value="{{ $template->id }}"
                                 data-merchant-id="{{ $template->merchant_id }}"
-                                data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}"
+                                data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}"
                                 data-category=""
                                 data-sub-category=""
                                 data-name="{{ $template->name }}"
@@ -57,7 +57,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                             <option
                                 value="{{ $template->id }}"
                                 data-merchant-id="{{ $template->merchant_id }}"
-                                data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}"
+                                data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}"
                                 data-category="{{ $template->category_id }}"
                                 data-sub-category="{{ $template->sub_category }}"
                                 data-name="{{ $template->name }}"
@@ -119,7 +119,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('recurring-expenses.projected') }}" value="{{ old('projected', Auth::user()->formatCurrency($recurringExpense->projected, false)) }}">
+                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('recurring-expenses.projected') }}" value="{{ old('projected', App\formatCurrency($recurringExpense->projected, false)) }}">
             </div>
             @fieldError('projected')
         </div>
@@ -134,7 +134,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('recurring-expenses.actual') }}" value="{{ old('actual', Auth::user()->formatCurrency($recurringExpense->actual, false)) }}">
+                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('recurring-expenses.actual') }}" value="{{ old('actual', App\formatCurrency($recurringExpense->actual, false)) }}">
             </div>
             @fieldError('actual')
         </div>

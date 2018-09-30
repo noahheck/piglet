@@ -44,11 +44,11 @@
             <dl>
 
                 <dt>{{ __('recurring-expenses.projected') }}</dt>
-                <dd>{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</dd>
+                <dd>{{ App\formatCurrency($recurringExpense->projected, true) }}</dd>
 
                 @if ($recurringExpense->actual)
                     <dt>{{ __('recurring-expenses.actual') }}</dt>
-                    <dd>{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</dd>
+                    <dd>{{ App\formatCurrency($recurringExpense->actual, true) }}</dd>
                 @endif
 
                 @if ($recurringExpense->date)

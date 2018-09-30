@@ -70,7 +70,7 @@
                                 <li class="recurring-expense list-group-item">
                                     <a href="{{ route('family.recurring-expenses.edit', [$family, $expense]) }}">
                                         {{ $expense->name }}
-                                        {{ ($expense->default_amount) ? ' - ' . Auth::user()->formatCurrency($expense->default_amount, true) : '' }}
+                                        {{ ($expense->default_amount) ? ' - ' . App\formatCurrency($expense->default_amount, true) : '' }}
                                     </a>
                                 </li>
 
@@ -90,7 +90,7 @@
                                 <li class="recurring-expense list-group-item">
                                     <a href="{{ route('family.recurring-expenses.edit', [$family, $expense]) }}">
                                         {{ $expense->name }}
-                                        {{ ($expense->default_amount) ? ' - ' . Auth::user()->formatCurrency($expense->default_amount, true) : '' }}
+                                        {{ ($expense->default_amount) ? ' - ' . App\formatCurrency($expense->default_amount, true) : '' }}
                                     </a>
                                 </li>
 

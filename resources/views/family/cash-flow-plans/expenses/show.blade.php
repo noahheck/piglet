@@ -54,12 +54,12 @@
 
                 @if ($expense->projected)
                     <dt>{{ __('expenses.projected') }}</dt>
-                    <dd>{{ Auth::user()->formatCurrency($expense->projected, true) }}</dd>
+                    <dd>{{ App\formatCurrency($expense->projected, true) }}</dd>
                 @endif
 
                 @if ($expense->actual)
                     <dt>{{ __('expenses.actual') }}</dt>
-                    <dd>{{ Auth::user()->formatCurrency($expense->actual, true) }}</dd>
+                    <dd>{{ App\formatCurrency($expense->actual, true) }}</dd>
                 @endif
 
                 @if ($expense->category)

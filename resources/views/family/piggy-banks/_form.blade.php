@@ -31,7 +31,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="starting_amount" id="starting_amount" class="form-control money-field" placeholder="{{ __('piggy-banks.starting-amount') }}" value="{{ old('starting_amount', Auth::user()->formatCurrency($piggyBank->starting_amount, false)) }}">
+                <input type="text" name="starting_amount" id="starting_amount" class="form-control money-field" placeholder="{{ __('piggy-banks.starting-amount') }}" value="{{ old('starting_amount', App\formatCurrency($piggyBank->starting_amount, false)) }}">
             </div>
             @fieldError('starting_amount')
         </div>
@@ -42,7 +42,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="target_amount" id="target_amount" class="form-control money-field" placeholder="{{ __('piggy-banks.target-amount') }}" value="{{ old('target_amount', Auth::user()->formatCurrency($piggyBank->target_amount, false)) }}">
+                <input type="text" name="target_amount" id="target_amount" class="form-control money-field" placeholder="{{ __('piggy-banks.target-amount') }}" value="{{ old('target_amount', App\formatCurrency($piggyBank->target_amount, false)) }}">
             </div>
             @fieldError('target_amount')
         </div>
@@ -53,7 +53,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="monthly_contribution" id="monthly_contribution" class="form-control money-field" placeholder="{{ __('piggy-banks.monthly-contribution') }}" value="{{ old('monthly_contribution', Auth::user()->formatCurrency($piggyBank->monthly_contribution, false)) }}">
+                <input type="text" name="monthly_contribution" id="monthly_contribution" class="form-control money-field" placeholder="{{ __('piggy-banks.monthly-contribution') }}" value="{{ old('monthly_contribution', App\formatCurrency($piggyBank->monthly_contribution, false)) }}">
             </div>
             @fieldError('monthly_contribution')
         </div>

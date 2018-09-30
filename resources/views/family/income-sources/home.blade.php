@@ -70,7 +70,7 @@
                                 <li class="income-source list-group-item">
                                     <a href="{{ route('family.income-sources.edit', [$family, $source]) }}">
                                         {{ $source->name }}
-                                        {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
+                                        {{ ($source->default_amount) ? ' - ' . App\formatCurrency($source->default_amount, true) : '' }}
                                     </a>
                                 </li>
 
@@ -90,7 +90,7 @@
                                 <li class="income-source list-group-item">
                                     <a href="{{ route('family.income-sources.edit', [$family, $source]) }}">
                                         {{ $source->name }}
-                                        {{ ($source->default_amount) ? ' - ' . Auth::user()->formatCurrency($source->default_amount, true) : '' }}
+                                        {{ ($source->default_amount) ? ' - ' . App\formatCurrency($source->default_amount, true) : '' }}
                                     </a>
                                 </li>
 
@@ -113,7 +113,7 @@
 
                     @foreach ($incomeSources as $source)
 
-                        <tr class="income-source" data-search-content="{{ $source->name }} {{ Auth::user()->formatCurrency($source->default_amount) }}">
+                        <tr class="income-source" data-search-content="{{ $source->name }} {{ App\formatCurrency($source->default_amount) }}">
                             <td>
                                 <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
                                     {{ $source->name }}
@@ -121,7 +121,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('family.income-sources.show', [$family, $source]) }}">
-                                    {{ ($source->default_amount) ? Auth::user()->formatCurrency($source->default_amount, true) : '' }}
+                                    {{ ($source->default_amount) ? App\formatCurrency($source->default_amount, true) : '' }}
                                 </a>
                             </td>
                         </tr>

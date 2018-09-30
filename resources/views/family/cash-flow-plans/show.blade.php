@@ -25,7 +25,7 @@
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-money', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-refresh', 'text' => __('recurring-expenses.add-new-recurring-expense')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-folder-open-o', 'text' => __('expense-groups.add-new-expense-group')],
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-plus-circle', 'text' => __('expenses.add-new-expense')],
+            ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-dollar', 'text' => __('expenses.add-new-expense')],
         ]
     ])
 
@@ -71,8 +71,8 @@
 
                             <tr>
                                 <td>{{ __('income-sources.income-sources') }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</td>
                             </tr>
 
                             @php
@@ -91,8 +91,8 @@
 
                             <tr class="{{ $statusClass }}">
                                 <td>{{ __('recurring-expenses.recurring-expenses') }} <span class="sr-only">{{ $srText }}</span></td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</td>
                             </tr>
 
                             @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
@@ -113,8 +113,8 @@
 
                                 <tr class="{{ $statusClass }}">
                                     <td>{{ $expenseGroup->name }} <span class="sr-only">{{ $srText }}</span></td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($expenseGroup->actualTotal(), true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</td>
                                 </tr>
                             @endforeach
 
@@ -126,8 +126,8 @@
 
                             <tr>
                                 <td>{{ __('cash-flow-plans.other-expenses') }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), true) }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), true) }}</td>
                             </tr>
 
                         </table>
@@ -158,15 +158,15 @@
                             @foreach ($cashFlowPlan->incomeSources as $incomeSource)
                                 <tr>
                                     <td><a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource, 'return' => url()->current()]) }}">{{ $incomeSource->name }}</a></td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->projected, true) }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->actual, true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($incomeSource->projected, true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($incomeSource->actual, true) }}</td>
                                 </tr>
                             @endforeach
 
                             <tr>
                                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
                             </tr>
                         </table>
 
@@ -196,8 +196,8 @@
                             @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
                                 <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                                     <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
-                                    <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($recurringExpense->projected, true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($recurringExpense->actual, true) }}</td>
                                 </tr>
                             @endforeach
 
@@ -205,16 +205,16 @@
                                 @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
                                     <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                                         <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
-                                        <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
-                                        <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                                        <td class="text-right">{{ App\formatCurrency($recurringExpense->projected, true) }}</td>
+                                        <td class="text-right">{{ App\formatCurrency($recurringExpense->actual, true) }}</td>
                                     </tr>
                                 @endforeach
                             @endforeach
 
                             <tr>
                                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
                             </tr>
                         </table>
 
@@ -250,7 +250,7 @@
                                 </h3>
 
                                 <p class="text-dark card-text">
-                                    {{ Auth::user()->formatCurrency($expenseGroup->actualTotal(), true) }} / {{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}
+                                    {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
                                 </p>
 
                                 <div class="progress">
@@ -264,7 +264,7 @@
                                         }
                                     @endphp
 
-                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ Auth::user()->formatCurrency($expenseGroup->projected, false) }}"></div>
+                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
                                 </div>
 
                             </a>
@@ -292,7 +292,7 @@
                         {{--<div class="section">
                             <h3>
                                 <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a>
-                                <small class="float-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</small>
+                                <small class="float-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</small>
                             </h3>
 
                             <table class="table table-sm">
@@ -310,8 +310,8 @@
                                     <tr>
                                         <td style="border-left: 4px solid transparent">{{ Auth::user()->formatDate($expense->date) }}</td>
                                         <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                                        <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
-                                        <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                                        <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
+                                        <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                                     </tr>
                                 @endforeach
 
@@ -320,16 +320,16 @@
                                         <tr>
                                             <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
                                             <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                                            <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
-                                            <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                                            <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
+                                            <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                                         </tr>
                                     @endforeach
                                 @endforeach
 
                                 <tr>
                                     <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                    <td class="text-right"><strong>{{ Auth::user()->formatCurrency($expenseGroup->expenses->sum('projected'), true) }}</strong></td>
-                                    <td class="text-right"><strong>{{ Auth::user()->formatCurrency($expenseGroup->expenses->sum('actual'), true) }}</strong></td>
+                                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('projected'), true) }}</strong></td>
+                                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('actual'), true) }}</strong></td>
                                 </tr>
 
                             </table>
@@ -379,8 +379,8 @@
                                 <tr>
                                     <td style="border-left: 4px solid transparent"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
                                     <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
-                                    <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
-                                    <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                                    <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
+                                    <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                                 </tr>
                             @endforeach
 
@@ -392,16 +392,16 @@
                                     <tr>
                                         <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
                                         <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
-                                        <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
-                                        <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                                        <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
+                                        <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                                     </tr>
                                 @endforeach
                             @endforeach
 
                             <tr>
                                 <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('projected'), true) }}</strong></td>
-                                <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('actual'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('projected'), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('actual'), true) }}</strong></td>
                             </tr>
 
                         </table>

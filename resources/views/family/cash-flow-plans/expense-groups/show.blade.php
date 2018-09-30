@@ -51,7 +51,7 @@
             <dl>
 
                 <dt>{{ __('expense-groups.actual') }} / {{ __('expense-groups.projected') }}</dt>
-                <dd>{{ Auth::user()->formatCurrency($expenseGroup->actualTotal(), true) }} / {{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</dd>
+                <dd>{{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}</dd>
 
                 <dt>{{ __('recurring-expenses.category') }}</dt>
                 <dd>{{ $expenseGroup->category ? $expenseGroup->category->name : ''}} {{ ($expenseGroup->sub_category) ? '(' . $expenseGroup->sub_category . ')' : '' }}</dd>
@@ -78,8 +78,8 @@
                     <tr>
                         <td style="border-left: 4px solid transparent">{{ Auth::user()->formatDate($expense->date) }}</td>
                         <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                        <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
-                        <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                        <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
+                        <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                     </tr>
                 @endforeach
 
@@ -88,16 +88,16 @@
                         <tr>
                             <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
                             <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                            <td class="text-right">{{ ($expense->projected) ? Auth::user()->formatCurrency($expense->projected, true) : '' }}</td>
-                            <td class="text-right">{{ ($expense->actual) ? Auth::user()->formatCurrency($expense->actual, true) : '' }}</td>
+                            <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
+                            <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                         </tr>
                     @endforeach
                 @endforeach
 
                 <tr>
                     <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                    <td class="text-right"><strong>{{ Auth::user()->formatCurrency($expenseGroup->expenses->sum('projected'), true) }}</strong></td>
-                    <td class="text-right"><strong>{{ Auth::user()->formatCurrency($expenseGroup->expenses->sum('actual'), true) }}</strong></td>
+                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('projected'), true) }}</strong></td>
+                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('actual'), true) }}</strong></td>
                 </tr>
 
             </table>

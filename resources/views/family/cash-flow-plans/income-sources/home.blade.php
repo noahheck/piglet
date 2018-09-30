@@ -61,15 +61,15 @@
                     @foreach ($cashFlowPlan->incomeSources as $incomeSource)
                         <tr>
                             <td><a href="{{ route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource]) }}">{{ $incomeSource->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->projected, true) }}</td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($incomeSource->actual, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($incomeSource->projected, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($incomeSource->actual, true) }}</td>
                         </tr>
                     @endforeach
 
                     <tr>
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</strong></td>
                     </tr>
                 </table>
             @endif

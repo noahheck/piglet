@@ -43,7 +43,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('expenses.projected') }}" value="{{ old('projected', Auth::user()->formatCurrency($expense->projected, false)) }}">
+                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('expenses.projected') }}" value="{{ old('projected', App\formatCurrency($expense->projected, false)) }}">
             </div>
             @fieldError('projected')
         </div>
@@ -56,7 +56,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('expenses.actual') }}" value="{{ old('actual', Auth::user()->formatCurrency($expense->actual, false)) }}">
+                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('expenses.actual') }}" value="{{ old('actual', App\formatCurrency($expense->actual, false)) }}">
             </div>
             @fieldError('actual')
         </div>

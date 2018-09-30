@@ -98,7 +98,7 @@ $months = [
 
                                         @if ($hasPlan)
 
-                                            {{ Auth::user()->formatCurrency($cashFlowPlan->allActualExpensesTotal(), true) }}
+                                            {{ App\formatCurrency($cashFlowPlan->allActualExpensesTotal(), true) }}
 
                                         @else
                                             {{ __('cash-flow-plans.create-plan') }}

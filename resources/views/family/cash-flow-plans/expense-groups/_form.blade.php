@@ -33,10 +33,10 @@
                                 value="{{ $template->id }}"
                                 data-category="{{ $template->category_id }}"
                                 data-sub-category="{{ $template->sub_category }}"
-                                data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}"
+                                data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}"
                                 data-name="{{ $template->name }}"
                                 {{ ($template->id == old('expense_group_id', $expenseGroup->expense_group_id)) ? 'selected' : '' }}
-                            >{{ $template->name }} - {{ Auth::user()->formatCurrency($template->default_amount, true) }}</option>
+                            >{{ $template->name }} - {{ App\formatCurrency($template->default_amount, true) }}</option>
                         @endforeach
                     </optgroup>
                 @endif
@@ -50,10 +50,10 @@
                                     value="{{ $template->id }}"
                                     data-category="{{ $template->category_id }}"
                                     data-sub-category="{{ $template->sub_category }}"
-                                    data-default-amount="{{ Auth::user()->formatCurrency($template->default_amount, false) }}"
+                                    data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}"
                                     data-name="{{ $template->name }}"
                                     {{ ($template->id == old('expense_group_id', $expenseGroup->expense_group_id)) ? 'selected' : '' }}
-                            >{{ $template->name }} - {{ Auth::user()->formatCurrency($template->default_amount, true) }}</option>
+                            >{{ $template->name }} - {{ App\formatCurrency($template->default_amount, true) }}</option>
                         @endforeach
 
                     </optgroup>
@@ -74,7 +74,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('expense-groups.projected-amount') }}" value="{{ old('projected', Auth::user()->formatCurrency($expenseGroup->projected, false)) }}">
+                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('expense-groups.projected-amount') }}" value="{{ old('projected', App\formatCurrency($expenseGroup->projected, false)) }}">
             </div>
             @fieldError('projected')
         </div>

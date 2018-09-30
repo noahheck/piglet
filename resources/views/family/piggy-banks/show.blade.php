@@ -41,7 +41,7 @@
             <p>{!! nl2br(e($piggyBank->description)) !!}</p>
 
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ Auth::user()->formatCurrency($piggyBank->target_amount, false) }}"></div>
+                <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($piggyBank->target_amount, false) }}"></div>
             </div>
 
             <hr>
@@ -52,10 +52,10 @@
                 <dd>{{ Auth::user()->formatDate($piggyBank->dueDate) }}</dd>
 
                 <dt>{{ __('piggy-banks.starting-amount') }}</dt>
-                <dd>{{ Auth::user()->formatCurrency($piggyBank->starting_amount) }}</dd>
+                <dd>{{ App\formatCurrency($piggyBank->starting_amount) }}</dd>
 
                 <dt>{{ __('piggy-banks.target-amount') }}</dt>
-                <dd>{{ Auth::user()->formatCurrency($piggyBank->target_amount) }}</dd>
+                <dd>{{ App\formatCurrency($piggyBank->target_amount) }}</dd>
 
 
 

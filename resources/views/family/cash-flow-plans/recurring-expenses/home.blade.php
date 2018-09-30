@@ -65,8 +65,8 @@
 
                         <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                             <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
-                            <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($recurringExpense->projected, true) }}</td>
+                            <td class="text-right">{{ App\formatCurrency($recurringExpense->actual, true) }}</td>
                         </tr>
 
                     @endforeach
@@ -75,16 +75,16 @@
                         @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
                             <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                                 <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">{{ $recurringExpense->name }}</a></td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->projected, true) }}</td>
-                                <td class="text-right">{{ Auth::user()->formatCurrency($recurringExpense->actual, true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($recurringExpense->projected, true) }}</td>
+                                <td class="text-right">{{ App\formatCurrency($recurringExpense->actual, true) }}</td>
                             </tr>
                         @endforeach
                     @endforeach
 
                     <tr>
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
-                        <td class="text-right"><strong>{{ Auth::user()->formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
+                        <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
                     </tr>
                 </table>
 

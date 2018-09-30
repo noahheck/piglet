@@ -44,7 +44,7 @@
                 <p class="text-muted"><span class="fa fa-square-o" title="Inactive"></span> {{ __('recurring-expenses.inactive') }}
             @endif
 
-                {{ ($recurringExpense->default_amount) ? '- ' . Auth::user()->formatCurrency($recurringExpense->default_amount, true) : '' }}
+                {{ ($recurringExpense->default_amount) ? '- ' . App\formatCurrency($recurringExpense->default_amount, true) : '' }}
                 {{ ($recurringExpense->category) ? '- ' . $recurringExpense->category->name : '' }}
                 {{ ($recurringExpense->sub_category) ? '- ' . $recurringExpense->sub_category : '' }}
             </p>
