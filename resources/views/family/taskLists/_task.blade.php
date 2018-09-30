@@ -13,7 +13,7 @@
     </a>
 
     @if ($task->dueDate)
-        <small class="dueDate">{{ Auth::user()->formatDate($task->dueDate) }}</small>
+        <small class="dueDate">{{ App\formatDate($task->dueDate) }}</small>
     @endif
 
     @if ($task->member)

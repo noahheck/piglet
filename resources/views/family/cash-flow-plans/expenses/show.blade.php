@@ -42,7 +42,7 @@
             <h2>{{ $expense->title() }}</h2>
 
             @if ($expense->date)
-                <h3>{{ Auth::user()->formatDate($expense->date) }}</h3>
+                <h3>{{ App\formatDate($expense->date) }}</h3>
             @endif
 
             <dl>

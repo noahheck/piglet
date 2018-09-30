@@ -60,7 +60,7 @@
 
         <div class="form-group">
             <label for="dueDate">{{ __('piggy-banks.dueDate') }} <small class="text-muted">mm/dd/yyyy</small></label>
-            <input type="text" name="dueDate" id="dueDate" class="form-control dateField datepicker" placeholder="{{ __('piggy-banks.dueDate') }}" value="{{ old('dueDate', Auth::user()->formatDate($piggyBank->dueDate)) }}">
+            <input type="text" name="dueDate" id="dueDate" class="form-control dateField datepicker" placeholder="{{ __('piggy-banks.dueDate') }}" value="{{ old('dueDate', App\formatDate($piggyBank->dueDate)) }}">
             @fieldError('dueDate')
         </div>
 

@@ -64,7 +64,7 @@ $incomeSourceTemplates = \App\Family\IncomeSource::where('active', true)->get();
 
         <div class="form-group">
             <label for="date">{{ __('income-sources.date') }} <small class="text-muted">mm/dd/yyyy</small></label>
-            <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('income-sources.date') }}" value="{{ old('date', Auth::user()->formatDate($incomeSource->date)) }}">
+            <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('income-sources.date') }}" value="{{ old('date', App\formatDate($incomeSource->date)) }}">
             @fieldError('date')
         </div>
 

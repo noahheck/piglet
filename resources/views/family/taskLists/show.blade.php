@@ -50,7 +50,7 @@
             </h2>
 
             @if($taskList->dueDate)
-                <p class="{{ ($taskList->isActive() && $taskList->isOverdue() && !$taskList->canBeArchived()) ? 'isOverdue' : '' }}">Due: <span class="dueDate">{{ Auth::user()->formatDate($taskList->dueDate) }}</span></p>
+                <p class="{{ ($taskList->isActive() && $taskList->isOverdue() && !$taskList->canBeArchived()) ? 'isOverdue' : '' }}">Due: <span class="dueDate">{{ App\formatDate($taskList->dueDate) }}</span></p>
             @endif
 
             <p>{!! nl2br(e($taskList->details)) !!}</p>

@@ -67,7 +67,7 @@
                                             <h5 class="card-title">{{ $piggyBank->name }}</h5>
 
                                             <p class="card-text text-dark">
-                                                {{ Auth::user()->formatDate($piggyBank->dueDate) }}
+                                                {{ App\formatDate($piggyBank->dueDate) }}
                                                 @if ($piggyBank->monthly_contribution)
                                                     ({{ App\formatCurrency($piggyBank->monthly_contribution, true) }} / {{ __('months.month') }})
                                                 @endif
@@ -116,7 +116,7 @@
                                             <h5 class="card-title">{{ $piggyBank->name }}</h5>
 
                                             <p class="card-text">
-                                                {{ Auth::user()->formatDate($piggyBank->dueDate) }}
+                                                {{ App\formatDate($piggyBank->dueDate) }}
                                             </p>
 
                                             <div class="progress">

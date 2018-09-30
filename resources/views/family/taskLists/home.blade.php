@@ -42,7 +42,7 @@
                     <a class="card taskList {{ ($list->isOverdue()) ? 'isOverdue' : '' }} {{ ($list->isDueToday()) ? 'isDueToday' : '' }}" href="{{ route('family.taskLists.show', [$family, $list]) }}">
                         <div class="card-body">
                             <h5 class='card-title'>{{ $list->title }}</h5>
-                            <p class="dueDate">{{ Auth::user()->formatDate($list->dueDate) }}{{ ($list->isOverdue()) ? ' - Overdue' : '' }}</p>
+                            <p class="dueDate">{{ App\formatDate($list->dueDate) }}{{ ($list->isOverdue()) ? ' - Overdue' : '' }}</p>
                             <p class="taskStats">{{ $list->taskStats()['completed'] }} / {{ $list->taskStats()['total'] }}</p>
                         </div>
                     </a>

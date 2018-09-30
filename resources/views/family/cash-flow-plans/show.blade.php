@@ -308,7 +308,7 @@
 
                                 @foreach ($expenseGroup->expenses->where('category_id', null) as $expense)
                                     <tr>
-                                        <td style="border-left: 4px solid transparent">{{ Auth::user()->formatDate($expense->date) }}</td>
+                                        <td style="border-left: 4px solid transparent">{{ App\formatDate($expense->date) }}</td>
                                         <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
                                         <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
                                         <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
@@ -318,7 +318,7 @@
                                 @foreach ($categories as $category)
                                     @foreach ($expenseGroup->expenses->where('category_id', $category->id) as $expense)
                                         <tr>
-                                            <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ Auth::user()->formatDate($expense->date) }}</td>
+                                            <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ App\formatDate($expense->date) }}</td>
                                             <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
                                             <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
                                             <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
@@ -377,7 +377,7 @@
                                     $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
                                 @endphp
                                 <tr>
-                                    <td style="border-left: 4px solid transparent"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
+                                    <td style="border-left: 4px solid transparent"><a href="{{ $link }}">{{ App\formatDate($expense->date) }}</a></td>
                                     <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
                                     <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
                                     <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
@@ -390,7 +390,7 @@
                                         $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
                                     @endphp
                                     <tr>
-                                        <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}"><a href="{{ $link }}">{{ Auth::user()->formatDate($expense->date) }}</a></td>
+                                        <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}"><a href="{{ $link }}">{{ App\formatDate($expense->date) }}</a></td>
                                         <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
                                         <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
                                         <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>

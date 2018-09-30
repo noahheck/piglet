@@ -142,7 +142,7 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
 
         <div class="form-group">
             <label for="date">{{ __('recurring-expenses.date') }} <small class="text-muted">mm/dd/yyyy</small></label>
-            <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('recurring-expenses.date') }}" value="{{ old('date', Auth::user()->formatDate($recurringExpense->date)) }}">
+            <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('recurring-expenses.date') }}" value="{{ old('date', App\formatDate($recurringExpense->date)) }}">
             @fieldError('date')
         </div>
 

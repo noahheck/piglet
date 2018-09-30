@@ -63,7 +63,7 @@
 
         <div class="form-group">
             <label for="date">{{ __('expenses.date') }} <small class="text-muted">mm/dd/yyyy</small></label>
-            <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('expenses.date') }}" value="{{ old('date', Auth::user()->formatDate($expense->date)) }}">
+            <input type="text" name="date" id="date" class="form-control dateField datepicker" placeholder="{{ __('expenses.date') }}" value="{{ old('date', App\formatDate($expense->date)) }}">
             @fieldError('date')
         </div>
 

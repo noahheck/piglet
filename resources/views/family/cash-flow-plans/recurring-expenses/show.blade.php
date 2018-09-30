@@ -53,7 +53,7 @@
 
                 @if ($recurringExpense->date)
                     <dt>{{ __('recurring-expenses.date') }}</dt>
-                    <dd>{{ Auth::user()->formatDate($recurringExpense->date) }}</dd>
+                    <dd>{{ App\formatDate($recurringExpense->date) }}</dd>
                 @endif
 
                 @if ($recurringExpense->payment_detail)

@@ -49,7 +49,7 @@
             <dl>
 
                 <dt>{{ __('piggy-banks.dueDate') }}</dt>
-                <dd>{{ Auth::user()->formatDate($piggyBank->dueDate) }}</dd>
+                <dd>{{ App\formatDate($piggyBank->dueDate) }}</dd>
 
                 <dt>{{ __('piggy-banks.starting-amount') }}</dt>
                 <dd>{{ App\formatCurrency($piggyBank->starting_amount) }}</dd>

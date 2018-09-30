@@ -36,7 +36,7 @@
             <h4>{{ $taskList->title }}</h4>
 
             @if ($taskList->dueDate)
-                <p class="text-muted">{{ Auth::user()->formatDate($taskList->dueDate) }}</p>
+                <p class="text-muted">{{ App\formatDate($taskList->dueDate) }}</p>
             @endif
 
             <p>{!! nl2br(e($taskList->details)) !!}</p>
