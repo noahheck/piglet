@@ -273,11 +273,11 @@
 
                                             <div class="row">
 
-                                                <a class="col text-center p-322 pl-022" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
+                                                <a class="col text-center" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
                                                     <span class="fa fa-edit"></span> {{ __('form.edit') }}
                                                 </a>
 
-                                                <a class="col text-center p-322 pr-022 border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
+                                                <a class="col text-center border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
                                                     <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
                                                 </a>
 
@@ -290,6 +290,53 @@
 
                             @endforeach
 
+                            <div class="col-12 col-lg-6">
+
+                                <div class="card shadow mb-5 bg-light" style="border-top-width: 3px;">
+
+                                    <a class="card-body" href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">
+
+                                        <h3>
+                                            Other Expenses
+                                        </h3>
+
+                                        <p class="text-dark card-text">
+                                            {{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), true) }} / {{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), true) }}
+                                        </p>
+
+                                        <div class="progress">
+
+                                            @php
+                                                $statusClass = '';
+                                                if ($cashFlowPlan->nonGroupedExpensesAreOverspent()) {
+                                                    $statusClass = 'bg-danger';
+                                                } elseif ($cashFlowPlan->nonGroupedExpensesAreCloseToOverspent()) {
+                                                    $statusClass = 'bg-warning';
+                                                }
+                                            @endphp
+
+                                            <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $cashFlowPlan->nonGroupedExpensesPercentUtilized() }}%" aria-valuenow="{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), false) }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), false) }}"></div>
+                                        </div>
+
+                                    </a>
+
+                                    <div class="card-footer p0">
+
+                                        <div class="row">
+
+                                            <a class="col text-center" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">
+                                                <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                         <div class="text-right">
@@ -300,7 +347,7 @@
 
 
 
-                    <div class="section">
+                    {{--<div class="section">
 
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">Other Expenses</a>
@@ -355,7 +402,7 @@
                             <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expenses.add-new-expense') }}</a>
                         </div>
 
-                    </div>
+                    </div>--}}
 
                 </div>
 

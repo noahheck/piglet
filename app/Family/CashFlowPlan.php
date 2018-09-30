@@ -98,6 +98,21 @@ class CashFlowPlan extends Model
         return $this->nonGroupedExpenses()->sum('actual');
     }
 
+    public function nonGroupedExpensesPercentUtilized()
+    {
+        return ($this->nonGroupedExpensesActualTotal() / $this->nonGroupedExpensesProjectedTotal()) * 100;
+    }
+
+    public function nonGroupedExpensesAreOverspent()
+    {
+        return $this->nonGroupedExpensesPercentUtilized() >= 100;
+    }
+
+    public function nonGroupedExpensesAreCloseToOverspent()
+    {
+        return $this->nonGroupedExpensesPercentUtilized() >= 90;
+    }
+
 
 
     /**
