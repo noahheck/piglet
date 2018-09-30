@@ -37,7 +37,7 @@
             @include('family.cash-flow-plans.expenses._form', [
                 'action'      => route('family.cash-flow-plans.expenses.update', [$family, $cashFlowPlan, $expense]) . '?' . app('request')->getQueryString(),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

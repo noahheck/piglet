@@ -228,11 +228,64 @@
 
                     <h2>Expenses</h2>
 
+
+
+
+
+
+
+
                     @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
-                        <div class="section">
+                        <div class="card shadow mb-3" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
+
+                            <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
+
+                                <h3>{{ $expenseGroup->name }}</h3>
+
+                                <p class="text-dark card-text">
+                                    {{ Auth::user()->formatCurrency($expenseGroup->actualTotal(), true) }} / {{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}
+                                </p>
+
+                                <div class="progress">
+
+                                    @php
+                                        $statusClass = '';
+                                        if ($expenseGroup->isOverspent()) {
+                                            $statusClass = 'bg-danger';
+                                        } elseif ($expenseGroup->isCloseToOverspent()) {
+                                            $statusClass = 'bg-warning';
+                                        }
+                                    @endphp
+
+                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ Auth::user()->formatCurrency($expenseGroup->projected, false) }}"></div>
+                                </div>
+
+                            </a>
+
+                            <div class="card-footer p-0">
+
+                                <div class="row text-center">
+
+                                    <a class="col p-3" href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup]) }}">
+                                        <span class="fa fa-edit"></span> {{ __('form.edit') }}
+                                    </a>
+
+                                    <a class="col p-3 border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
+                                        <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        {{--<div class="section">
                             <h3>
-                                <a href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a>
+                                <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a>
                                 <small class="float-right">{{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}</small>
                             </h3>
 
@@ -278,9 +331,17 @@
                             <div class="text-right">
                                 <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">{{ __('expenses.add-new-expense') }}</a>
                             </div>
-                        </div>
+                        </div>--}}
 
                     @endforeach
+
+
+
+
+
+
+
+
 
                     <div class="text-right">
                         <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expense-groups.add-new-expense-group') }}</a>

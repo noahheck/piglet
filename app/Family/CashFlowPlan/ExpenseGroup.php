@@ -46,7 +46,12 @@ class ExpenseGroup extends Model
 
     public function isCloseToOverspent()
     {
-        return (($this->actualTotal() / $this->projected) * 100) >= 90;
+        return $this->percentUtilized() >= 90;
+    }
+
+    public function percentUtilized()
+    {
+        return ($this->actualTotal() / $this->projected) * 100;
     }
 
     public function actualTotal()
