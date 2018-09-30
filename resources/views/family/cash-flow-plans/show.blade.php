@@ -233,113 +233,65 @@
 
 
 
+                    <div class="row">
 
+                        @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
-                    @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
+                            <div class="col-12 col-lg-6">
+                                <div class="card shadow mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
 
-                        <div class="card shadow mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
+                                    <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
 
-                            <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
+                                        @if ($expenseGroup->category)
+                                            <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
+                                        @endif
 
-                                @if ($expenseGroup->category)
-                                    <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
-                                @endif
+                                        <h3>
+                                            {{ $expenseGroup->name }}
+                                        </h3>
 
-                                <h3>
-                                    {{ $expenseGroup->name }}
-                                </h3>
+                                        <p class="text-dark card-text">
+                                            {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
+                                        </p>
 
-                                <p class="text-dark card-text">
-                                    {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
-                                </p>
+                                        <div class="progress">
 
-                                <div class="progress">
+                                            @php
+                                                $statusClass = '';
+                                                if ($expenseGroup->isOverspent()) {
+                                                    $statusClass = 'bg-danger';
+                                                } elseif ($expenseGroup->isCloseToOverspent()) {
+                                                    $statusClass = 'bg-warning';
+                                                }
+                                            @endphp
 
-                                    @php
-                                        $statusClass = '';
-                                        if ($expenseGroup->isOverspent()) {
-                                            $statusClass = 'bg-danger';
-                                        } elseif ($expenseGroup->isCloseToOverspent()) {
-                                            $statusClass = 'bg-warning';
-                                        }
-                                    @endphp
+                                            <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
+                                        </div>
 
-                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
-                                </div>
-
-                            </a>
-
-                            <div class="card-footer p-0">
-
-                                <div class="row text-center">
-
-                                    <a class="col p-3" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
-                                        <span class="fa fa-edit"></span> {{ __('form.edit') }}
                                     </a>
 
-                                    <a class="col p-3 border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
-                                        <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                    </a>
+                                    <div class="card-footer p0">
+
+                                        <div class="row">
+
+                                            <a class="col text-center p-322 pl-022" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
+                                                <span class="fa fa-edit"></span> {{ __('form.edit') }}
+                                            </a>
+
+                                            <a class="col text-center p-322 pr-022 border-left" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">
+                                                <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                            </a>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
-
                             </div>
 
-                        </div>
+                        @endforeach
 
-
-
-                        {{--<div class="section">
-                            <h3>
-                                <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a>
-                                <small class="float-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</small>
-                            </h3>
-
-                            <table class="table table-sm">
-                                <caption>{{ $expenseGroup->name }}</caption>
-                                <thead>
-                                    <tr class="font-weight-bold">
-                                        <td>{{ __('expenses.date') }}</td>
-                                        <td>{{ __('expenses.merchant') }}</td>
-                                        <td class="text-right">{{ __('expenses.projected') }}</td>
-                                        <td class="text-right">{{ __('expenses.actual') }}</td>
-                                    </tr>
-                                </thead>
-
-                                @foreach ($expenseGroup->expenses->where('category_id', null) as $expense)
-                                    <tr>
-                                        <td style="border-left: 4px solid transparent">{{ App\formatDate($expense->date) }}</td>
-                                        <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                                        <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
-                                        <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
-                                    </tr>
-                                @endforeach
-
-                                @foreach ($categories as $category)
-                                    @foreach ($expenseGroup->expenses->where('category_id', $category->id) as $expense)
-                                        <tr>
-                                            <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ App\formatDate($expense->date) }}</td>
-                                            <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                                            <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
-                                            <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach
-
-                                <tr>
-                                    <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('projected'), true) }}</strong></td>
-                                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('actual'), true) }}</strong></td>
-                                </tr>
-
-                            </table>
-
-                            <div class="text-right">
-                                <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current(), 'expense_group_id' => $expenseGroup->id]) }}">{{ __('expenses.add-new-expense') }}</a>
-                            </div>
-                        </div>--}}
-
-                    @endforeach
+                    </div>
 
 
 
