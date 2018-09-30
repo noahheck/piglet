@@ -35,9 +35,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.expense-groups._form', [
-                'action'      => route('family.cash-flow-plans.expense-groups.update', [$family, $cashFlowPlan, $expenseGroup]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.cash-flow-plans.expense-groups.update', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->previous()]),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

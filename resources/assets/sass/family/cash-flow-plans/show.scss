@@ -14,3 +14,13 @@
   @include shadow;
 
 }
+
+.expense-group {
+  a:hover {
+    text-decoration: none;
+
+    h3 {
+      text-decoration: underline;
+    }
+  }
+}

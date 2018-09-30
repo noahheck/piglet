@@ -237,11 +237,17 @@
 
                     @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
-                        <div class="card shadow mb-3" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
+                        <div class="card shadow mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
 
                             <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
 
-                                <h3>{{ $expenseGroup->name }}</h3>
+                                @if ($expenseGroup->category)
+                                    <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
+                                @endif
+
+                                <h3>
+                                    {{ $expenseGroup->name }}
+                                </h3>
 
                                 <p class="text-dark card-text">
                                     {{ Auth::user()->formatCurrency($expenseGroup->actualTotal(), true) }} / {{ Auth::user()->formatCurrency($expenseGroup->projected, true) }}
@@ -267,7 +273,7 @@
 
                                 <div class="row text-center">
 
-                                    <a class="col p-3" href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup]) }}">
+                                    <a class="col p-3" href="{{ route('family.cash-flow-plans.expense-groups.edit', [$family, $cashFlowPlan, $expenseGroup]) }}">
                                         <span class="fa fa-edit"></span> {{ __('form.edit') }}
                                     </a>
 
