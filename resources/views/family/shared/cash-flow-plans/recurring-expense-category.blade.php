@@ -16,8 +16,6 @@
                     $statusClass = '';
                     if ($cashFlowPlan->recurringExpenseCategoryIsOverspent($categoryId)) {
                         $statusClass = 'bg-danger';
-                    } elseif ($cashFlowPlan->recurringExpenseCategoryIsCloseToOverspent($categoryId)) {
-                        //$statusClass = 'bg-warning';
                     }
                 @endphp
 
