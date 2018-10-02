@@ -30,7 +30,6 @@
         <div class="form-group">
             <label for="expense_group_id">{{ __('expense-groups.expense-group') }}</label>
             <select class="custom-select" name="expense_group_id" id="expense_group_id">
-                <option value="">-- None --</option>
                 @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
                     <option value="{{ $expenseGroup->id }}" data-category="{{ $expenseGroup->category_id }}" data-sub-category="{{ $expenseGroup->sub_category }}" {{ (old('expense_group_id', $expense->expense_group_id) == $expenseGroup->id) ? 'selected' : '' }}>{{ $expenseGroup->name }}</option>
                 @endforeach

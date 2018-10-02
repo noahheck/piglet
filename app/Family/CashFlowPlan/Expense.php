@@ -41,7 +41,7 @@ class Expense extends Model
     public static function getValidations()
     {
         return [
-            'expense_group_id' => 'integer|nullable',
+            'expense_group_id' => 'integer',
             'merchant_id'      => 'integer|nullable',
             'category_id'      => 'integer|nullable',
             'projected'        => 'numeric|nullable',

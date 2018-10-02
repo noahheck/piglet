@@ -118,18 +118,6 @@
                                 </tr>
                             @endforeach
 
-                            @php
-                                $statusClass = '';
-
-
-                            @endphp
-
-                            <tr>
-                                <td>{{ __('cash-flow-plans.other-expenses') }}</td>
-                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), true) }}</td>
-                                <td class="text-right">{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), true) }}</td>
-                            </tr>
-
                         </table>
 
                     </div>
@@ -140,6 +128,8 @@
 
                 <div class="tab-pane" id="details" role="tabpanel" aria-labelledby="detailsTab">
 
+
+                    {{-- Beginning of Income Sources section --}}
                     <div id="incomeSources" class="section">
 
                         <h3>
@@ -175,9 +165,11 @@
                         </div>
 
                     </div>
+                    {{-- End of Income Sources section --}}
 
 
 
+                    {{-- Beginning of Recurring Expenses section --}}
                     <div id="recurringExpenses" class="section">
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
@@ -223,9 +215,11 @@
                         </div>
 
                     </div>
+                    {{-- End of Recurring Expenses section --}}
 
 
 
+                    {{-- Beginning of Expense Groups section --}}
                     <div class="section">
 
                         <h3>
@@ -290,53 +284,6 @@
 
                             @endforeach
 
-                            <div class="col-12 col-lg-6">
-
-                                <div class="card shadow mb-5 bg-light" style="border-top-width: 3px;">
-
-                                    <a class="card-body" href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">
-
-                                        <h3>
-                                            Other Expenses
-                                        </h3>
-
-                                        <p class="text-dark card-text">
-                                            {{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), true) }} / {{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), true) }}
-                                        </p>
-
-                                        <div class="progress">
-
-                                            @php
-                                                $statusClass = '';
-                                                if ($cashFlowPlan->nonGroupedExpensesAreOverspent()) {
-                                                    $statusClass = 'bg-danger';
-                                                } elseif ($cashFlowPlan->nonGroupedExpensesAreCloseToOverspent()) {
-                                                    $statusClass = 'bg-warning';
-                                                }
-                                            @endphp
-
-                                            <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $cashFlowPlan->nonGroupedExpensesPercentUtilized() }}%" aria-valuenow="{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesActualTotal(), false) }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($cashFlowPlan->nonGroupedExpensesProjectedTotal(), false) }}"></div>
-                                        </div>
-
-                                    </a>
-
-                                    <div class="card-footer p0">
-
-                                        <div class="row">
-
-                                            <a class="col text-center" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">
-                                                <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-
                         </div>
 
                         <div class="text-right">
@@ -344,65 +291,9 @@
                         </div>
 
                     </div>
+                    {{-- End of Expense Groups section --}}
 
 
-
-                    {{--<div class="section">
-
-                        <h3>
-                            <a href="{{ route('family.cash-flow-plans.expenses.index', [$family, $cashFlowPlan]) }}">Other Expenses</a>
-                        </h3>
-
-                        <table class="table table-sm">
-                            <caption>{{ __('cash-flow-plans.other-expenses') }}</caption>
-                            <thead>
-                                <tr class="font-weight-bold">
-                                    <td>{{ __('expenses.date') }}</td>
-                                    <td>{{ __('expenses.merchant') }}</td>
-                                    <td class="text-right">{{ __('expenses.projected') }}</td>
-                                    <td class="text-right">{{ __('expenses.actual') }}</td>
-                                </tr>
-                            </thead>
-
-                            @foreach ($cashFlowPlan->nonGroupedExpenses()->where('category_id', null) as $expense)
-                                @php
-                                    $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
-                                @endphp
-                                <tr>
-                                    <td style="border-left: 4px solid transparent"><a href="{{ $link }}">{{ App\formatDate($expense->date) }}</a></td>
-                                    <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
-                                    <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
-                                    <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
-                                </tr>
-                            @endforeach
-
-                            @foreach ($categories as $category)
-                                @foreach ($cashFlowPlan->nonGroupedExpenses()->where('category_id', $category->id) as $expense)
-                                    @php
-                                        $link = route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]);
-                                    @endphp
-                                    <tr>
-                                        <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}"><a href="{{ $link }}">{{ App\formatDate($expense->date) }}</a></td>
-                                        <td><a href="{{ $link }}">{{ $expense->title() }}</a></td>
-                                        <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
-                                        <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
-                                    </tr>
-                                @endforeach
-                            @endforeach
-
-                            <tr>
-                                <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('projected'), true) }}</strong></td>
-                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->nonGroupedExpenses()->sum('actual'), true) }}</strong></td>
-                            </tr>
-
-                        </table>
-
-                        <div class="text-right">
-                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expenses.add-new-expense') }}</a>
-                        </div>
-
-                    </div>--}}
 
                 </div>
 
