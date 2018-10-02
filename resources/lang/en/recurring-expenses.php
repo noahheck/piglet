@@ -10,6 +10,8 @@ return [
     'search-recurring-expenses'    => 'Search Recurring Expenses',
     'select-recurring-expense'     => 'Select Recurring Expense',
 
+    'payments-made'                => 'Payments Made',
+
     'create-new' => 'Create New',
     'copy-from-projected' => 'Copy from projected',
 

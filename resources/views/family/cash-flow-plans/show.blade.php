@@ -9,7 +9,7 @@
 @endpush
 
 @push('scripts')
-{{--    <script type="text/javascript" src="{{ asset('js/family.categories.index.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('js/family.cash-flow-plans.show.js') }}"></script>
 @endpush
 
 
@@ -170,48 +170,40 @@
 
 
                     {{-- Beginning of Recurring Expenses section --}}
-                    <div id="recurringExpenses" class="section">
+                    <div class="section">
+
                         <h3>
                             <a href="{{ route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]) }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
                         </h3>
 
-                        <table class="table table-sm">
-                            <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
-                            <thead>
-                                <tr class="font-weight-bold">
-                                    <td class="text-center">{{ __('recurring-expenses.name') }}</td>
-                                    <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
-                                    <td class="text-right">{{ __('recurring-expenses.actual') }}</td>
-                                </tr>
-                            </thead>
+                        <div class="row">
 
-                            @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
-                                <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
-                                    <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
-                                    <td class="text-right">{{ App\formatCurrency($recurringExpense->projected, true) }}</td>
-                                    <td class="text-right">{{ App\formatCurrency($recurringExpense->actual, true) }}</td>
-                                </tr>
-                            @endforeach
+                            @if ($cashFlowPlan->hasRecurringExpensesForCategory(null))
+
+                                @include('family.shared.cash-flow-plans.recurring-expense-category', [
+                                    'family'       => $family,
+                                    'cashFlowPlan' => $cashFlowPlan,
+                                    'categoryId'   => null,
+                                    'categoryName' => __('recurring-expenses.uncategorized'),
+                                    'borderColor'  => '#999'
+                                ])
+
+                            @endif
 
                             @foreach ($categories as $category)
-                                @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
-                                    <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
-                                        <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
-                                        <td class="text-right">{{ App\formatCurrency($recurringExpense->projected, true) }}</td>
-                                        <td class="text-right">{{ App\formatCurrency($recurringExpense->actual, true) }}</td>
-                                    </tr>
-                                @endforeach
+
+                                @continue(!$cashFlowPlan->hasRecurringExpensesForCategory($category->id))
+
+                                @include('family.shared.cash-flow-plans.recurring-expense-category', [
+                                    'family'       => $family,
+                                    'cashFlowPlan' => $cashFlowPlan,
+                                    'categoryId'   => $category->id,
+                                    'categoryName' => $category->name,
+                                    'borderColor'  => $category->color,
+                                ])
+
                             @endforeach
 
-                            <tr>
-                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
-                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>
-                            </tr>
-                        </table>
-
-                        <div class="text-right">
-                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('recurring-expenses.add-new-recurring-expense') }}</a>
                         </div>
 
                     </div>
@@ -231,9 +223,9 @@
                             @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
                                 <div class="col-12 col-lg-6">
-                                    <div class="card shadow mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
+                                    <div class="card shadow-sm mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
 
-                                        <a href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}" class="card-body">
+                                        <a class="card-body" href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">
 
                                             @if ($expenseGroup->category)
                                                 <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>

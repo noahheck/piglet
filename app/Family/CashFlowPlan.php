@@ -62,6 +62,79 @@ class CashFlowPlan extends Model
 
 
 
+
+
+    public function hasRecurringExpensesForCategory($categoryId = null)
+    {
+        return $this->recurringExpenses->where('category_id', $categoryId)->count() > 0;
+    }
+
+    public function recurringExpenseCategoryProjectedTotal($categoryId = null)
+    {
+        return $this->recurringExpenses->where('category_id', $categoryId)->sum('projected');
+    }
+
+    public function recurringExpenseCategoryActualTotal($categoryId = null)
+    {
+        return $this->recurringExpenses->where('category_id', $categoryId)->sum('actual');
+    }
+
+    public function recurringExpenseCategoryPercentUtilized($categoryId = null)
+    {
+        if (!$this->recurringExpenseCategoryProjectedTotal($categoryId)) {
+            return null;
+        }
+
+        return (
+                  $this->recurringExpenseCategoryActualTotal($categoryId)
+                / $this->recurringExpenseCategoryProjectedTotal($categoryId)
+            ) * 100;
+    }
+
+    public function recurringExpenseCategoryIsOverspent($categoryId = null)
+    {
+        return $this->recurringExpenseCategoryPercentUtilized($categoryId) > 100;
+    }
+
+    public function recurringExpenseCategoryIsCloseToOverspent($categoryId = null)
+    {
+        return $this->recurringExpenseCategoryPercentUtilized($categoryId) >= 90;
+    }
+
+    public function recurringExpenseCategoryPaymentsMade($categoryId = null)
+    {
+        return $this->recurringExpenses->where('category_id', $categoryId)->reduce(function($carry, $expense) {
+            return ($expense->actual) ? ++$carry : $carry;
+        }, 0);
+    }
+
+    public function recurringExpenseCategoryPaymentsExpected($categoryId = null)
+    {
+        return $this->recurringExpenses->where('category_id', $categoryId)->count();
+    }
+
+    public function recurringExpenseCategoryAllPaymentsMade($categoryId = null)
+    {
+        return  $this->recurringExpenseCategoryPaymentsMade($categoryId)
+            === $this->recurringExpenseCategoryPaymentsExpected($categoryId);
+    }
+
+    public function recurringExpenseCategoryPercentPaymentsMade($categoryId = null)
+    {
+        if (!$this->recurringExpenseCategoryPaymentsExpected($categoryId)) {
+            return null;
+        }
+
+        return (
+                  $this->recurringExpenseCategoryPaymentsMade($categoryId)
+                / $this->recurringExpenseCategoryPaymentsExpected($categoryId)
+            ) * 100;
+    }
+
+
+
+
+
     public function allActualExpensesTotal()
     {
         return $this->actualRecurringExpensesTotal();
