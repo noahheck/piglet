@@ -34,6 +34,7 @@
                     <option value="{{ $expenseGroup->id }}" data-category="{{ $expenseGroup->category_id }}" data-sub-category="{{ $expenseGroup->sub_category }}" {{ (old('expense_group_id', $expense->expense_group_id) == $expenseGroup->id) ? 'selected' : '' }}>{{ $expenseGroup->name }}</option>
                 @endforeach
             </select>
+            @fieldError('expense_group_id')
         </div>
 
         <div class="form-group">
