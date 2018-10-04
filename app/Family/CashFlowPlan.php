@@ -162,6 +162,16 @@ class CashFlowPlan extends Model
         return $this->hasMany(PiggyBankContribution::class);
     }
 
+    public function projectedPiggyBankContributionsTotal()
+    {
+        return $this->piggyBankContributions->sum('projected');
+    }
+
+    public function actualPiggyBankContributionsTotal()
+    {
+        return $this->piggyBankContributions->sum('actual');
+    }
+
 
 
     /**

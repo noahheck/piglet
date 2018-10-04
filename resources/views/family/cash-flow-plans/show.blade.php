@@ -169,6 +169,47 @@
 
 
 
+                    {{-- Beginning of Piggy Bank Contributions section --}}
+                    <div class="section">
+
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.index', [$family, $cashFlowPlan]) }}">{{ __('piggy-banks.piggy-bank-contributions') }}</a>
+                        </h3>
+
+                        <table class="table table-sm">
+                            <caption>{{ __('piggy-banks.piggy-bank-contributions') }}</caption>
+                            <thead>
+                            <tr class="font-weight-bold">
+                                <td class="text-center">{{ __('piggy-banks.date') }}</td>
+                                <td class="text-right">{{ __('piggy-banks.projected') }}</td>
+                                <td class="text-right">{{ __('piggy-banks.actual') }}</td>
+                            </tr>
+                            </thead>
+                            @foreach ($cashFlowPlan->piggyBankContributions as $contribution)
+                                <tr>
+                                    <td><a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.edit', [$family, $cashFlowPlan, $contribution]) }}">{{ App\formatDate($contribution->date) }}</a></td>
+                                    <td class="text-right">{{ App\formatCurrency($contribution->projected, true) }}</td>
+                                    <td class="text-right">{{ App\formatCurrency($contribution->actual, true) }}</td>
+                                </tr>
+                            @endforeach
+
+                            <tr>
+                                <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedPiggyBankContributionsTotal(), true) }}</strong></td>
+                                <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualPiggyBankContributionsTotal(), true) }}</strong></td>
+                            </tr>
+                        </table>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.piggy-bank-contributions.create', [$family, $cashFlowPlan]) }}">{{ __('piggy-banks.add-new-contribution') }}</a>
+                        </div>
+
+                    </div>
+                    {{-- End of Piggy Bank Contributions section --}}
+
+
+
+
                     {{-- Beginning of Recurring Expenses section --}}
                     <div class="section">
 

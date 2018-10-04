@@ -14,6 +14,33 @@ class PiggyBankContribution extends Model
         HasDateField
         ;
 
+    protected $table = 'cash_flow_plan_piggy_bank_contributions';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'date',
+    ];
+
+    protected $fillable = [
+        'piggy_bank_id',
+        'projected',
+        'actual',
+        'date',
+        'detail',
+    ];
+
+    public static function getValidations()
+    {
+        return [
+            'piggy_bank_id' => 'integer',
+            'projected'     => 'numeric|nullable',
+            'actual'        => 'numeric|nullable',
+            'date'          => 'date|nullable',
+        ];
+    }
+
     public function piggyBank()
     {
         return $this->belongsTo(PiggyBank::class);

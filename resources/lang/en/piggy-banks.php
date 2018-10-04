@@ -12,14 +12,24 @@ return [
     'details'    => 'Details',
 
 
-    'name'            => 'Name',
-    'description'     => 'Description',
-    'starting-amount' => 'Starting Amount',
+    'name'                 => 'Name',
+    'description'          => 'Description',
+    'starting-amount'      => 'Starting Amount',
     'monthly-contribution' => 'Monthly Contribution',
-    'target-amount'   => 'Target Amount',
-    'dueDate'         => 'Due Date',
-    'active'          => 'Active',
-    'completed'       => 'Completed',
+    'target-amount'        => 'Target Amount',
+    'dueDate'              => 'Due Date',
+    'active'               => 'Active',
+    'completed'            => 'Completed',
+
+
+
+    'piggy-bank-contributions' => 'Piggy Bank Contributions',
+    'add-new-contribution'     => 'Add New Contribution',
+    'no-contributions-create'  => "You haven't added any piggy bank contributions yet. Go ahead and create your first one now.",
+
+    'date'      => 'Date',
+    'projected' => 'Projected',
+    'actual'    => 'Actual',
 
 
 

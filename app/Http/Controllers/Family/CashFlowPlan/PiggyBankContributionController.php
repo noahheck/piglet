@@ -17,7 +17,15 @@ class PiggyBankContributionController extends Controller
      */
     public function index(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $contributions = $cashFlowPlan->piggyBankContributions()->orderBy('date')->get();
+
+        $contributions->load('piggy_banks');
+
+        return view('family.cash-flow-plans.piggy-bank-contributions.home', [
+            'family' => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'contributions' => $contributions,
+        ]);
     }
 
     /**
