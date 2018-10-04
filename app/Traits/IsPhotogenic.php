@@ -50,19 +50,19 @@ trait IsPhotogenic
     {
         $classes = array_merge(['icon', 'rounded-circle'], $withClasses);
         $classes = implode(' ', $classes);
-        return "<img class='{$classes}' src='{$this->imagePath('icon') }' alt='{$this->photoAltText()}'>";
+        return "<img class='{$classes}' src='{$this->imagePath('icon') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
     }
 
     public function thumbnail(array $withClasses = [])
     {
         $classes = implode(' ', $withClasses);
-        return "<img class='{$classes}' src='{$this->imagePath('thumbnail') }' alt='{$this->photoAltText()}'>";
+        return "<img class='{$classes}' src='{$this->imagePath('thumbnail') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
     }
 
     public function photo(array $withClasses = [])
     {
         $classes = implode(' ', $withClasses);
-        return "<img class='{$classes}' src='{$this->imagePath('full') }' alt='{$this->photoAltText()}'>";
+        return "<img class='{$classes}' src='{$this->imagePath('full') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
     }
 
     public function photoAltText()
