@@ -35,10 +35,10 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.recurring-expenses._form', [
-                'action'      => route('family.cash-flow-plans.recurring-expenses.update', [$family, $cashFlowPlan, $recurringExpense]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.cash-flow-plans.recurring-expenses.update', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->previous()]),
                 'method'      => 'PUT',
                 'editing'     => true,
-                'cancelRoute' => route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>
