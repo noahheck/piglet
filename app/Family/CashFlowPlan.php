@@ -4,6 +4,7 @@ namespace App\Family;
 
 use App\Family\CashFlowPlan\Expense;
 use App\Family\CashFlowPlan\ExpenseGroup;
+use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Family\CashFlowPlan\RecurringExpense;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -152,6 +153,13 @@ class CashFlowPlan extends Model
     public function expenses()
     {
         return $this->hasMany(Expense::class)->orderBy('date');
+    }
+
+
+
+    public function piggyBankContributions()
+    {
+        return $this->hasMany(PiggyBankContribution::class);
     }
 
 

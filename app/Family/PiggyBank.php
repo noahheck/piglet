@@ -2,6 +2,7 @@
 
 namespace App\Family;
 
+use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Traits\HasDueDate;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -53,5 +54,12 @@ class PiggyBank extends Model
     public function getPercentCompletedAttribute()
     {
         return ($this->balance / $this->target_amount) * 100;
+    }
+
+
+
+    public function contributions()
+    {
+        return $this->hasMany(PiggyBankContribution::class);
     }
 }
