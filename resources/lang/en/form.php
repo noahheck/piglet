@@ -8,6 +8,7 @@ return [
     'create'       => 'Create',
     'edit'         => 'Edit',
     'edit_details' => 'Edit details',
+    'select-one'   => 'Select One',
     'details'      => 'Details',
     'delete'       => 'Delete',
     'other'        => 'Other',

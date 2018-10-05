@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Family\CashFlowPlan;
 
 use App\Family\CashFlowPlan\PiggyBankContribution;
+use App\Family\PiggyBank;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Family;
@@ -19,7 +20,7 @@ class PiggyBankContributionController extends Controller
     {
         $contributions = $cashFlowPlan->piggyBankContributions()->orderBy('date')->get();
 
-        $contributions->load('piggy_banks');
+        $contributions->load('piggyBank');
 
         return view('family.cash-flow-plans.piggy-bank-contributions.home', [
             'family' => $family,
@@ -35,7 +36,16 @@ class PiggyBankContributionController extends Controller
      */
     public function create(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $contribution = new PiggyBankContribution();
+
+        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+
+        return view('family.cash-flow-plans.piggy-bank-contributions.new', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'contribution' => $contribution,
+            'piggyBanks'   => $piggyBanks,
+        ]);
     }
 
     /**
@@ -46,7 +56,21 @@ class PiggyBankContributionController extends Controller
      */
     public function store(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $request->validate(PiggyBankContribution::getValidations());
+
+        $contribution = new PiggyBankContribution();
+
+        $contribution->cash_flow_plan_id = $cashFlowPlan->id;
+
+        $contribution->fill($request->only($contribution->getFillable()));
+
+        $contribution->save();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.piggy-bank-contributions.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -57,7 +81,11 @@ class PiggyBankContributionController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
     {
-        //
+        return view('family.cash-flow-plans.piggy-bank-contributions.show', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'contribution' => $piggyBankContribution,
+        ]);
     }
 
     /**
@@ -68,7 +96,18 @@ class PiggyBankContributionController extends Controller
      */
     public function edit(Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
     {
-        //
+        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+
+        if (!$piggyBanks->contains($piggyBankContribution->piggyBank)) {
+            $piggyBanks->prepend($piggyBankContribution->piggyBank);
+        }
+
+        return view('family.cash-flow-plans.piggy-bank-contributions.edit', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'contribution' => $piggyBankContribution,
+            'piggyBanks'   => $piggyBanks,
+        ]);
     }
 
     /**
@@ -80,7 +119,17 @@ class PiggyBankContributionController extends Controller
      */
     public function update(Request $request, Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
     {
-        //
+        $request->validate($piggyBankContribution->getValidations());
+
+        $piggyBankContribution->fill($request->only($piggyBankContribution->getFillable()));
+
+        $piggyBankContribution->save();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.piggy-bank-contributions.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -89,8 +138,14 @@ class PiggyBankContributionController extends Controller
      * @param  \App\Family\CashFlowPlan\PiggyBankContribution  $piggyBankContribution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
+    public function destroy(Request $request, Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
     {
-        //
+        $piggyBankContribution->delete();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.piggy-bank-contributions.index', [$family, $cashFlowPlan]);
     }
 }

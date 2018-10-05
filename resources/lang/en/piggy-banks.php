@@ -23,6 +23,7 @@ return [
 
 
 
+    'contribution'             => 'Contribution',
     'piggy-bank-contributions' => 'Piggy Bank Contributions',
     'add-new-contribution'     => 'Add New Contribution',
     'no-contributions-create'  => "You haven't added any piggy bank contributions yet. Go ahead and create your first one now.",
@@ -30,6 +31,7 @@ return [
     'date'      => 'Date',
     'projected' => 'Projected',
     'actual'    => 'Actual',
+    'detail'    => 'Detail',
 
 
 

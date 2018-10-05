@@ -34,7 +34,7 @@ class PiggyBankContribution extends Model
     public static function getValidations()
     {
         return [
-            'piggy_bank_id' => 'integer',
+            'piggy_bank_id' => 'required|integer',
             'projected'     => 'numeric|nullable',
             'actual'        => 'numeric|nullable',
             'date'          => 'date|nullable',
@@ -49,5 +49,16 @@ class PiggyBankContribution extends Model
     public function cashFlowPlan()
     {
         return $this->belongsTo(CashFlowPlan::class);
+    }
+
+    public function title()
+    {
+        $title = $this->piggyBank->name;
+
+        if ($this->date) {
+            $title .= ' (' . \App\formatDate($this->date) . ')';
+        }
+
+        return $title;
     }
 }

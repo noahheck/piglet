@@ -53,6 +53,10 @@ class PiggyBank extends Model
 
     public function getPercentCompletedAttribute()
     {
+        if (!$this->target_amount) {
+            return null;
+        }
+
         return ($this->balance / $this->target_amount) * 100;
     }
 
