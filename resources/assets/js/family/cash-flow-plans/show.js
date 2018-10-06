@@ -6,7 +6,7 @@ let $ = require('jquery');
 
 $(function() {
 
-    $('.toggle-recurring-expenses-list').click(function(e) {
+    /*$('.toggle-recurring-expenses-list').click(function(e) {
 
         e.preventDefault();
 
@@ -22,6 +22,18 @@ $(function() {
             ($this.find('.action').text() === "View Expenses") ? "Hide Expenses" : "View Expenses"
         );
 
+    });*/
+
+    $('.toggle-entries-list').click(function(e) {
+        e.preventDefault();
+
+        let $this = $(this);
+
+        let target = $this.data('toggleTarget');
+
+        $('#' + target).slideToggle(200);
+
+        $this.find('.list-item-display-action').toggle();
     });
 
 });

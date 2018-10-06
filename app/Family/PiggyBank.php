@@ -2,7 +2,6 @@
 
 namespace App\Family;
 
-use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Traits\HasDueDate;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -62,8 +61,8 @@ class PiggyBank extends Model
 
 
 
-    public function contributions()
+    public function monthlyPiggyBanks()
     {
-        return $this->hasMany(PiggyBankContribution::class);
+        return $this->hasMany(\App\Family\CashFlowPlan\PiggyBank::class);
     }
 }

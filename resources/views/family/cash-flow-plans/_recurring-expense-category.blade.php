@@ -55,19 +55,17 @@
 
         </ul>
 
-        <div class="card-footer">
+        <a href="#" class="card-footer text-center toggle-recurring-expenses-list toggle-entries-list" data-toggle-target="recurring-expenses-list_{{ $categoryId }}">
 
-            <div class="row">
+            <span class="show-list-items list-item-display-action">
+                <span class="fa fa-eye"></span> <span class="action">View Expenses</span>
+            </span>
 
-                <a href="#" class="col text-center toggle-recurring-expenses-list" data-toggle-target="recurring-expenses-list_{{ $categoryId }}">
+            <span class="hide-list-items list-item-display-action" style="display: none;">
+                <span class="fa fa-eye-slash"></span> <span class="action">Hide Expenses</span>
+            </span>
 
-                    <span class="fa fa-eye"></span> <span class="action">View Expenses</span>
-
-                </a>
-
-            </div>
-
-        </div>
+        </a>
 
     </div>
 

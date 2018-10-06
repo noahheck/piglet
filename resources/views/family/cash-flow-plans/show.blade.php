@@ -209,6 +209,35 @@
 
 
 
+                    {{-- Beginning of Piggy Bank Contributions section --}}
+                    <div class="section">
+
+                        <h3>
+                            <a href="{{ route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]) }}">{{ __('piggy-banks.piggy-banks') }}</a>
+                        </h3>
+
+                        <div class="row">
+
+                            @foreach ($cashFlowPlan->piggyBankContributions->pluck('piggyBank')->unique() as $piggyBank)
+
+                                @include('family.cash-flow-plans._piggy-bank-contribution', [
+                                    'family'       => $family,
+                                    'cashFlowPlan' => $cashFlowPlan,
+                                    'piggyBank'    => $piggyBank,
+                                ])
+
+                            @endforeach
+
+                        </div>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.piggy-bank-contributions.create', [$family, $cashFlowPlan]) }}">{{ __('piggy-banks.add-new-contribution') }}</a>
+                        </div>
+
+                    </div>
+                    {{-- End of Piggy Bank Contributions section --}}
+
+
 
                     {{-- Beginning of Recurring Expenses section --}}
                     <div class="section">
@@ -221,7 +250,7 @@
 
                             @if ($cashFlowPlan->hasRecurringExpensesForCategory(null))
 
-                                @include('family.shared.cash-flow-plans.recurring-expense-category', [
+                                @include('family.cash-flow-plans._recurring-expense-category', [
                                     'family'       => $family,
                                     'cashFlowPlan' => $cashFlowPlan,
                                     'categoryId'   => null,
@@ -235,7 +264,7 @@
 
                                 @continue(!$cashFlowPlan->hasRecurringExpensesForCategory($category->id))
 
-                                @include('family.shared.cash-flow-plans.recurring-expense-category', [
+                                @include('family.cash-flow-plans._recurring-expense-category', [
                                     'family'       => $family,
                                     'cashFlowPlan' => $cashFlowPlan,
                                     'categoryId'   => $category->id,
@@ -245,6 +274,10 @@
 
                             @endforeach
 
+                        </div>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('recurring-expenses.add-new-recurring-expense') }}</a>
                         </div>
 
                     </div>

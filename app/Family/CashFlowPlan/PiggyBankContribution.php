@@ -4,7 +4,6 @@ namespace App\Family\CashFlowPlan;
 
 use App\Family\CashFlowPlan;
 use App\Family\Model;
-use App\Family\PiggyBank;
 use App\Traits\HasDateField;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

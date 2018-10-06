@@ -4,6 +4,7 @@ namespace App\Family;
 
 use App\Family\CashFlowPlan\Expense;
 use App\Family\CashFlowPlan\ExpenseGroup;
+use App\Family\CashFlowPlan\PiggyBank;
 use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Family\CashFlowPlan\RecurringExpense;
 use Illuminate\Database\Eloquent\Collection;
@@ -157,6 +158,18 @@ class CashFlowPlan extends Model
 
 
 
+    public function piggyBanks()
+    {
+        return $this->hasMany(PiggyBank::class);
+    }
+
+
+
+
+
+
+
+
     public function piggyBankContributions()
     {
         return $this->hasMany(PiggyBankContribution::class);
@@ -170,6 +183,16 @@ class CashFlowPlan extends Model
     public function actualPiggyBankContributionsTotal()
     {
         return $this->piggyBankContributions->sum('actual');
+    }
+
+    public function actualPiggyBankContributionsForPiggyBankTotal($piggyBank)
+    {
+        return $this->piggyBankContributions->where('piggy_bank_id', $piggyBank->id)->sum('actual');
+    }
+
+    public function projectedPiggyBankContributionsForPiggyBankTotal($piggyBank)
+    {
+        return $this->piggyBankContributions->where('piggy_bank_id', $piggyBank->id)->sum('projected');
     }
 
 
@@ -207,15 +230,16 @@ class CashFlowPlan extends Model
         });
 
         $piggyBanks->each(function($piggyBank) use ($cashFlowPlan) {
-            $piggyBankContribution = new PiggyBankContribution();
 
-            $piggyBankContribution->cash_flow_plan_id = $cashFlowPlan->id;
-            $piggyBankContribution->fill([
+            $monthlyPiggyBank = new PiggyBank();
+
+            $monthlyPiggyBank->cash_flow_plan_id = $cashFlowPlan->id;
+            $monthlyPiggyBank->fill([
                 'piggy_bank_id' => $piggyBank->id,
                 'projected'     => $piggyBank->monthly_contribution,
             ]);
 
-            $piggyBankContribution->save();
+            $monthlyPiggyBank->save();
         });
 
         $recurringExpenses->each(function($recurringExpenseTemplate) use ($cashFlowPlan) {
