@@ -26,7 +26,7 @@
             <select class="custom-select" name="piggy_bank_id" id="piggy_bank_id">
                 <option value="">{{ __('form.select-one') }}</option>
                 @foreach ($piggyBanks as $piggyBank)
-                    <option value="{{ $piggyBank->id }}" {{ (old('piggy_bank_id', $contribution->piggy_bank_id) == $piggyBank->id) ? 'selected' : '' }}>{{ $piggyBank->piggyBank->name }}</option>
+                    <option value="{{ $piggyBank->id }}" {{ (old('piggy_bank_id', $contribution->piggy_bank_id) == $piggyBank->id) ? 'selected' : '' }}>{{ $piggyBank->name }}</option>
                 @endforeach
             </select>
             @fieldError('piggy_bank_id')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('piggy-banks.piggy-banks') }} - {{ $piggyBank->piggyBank->name }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('piggy-banks.piggy-banks') }} - {{ $piggyBank->name }}
 @endsection
 
 @push('stylesheets')
@@ -21,7 +21,7 @@
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]) => __('piggy-banks.piggy-banks'),
         ],
-        'location'   => $piggyBank->piggyBank->name,
+        'location'   => $piggyBank->name,
         'menu' => [
             /*['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],*/
             ['type' => 'link', 'href' => route('family.cash-flow-plans.piggy-banks.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('piggy-banks.add-new-piggy-bank')],
@@ -85,7 +85,7 @@
             </div>--}}
 
             <table class="table table-sm">
-                <caption>{{ $piggyBank->piggyBank->name }}</caption>
+                <caption>{{ $piggyBank->name }}</caption>
                 <thead>
                     <tr class="font-weight-bold">
                         <td>{{ __('piggy-banks.date') }}</td>

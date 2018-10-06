@@ -33,6 +33,12 @@ class PiggyBank extends Model
     }
 
 
+    public function getNameAttribute()
+    {
+        return $this->piggyBank->name;
+    }
+
+
 
     public function cashFlowPlan()
     {

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('piggy-banks.piggy-bank-contributions') }} - {{ __('form.add_new') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('piggy-banks.piggy-banks') }} - {{ __('form.add_new') }}
 @endsection
 
 @push('stylesheets')
@@ -19,7 +19,7 @@
             route('family.money-matters', [$family]) => __('money-matters.money-matters'),
             route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
-            route('family.cash-flow-plans.piggy-bank-contributions.index', [$family, $cashFlowPlan]) => __('piggy-banks.piggy-bank-contributions'),
+            route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]) => __('piggy-banks.piggy-banks'),
         ],
         'location'   => __('form.add_new'),
         /*'menu' => [

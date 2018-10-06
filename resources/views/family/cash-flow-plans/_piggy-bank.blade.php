@@ -4,7 +4,7 @@
 
         <a href="{{ route('family.cash-flow-plans.piggy-banks.show', [$family, $cashFlowPlan, $piggyBank]) }}" class="card-body">
 
-            <h3>{{ $piggyBank->piggyBank->name }}</h3>
+            <h3>{{ $piggyBank->name }}</h3>
 
             <p class="card-text text-dark mb-1">
                 {{ App\formatCurrency($piggyBank->actualTotal(), true) }} / {{ App\formatCurrency($piggyBank->projected, true) }}

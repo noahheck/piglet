@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('piggy-banks.piggy-banks') }} - {{ $piggyBank->piggyBank->name }} - {{ __('form.edit') }}
+    - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year }} - {{ __('piggy-banks.piggy-banks') }} - {{ $piggyBank->name }} - {{ __('form.edit') }}
 @endsection
 
 @push('stylesheets')
@@ -20,7 +20,7 @@
             route('family.cash-flow-plans.index', [$family]) => __('cash-flow-plans.cash-flow-plans'),
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
             route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]) => __('piggy-banks.piggy-banks'),
-            route('family.cash-flow-plans.piggy-banks.show', [$family, $cashFlowPlan, $piggyBank]) => $piggyBank->piggyBank->name,
+            route('family.cash-flow-plans.piggy-banks.show', [$family, $cashFlowPlan, $piggyBank]) => $piggyBank->name,
         ],
         'location'   => __('form.edit'),
         'menu' => [
