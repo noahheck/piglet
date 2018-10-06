@@ -70,6 +70,34 @@
 
             </div>
 
+
+            <div class="section">
+                <h3>{{ __('piggy-banks.piggy-banks') }}</h3>
+
+                <table class="table table-sm">
+                    <caption>{{ __('piggy-banks.piggy-banks') }}</caption>
+                    <thead>
+                        <tr class="font-weight-bold">
+                            <td class="text-center">{{ __('piggy-banks.name') }}</td>
+                            <td class="text-right">{{ __('piggy-banks.projected') }}</td>
+                        </tr>
+                    </thead>
+
+                    @foreach ($piggyBanks as $piggyBank)
+                        <tr>
+                            <td>{{ $piggyBank->name }}</td>
+                            <td class="text-right">{{ \App\formatCurrency($piggyBank->monthly_contribution, true) }}</td>
+                        </tr>
+                    @endforeach
+
+                    <tr class="font-weight-bold">
+                        <td>{{ __('cash-flow-plans.total') }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($piggyBanks->sum('monthly_contribution'), true) }}</td>
+                    </tr>
+                </table>
+
+            </div>
+
             <div class="section">
                 <h3>{{ __('recurring-expenses.recurring-expenses') }}</h3>
 

@@ -6,6 +6,7 @@ use App\Family;
 use App\Family\Category;
 use App\Family\CashFlowPlan;
 use App\Family\ExpenseGroup;
+use App\Family\PiggyBank;
 use App\Family\RecurringExpense;
 use App\Family\IncomeSource;
 use App\Http\Controllers\Controller;
@@ -65,6 +66,9 @@ class CashFlowPlanController extends Controller
         // Get current set of income sources to show to the user
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
 
+        // Get current set of active piggy banks to show to the user
+        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+
         // Get current set of recurring expenses to show to the user
         $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
 
@@ -77,6 +81,7 @@ class CashFlowPlanController extends Controller
             'month'  => $month,
             'categories'        => $categories,
             'incomeSources'     => $incomeSources,
+            'piggyBanks'        => $piggyBanks,
             'recurringExpenses' => $recurringExpenses,
             'expenseGroups'     => $expenseGroups,
         ]);
@@ -105,13 +110,16 @@ class CashFlowPlanController extends Controller
         // Get current set of income sources to add to the plan
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
 
+        // Get current set of active piggy banks to show to the user
+        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+
         // Get current set of recurring expenses to add to the plan
         $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
 
         // Get current set of expense groups to add to the plan
         $expenseGroups = ExpenseGroup::where('active', true)->orderBy('name')->get();
 
-        $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $recurringExpenses, $expenseGroups);
+        $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $piggyBanks, $recurringExpenses, $expenseGroups);
 
         if (!$cashFlowPlan) {
             $request->session()->flash('error', "Unable to create the cash flow plan for {$year}-{$month}");

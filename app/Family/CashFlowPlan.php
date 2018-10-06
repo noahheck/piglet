@@ -178,11 +178,12 @@ class CashFlowPlan extends Model
      * @param $year
      * @param $month
      * @param Collection $incomeSources
+     * @param Collection $piggyBanks
      * @param Collection $recurringExpenses
      * @param Collection $expenseGroups
      * @return CashFlowPlan
      */
-    public static function createNew($year, $month, $incomeSources, $recurringExpenses, $expenseGroups)
+    public static function createNew($year, $month, $incomeSources, $piggyBanks, $recurringExpenses, $expenseGroups)
     {
         $cashFlowPlan = new CashFlowPlan();
 
@@ -203,6 +204,18 @@ class CashFlowPlan extends Model
             ]);
 
             $incomeSource->save();
+        });
+
+        $piggyBanks->each(function($piggyBank) use ($cashFlowPlan) {
+            $piggyBankContribution = new PiggyBankContribution();
+
+            $piggyBankContribution->cash_flow_plan_id = $cashFlowPlan->id;
+            $piggyBankContribution->fill([
+                'piggy_bank_id' => $piggyBank->id,
+                'projected'     => $piggyBank->monthly_contribution,
+            ]);
+
+            $piggyBankContribution->save();
         });
 
         $recurringExpenses->each(function($recurringExpenseTemplate) use ($cashFlowPlan) {

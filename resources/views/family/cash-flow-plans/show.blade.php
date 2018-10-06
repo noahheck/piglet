@@ -180,14 +180,14 @@
                             <caption>{{ __('piggy-banks.piggy-bank-contributions') }}</caption>
                             <thead>
                             <tr class="font-weight-bold">
-                                <td class="text-center">{{ __('piggy-banks.date') }}</td>
+                                <td class="text-center">&nbsp;</td>
                                 <td class="text-right">{{ __('piggy-banks.projected') }}</td>
                                 <td class="text-right">{{ __('piggy-banks.actual') }}</td>
                             </tr>
                             </thead>
                             @foreach ($cashFlowPlan->piggyBankContributions as $contribution)
                                 <tr>
-                                    <td><a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.edit', [$family, $cashFlowPlan, $contribution]) }}">{{ App\formatDate($contribution->date) }}</a></td>
+                                    <td><a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.edit', [$family, $cashFlowPlan, $contribution]) }}">{{ $contribution->title() }}</a></td>
                                     <td class="text-right">{{ App\formatCurrency($contribution->projected, true) }}</td>
                                     <td class="text-right">{{ App\formatCurrency($contribution->actual, true) }}</td>
                                 </tr>
