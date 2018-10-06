@@ -56,4 +56,17 @@ class PiggyBank extends Model
         return $this->contributions->sum('actual');
     }
 
+    public function contributionsTargetAchieved()
+    {
+        return $this->actualTotal() >= $this->projected;
+    }
+
+    public function percentAchieved()
+    {
+        if (!$this->projected) {
+            return null;
+        }
+
+        return ($this->actualTotal() / $this->projected) * 100;
+    }
 }
