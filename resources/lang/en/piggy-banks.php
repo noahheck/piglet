@@ -7,6 +7,7 @@ return [
     'no-piggy-banks-create' => "You haven't added any piggy banks yet. Go ahead and create your first one now.",
     'active-piggy-banks'    => 'Active Piggy Banks',
     'inactive-piggy-banks'  => 'Inactive Piggy Banks',
+    'select-piggy-bank'     => 'Select Piggy Bank',
 
     'create-new' => 'Create New',
     'details'    => 'Details',
@@ -17,6 +18,7 @@ return [
     'starting-amount'      => 'Starting Amount',
     'monthly-contribution' => 'Monthly Contribution',
     'target-amount'        => 'Target Amount',
+    'projected-amount'     => 'Projected Amount',
     'dueDate'              => 'Due Date',
     'active'               => 'Active',
     'completed'            => 'Completed',

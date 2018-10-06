@@ -66,7 +66,7 @@
                     @foreach ($contributions as $contribution)
 
                         <tr>
-                            <td><a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.edit', [$family, $cashFlowPlan, $contribution]) }}">{{ $contribution->piggyBank->name }}</a></td>
+                            <td><a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.edit', [$family, $cashFlowPlan, $contribution]) }}">{{ $contribution->piggyBank->piggyBank->name }}</a></td>
                             <td>{{ App\formatDate($contribution->date) }}</td>
                             <td class="text-right">{{ App\formatCurrency($contribution->projected, true) }}</td>
                             <td class="text-right">{{ App\formatCurrency($contribution->actual, true) }}</td>

@@ -34,7 +34,13 @@ class PiggyBankController extends Controller
      */
     public function create(Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $piggyBank = new PiggyBank();
+
+        return view('family.cash-flow-plans.piggy-banks.new', [
+            'family' => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'piggyBank' => $piggyBank,
+        ]);
     }
 
     /**
@@ -45,7 +51,21 @@ class PiggyBankController extends Controller
      */
     public function store(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
-        //
+        $request->validate(PiggyBank::getValidations());
+
+        $piggyBank = new PiggyBank();
+
+        $piggyBank->cash_flow_plan_id = $cashFlowPlan->id;
+
+        $piggyBank->fill($request->only($piggyBank->getFillable()));
+
+        $piggyBank->save();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -56,7 +76,11 @@ class PiggyBankController extends Controller
      */
     public function show(Family $family, CashFlowPlan $cashFlowPlan, PiggyBank $piggyBank)
     {
-        //
+        return view('family.cash-flow-plans.piggy-banks.show', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'piggyBank'    => $piggyBank,
+        ]);
     }
 
     /**
@@ -67,7 +91,11 @@ class PiggyBankController extends Controller
      */
     public function edit(Family $family, CashFlowPlan $cashFlowPlan, PiggyBank $piggyBank)
     {
-        //
+        return view('family.cash-flow-plans.piggy-banks.edit', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'piggyBank'    => $piggyBank,
+        ]);
     }
 
     /**
@@ -79,7 +107,17 @@ class PiggyBankController extends Controller
      */
     public function update(Request $request, Family $family, CashFlowPlan $cashFlowPlan, PiggyBank $piggyBank)
     {
-        //
+        $request->validate($piggyBank->getValidations());
+
+        $piggyBank->fill($request->only($piggyBank->getFillable()));
+
+        $piggyBank->save();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]);
     }
 
     /**
@@ -90,6 +128,12 @@ class PiggyBankController extends Controller
      */
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, PiggyBank $piggyBank)
     {
-        //
+        foreach ($piggyBank->contributions() as $contribution) {
+            $contribution->delete();
+        }
+
+        $piggyBank->delete();
+
+        return redirect()->route('family.cash-flow-plans.piggy-banks.index', [$family, $cashFlowPlan]);
     }
 }

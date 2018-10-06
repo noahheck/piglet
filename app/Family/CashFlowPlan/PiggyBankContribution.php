@@ -52,7 +52,7 @@ class PiggyBankContribution extends Model
 
     public function title()
     {
-        $title = $this->piggyBank->name;
+        $title = $this->piggyBank->piggyBank->name;
 
         if ($this->date) {
             $title .= ' (' . \App\formatDate($this->date) . ')';

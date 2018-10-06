@@ -75,6 +75,8 @@ mix
     .js('resources/assets/js/family/cash-flow-plans/income-sources/index.js', 'public/js/family.cash-flow-plans.income-sources.index.js')
     .js('resources/assets/js/family/cash-flow-plans/income-sources/_form.js', 'public/js/family.cash-flow-plans.income-sources._form.js')
 
+    .js('resources/assets/js/family/cash-flow-plans/piggy-banks/_form.js', 'public/js/family.cash-flow-plans.piggy-banks._form.js')
+
     .js('resources/assets/js/family/cash-flow-plans/recurring-expenses/_form.js', 'public/js/family.cash-flow-plans.recurring-expenses._form.js')
 
     .js('resources/assets/js/family/cash-flow-plans/expense-groups/_form.js', 'public/js/family.cash-flow-plans.expense-groups._form.js')

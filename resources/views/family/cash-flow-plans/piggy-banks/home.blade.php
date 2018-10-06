@@ -23,6 +23,7 @@
         ],
         'location'   => __('piggy-banks.piggy-banks'),
         'menu' => [
+            ['type' => 'link', 'href' => route('family.cash-flow-plans.piggy-bank-contributions.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-dollar', 'text' => __('piggy-banks.add-new-contribution')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.piggy-banks.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('piggy-banks.add-new-piggy-bank')],
         ]
     ])

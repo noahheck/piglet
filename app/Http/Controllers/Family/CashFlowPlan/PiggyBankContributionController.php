@@ -34,11 +34,17 @@ class PiggyBankContributionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Family $family, CashFlowPlan $cashFlowPlan)
+    public function create(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
         $contribution = new PiggyBankContribution();
 
-        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+        if ($request->query('piggy_bank_id')) {
+            $contribution->piggy_bank_id = $request->query('piggy_bank_id');
+        }
+
+//        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+
+        $piggyBanks = $cashFlowPlan->piggyBanks()->orderBy('dueDate')->get();
 
         return view('family.cash-flow-plans.piggy-bank-contributions.new', [
             'family'       => $family,
@@ -96,7 +102,9 @@ class PiggyBankContributionController extends Controller
      */
     public function edit(Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
     {
-        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+//        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+
+        $piggyBanks = $cashFlowPlan->piggyBanks()->orderBy('dueDate')->get();
 
         if (!$piggyBanks->contains($piggyBankContribution->piggyBank)) {
             $piggyBanks->prepend($piggyBankContribution->piggyBank);
