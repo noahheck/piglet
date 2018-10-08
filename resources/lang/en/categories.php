@@ -42,7 +42,7 @@ return [
 
     'default.personal'            => 'Personal',
     'default.personal.desc'       => 'Household/Living expenses',
-    'default.personal.subs'       => '["Toiletries","Cosmetics","Household Supplies","Pet Supplies","Furniture"]',
+    'default.personal.subs'       => '["Toiletries","Cosmetics","Household Supplies","Clothing","Pet Supplies","Furniture"]',
 
     'default.healthcare'          => 'Health Care',
     'default.healthcare.desc'     => 'Expenses for your professional health care services',

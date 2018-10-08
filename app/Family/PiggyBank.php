@@ -47,7 +47,7 @@ class PiggyBank extends Model
 
     public function getBalanceAttribute()
     {
-        return $this->starting_amount;
+        return $this->starting_amount + $this->contributionsTotal();
     }
 
     public function getPercentCompletedAttribute()
@@ -60,6 +60,12 @@ class PiggyBank extends Model
     }
 
 
+    public function contributionsTotal()
+    {
+        return $this->monthlyPiggyBanks->reduce(function($total, $piggyBank) {
+            return $total + $piggyBank->actualTotal();
+        }, 0);
+    }
 
     public function monthlyPiggyBanks()
     {

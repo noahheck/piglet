@@ -16,6 +16,7 @@ return [
     'name'                 => 'Name',
     'description'          => 'Description',
     'starting-amount'      => 'Starting Amount',
+    'balance'              => 'Balance',
     'monthly-contribution' => 'Monthly Contribution',
     'target-amount'        => 'Target Amount',
     'projected-amount'     => 'Projected Amount',

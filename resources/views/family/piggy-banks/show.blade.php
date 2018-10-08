@@ -51,11 +51,14 @@
                 <dt>{{ __('piggy-banks.dueDate') }}</dt>
                 <dd>{{ App\formatDate($piggyBank->dueDate) }}</dd>
 
+                <dt>{{ __('piggy-banks.balance') }}</dt>
+                <dd>{{ App\formatCurrency($piggyBank->balance, true) }}</dd>
+
                 <dt>{{ __('piggy-banks.starting-amount') }}</dt>
-                <dd>{{ App\formatCurrency($piggyBank->starting_amount) }}</dd>
+                <dd>{{ App\formatCurrency($piggyBank->starting_amount, true) }}</dd>
 
                 <dt>{{ __('piggy-banks.target-amount') }}</dt>
-                <dd>{{ App\formatCurrency($piggyBank->target_amount) }}</dd>
+                <dd>{{ App\formatCurrency($piggyBank->target_amount, true) }}</dd>
 
 
 
