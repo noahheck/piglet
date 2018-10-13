@@ -5,6 +5,7 @@ namespace App;
 use App\Family\Member;
 use App\Service\FamilyConnectService;
 use App\Service\PhotoUploaderService;
+use App\Traits\Family\StoresSettings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +13,9 @@ use App\Traits\IsPhotogenic;
 
 class Family extends Model
 {
-    use IsPhotogenic;
+    use IsPhotogenic,
+        StoresSettings
+        ;
 
     protected $defaultImageFile          = "cartoon_family_fullsize.jpg";
     protected $defaultThumbnailImageFile = "cartoon_family_thumbnail.jpg";
