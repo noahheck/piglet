@@ -12,8 +12,21 @@ trait StoresSettings
     protected $settings;
 
     protected $defaults = [
-        Family::MONEY_MATTERS_POCKET_MONEY_AMOUNT => '100.00',
+        Family::MONEY_MATTERS_POCKET_MONEY_AMOUNT   => '100.00',
+        Family::MONEY_MATTERS_RETIREMENT_AMOUNT     => '300.00',
+        Family::MONEY_MATTERS_EDUCATION_AMOUNT      => '100.00',
+        Family::MONEY_MATTERS_EMERGENCY_FUND_AMOUNT => '100.00',
     ];
+
+    public static function settingsValidations()
+    {
+        return [
+            Family::MONEY_MATTERS_POCKET_MONEY_AMOUNT   => 'numeric|nullable',
+            Family::MONEY_MATTERS_RETIREMENT_AMOUNT     => 'numeric|nullable',
+            Family::MONEY_MATTERS_EDUCATION_AMOUNT      => 'numeric|nullable',
+            Family::MONEY_MATTERS_EMERGENCY_FUND_AMOUNT => 'numeric|nullable',
+        ];
+    }
 
     protected function fetchSettings()
     {

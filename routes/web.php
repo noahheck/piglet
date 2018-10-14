@@ -83,6 +83,9 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         // Money Matters
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');
 
+        Route::get('/money-matters/settings', 'MoneyMattersController@settingsView')->name('money-matters.settings');
+        Route::post('/money-matters/settings', 'MoneyMattersController@settingsSave')->name('money-matters.settings-save');
+
         Route::resource('/merchants', 'MerchantController');
 
         Route::resource('/piggy-banks', 'PiggyBankController');
