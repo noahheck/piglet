@@ -2,6 +2,7 @@
 
 namespace App\Traits\Family;
 
+use App\Family;
 use App\Family\SettingsEntry;
 
 trait StoresSettings
@@ -11,7 +12,7 @@ trait StoresSettings
     protected $settings;
 
     protected $defaults = [
-        'money-matters.pocket-money-amount' => '100.00',
+        Family::MONEY_MATTERS_POCKET_MONEY_AMOUNT => '100.00',
     ];
 
     protected function fetchSettings()
@@ -32,11 +33,30 @@ trait StoresSettings
 
     public function getSetting($setting)
     {
-        return $this->hasSetting($setting) ? $this->settings->where('setting', $setting)->first()->value : $this->defaults[$setting];
+        if ($this->hasSetting($setting)) {
+            return $this->settings->where('setting', $setting)->first()->value;
+        }
+
+        return array_key_exists($setting, $this->defaults) ? $this->defaults[$setting] : null;
     }
 
     public function setSetting($setting, $value)
     {
+        $this->fetchSettings();
 
+        $entry = $this->settings->where('setting', $setting)->first();
+
+        if (!$entry) {
+            $entry = new SettingsEntry();
+            $entry->setting = $setting;
+
+            $this->settings->push($entry);
+        }
+
+        $entry->value = $value;
+
+        $entry->save();
+
+        return true;
     }
 }

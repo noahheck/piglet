@@ -31,10 +31,6 @@
             Charts and stuff
         </div>
 
-        {{--@dump($family->has('money-matters.pocket-money-amount'))--}}
-
-        @dump($family->getSetting('money-matters.pocket-money-amounts'))
-
     </div>
 
 @endsection

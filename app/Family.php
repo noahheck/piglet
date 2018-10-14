@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Family\Member;
+use App\Interfaces\Definitions\Settings;
 use App\Service\FamilyConnectService;
 use App\Service\PhotoUploaderService;
 use App\Traits\Family\StoresSettings;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Traits\IsPhotogenic;
 
-class Family extends Model
+class Family extends Model implements Settings
 {
     use IsPhotogenic,
         StoresSettings
