@@ -6,8 +6,14 @@ trait FormatsCurrency
 {
     public function formatCurrency($amount = null, $withFormatting = true)
     {
+        $minus     = '';
         $sigil     = '';
         $separator = '';
+
+        if ($amount < 0) {
+            $amount = abs($amount);
+            $minus = '-';
+        }
 
         if ($withFormatting) {
             $sigil     = '$';
@@ -18,6 +24,6 @@ trait FormatsCurrency
             return ($withFormatting) ? $sigil . '0.00' : null;
         }
 
-        return $sigil . number_format($amount, 2, '.', $separator);
+        return $minus . $sigil . number_format($amount, 2, '.', $separator);
     }
 }

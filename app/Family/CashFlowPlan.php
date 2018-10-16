@@ -83,6 +83,12 @@ class CashFlowPlan extends Model
         return $this->recurringExpenses->where('category_id', $categoryId)->sum('actual');
     }
 
+    public function recurringExpenseCategoryActualVsProjected($categoryId = null)
+    {
+        return    $this->recurringExpenseCategoryActualTotal($categoryId)
+                - $this->recurringExpenseCategoryProjectedTotal($categoryId);
+    }
+
     public function recurringExpenseCategoryPercentUtilized($categoryId = null)
     {
         if (!$this->recurringExpenseCategoryProjectedTotal($categoryId)) {

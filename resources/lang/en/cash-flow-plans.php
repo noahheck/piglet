@@ -7,11 +7,12 @@ return [
     'overview' => 'Overview',
     'details'  => 'Details',
 
-    'budget'    => 'Budget',
-    'actual'    => 'Actual',
-    'projected' => 'Projected',
-    'total'     => 'Total',
-    'totals'    => 'Totals',
+    'budget'              => 'Budget',
+    'actual'              => 'Actual',
+    'projected'           => 'Projected',
+    'actual-vs-projected' => 'Actual vs. Projected',
+    'total'               => 'Total',
+    'totals'              => 'Totals',
 
 
     'lifestyle-expenses'      => 'Lifestyle Expenses',

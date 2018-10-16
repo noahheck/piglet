@@ -23,6 +23,9 @@
             </div>
 
             <p class="card-text mb-1 mt-3">
+                <small class="text-muted float-right" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
+                    {{ App\formatCurrency($cashFlowPlan->recurringExpenseCategoryActualVsProjected($categoryId), true) }}
+                </small>
                 {{ $cashFlowPlan->recurringExpenseCategoryPaymentsMade($categoryId) }} / {{ $cashFlowPlan->recurringExpenseCategoryPaymentsExpected($categoryId) }} {{ __('recurring-expenses.payments-made') }}
             </p>
 

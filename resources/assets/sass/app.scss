@@ -145,3 +145,9 @@ img.thumbnail {
   padding: 6px;
   cursor: move;
 }
+
+/* Adds underline to items with title attribute */
+[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}

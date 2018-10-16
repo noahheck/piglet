@@ -61,6 +61,9 @@
                             <h2>{{ $expenseGroup->name }}</h2>
 
                                 <p class="card-text">
+                                    <small class="text-muted float-right" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
+                                        {{ App\formatCurrency($expenseGroup->actualVsProjected(), true) }}
+                                    </small>
                                     {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
                                 </p>
 

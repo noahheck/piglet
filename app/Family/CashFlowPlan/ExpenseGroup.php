@@ -59,6 +59,11 @@ class ExpenseGroup extends Model
         return $this->expenses->sum('actual');
     }
 
+    public function actualVsProjected()
+    {
+        return $this->actualTotal() - $this->projected;
+    }
+
 
 
     public function cashFlowPlan()
