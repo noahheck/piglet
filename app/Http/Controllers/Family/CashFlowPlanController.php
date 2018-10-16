@@ -184,4 +184,31 @@ class CashFlowPlanController extends Controller
     {
         //
     }
+
+
+
+    public function lifestyleExpensesView(Family $family, CashFlowPlan $cashFlowPlan)
+    {
+        return view('family.cash-flow-plans.lifestyle-expenses', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+        ]);
+    }
+
+    public function lifestyleExpensesSave(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
+    {
+        $request->validate($cashFlowPlan->lifestyleExpensesValidations());
+
+        foreach ($request->only(['pocket_money', 'retirement', 'education']) as $expense => $value) {
+            $cashFlowPlan->$expense = $value;
+        }
+
+        $cashFlowPlan->save();
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
+
+        return redirect()->route('family.cash-flow-plans.show', [$family, $cashFlowPlan]);
+    }
 }

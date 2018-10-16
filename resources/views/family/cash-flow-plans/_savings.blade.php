@@ -2,13 +2,13 @@
 
     <div class="card shadow-sm mb-5 investment">
 
-        <div class="card-body">
+        <div class="card-body text-center">
 
-            <h3>{{ __('cash-flow-plans.' . $investment)  }}</h3>
+            <h4>{{ __('cash-flow-plans.' . $investment)  }}</h4>
 
-            <h4 class="text-center">
+            <h5 class="text-center">
                 {{ App\formatCurrency($cashFlowPlan->$investment, true) }}
-            </h4>
+            </h5>
 
         </div>
 

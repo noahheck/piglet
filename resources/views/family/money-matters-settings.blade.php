@@ -33,7 +33,7 @@
 
             <h2>{{ __('money-matters.settings') }}</h2>
 
-            <form class="has-bold-labels" name="money-matters-settings" action="{{ route('family.money-matters.settings-save', [$family]) }}?return={{ url()->previous() }}" method="POST">
+            <form class="has-bold-labels" name="money-matters-settings" action="{{ route('family.money-matters.settings-save', [$family, 'return' => url()->previous()]) }}" method="POST">
 
                 @csrf
 

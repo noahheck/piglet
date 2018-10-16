@@ -172,7 +172,7 @@
 
                         <div class="section">
 
-                            <h3>{{ __('cash-flow-plans.set-expenses') }}</h3>
+                            <h3>{{ __('cash-flow-plans.lifestyle-expenses') }}</h3>
 
                             <div class="row">
 
@@ -182,9 +182,9 @@
 
                                         <div class="card-body">
 
-                                            <h3 class="text-center">{{ __('cash-flow-plans.pocket-money') }}</h3>
+                                            <h4 class="text-center">{{ __('cash-flow-plans.pocket-money') }}</h4>
 
-                                            <h4 class="text-center">{{ \App\formatCurrency($cashFlowPlan->pocket_money, true) }}</h4>
+                                            <h5 class="text-center">{{ \App\formatCurrency($cashFlowPlan->pocket_money, true) }}</h5>
 
                                         </div>
 
@@ -194,36 +194,27 @@
 
                             </div>
 
-                        {{--</div>
+                            <h4>
+                                {{ __('cash-flow-plans.investments') }}
+                            </h4>
 
-                    --}}{{-- End of pocket money section --}}{{--
+                            <div class="row">
 
+                                @foreach (['retirement', 'education',] as $investment)
 
+                                    @include('family.cash-flow-plans._savings', [
+                                        'family'       => $family,
+                                        'cashFlowPlan' => $cashFlowPlan,
+                                        'investment'   => $investment,
+                                    ])
 
-                    --}}{{-- Beginning of investments section --}}{{--
-                    <div class="section">--}}
+                                @endforeach
 
-                        <h3>
-                            {{ __('cash-flow-plans.investments') }}
-                        </h3>
+                            </div>
 
-                        <div class="row">
-
-                            @foreach (['retirement', 'education',] as $investment)
-
-                                @include('family.cash-flow-plans._savings', [
-                                    'family'       => $family,
-                                    'cashFlowPlan' => $cashFlowPlan,
-                                    'investment'   => $investment,
-                                ])
-
-                            @endforeach
-
-                        </div>
-
-                        <div class="text-right">
-                            <a class="btn btn-outline-primary" href="#">{{ __('cash-flow-plans.edit-known-expenses') }}</a>
-                        </div>
+                            <div class="text-right">
+                                <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.lifestyle-expenses', [$family, $cashFlowPlan]) }}">{{ __('cash-flow-plans.edit-lifestyle-expenses') }}</a>
+                            </div>
 
                     </div>
                     {{-- End of saving section --}}

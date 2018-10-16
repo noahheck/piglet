@@ -14,11 +14,10 @@ return [
     'totals'    => 'Totals',
 
 
-    'set-expenses' => 'Set Expenses',
+    'lifestyle-expenses'      => 'Lifestyle Expenses',
+    'edit-lifestyle-expenses' => 'Edit Lifestyle Expenses',
+
     'pocket-money' => 'Pocket Money',
-
-    'edit-known-expenses' => 'Edit Known Expenses',
-
     'investments'  => 'Investments',
     'retirement'   => 'Retirement',
     'education'    => 'Education',

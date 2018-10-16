@@ -7,6 +7,7 @@ use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\CashFlowPlan\PiggyBank;
 use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Family\CashFlowPlan\RecurringExpense;
+use App\Traits\CashFlowPlan\StoresLifestyleExpenses;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,8 +15,9 @@ use App\Family\CashFlowPlan\IncomeSource;
 
 class CashFlowPlan extends Model
 {
-    use SoftDeletes
-        ;
+    use SoftDeletes,
+        StoresLifestyleExpenses
+    ;
 
 
 

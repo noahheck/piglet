@@ -103,13 +103,22 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
         Route::get('/cash-flow-plans/create/{year}/{month}', 'CashFlowPlanController@createPlan')->name('cash-flow-plans.create-plan');
         Route::post('/cash-flow-plans/create/{year}/{month}', 'CashFlowPlanController@storePlan')->name('cash-flow-plans.store-plan');
 
-        Route::namespace('CashFlowPlan')->prefix('/cash-flow-plans/{cashFlowPlan}')->name('cash-flow-plans.')->group(function() {
-            Route::resource('/income-sources', 'IncomeSourceController');
-            Route::resource('/piggy-banks', 'PiggyBankController');
-            Route::resource('/piggy-bank-contributions', 'PiggyBankContributionController');
-            Route::resource('/recurring-expenses', 'RecurringExpenseController');
-            Route::resource('/expense-groups', 'ExpenseGroupController');
-            Route::resource('/expenses', 'ExpenseController');
+        Route::prefix('/cash-flow-plans/{cashFlowPlan}')->name('cash-flow-plans.')->group(function() {
+
+
+            Route::get('/lifestyle-expenses', 'CashFlowPlanController@lifestyleExpensesView')->name('lifestyle-expenses');
+            Route::post('/lifestyle-expenses', 'CashFlowPlanController@lifestyleExpensesSave')->name('lifestyle-expenses-update');
+
+            Route::namespace('CashFlowPlan')->group(function() {
+
+                Route::resource('/income-sources', 'IncomeSourceController');
+                Route::resource('/piggy-banks', 'PiggyBankController');
+                Route::resource('/piggy-bank-contributions', 'PiggyBankContributionController');
+                Route::resource('/recurring-expenses', 'RecurringExpenseController');
+                Route::resource('/expense-groups', 'ExpenseGroupController');
+                Route::resource('/expenses', 'ExpenseController');
+
+            });
         });
 
 
