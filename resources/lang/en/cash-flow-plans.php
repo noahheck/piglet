@@ -13,6 +13,16 @@ return [
     'total'     => 'Total',
     'totals'    => 'Totals',
 
+
+    'set-expenses' => 'Set Expenses',
+    'pocket-money' => 'Pocket Money',
+
+    'edit-known-expenses' => 'Edit Known Expenses',
+
+    'investments'  => 'Investments',
+    'retirement'   => 'Retirement',
+    'education'    => 'Education',
+
     'type'   => 'Type',
     'other-expenses' => 'Other Expenses',
 

@@ -168,6 +168,67 @@
                     {{-- End of Income Sources section --}}
 
 
+                    {{-- Beginning of set expenses section --}}
+
+                        <div class="section">
+
+                            <h3>{{ __('cash-flow-plans.set-expenses') }}</h3>
+
+                            <div class="row">
+
+                                <div class="col-12 col-lg-6">
+
+                                    <div class="card shadow-sm mb-3 investment">
+
+                                        <div class="card-body">
+
+                                            <h3 class="text-center">{{ __('cash-flow-plans.pocket-money') }}</h3>
+
+                                            <h4 class="text-center">{{ \App\formatCurrency($cashFlowPlan->pocket_money, true) }}</h4>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {{--</div>
+
+                    --}}{{-- End of pocket money section --}}{{--
+
+
+
+                    --}}{{-- Beginning of investments section --}}{{--
+                    <div class="section">--}}
+
+                        <h3>
+                            {{ __('cash-flow-plans.investments') }}
+                        </h3>
+
+                        <div class="row">
+
+                            @foreach (['retirement', 'education',] as $investment)
+
+                                @include('family.cash-flow-plans._savings', [
+                                    'family'       => $family,
+                                    'cashFlowPlan' => $cashFlowPlan,
+                                    'investment'   => $investment,
+                                ])
+
+                            @endforeach
+
+                        </div>
+
+                        <div class="text-right">
+                            <a class="btn btn-outline-primary" href="#">{{ __('cash-flow-plans.edit-known-expenses') }}</a>
+                        </div>
+
+                    </div>
+                    {{-- End of saving section --}}
+
+
 
                     {{-- Beginning of Piggy Banks section --}}
                     <div class="section">
