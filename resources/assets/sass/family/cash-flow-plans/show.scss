@@ -15,6 +15,18 @@
 
 }
 
+button.card-footer {
+  cursor: pointer;
+  color: #007bff;
+
+  border-style: solid;
+
+}
+button.card-footer:active,
+button.card-footer:hover {
+  color: #0056b3;
+}
+
 .recurring-expenses-list,
 .piggy-bank-contributions-list {
   display: none;
