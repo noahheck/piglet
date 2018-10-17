@@ -29,22 +29,7 @@
 </head>
 <body>
 
-    {{--<div class="header container-fluid">
-        <div class="row">
-
-            <div class="col">
-                <span class="fa fa-users"></span> <span class="d-none d-sm-inline">Family</span> <span class="fa fa-caret-down"></span>
-            </div>
-
-            <div class="col text-right">
-                <span class="fa fa-user-circle"></span> <span class="d-none d-sm-inline">User</span> <span class="fa fa-caret-down"></span>
-            </div>
-
-        </div>
-    </div>--}}
-
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-        {{--<a class="navbar-brand" href="#">Navbar</a>--}}
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -81,7 +66,6 @@
 
     </div>
 
-    {{--@yield('scripts')--}}
     @stack('scripts')
 
     @php

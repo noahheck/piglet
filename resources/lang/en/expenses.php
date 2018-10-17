@@ -25,4 +25,8 @@ return [
     'category'             => 'Category',
     'sub-category'         => 'Sub-Category',
 
+
+    'expense-updated'      => 'Expense updated',
+    'expense-created'      => 'Expense created',
+    'expense-deleted'      => 'Expense deleted',
 ];

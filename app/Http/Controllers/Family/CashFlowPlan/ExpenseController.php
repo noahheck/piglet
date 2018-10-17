@@ -78,6 +78,8 @@ class ExpenseController extends Controller
 
         $expense->save();
 
+        \App\flashSuccess("expenses.expense-created");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -130,6 +132,8 @@ class ExpenseController extends Controller
 
         $expense->save();
 
+        \App\flashSuccess("expenses.expense-updated");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -146,6 +150,8 @@ class ExpenseController extends Controller
     public function destroy(Request $request, Family $family, CashFlowPlan $cashFlowPlan, Expense $expense)
     {
         $expense->delete();
+
+        \App\flashSuccess("expenses.expense-deleted");
 
         if ($request->query('return')) {
             return redirect($request->query('return'));
