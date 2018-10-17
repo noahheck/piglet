@@ -56,7 +56,7 @@ class CashFlowPlanController extends Controller
         $existingPlan = CashFlowPlan::where(['year' => $year, 'month' => $month])->get();
 
         if ($existingPlan->count()) {
-            $request->session()->flash('error', "The cash flow plan for {$year}-{$month} has already been created");
+            $request->session()->flash('warning', "The cash flow plan for {$year}-{$month} has already been created");
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
 

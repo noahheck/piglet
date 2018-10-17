@@ -84,11 +84,28 @@
     {{--@yield('scripts')--}}
     @stack('scripts')
 
-    @if (session('error'))
-        <script type="text/javascript">
-            alert("Error: \n\n{{ session('error') }}");
-        </script>
-    @endif
+    @php
+        $flashMessages = [
+            'error'   => '0',
+            'warning' => '0',
+            'info'    => '12000',
+            'success' => '4000',
+        ];
+    @endphp
+
+    <script type="text/javascript">
+        @foreach ($flashMessages as $category => $duration)
+            @if (session($category))
+                @if (is_array(session($category)))
+                    @foreach (session($category) as $message)
+                        createNotification({theme: '{{ $category }}', showDuration: {{ $duration }} })({message: "{{ $message }}"});
+                    @endforeach
+                @else
+                    createNotification({theme: '{{ $category }}', showDuration: {{ $duration }} })({message: "{{ session($category) }}"});
+                @endif
+            @endif
+        @endforeach
+    </script>
 
 </body>
 </html>

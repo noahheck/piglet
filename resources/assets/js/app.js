@@ -12,6 +12,10 @@ let $ = require("jquery");
         require('./bootstrap');
         require('bootstrap-datepicker');
 
+        require('styled-notifications');
+
+import "styled-notifications/dist/notifications.css";
+
 let pageMenu     = require('Component/pageMenu');
 let domSearch    = require('Component/domSearch');
 let moneyField   = require('Component/moneyField');
