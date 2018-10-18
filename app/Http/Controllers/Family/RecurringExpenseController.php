@@ -7,6 +7,8 @@ use App\Family\RecurringExpense;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+
 class RecurringExpenseController extends Controller
 {
     /**
@@ -58,6 +60,8 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
+        flashSuccess('recurring-expenses.recurring-expense-created');
+
         return redirect()->route('family.recurring-expenses.index', [$family]);
     }
 
@@ -105,6 +109,8 @@ class RecurringExpenseController extends Controller
         $recurringExpense->active = $request->has('active');
 
         $recurringExpense->save();
+
+        flashSuccess('recurring-expenses.recurring-expense-updated');
 
         if ($request->query('return')) {
             return redirect($request->query('return'));

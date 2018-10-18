@@ -7,6 +7,8 @@ use App\Family\IncomeSource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+
 class IncomeSourceController extends Controller
 {
     /**
@@ -57,6 +59,8 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
+        flashSuccess('income-sources.income-source-created');
+
         return redirect()->route('family.income-sources.index', [$family]);
     }
 
@@ -104,6 +108,8 @@ class IncomeSourceController extends Controller
         $incomeSource->active = $request->has('active');
 
         $incomeSource->save();
+
+        flashSuccess('income-sources.income-source-updated');
 
         if ($request->query('return')) {
             return redirect($request->query('return'));

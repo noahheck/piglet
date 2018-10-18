@@ -33,4 +33,14 @@ return [
 
     'overspent' => 'Overspent',
     'almost-overspent' => 'Almost Overspent',
+
+
+    'cash-flow-plan-created' => 'Cash Flow Plan Created',
+    'cash-flow-plan-updated' => 'Cash Flow Plan Updated',
+    'cash-flow-plan-deleted' => 'Cash Flow Plan Deleted',
+
+    'cant-create'     => 'Unable to create the cash flow plan for :year - :month',
+    'already-created' => 'The cash flow plan for :year - :month has already been created',
+
+    'lifestyle-expenses-updated' => 'Lifestyle Expenses Updated',
 ];

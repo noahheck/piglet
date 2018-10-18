@@ -23,6 +23,11 @@ return [
     'description'  => 'Description',
 
 
+    'category-created' => 'Category Created',
+    'category-updated' => 'Category Updated',
+    'category-deleted' => 'Category Deleted',
+
+
     // Default categories added with the migration:
     'default.food'                => 'Food',
     'default.food.desc'           => 'Food expenses',

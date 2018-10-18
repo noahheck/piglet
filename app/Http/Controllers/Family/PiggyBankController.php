@@ -7,6 +7,8 @@ use App\Family\PiggyBank;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+
 class PiggyBankController extends Controller
 {
     /**
@@ -61,6 +63,8 @@ class PiggyBankController extends Controller
 
         $piggyBank->save();
 
+        flashSuccess('piggy-banks.piggy-bank-created');
+
         return redirect()->route('family.piggy-banks.index', [$family]);
     }
 
@@ -109,6 +113,8 @@ class PiggyBankController extends Controller
         $piggyBank->completed = $request->has('completed');
 
         $piggyBank->save();
+
+        flashSuccess('piggy-banks.piggy-bank-updated');
 
         if ($request->query('return')) {
             return redirect($request->query('return'));

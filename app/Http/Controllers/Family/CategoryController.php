@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Response\AjaxResponse;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+
 class CategoryController extends Controller
 {
     /**
@@ -63,6 +65,8 @@ class CategoryController extends Controller
 
         $category->save();
 
+        flashSuccess('categories.category-created');
+
         return redirect()->route('family.categories.index', [$family]);
     }
 
@@ -112,6 +116,8 @@ class CategoryController extends Controller
         $category->sub_categories = $request->has('sub_categories') ? $request->get('sub_categories') : [];
 
         $category->save();
+
+        flashSuccess('categories.category-updated');
 
         return redirect()->route('family.categories.index', [$family]);
     }

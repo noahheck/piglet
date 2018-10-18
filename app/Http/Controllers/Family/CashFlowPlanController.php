@@ -12,6 +12,9 @@ use App\Family\IncomeSource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+use function App\flashError;
+
 class CashFlowPlanController extends Controller
 {
     /**
@@ -56,7 +59,8 @@ class CashFlowPlanController extends Controller
         $existingPlan = CashFlowPlan::where(['year' => $year, 'month' => $month])->get();
 
         if ($existingPlan->count()) {
-            $request->session()->flash('warning', "The cash flow plan for {$year}-{$month} has already been created");
+            flashError('cash-flow-plans.already-created', ['year' => $year, 'month' => $month]);
+
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
 
@@ -103,7 +107,8 @@ class CashFlowPlanController extends Controller
         $existingPlan = CashFlowPlan::where(['year' => $year, 'month' => $month])->get();
 
         if ($existingPlan->count()) {
-            $request->session()->flash('error', "The cash flow plan for {$year}-{$month} has already been created");
+            flashError('cash-flow-plans.already-created', ['year' => $year, 'month' => $month]);
+
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
 
@@ -122,9 +127,12 @@ class CashFlowPlanController extends Controller
         $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $piggyBanks, $recurringExpenses, $expenseGroups);
 
         if (!$cashFlowPlan) {
-            $request->session()->flash('error', "Unable to create the cash flow plan for {$year}-{$month}");
+            flashError('cash-flow-plans.cant-create', ['year' => $year, 'month' => $month]);
+
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
+
+        flashSuccess('cash-flow-plans.cash-flow-plan-created');
 
         return redirect()->route('family.cash-flow-plans.show', [$family, $cashFlowPlan]);
     }
@@ -204,6 +212,8 @@ class CashFlowPlanController extends Controller
         }
 
         $cashFlowPlan->save();
+
+        flashSuccess('cash-flow-plans.lifestyle-expenses-updated');
 
         if ($request->query('return')) {
             return redirect($request->query('return'));
