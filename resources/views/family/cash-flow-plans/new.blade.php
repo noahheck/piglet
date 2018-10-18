@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+use App\Interfaces\Definitions\Settings;
+@endphp
+
 @section('title')
     - {{ $family->name }} - {{ __('cash-flow-plans.cash-flow-plans') }} - {{ __('form.create') }} - {{ __('months.' . $month) }} {{ $year }}
 @endsection
@@ -66,6 +70,49 @@
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
                         <td class="text-right"><strong>{{ App\formatCurrency($incomeSources->sum('default_amount'), true) }}</strong></td>
                     </tr>
+                </table>
+
+            </div>
+
+            <div class="section">
+                <h3>{{ __('cash-flow-plans.lifestyle-expenses') }}</h3>
+
+                <table class="table table-sm">
+                    <caption>{{ __('cash-flow-plans.lifestyle-expenses') }}</caption>
+                    <thead>
+                        <tr class="font-weight-bold">
+                            <td class="text-center">{{ __('cash-flow-plans.lifestyle-expense-name') }}</td>
+                            <td class="text-right">{{ __('cash-flow-plans.projected') }}</td>
+                        </tr>
+                    </thead>
+
+                    <tr>
+                        <td>{{ __('cash-flow-plans.pocket-money') }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT), true) }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ __('cash-flow-plans.retirement') }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT), true) }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ __('cash-flow-plans.education') }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT), true) }}</td>
+                    </tr>
+
+                    <tr class="font-weight-bold">
+                        <td>{{ __('cash-flow-plans.total') }}</td>
+                        <td class="text-right">{{ \App\formatCurrency(
+                            array_sum([
+                                $family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT),
+                                $family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT),
+                                $family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT),
+                            ]),
+                            true
+                        ) }}</td>
+                    </tr>
+
                 </table>
 
             </div>

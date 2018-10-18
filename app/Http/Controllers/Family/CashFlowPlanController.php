@@ -124,7 +124,15 @@ class CashFlowPlanController extends Controller
         // Get current set of expense groups to add to the plan
         $expenseGroups = ExpenseGroup::where('active', true)->orderBy('name')->get();
 
-        $cashFlowPlan = CashFlowPlan::createNew($year, $month, $incomeSources, $piggyBanks, $recurringExpenses, $expenseGroups);
+        $cashFlowPlan = CashFlowPlan::createNew(
+            $year,
+            $month,
+            $family,
+            $incomeSources,
+            $piggyBanks,
+            $recurringExpenses,
+            $expenseGroups
+        );
 
         if (!$cashFlowPlan) {
             flashError('cash-flow-plans.cant-create', ['year' => $year, 'month' => $month]);

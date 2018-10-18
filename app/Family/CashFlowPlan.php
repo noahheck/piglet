@@ -2,11 +2,13 @@
 
 namespace App\Family;
 
+use App\Family;
 use App\Family\CashFlowPlan\Expense;
 use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\CashFlowPlan\PiggyBank;
 use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Family\CashFlowPlan\RecurringExpense;
+use App\Interfaces\Definitions\Settings;
 use App\Traits\CashFlowPlan\StoresLifestyleExpenses;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -208,19 +210,24 @@ class CashFlowPlan extends Model
     /**
      * @param $year
      * @param $month
+     * @param Family $family
      * @param Collection $incomeSources
      * @param Collection $piggyBanks
      * @param Collection $recurringExpenses
      * @param Collection $expenseGroups
      * @return CashFlowPlan
      */
-    public static function createNew($year, $month, $incomeSources, $piggyBanks, $recurringExpenses, $expenseGroups)
+    public static function createNew($year, $month, $family, $incomeSources, $piggyBanks, $recurringExpenses, $expenseGroups)
     {
         $cashFlowPlan = new CashFlowPlan();
 
         $cashFlowPlan->year    = $year;
         $cashFlowPlan->month   = $month;
         $cashFlowPlan->details = '';
+
+        $cashFlowPlan->pocket_money = $family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT);
+        $cashFlowPlan->retirement   = $family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT);
+        $cashFlowPlan->education    = $family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT);
 
         $cashFlowPlan->save();
 

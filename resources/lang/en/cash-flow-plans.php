@@ -15,8 +15,9 @@ return [
     'totals'              => 'Totals',
 
 
-    'lifestyle-expenses'      => 'Lifestyle Expenses',
-    'edit-lifestyle-expenses' => 'Edit Lifestyle Expenses',
+    'lifestyle-expenses'       => 'Lifestyle Expenses',
+    'edit-lifestyle-expenses'  => 'Edit Lifestyle Expenses',
+    'lifestyle-expense-name'   => 'Name',
 
     'pocket-money' => 'Pocket Money',
     'investments'  => 'Investments',
