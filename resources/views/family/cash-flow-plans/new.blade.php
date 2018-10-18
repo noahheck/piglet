@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @php
-use App\Interfaces\Definitions\Settings;
+
+$lifestyleExpensesTotal = array_sum($lifestyleExpenses);
+
 @endphp
 
 @section('title')
@@ -55,7 +57,7 @@ use App\Interfaces\Definitions\Settings;
                     <caption>{{ __('income-sources.income-sources') }}</caption>
                     <thead>
                         <tr class="font-weight-bold">
-                            <td class="text-center">{{ __('income-sources.name') }}</td>
+                            <td>{{ __('income-sources.name') }}</td>
                             <td class="text-right">{{ __('income-sources.projected') }}</td>
                         </tr>
                     </thead>
@@ -81,36 +83,21 @@ use App\Interfaces\Definitions\Settings;
                     <caption>{{ __('cash-flow-plans.lifestyle-expenses') }}</caption>
                     <thead>
                         <tr class="font-weight-bold">
-                            <td class="text-center">{{ __('cash-flow-plans.lifestyle-expense-name') }}</td>
+                            <td>{{ __('cash-flow-plans.lifestyle-expense-name') }}</td>
                             <td class="text-right">{{ __('cash-flow-plans.projected') }}</td>
                         </tr>
                     </thead>
 
-                    <tr>
-                        <td>{{ __('cash-flow-plans.pocket-money') }}</td>
-                        <td class="text-right">{{ \App\formatCurrency($family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT), true) }}</td>
-                    </tr>
-
-                    <tr>
-                        <td>{{ __('cash-flow-plans.retirement') }}</td>
-                        <td class="text-right">{{ \App\formatCurrency($family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT), true) }}</td>
-                    </tr>
-
-                    <tr>
-                        <td>{{ __('cash-flow-plans.education') }}</td>
-                        <td class="text-right">{{ \App\formatCurrency($family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT), true) }}</td>
-                    </tr>
+                    @foreach ($lifestyleExpenses as $key => $value)
+                        <tr>
+                            <td>{{ __('cash-flow-plans.' . $key) }}</td>
+                            <td class="text-right">{{ \App\formatCurrency($value, true) }}</td>
+                        </tr>
+                    @endforeach
 
                     <tr class="font-weight-bold">
                         <td>{{ __('cash-flow-plans.total') }}</td>
-                        <td class="text-right">{{ \App\formatCurrency(
-                            array_sum([
-                                $family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT),
-                                $family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT),
-                                $family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT),
-                            ]),
-                            true
-                        ) }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($lifestyleExpensesTotal, true) }}</td>
                     </tr>
 
                 </table>
@@ -125,7 +112,7 @@ use App\Interfaces\Definitions\Settings;
                     <caption>{{ __('piggy-banks.piggy-banks') }}</caption>
                     <thead>
                         <tr class="font-weight-bold">
-                            <td class="text-center">{{ __('piggy-banks.name') }}</td>
+                            <td>{{ __('piggy-banks.name') }}</td>
                             <td class="text-right">{{ __('piggy-banks.projected') }}</td>
                         </tr>
                     </thead>
@@ -152,7 +139,7 @@ use App\Interfaces\Definitions\Settings;
                     <caption>{{ __('recurring-expenses.recurring-expenses') }}</caption>
                     <thead>
                         <tr class="font-weight-bold">
-                            <td class="text-center">{{ __('recurring-expenses.name') }}</td>
+                            <td>{{ __('recurring-expenses.name') }}</td>
                             <td class="text-right">{{ __('recurring-expenses.projected') }}</td>
                         </tr>
                     </thead>
@@ -238,16 +225,16 @@ use App\Interfaces\Definitions\Settings;
                 <table class="table table-sm">
                     <caption>{{ __('cash-flow-plans.totals') }}</caption>
 
-                    {{--<thead>
-                        <tr class="font-weight-bold">
-                            <td></td>
-                        </tr>
-                    </thead>--}}
-
                     <tr>
                         <td>{{ __('income-sources.income-sources') }}</td>
                         <td class="text-right">{{ App\formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
                         <td class="text-right">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ __('cash-flow-plans.lifestyle-expenses') }}</td>
+                        <td class="text-right">&nbsp;</td>
+                        <td class="text-right">{{ \App\formatCurrency($lifestyleExpensesTotal, true) }}</td>
                     </tr>
 
                     <tr>
@@ -268,6 +255,7 @@ use App\Interfaces\Definitions\Settings;
                         <td class="text-right">{{ App\formatCurrency(
                                   $expenseGroups->sum('default_amount')
                                 + $recurringExpenses->sum('default_amount')
+                                + $lifestyleExpensesTotal
                             , true) }}</td>
                     </tr>
 

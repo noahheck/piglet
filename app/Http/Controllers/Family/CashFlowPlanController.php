@@ -10,6 +10,7 @@ use App\Family\PiggyBank;
 use App\Family\RecurringExpense;
 use App\Family\IncomeSource;
 use App\Http\Controllers\Controller;
+use App\Interfaces\Definitions\Settings;
 use Illuminate\Http\Request;
 
 use function App\flashSuccess;
@@ -64,6 +65,12 @@ class CashFlowPlanController extends Controller
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
 
+        $lifestyleExpenses = [
+            'pocket-money' => $family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT),
+            'retirement'   => $family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT),
+            'education'    => $family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT),
+        ];
+
         // Get list of categories to organize expenses
         $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
 
@@ -85,6 +92,7 @@ class CashFlowPlanController extends Controller
             'month'  => $month,
             'categories'        => $categories,
             'incomeSources'     => $incomeSources,
+            'lifestyleExpenses' => $lifestyleExpenses,
             'piggyBanks'        => $piggyBanks,
             'recurringExpenses' => $recurringExpenses,
             'expenseGroups'     => $expenseGroups,
@@ -112,6 +120,12 @@ class CashFlowPlanController extends Controller
             return redirect()->route('family.cash-flow-plans.index', [$family]);
         }
 
+        $lifestyleExpenses = [
+            'pocket-money' => $family->getSetting(Settings::MONEY_MATTERS_POCKET_MONEY_AMOUNT),
+            'retirement'   => $family->getSetting(Settings::MONEY_MATTERS_RETIREMENT_AMOUNT),
+            'education'    => $family->getSetting(Settings::MONEY_MATTERS_EDUCATION_AMOUNT),
+        ];
+
         // Get current set of income sources to add to the plan
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
 
@@ -127,7 +141,7 @@ class CashFlowPlanController extends Controller
         $cashFlowPlan = CashFlowPlan::createNew(
             $year,
             $month,
-            $family,
+            $lifestyleExpenses,
             $incomeSources,
             $piggyBanks,
             $recurringExpenses,
