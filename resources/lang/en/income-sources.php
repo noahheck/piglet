@@ -24,5 +24,7 @@ return [
         'inactive'   => 'Inactive',
     'description'    => 'Description',
 
-
+    'income-source-created' => 'Income Source Created',
+    'income-source-updated' => 'Income Source Updated',
+    'income-source-deleted' => 'Income Source Deleted',
 ];

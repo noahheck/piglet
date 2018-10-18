@@ -10,6 +10,8 @@ use App\Family;
 use App\Family\CashFlowPlan;
 use App\Family\CashFlowPlan\RecurringExpense;
 
+use function App\flashSuccess;
+
 class RecurringExpenseController extends Controller
 {
     /**
@@ -65,6 +67,8 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
+        flashSuccess("recurring-expenses.recurring-expense-created");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -117,6 +121,8 @@ class RecurringExpenseController extends Controller
 
         $recurringExpense->save();
 
+        flashSuccess("recurring-expenses.recurring-expense-updated");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -133,6 +139,8 @@ class RecurringExpenseController extends Controller
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
     {
         $recurringExpense->delete();
+
+        flashSuccess("recurring-expenses.recurring-expense-deleted");
 
         return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]);
     }

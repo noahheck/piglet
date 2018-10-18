@@ -8,6 +8,8 @@ use App\Family\CashFlowPlan\IncomeSource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+
 class IncomeSourceController extends Controller
 {
     /**
@@ -56,6 +58,8 @@ class IncomeSourceController extends Controller
         $incomeSource->fill($request->only($incomeSource->getFillable()));
 
         $incomeSource->save();
+
+        flashSuccess("income-sources.income-source-created");
 
         if ($request->query('return')) {
             return redirect($request->query('return'));
@@ -109,6 +113,8 @@ class IncomeSourceController extends Controller
 
         $incomeSource->save();
 
+        flashSuccess("income-sources.income-source-updated");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -125,6 +131,8 @@ class IncomeSourceController extends Controller
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
         $incomeSource->delete();
+
+        flashSuccess("income-sources.income-source-deleted");
 
         return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
     }

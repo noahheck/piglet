@@ -31,4 +31,8 @@ return [
     'projected'      => 'Projected',
     'date'           => 'Date',
     'payment-detail' => 'Payment Detail',
+
+    'recurring-expense-created' => 'Recurring Expense Created',
+    'recurring-expense-updated' => 'Recurring Expense Updated',
+    'recurring-expense-deleted' => 'Recurring Expense Deleted',
 ];

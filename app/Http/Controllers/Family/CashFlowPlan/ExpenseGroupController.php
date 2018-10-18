@@ -9,6 +9,8 @@ use App\Family\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use function App\flashSuccess;
+
 class ExpenseGroupController extends Controller
 {
     /**
@@ -64,6 +66,8 @@ class ExpenseGroupController extends Controller
 
         $expenseGroup->save();
 
+        flashSuccess("expense-groups.expense-group-created");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -116,6 +120,8 @@ class ExpenseGroupController extends Controller
 
         $expenseGroup->save();
 
+        flashSuccess("expense-groups.expense-group-updated");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -132,6 +138,8 @@ class ExpenseGroupController extends Controller
     public function destroy(Family $family, CashFlowPlan $cashFlowPlan, ExpenseGroup $expenseGroup)
     {
         $expenseGroup->delete();
+
+        flashSuccess("expense-groups.expense-group-deleted");
 
         return redirect()->route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]);
     }

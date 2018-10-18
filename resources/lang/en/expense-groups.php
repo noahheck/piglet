@@ -29,4 +29,7 @@ return [
     'category'             => 'Category',
     'sub-category'         => 'Sub-Category',
 
+    'expense-group-created' => 'Expense Group Created',
+    'expense-group-updated' => 'Expense Group Updated',
+    'expense-group-deleted' => 'Expense Group Deleted',
 ];

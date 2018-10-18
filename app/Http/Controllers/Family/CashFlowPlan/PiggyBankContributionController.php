@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Family;
 use App\Family\CashFlowPlan;
 
+use function App\flashSuccess;
+
 class PiggyBankContributionController extends Controller
 {
     /**
@@ -72,6 +74,8 @@ class PiggyBankContributionController extends Controller
 
         $contribution->save();
 
+        flashSuccess("piggy-banks.contribution-created");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -133,6 +137,8 @@ class PiggyBankContributionController extends Controller
 
         $piggyBankContribution->save();
 
+        flashSuccess("piggy-banks.contribution-updated");
+
         if ($request->query('return')) {
             return redirect($request->query('return'));
         }
@@ -149,6 +155,8 @@ class PiggyBankContributionController extends Controller
     public function destroy(Request $request, Family $family, CashFlowPlan $cashFlowPlan, PiggyBankContribution $piggyBankContribution)
     {
         $piggyBankContribution->delete();
+
+        flashSuccess("piggy-banks.contribution-deleted");
 
         if ($request->query('return')) {
             return redirect($request->query('return'));
