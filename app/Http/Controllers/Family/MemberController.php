@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
+use function App\flashSuccess;
+
 class MemberController extends Controller
 {
     /**
@@ -85,6 +87,8 @@ class MemberController extends Controller
         if ($photoFile = $request->file('memberPhoto')) {
             $member->uploadPhoto($photoFile, $photoUploaderService);
         }
+
+        flashSuccess("family-members.member-created", ['member' => $member->firstName]);
 
         return redirect()->route('family.members.show', [$family, $member]);
     }
@@ -210,6 +214,8 @@ class MemberController extends Controller
         if ($photoFile = $request->file('memberPhoto')) {
             $member->uploadPhoto($photoFile, $photoUploaderService);
         }
+
+        flashSuccess("family-members.member-updated", ['member' => $member->firstName]);
 
         return redirect()->route('family.members.show', [$family, $member]);
     }

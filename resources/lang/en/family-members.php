@@ -28,4 +28,8 @@ return [
     'login_email'           => 'Login Email',
     'administrator'         => 'Administrator',
     'administrator_desc'    => 'This will allow the member to make changes to your family configuration, including editing your family details and inviting additional members to your family',
+
+    'member-created' => 'Family Member :member Created',
+    'member-updated' => 'Family Member :member Updated',
+
 ];
