@@ -188,7 +188,14 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
                         @endphp
 
                         <tr>
-                            <td title="{{ $title }}" style="{{ $style }}"><a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a></td>
+                            <td title="{{ $title }}" style="{{ $style }}">
+                                <a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">
+                                    {{ $expenseGroup->name }}
+                                </a>
+                                @if ($expenseGroup->cash)
+                                    <span class="text-success fa fa-money ml-2 pt-1" title="{{ __('expense-groups.cash') }}"></span>
+                                @endif
+                            </td>
                             <td class="text-right">{{ App\formatCurrency($expenseGroup->default_amount, true) }}</td>
                         </tr>
                     @endforeach
@@ -201,7 +208,14 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
                             @endphp
 
                             <tr>
-                                <td title="{{ $title }}" style="{{ $style }}"><a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">{{ $expenseGroup->name }}</a></td>
+                                <td title="{{ $title }}" style="{{ $style }}">
+                                    <a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup, 'return' => url()->current()]) }}">
+                                        {{ $expenseGroup->name }}
+                                    </a>
+                                    @if ($expenseGroup->cash)
+                                        <span class="text-success fa fa-money ml-2 pt-1" title="{{ __('expense-groups.cash') }}"></span>
+                                    @endif
+                                </td>
                                 <td class="text-right">{{ App\formatCurrency($expenseGroup->default_amount, true) }}</td>
                             </tr>
 

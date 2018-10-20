@@ -28,6 +28,8 @@ return [
     'uncategorized'        => 'Uncategorized',
     'category'             => 'Category',
     'sub-category'         => 'Sub-Category',
+    'cash'                 => 'Cash',
+    'cash-description'     => "For some expense groups, withdrawing the budgeted amount as cash can help keep those expenses within your budget. Once that cash is gone, you're done with that expense group for the month.",
 
     'expense-group-created' => 'Expense Group Created',
     'expense-group-updated' => 'Expense Group Updated',

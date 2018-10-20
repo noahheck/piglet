@@ -57,6 +57,9 @@
                             @if ($expenseGroup->category)
                                 <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
                             @endif
+                            @if ($expenseGroup->cash)
+                                <span class="float-right text-success fa fa-money mr-2 pt-1" title="{{ __('expense-groups.cash') }}"></span>
+                            @endif
 
                             <h2>{{ $expenseGroup->name }}</h2>
 

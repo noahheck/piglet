@@ -19,12 +19,17 @@ class ExpenseGroup extends Model
         'deleted_at',
     ];
 
+    protected $casts = [
+        'cash' => 'boolean',
+    ];
+
     protected $fillable = [
         'expense_group_id',
         'category_id',
         'sub_category',
         'name',
         'projected',
+        'detail',
     ];
 
     public static function getValidations()

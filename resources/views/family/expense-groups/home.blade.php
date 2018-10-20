@@ -70,6 +70,9 @@
                                     <a href="{{ route('family.expense-groups.edit', [$family, $expenseGroup]) }}">
                                         {{ $expenseGroup->name }}
                                         {{ ($expenseGroup->default_amount) ? ' - ' . App\formatCurrency($expenseGroup->default_amount, true) : '' }}
+                                        @if ($expenseGroup->cash)
+                                            <span class="float-right text-success fa fa-money mr-2 pt-1" title="{{ __('expense-groups.cash') }}"></span>
+                                        @endif
                                     </a>
                                 </li>
 

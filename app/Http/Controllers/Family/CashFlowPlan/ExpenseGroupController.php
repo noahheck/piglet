@@ -64,6 +64,8 @@ class ExpenseGroupController extends Controller
 
         $expenseGroup->fill($request->only($expenseGroup->getFillable()));
 
+        $expenseGroup->cash = $request->has('cash');
+
         $expenseGroup->save();
 
         flashSuccess("expense-groups.expense-group-created");
@@ -117,6 +119,8 @@ class ExpenseGroupController extends Controller
         $request->validate($expenseGroup->getValidations());
 
         $expenseGroup->fill($request->only($expenseGroup->getFillable()));
+
+        $expenseGroup->cash = $request->has('cash');
 
         $expenseGroup->save();
 

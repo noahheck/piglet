@@ -65,6 +65,15 @@
             @fieldError('sub_category')
         </div>
 
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="1" id="cash" name="cash" {{ ($expenseGroup->cash) ? "checked" : "" }}>
+            <label class="form-check-label" for="cash">
+                {{ __('expense-groups.cash') }}
+            </label>
+            <p>{{ __('expense-groups.cash-description') }}</p>
+            @fieldError('cash')
+        </div>
+
         <div class="form-group">
             <label for="description">{{ __('expense-groups.description') }}</label>
             <textarea name="description" id="description" class="form-control" placeholder="{{ __('expense-groups.description') }}" rows="3">{{ old('description', $expenseGroup->description) }}</textarea>

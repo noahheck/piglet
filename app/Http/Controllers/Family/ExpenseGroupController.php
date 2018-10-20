@@ -58,6 +58,7 @@ class ExpenseGroupController extends Controller
         $expenseGroup->fill($request->only($expenseGroup->getFillable()));
 
         $expenseGroup->active = $request->has('active');
+        $expenseGroup->cash   = $request->has('cash');
 
         $expenseGroup->save();
 
@@ -112,6 +113,7 @@ class ExpenseGroupController extends Controller
         $expenseGroup->fill($request->only($expenseGroup->getFillable()));
 
         $expenseGroup->active = $request->has('active');
+        $expenseGroup->cash   = $request->has('cash');
 
         $expenseGroup->save();
 

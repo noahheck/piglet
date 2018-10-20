@@ -18,6 +18,7 @@ class ExpenseGroup extends Model
 
     protected $casts = [
         'active' => 'boolean',
+        'cash'   => 'boolean',
     ];
 
     public static function getValidations()
