@@ -34,6 +34,17 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                     <optgroup label="-- {{ __('recurring-expenses.uncategorized') }} --">
 
                         @foreach ($recurringExpenseTemplates->where('category_id', null) as $template)
+
+                            @php
+                                $disabled = '';
+                                $inUse    = '';
+
+                                if ($cashFlowPlan->hasRecurringExpense($template)) {
+                                    $disabled = 'disabled';
+                                    $inUse    = ' - ' . __('form.already-in-use');
+                                }
+
+                            @endphp
                             <option
                                 value="{{ $template->id }}"
                                 data-merchant-id="{{ $template->merchant_id }}"
@@ -42,8 +53,9 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                                 data-sub-category=""
                                 data-name="{{ $template->name }}"
                                 data-description="{{ $template->description }}"
+                                {{ $disabled }}
                                 {{ ($template->id == old('recurring_expense_id', $recurringExpense->recurring_expense_id)) ? 'selected' : '' }}
-                            >{{ $template->name }}</option>
+                            >{{ $template->name }} {{ $inUse }}</option>
                         @endforeach
 
                     </optgroup>
@@ -54,6 +66,17 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                     <optgroup label="{{ $category->name }}">
 
                         @foreach ($recurringExpenseTemplates->where('category_id', $category->id) as $template)
+
+                            @php
+                                $disabled = '';
+                                $inUse    = '';
+
+                                if ($cashFlowPlan->hasRecurringExpense($template)) {
+                                    $disabled = 'disabled';
+                                    $inUse    = ' - ' . __('form.already-in-use');
+                                }
+
+                            @endphp
                             <option
                                 value="{{ $template->id }}"
                                 data-merchant-id="{{ $template->merchant_id }}"
@@ -62,8 +85,9 @@ $recurringExpenseTemplates = \App\Family\RecurringExpense::where('active', true)
                                 data-sub-category="{{ $template->sub_category }}"
                                 data-name="{{ $template->name }}"
                                 data-description="{{ $template->description }}"
+                                {{ $disabled }}
                                 {{ ($template->id == old('recurring_expense_id', $recurringExpense->recurring_expense_id)) ? 'selected' : '' }}
-                            >{{ $template->name }}</option>
+                            >{{ $template->name }} {{ $inUse }}</option>
                         @endforeach
 
                     </optgroup>

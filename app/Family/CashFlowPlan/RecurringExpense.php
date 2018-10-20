@@ -53,8 +53,8 @@ class RecurringExpense extends Model
     public static function getValidations()
     {
         return [
-            'name'                 => 'required',
-            'recurring_expense_id' => 'integer|nullable',
+            // 'name'                 => 'required|nullable',
+            'recurring_expense_id' => 'required|integer',
             'date'                 => 'date|nullable',
             'projected'            => 'numeric|nullable',
             'actual'               => 'numeric|nullable',

@@ -150,6 +150,11 @@ class CashFlowPlan extends Model
         return $this->expenseGroups->pluck('expense_group_id')->contains($template->id);
     }
 
+    public function hasRecurringExpense($template)
+    {
+        return $this->recurringExpenses->pluck('recurring_expense_id')->contains($template->id);
+    }
+
 
 
 
