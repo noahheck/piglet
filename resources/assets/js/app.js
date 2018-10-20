@@ -20,6 +20,7 @@ let pageMenu     = require('Component/pageMenu');
 let domSearch    = require('Component/domSearch');
 let moneyField   = require('Component/moneyField');
 let tabNavOnLoad = require('Component/tabNavOnLoad');
+let copyValue    = require('Component/copyValue');
 
 let phone = require('Services/phone');
 let ajax  = require('Services/ajax');
@@ -50,6 +51,11 @@ $(function() {
         let jThis = $(this);
 
         jThis.val(phone.format(jThis.val()));
+    });
+
+    $('.copy-value').each(function() {
+        let $this = $(this);
+        copyValue.attach($this, $this.data('copySource'), $this.data('copyTarget'));
     });
 
 

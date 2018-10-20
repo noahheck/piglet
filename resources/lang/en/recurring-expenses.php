@@ -13,7 +13,6 @@ return [
     'payments-made'                => 'Payments Made',
 
     'create-new' => 'Create New',
-    'copy-from-projected' => 'Copy from projected',
 
     'details' => 'Details',
 

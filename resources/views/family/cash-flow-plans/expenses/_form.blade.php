@@ -51,7 +51,7 @@
         <hr>
 
         <div class="form-group">
-            <label for="actual">{{ __('expenses.actual') }}</label>
+            <label for="actual">{{ __('expenses.actual') }}</label><button type="button" class="copy-value btn btn-sm btn-link" data-copy-source="#projected" data-copy-target="#actual">{{ __('cash-flow-plans.copy-from-projected') }}</button>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>

@@ -11,6 +11,7 @@ return [
     'actual'              => 'Actual',
     'projected'           => 'Projected',
     'actual-vs-projected' => 'Actual vs. Projected',
+    'copy-from-projected' => 'Copy from projected',
     'total'               => 'Total',
     'totals'              => 'Totals',
 

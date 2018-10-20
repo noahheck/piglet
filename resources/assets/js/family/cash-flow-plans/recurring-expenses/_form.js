@@ -36,10 +36,4 @@ $(function() {
 
     });
 
-    $('#copyFromProjected').click(function() {
-        $('#actual').val(
-            $('#projected').val()
-        ).focus();
-    });
-
 });
