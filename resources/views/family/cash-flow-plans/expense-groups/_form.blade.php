@@ -29,31 +29,55 @@
                 @if ($expenseGroupTemplates->where('category_id', null)->count() > 0)
                     <optgroup label="-- {{ __('expense-groups.uncategorized') }} --">
                         @foreach ($expenseGroupTemplates->where('category_id', null) as $template)
+
+                            @php
+                                $disabled = '';
+                                $inUse    = '';
+
+                                if ($cashFlowPlan->hasExpenseGroupTemplate($template)) {
+                                    $disabled = 'disabled';
+                                    $inUse    = ' - ' . __('form.already-in-use');
+                                }
+
+                            @endphp
                             <option
                                 value="{{ $template->id }}"
                                 data-category="{{ $template->category_id }}"
                                 data-sub-category="{{ $template->sub_category }}"
                                 data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}"
                                 data-name="{{ $template->name }}"
+                                {{ $disabled }}
                                 {{ ($template->id == old('expense_group_id', $expenseGroup->expense_group_id)) ? 'selected' : '' }}
-                            >{{ $template->name }} - {{ App\formatCurrency($template->default_amount, true) }}</option>
+                            >{{ $template->name }} - {{ App\formatCurrency($template->default_amount, true) }} {{ $inUse }}</option>
                         @endforeach
                     </optgroup>
                 @endif
 
-                @foreach ($categories as $category)
+            @foreach ($categories as $category)
                     @continue($expenseGroupTemplates->where('category_id', $category->id)->count() === 0)
                     <optgroup label="{{ $category->name }}">
 
-                        @foreach ($expenseGroupTemplates->where('category_id', $category->id) as $template)
+                    @foreach ($expenseGroupTemplates->where('category_id', $category->id) as $template)
+
+                            @php
+                                $disabled = '';
+                                $inUse    = '';
+
+                                if ($cashFlowPlan->hasExpenseGroupTemplate($template)) {
+                                    $disabled = 'disabled';
+                                    $inUse    = ' - ' . __('form.already-in-use');
+                                }
+
+                            @endphp
                             <option
                                     value="{{ $template->id }}"
                                     data-category="{{ $template->category_id }}"
                                     data-sub-category="{{ $template->sub_category }}"
                                     data-default-amount="{{ App\formatCurrency($template->default_amount, false) }}"
                                     data-name="{{ $template->name }}"
+                                    {{ $disabled }}
                                     {{ ($template->id == old('expense_group_id', $expenseGroup->expense_group_id)) ? 'selected' : '' }}
-                            >{{ $template->name }} - {{ App\formatCurrency($template->default_amount, true) }}</option>
+                            >{{ $template->name }} - {{ App\formatCurrency($template->default_amount, true) }} {{ $inUse }}</option>
                         @endforeach
 
                     </optgroup>

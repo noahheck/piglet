@@ -145,6 +145,12 @@ class CashFlowPlan extends Model
 
 
 
+    public function hasExpenseGroupTemplate($template)
+    {
+        return $this->expenseGroups->pluck('expense_group_id')->contains($template->id);
+    }
+
+
 
 
     public function allActualExpensesTotal()

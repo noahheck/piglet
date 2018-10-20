@@ -13,5 +13,7 @@ return [
     'delete'       => 'Delete',
     'other'        => 'Other',
 
+    'already-in-use' => 'Already In Use',
+
     'photo'        => 'Photo',
 ];
