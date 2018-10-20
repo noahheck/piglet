@@ -78,6 +78,18 @@ class ExpenseController extends Controller
 
         $expense->fill($request->only($expense->getFillable()));
 
+        if ($request->has('merchant_name') && !$request->get('merchant_id')) {
+
+            $merchant = new Family\Merchant();
+            $merchant->name                 = $request->get('merchant_name');
+            $merchant->default_category_id  = $request->get('category_id');
+            $merchant->default_sub_category = $request->get('sub_category');
+
+            $merchant->save();
+
+            $expense->merchant_id = $merchant->id;
+        }
+
         $expense->save();
 
         flashSuccess("expenses.expense-created");
@@ -131,6 +143,18 @@ class ExpenseController extends Controller
         $request->validate($expense->getValidations());
 
         $expense->fill($request->only($expense->getFillable()));
+
+        if ($request->has('merchant_name') && !$request->get('merchant_id')) {
+
+            $merchant = new Family\Merchant();
+            $merchant->name                 = $request->get('merchant_name');
+            $merchant->default_category_id  = $request->get('category_id');
+            $merchant->default_sub_category = $request->get('sub_category');
+
+            $merchant->save();
+
+            $expense->merchant_id = $merchant->id;
+        }
 
         $expense->save();
 

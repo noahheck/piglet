@@ -2,6 +2,7 @@
 
 return [
     'merchants'           => 'Merchants',
+    'merchant'            => 'Merchant',
     'add-new-merchant'    => 'Add New Merchant',
     'no-merchants-create' => "You haven't added any merchants yet. Go ahead and add your first merchant now.",
     'search-merchants'    => 'Search Merchants',

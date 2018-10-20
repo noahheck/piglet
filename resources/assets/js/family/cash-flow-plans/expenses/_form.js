@@ -56,4 +56,21 @@ $(function() {
         }
     });
 
+    $('.create-new-merchant').click(function() {
+        $('#existingMerchantGroup').toggleClass('d-none');
+        $('#merchant_id').val('');
+
+        $('#newMerchantGroup').toggleClass('d-none');
+        $('#merchant_name').focus();
+    });
+
+    $('#cancelCreateNewMerchant').click(function() {
+        $('#existingMerchantGroup').toggleClass('d-none');
+
+        $('#newMerchantGroup').toggleClass('d-none');
+        $('#merchant_name').val('');
+
+        $('#merchant_id').focus();
+    });
+
 });

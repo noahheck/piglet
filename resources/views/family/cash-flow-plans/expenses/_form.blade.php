@@ -67,14 +67,22 @@
             @fieldError('date')
         </div>
 
-        <div class="form-group">
-            <label for="merchant_id">{{ __('expenses.merchant') }}</label>
+        <div class="form-group" id="existingMerchantGroup">
+            <label for="merchant_id">{{ __('expenses.merchant') }}</label><button tabindex="-1" type="button" class="btn btn-sm btn-link create-new-merchant">{{ __('merchants.add-new-merchant') }}</button>
             <select class="custom-select" name="merchant_id" id="merchant_id">
                 <option value="">Select One</option>
                 @foreach ($merchants as $merchant)
                     <option value="{{ $merchant->id }}" data-category="{{ $merchant->default_category_id }}" data-sub-category="{{ $merchant->default_sub_category }}" {{ (old('merchant_id', $expense->merchant_id) == $merchant->id) ? 'selected' : '' }}>{{ $merchant->name }}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="form-group d-none" id="newMerchantGroup">
+            <div class="form-group">
+                <label for="merchant_name">{{ __('merchants.add-new-merchant') }}</label><button type="button" class="btn btn-sm btn-link" id="cancelCreateNewMerchant">{{ __('form.cancel') }}</button>
+                <input type="text" name="merchant_name" id="merchant_name" class="form-control" placeholder="{{ __('merchants.merchant') . ' ' . __('merchants.name') }}" value="{{ old('merchant_name', '') }}">
+                @fieldError('merchant_name')
+            </div>
         </div>
 
         <div class="form-group">
@@ -122,5 +130,7 @@
     <a class="btn btn-secondary" href="{{ $cancelRoute }}">
         {{ __('form.cancel') }}
     </a>
+
+    <button type="button" class="btn btn-outline-primary create-new-merchant">{{ __('merchants.add-new-merchant') }}</button>
 
 </form>
