@@ -42,9 +42,21 @@
             {{-- Beginning of summary section --}}
             <div class="section mt-5 mt-md-0">
 
-                <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
+                <div class="row mb-3">
 
-                <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
+                    <div class="col col-sm-6">
+                        <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
+                        <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
+                    </div>
+
+                    <div class="col col-sm-6">
+
+                        <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->balanceChartData())'></canvas>
+
+                    </div>
+
+                </div>
+
 
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">

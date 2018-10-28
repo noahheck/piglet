@@ -39,7 +39,9 @@ return [
     'created-with-entries'     => 'The Cash Flow Plan will be created with the following entries',
     'create-plan-confirmation' => 'Are you sure you want to create this cash flow plan?',
 
-    'overspent' => 'Overspent',
+    '' => '',
+
+    'overspent'        => 'Overspent',
     'almost-overspent' => 'Almost Overspent',
 
 
