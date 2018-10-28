@@ -31,13 +31,25 @@ class CashFlowPlan extends Model
     public function projectedIncomeSourcesTotal()
     {
         return $this->incomeSources->sum('projected');
-
     }
 
     public function actualIncomeSourcesTotal()
     {
         return $this->incomeSources->sum('actual');
     }
+
+
+
+    public function balance()
+    {
+        return $this->actualIncomeSourcesTotal() -
+            (
+                  $this->allActualExpensesTotal()
+                + $this->lifestyleExpensesTotal()
+                + $this->actualPiggyBankContributionsTotal()
+            );
+    }
+
 
 
 
@@ -54,6 +66,11 @@ class CashFlowPlan extends Model
     public function actualRecurringExpensesTotal()
     {
         return $this->recurringExpenses->sum('actual');
+    }
+
+    public function recurringExpensesActualVsProjected()
+    {
+        return $this->actualRecurringExpensesTotal() - $this->projectedRecurringExpensesTotal();
     }
 
     public function recurringExpensesOverspent()
@@ -160,8 +177,12 @@ class CashFlowPlan extends Model
 
     public function allActualExpensesTotal()
     {
-        return $this->actualRecurringExpensesTotal();
+        return $this->actualRecurringExpensesTotal() + $this->actualExpensesTotal();
     }
+
+
+
+
 
 
 
@@ -170,12 +191,41 @@ class CashFlowPlan extends Model
         return $this->hasMany(ExpenseGroup::class);
     }
 
+    public function expenseGroupsProjectedTotal()
+    {
+        return $this->expenseGroups->sum('projected');
+    }
+
+
 
 
     public function expenses()
     {
         return $this->hasMany(Expense::class)->orderBy('date');
     }
+
+    public function actualExpensesTotal()
+    {
+        return $this->expenses->sum('actual');
+    }
+
+
+
+
+
+    public function expenseGroupsActualVsProjected()
+    {
+        return $this->actualExpensesTotal() - $this->expenseGroupsProjectedTotal();
+    }
+
+
+
+
+
+
+
+
+
 
 
 

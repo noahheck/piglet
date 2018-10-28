@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap-datepicker": "^1.8.0",
+    "chart.js": "^2.7.3",
     "font-awesome": "^4.7.0",
     "sortablejs": "^1.7.0",
     "styled-notifications": "^1.0.1"

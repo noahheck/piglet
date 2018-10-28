@@ -16,6 +16,10 @@ return [
     'totals'              => 'Totals',
 
 
+    'income' => 'Income',
+    'balance' => 'Balance',
+
+
     'lifestyle-expenses'       => 'Lifestyle Expenses',
     'edit-lifestyle-expenses'  => 'Edit Lifestyle Expenses',
     'lifestyle-expense-name'   => 'Name',

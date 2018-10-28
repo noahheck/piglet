@@ -12,4 +12,9 @@ trait StoresLifestyleExpenses
             'education'    => 'numeric|nullable',
         ];
     }
+
+    public function lifestyleExpensesTotal()
+    {
+        return $this->pocket_money + $this->retirement + $this->education;
+    }
 }
