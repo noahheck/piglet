@@ -22,7 +22,7 @@ trait ProvidesChartData
             ],
             'data' => [
                 'labels' => [
-                    __('cash-flow-plans.income')                . ' - ' . formatCurrency($this->actualIncomeSourcesTotal(), true),
+//                    __('cash-flow-plans.income')                . ' - ' . formatCurrency($this->actualIncomeSourcesTotal(), true),
                     __('cash-flow-plans.lifestyle-expenses')    . ' - ' . formatCurrency($this->lifestyleExpensesTotal(), true),
                     __('piggy-banks.piggy-banks')               . ' - ' . formatCurrency($this->actualPiggyBankContributionsTotal(), true),
                     __('recurring-expenses.recurring-expenses') . ' - ' . formatCurrency($this->actualRecurringExpensesTotal(), true),
@@ -32,7 +32,7 @@ trait ProvidesChartData
                     [
                         'label' => __('cash-flow-plans.projected'),
                         'data' => [
-                            formatCurrency($this->projectedIncomeSourcesTotal()),
+//                            formatCurrency($this->projectedIncomeSourcesTotal()),
                             0,
                             formatCurrency($this->projectedPiggyBankContributionsTotal()),
                             formatCurrency($this->projectedRecurringExpensesTotal()),
@@ -40,30 +40,32 @@ trait ProvidesChartData
                         ],
                         'backgroundColor' => Charts::BACKGROUND_COLOR_GRAY,
                         'borderColor'     => Charts::BORDER_COLOR_GRAY,
+                        'borderWidth'     => '0.5',
                     ],
                     [
                         'label' => __('cash-flow-plans.actual'),
                         'data'  => [
-                            formatCurrency($this->actualIncomeSourcesTotal()),
+//                            formatCurrency($this->actualIncomeSourcesTotal()),
                             formatCurrency($this->lifestyleExpensesTotal()),
                             formatCurrency($this->actualPiggyBankContributionsTotal()),
                             formatCurrency($this->actualRecurringExpensesTotal()),
                             formatCurrency($this->actualExpensesTotal()),
                         ],
                         'backgroundColor' => [
-                            Charts::BACKGROUND_COLOR_BLUE,
+//                            Charts::BACKGROUND_COLOR_BLUE,
                             Charts::BACKGROUND_COLOR_GREEN,
                             Charts::BACKGROUND_COLOR_GREEN,
                             ($this->recurringExpensesOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
                             ($this->expenseGroupsOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
                         ],
                         'borderColor' => [
-                            Charts::BORDER_COLOR_BLUE,
+//                            Charts::BORDER_COLOR_BLUE,
                             Charts::BORDER_COLOR_GREEN,
                             Charts::BORDER_COLOR_GREEN,
                             ($this->recurringExpensesOverspent()) ? Charts::BORDER_COLOR_RED : Charts::BORDER_COLOR_GREEN,
                             ($this->expenseGroupsOverspent()) ? Charts::BORDER_COLOR_RED : Charts::BORDER_COLOR_GREEN,
                         ],
+                        'borderWidth' => '0.5',
                     ],
                 ],
             ],

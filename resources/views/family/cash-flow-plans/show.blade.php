@@ -56,7 +56,7 @@
 
                     <div class="col col-sm-6 order-2 order-sm-1">
 
-                        <ul class="list-group">
+                        <ul class="list-group shadow-sm">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
                                 <span>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</span>
