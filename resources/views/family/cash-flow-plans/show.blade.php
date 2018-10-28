@@ -39,6 +39,7 @@
 
         <div class="col-12 col-md-9">
 
+            {{-- Beginning of summary section --}}
             <div class="section mt-5 mt-md-0">
 
                 <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
@@ -46,113 +47,28 @@
                 <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
 
                 <ul class="list-group">
-
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
                         <span>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('cash-flow-plans.lifestyle-expenses') }}</span>
-                        <span>{{ App\formatCurrency($cashFlowPlan->lifestyleExpensesTotal(), true) }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('piggy-banks.piggy-banks') }}</span>
-                        <span>{{ App\formatCurrency($cashFlowPlan->actualPiggyBankContributionsTotal(), true) }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('recurring-expenses.recurring-expenses') }}</span>
+                        <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
                         <span>
-                            {{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}
-{{--                            ({{ App\formatCurrency($cashFlowPlan->recurringExpensesActualVsProjected(), true) }})--}}
+                            {{ App\formatCurrency($cashFlowPlan->allExpendituresTotal(), true) }}
                         </span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('expenses.expenses') }}</span>
-                        <span>
-                            {{ App\formatCurrency($cashFlowPlan->actualExpensesTotal(), true) }}
-{{--                            ({{ App\formatCurrency($cashFlowPlan->expenseGroupsActualVsProjected(), true) }})--}}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}:</span>
+                        <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
                         <span>
                             {{ App\formatCurrency($cashFlowPlan->balance(), true) }}
                         </span>
                     </li>
-
                 </ul>
 
-
+                <canvas id="cfpSummaryChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->summaryChartData())'></canvas>
 
             </div>
-
-
-            {{--<div class="section">
-
-                <h3>{{ __('cash-flow-plans.overview') }}</h3>
-
-                <table class="table table-sm">
-                    <caption>{{ __('cash-flow-plans.overview') }}</caption>
-                    <thead>
-                        <tr class="font-weight-bold">
-                            <td>&nbsp;</td>
-                            <td class="text-right">{{ __('cash-flow-plans.projected') }}</td>
-                            <td class="text-right">{{ __('cash-flow-plans.actual') }}</td>
-                        </tr>
-                    </thead>
-
-                    <tr>
-                        <td>{{ __('income-sources.income-sources') }}</td>
-                        <td class="text-right">{{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</td>
-                        <td class="text-right">{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</td>
-                    </tr>
-
-                    @php
-                        $statusClass = '';
-                        $srText      = '';
-
-                        if ($cashFlowPlan->recurringExpensesOverspent()) {
-                            $statusClass = 'text-danger';
-                            $srText      = __('cash-flow-plans.overspent');
-                        } elseif ($cashFlowPlan->recurringExpensesCloseToOverspent()) {
-                            $statusClass = 'text-warning';
-                            $srText      = __('cash-flow-plans.almost-overspent');
-                        }
-
-                    @endphp
-
-                    <tr class="{{ $statusClass }}">
-                        <td>{{ __('recurring-expenses.recurring-expenses') }} <span class="sr-only">{{ $srText }}</span></td>
-                        <td class="text-right">{{ App\formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</td>
-                        <td class="text-right">{{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</td>
-                    </tr>
-
-                    @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
-
-                        @php
-                            $statusClass = '';
-                            $srText      = '';
-
-                            if ($expenseGroup->isOverspent()) {
-                                $statusClass = 'bg-danger text-white';
-                                $srText      = __('cash-flow-plans.overspent');
-                            } elseif ($expenseGroup->isCloseToOverspent()) {
-                                $statusClass = 'bg-warning';
-                                $srText      = __('cash-flow-plans.almost-overspent');
-                            }
-
-                        @endphp
-
-                        <tr class="{{ $statusClass }}">
-                            <td>{{ $expenseGroup->name }} <span class="sr-only">{{ $srText }}</span></td>
-                            <td class="text-right">{{ App\formatCurrency($expenseGroup->projected, true) }}</td>
-                            <td class="text-right">{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</td>
-                        </tr>
-                    @endforeach
-
-                </table>
-
-            </div>--}}
+            {{-- End of summary section --}}
 
 
 

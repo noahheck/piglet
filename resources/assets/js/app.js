@@ -14,6 +14,8 @@ let $ = require("jquery");
 
         require('styled-notifications');
 
+import Chart from 'chart.js';
+
 import "styled-notifications/dist/notifications.css";
 
 let pageMenu     = require('Component/pageMenu');
@@ -56,6 +58,18 @@ $(function() {
     $('.copy-value').each(function() {
         let $this = $(this);
         copyValue.attach($this, $this.data('copySource'), $this.data('copyTarget'));
+    });
+
+
+
+    $('.piglet-chart').each(function() {
+        let $this = $(this);
+
+        let chartData = $this.data('chartData');
+
+        let myChart = new Chart($this, chartData);
+
+        $this.data('chart', myChart);
     });
 
 

@@ -8,12 +8,15 @@ use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\CashFlowPlan\PiggyBank;
 use App\Family\CashFlowPlan\PiggyBankContribution;
 use App\Family\CashFlowPlan\RecurringExpense;
+use App\Interfaces\Definitions\Charts;
 use App\Interfaces\Definitions\Settings;
 use App\Traits\CashFlowPlan\StoresLifestyleExpenses;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Family\CashFlowPlan\IncomeSource;
+
+use function App\formatCurrency;
 
 class CashFlowPlan extends Model
 {
@@ -42,12 +45,76 @@ class CashFlowPlan extends Model
 
     public function balance()
     {
-        return $this->actualIncomeSourcesTotal() -
-            (
-                  $this->allActualExpensesTotal()
+        return $this->actualIncomeSourcesTotal() - $this->allExpendituresTotal();
+    }
+
+    public function allExpendituresTotal()
+    {
+        return    $this->allActualExpensesTotal()
                 + $this->lifestyleExpensesTotal()
                 + $this->actualPiggyBankContributionsTotal()
-            );
+            ;
+    }
+
+    public function summaryChartData()
+    {
+        return [
+            'type' => 'horizontalBar',
+            'options' => [
+                'scales' => [
+                    'yAxes' => [[
+                        'barPercentage' => '1.0',
+                    ]],
+                ],
+            ],
+            'data' => [
+                'labels' => [
+                    __('cash-flow-plans.income')                . ' - ' . formatCurrency($this->actualIncomeSourcesTotal(), true),
+                    __('cash-flow-plans.lifestyle-expenses')    . ' - ' . formatCurrency($this->lifestyleExpensesTotal(), true),
+                    __('piggy-banks.piggy-banks')               . ' - ' . formatCurrency($this->actualPiggyBankContributionsTotal(), true),
+                    __('recurring-expenses.recurring-expenses') . ' - ' . formatCurrency($this->actualRecurringExpensesTotal(), true),
+                    __('expenses.expenses')                     . ' - ' . formatCurrency($this->actualExpensesTotal(), true),
+                ],
+                'datasets' => [
+                    [
+                        'label' => __('cash-flow-plans.projected'),
+                        'data' => [
+                            formatCurrency($this->projectedIncomeSourcesTotal()),
+                            0,
+                            formatCurrency($this->projectedPiggyBankContributionsTotal()),
+                            formatCurrency($this->projectedRecurringExpensesTotal()),
+                            formatCurrency($this->expenseGroupsProjectedTotal()),
+                        ],
+                        'backgroundColor' => Charts::BACKGROUND_COLOR_GRAY,
+                        'borderColor'     => Charts::BORDER_COLOR_GRAY,
+                    ],
+                    [
+                        'label' => __('cash-flow-plans.actual'),
+                        'data'  => [
+                            formatCurrency($this->actualIncomeSourcesTotal()),
+                            formatCurrency($this->lifestyleExpensesTotal()),
+                            formatCurrency($this->actualPiggyBankContributionsTotal()),
+                            formatCurrency($this->actualRecurringExpensesTotal()),
+                            formatCurrency($this->actualExpensesTotal()),
+                        ],
+                        'backgroundColor' => [
+                            Charts::BACKGROUND_COLOR_BLUE,
+                            Charts::BACKGROUND_COLOR_GREEN,
+                            Charts::BACKGROUND_COLOR_GREEN,
+                            ($this->recurringExpensesOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
+                            ($this->expenseGroupsOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
+                        ],
+                        'borderColor' => [
+                            Charts::BORDER_COLOR_BLUE,
+                            Charts::BORDER_COLOR_GREEN,
+                            Charts::BORDER_COLOR_GREEN,
+                            ($this->recurringExpensesOverspent()) ? Charts::BORDER_COLOR_RED : Charts::BORDER_COLOR_GREEN,
+                            ($this->expenseGroupsOverspent()) ? Charts::BORDER_COLOR_RED : Charts::BORDER_COLOR_GREEN,
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 
 
@@ -216,6 +283,11 @@ class CashFlowPlan extends Model
     public function expenseGroupsActualVsProjected()
     {
         return $this->actualExpensesTotal() - $this->expenseGroupsProjectedTotal();
+    }
+
+    public function expenseGroupsOverspent()
+    {
+        return $this->expenseGroupsActualVsProjected() > 0;
     }
 
 

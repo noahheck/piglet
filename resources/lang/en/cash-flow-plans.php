@@ -16,8 +16,10 @@ return [
     'totals'              => 'Totals',
 
 
-    'income' => 'Income',
-    'balance' => 'Balance',
+    'income'       => 'Income',
+    'expenditures' => 'Expenditures',
+    'balance'      => 'Balance',
+
 
 
     'lifestyle-expenses'       => 'Lifestyle Expenses',
