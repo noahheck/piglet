@@ -42,40 +42,44 @@
             {{-- Beginning of summary section --}}
             <div class="section mt-5 mt-md-0">
 
+
+                <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
+                <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
+
                 <div class="row mb-3">
 
-                    <div class="col col-sm-6">
-                        <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
-                        <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
-                    </div>
-
-                    <div class="col col-sm-6">
+                    <div class="col col-sm-6 order-1 order-sm-2">
 
                         <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->balanceChartData())'></canvas>
+
+                    </div>
+
+                    <div class="col col-sm-6 order-2 order-sm-1">
+
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
+                                <span>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
+                                <span>
+                                {{ App\formatCurrency($cashFlowPlan->allExpendituresTotal(), true) }}
+                            </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
+                                <span>
+                                {{ App\formatCurrency($cashFlowPlan->balance(), true) }}
+                            </span>
+                            </li>
+                        </ul>
 
                     </div>
 
                 </div>
 
 
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
-                        <span>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
-                        <span>
-                            {{ App\formatCurrency($cashFlowPlan->allExpendituresTotal(), true) }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
-                        <span>
-                            {{ App\formatCurrency($cashFlowPlan->balance(), true) }}
-                        </span>
-                    </li>
-                </ul>
 
                 <canvas id="cfpSummaryChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->summaryChartData())'></canvas>
 
