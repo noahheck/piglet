@@ -81,7 +81,7 @@ class CashFlowPlanController extends Controller
         $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
 
         // Get current set of recurring expenses to show to the user
-        $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
+        $recurringExpenses = RecurringExpense::where('active', true)->orderBy('active', 'DESC')->orderBy('name')->get();
 
         // Get current set of expense groups to show to the user
         $expenseGroups = ExpenseGroup::where('active', true)->orderBy('name')->get();
@@ -133,7 +133,7 @@ class CashFlowPlanController extends Controller
         $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
 
         // Get current set of recurring expenses to add to the plan
-        $recurringExpenses = RecurringExpense::orderBy('active', 'DESC')->orderBy('name')->get();
+        $recurringExpenses = RecurringExpense::where('active', true)->orderBy('active', 'DESC')->orderBy('name')->get();
 
         // Get current set of expense groups to add to the plan
         $expenseGroups = ExpenseGroup::where('active', true)->orderBy('name')->get();
