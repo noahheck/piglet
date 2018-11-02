@@ -18,6 +18,11 @@ trait ProvidesChartData
                     'yAxes' => [[
                         'barPercentage' => '1.0',
                     ]],
+                    'xAxes' => [[
+                        'ticks' => [
+                            'min' => 0,
+                        ],
+                    ]]
                 ],
             ],
             'data' => [
@@ -33,8 +38,8 @@ trait ProvidesChartData
                         'label' => __('cash-flow-plans.projected'),
                         'data' => [
 //                            formatCurrency($this->projectedIncomeSourcesTotal()),
-                            0,
-                            formatCurrency($this->projectedPiggyBankContributionsTotal()),
+                            formatCurrency($this->lifestyleExpensesTotal()),
+                            formatCurrency($this->projectedPiggyBankTotal()),
                             formatCurrency($this->projectedRecurringExpensesTotal()),
                             formatCurrency($this->expenseGroupsProjectedTotal()),
                         ],

@@ -5,6 +5,11 @@ namespace App\Traits\CashFlowPlan;
 
 trait ProcessesPiggyBankContributions
 {
+    public function projectedPiggyBankTotal()
+    {
+        return $this->piggyBanks->sum('projected');
+    }
+
     public function projectedPiggyBankContributionsTotal()
     {
         return $this->piggyBankContributions->sum('projected');

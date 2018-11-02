@@ -252,6 +252,12 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
                     </tr>
 
                     <tr>
+                        <td>{{ __('piggy-banks.piggy-banks') }}</td>
+                        <td class="text-right">&nbsp;</td>
+                        <td class="text-right">{{ \App\formatCurrency($piggyBanks->sum('monthly_contribution'), true) }}</td>
+                    </tr>
+
+                    <tr>
                         <td>{{ __('recurring-expenses.recurring-expenses') }}</td>
                         <td class="text-right">&nbsp;</td>
                         <td class="text-right">{{ App\formatCurrency($recurringExpenses->sum('default_amount'), true) }}</td>
@@ -267,9 +273,10 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
                         <td>{{ __('cash-flow-plans.totals') }}</td>
                         <td class="text-right">{{ App\formatCurrency($incomeSources->sum('default_amount'), true) }}</td>
                         <td class="text-right">{{ App\formatCurrency(
-                                  $expenseGroups->sum('default_amount')
+                                  $lifestyleExpensesTotal
+                                + $piggyBanks->sum('monthly_contribution')
                                 + $recurringExpenses->sum('default_amount')
-                                + $lifestyleExpensesTotal
+                                + $expenseGroups->sum('default_amount')
                             , true) }}</td>
                     </tr>
 
