@@ -28,7 +28,7 @@ trait ProvidesChartData
             'data' => [
                 'labels' => [
 //                    __('cash-flow-plans.income')                . ' - ' . formatCurrency($this->actualIncomeSourcesTotal(), true),
-                    __('cash-flow-plans.lifestyle-expenses')    . ' - ' . formatCurrency($this->lifestyleExpensesTotal(), true),
+                    __('cash-flow-plans.lifestyle-expenses')    . ' - ' . formatCurrency($this->distributedLifestyleExpensesTotal(), true),
                     __('piggy-banks.piggy-banks')               . ' - ' . formatCurrency($this->actualPiggyBankContributionsTotal(), true),
                     __('recurring-expenses.recurring-expenses') . ' - ' . formatCurrency($this->actualRecurringExpensesTotal(), true),
                     __('expenses.expenses')                     . ' - ' . formatCurrency($this->actualExpensesTotal(), true),
@@ -38,7 +38,7 @@ trait ProvidesChartData
                         'label' => __('cash-flow-plans.projected'),
                         'data' => [
 //                            formatCurrency($this->projectedIncomeSourcesTotal()),
-                            formatCurrency($this->lifestyleExpensesTotal()),
+                            formatCurrency($this->projectedLifestyleExpensesTotal()),
                             formatCurrency($this->projectedPiggyBankTotal()),
                             formatCurrency($this->projectedRecurringExpensesTotal()),
                             formatCurrency($this->expenseGroupsProjectedTotal()),
@@ -51,7 +51,7 @@ trait ProvidesChartData
                         'label' => __('cash-flow-plans.actual'),
                         'data'  => [
 //                            formatCurrency($this->actualIncomeSourcesTotal()),
-                            formatCurrency($this->lifestyleExpensesTotal()),
+                            formatCurrency($this->distributedLifestyleExpensesTotal()),
                             formatCurrency($this->actualPiggyBankContributionsTotal()),
                             formatCurrency($this->actualRecurringExpensesTotal()),
                             formatCurrency($this->actualExpensesTotal()),

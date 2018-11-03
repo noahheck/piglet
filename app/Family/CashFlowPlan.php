@@ -31,6 +31,12 @@ class CashFlowPlan extends Model
         ProcessesPiggyBankContributions
     ;
 
+    protected $casts = [
+        'pocket_money_distributed' => 'boolean',
+        'retirement_distributed'   => 'boolean',
+        'education_distributed'    => 'boolean',
+    ];
+
 
 
     public function incomeSources()
@@ -80,7 +86,7 @@ class CashFlowPlan extends Model
     public function allExpendituresTotal()
     {
         return    $this->allActualExpensesTotal()
-                + $this->lifestyleExpensesTotal()
+                + $this->distributedLifestyleExpensesTotal()
                 + $this->actualPiggyBankContributionsTotal()
             ;
     }

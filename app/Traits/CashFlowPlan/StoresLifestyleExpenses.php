@@ -4,6 +4,12 @@ namespace App\Traits\CashFlowPlan;
 
 trait StoresLifestyleExpenses
 {
+    protected $lifestyleExpenseNames = [
+        'pocket_money',
+        'retirement',
+        'education',
+    ];
+
     public static function lifestyleExpensesValidations()
     {
         return [
@@ -13,8 +19,29 @@ trait StoresLifestyleExpenses
         ];
     }
 
-    public function lifestyleExpensesTotal()
+    public function projectedLifestyleExpensesTotal()
     {
-        return $this->pocket_money + $this->retirement + $this->education;
+        $total = 0;
+
+        foreach ($this->lifestyleExpenseNames as $expense) {
+            $total += $this->$expense;
+        }
+
+        return $total;
+    }
+
+    public function distributedLifestyleExpensesTotal()
+    {
+        $total = 0;
+
+        foreach ($this->lifestyleExpenseNames as $expense) {
+            $distributedName = $expense . '_distributed';
+
+            if ($this->$distributedName) {
+                $total += $this->$expense;
+            }
+        }
+
+        return $total;
     }
 }

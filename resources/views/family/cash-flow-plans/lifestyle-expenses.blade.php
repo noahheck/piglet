@@ -22,12 +22,6 @@
             route('family.cash-flow-plans.show', [$family, $cashFlowPlan]) => __('months.' . $cashFlowPlan->month) . ' ' . $cashFlowPlan->year,
         ],
         'location'   => __('cash-flow-plans.lifestyle-expenses'),
-        /*'menu' => [
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-money', 'text' => __('income-sources.add-new-income-source')],
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-refresh', 'text' => __('recurring-expenses.add-new-recurring-expense')],
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-folder-open-o', 'text' => __('expense-groups.add-new-expense-group')],
-            ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-dollar', 'text' => __('expenses.add-new-expense')],
-        ]*/
     ])
 
     <div class="row">
@@ -42,6 +36,8 @@
 
             <h2>{{ __('cash-flow-plans.lifestyle-expenses') }}</h2>
 
+            <p class="small">* {{ __('cash-flow-plans.distributed-description') }}</p>
+
             <form class="has-bold-labels" name="lifestyle-expenses" action="{{ route('family.cash-flow-plans.lifestyle-expenses-update', [$family, $cashFlowPlan, 'return' => url()->previous()]) }}" method="POST">
 
                 @csrf
@@ -52,10 +48,22 @@
                     <label for="pocket_money">{{ __('money-matters.pocket-money-label') }}</label>
                     <p>{{ __('money-matters.pocket-money-description') }}</p>
                     <div class="input-group">
+
                         <div class="input-group-prepend">
                             <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                         </div>
+
                         <input type="text" name="pocket_money" id="pocket_money" class="form-control money-field" placeholder="{{ __('money-matters.pocket-money-label') }}" value="{{ old('pocket_money', App\formatCurrency($cashFlowPlan->pocket_money, false)) }}">
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <label for="pocket_money_distributed" style="margin: 0;">
+                                    <input type="checkbox" name="pocket_money_distributed" id="pocket_money_distributed" value="1" {{ (old('pocket_money_distributed', $cashFlowPlan->pocket_money_distributed)) ? 'checked' : '' }}>
+                                    {{ __('cash-flow-plans.distributed') }}
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     @fieldError('pocket_money')
                 </div>
@@ -70,6 +78,16 @@
                             <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                         </div>
                         <input type="text" name="retirement" id="retirement" class="form-control money-field" placeholder="{{ __('money-matters.retirement-label') }}" value="{{ old('retirement', App\formatCurrency($cashFlowPlan->retirement, false)) }}">
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <label for="retirement_distributed" style="margin: 0;">
+                                    <input type="checkbox" name="retirement_distributed" id="retirement_distributed" value="1" {{ (old('retirement_distributed', $cashFlowPlan->retirement_distributed)) ? 'checked' : '' }}>
+                                    {{ __('cash-flow-plans.distributed') }}
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     @fieldError('retirement')
                 </div>
@@ -84,6 +102,16 @@
                             <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                         </div>
                         <input type="text" name="education" id="education" class="form-control money-field" placeholder="{{ __('money-matters.education-label') }}" value="{{ old('education', App\formatCurrency($cashFlowPlan->education, false)) }}">
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <label for="education_distributed" style="margin: 0;">
+                                    <input type="checkbox" name="education_distributed" id="education_distributed" value="1" {{ (old('education_distributed', $cashFlowPlan->education_distributed)) ? 'checked' : '' }}>
+                                    {{ __('cash-flow-plans.distributed') }}
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     @fieldError('education')
                 </div>

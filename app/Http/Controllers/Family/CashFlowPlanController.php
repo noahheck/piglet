@@ -233,6 +233,10 @@ class CashFlowPlanController extends Controller
             $cashFlowPlan->$expense = $value;
         }
 
+        $cashFlowPlan->pocket_money_distributed = $request->has('pocket_money_distributed');
+        $cashFlowPlan->retirement_distributed   = $request->has('retirement_distributed');
+        $cashFlowPlan->education_distributed    = $request->has('education_distributed');
+
         $cashFlowPlan->save();
 
         flashSuccess('cash-flow-plans.lifestyle-expenses-updated');

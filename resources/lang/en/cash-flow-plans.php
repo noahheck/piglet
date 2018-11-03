@@ -31,6 +31,9 @@ return [
     'retirement'   => 'Retirement',
     'education'    => 'Education',
 
+    'distributed'             => 'Distributed',
+    'distributed-description' => "The Distributed attribute indicates the expense has been funded and will be reflected on your cash flow plan. Until then, the value will be considered a projected amount.",
+
     'type'   => 'Type',
     'other-expenses' => 'Other Expenses',
 
