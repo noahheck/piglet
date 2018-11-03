@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label for="name">{{ __('piggy-banks.name') }}</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="{{ __('piggy-banks.name') }}" value="{{ old('name', $piggyBank->name) }}">
+            <input autofocus type="text" name="name" id="name" class="form-control" placeholder="{{ __('piggy-banks.name') }}" value="{{ old('name', $piggyBank->name) }}">
             @fieldError('name')
         </div>
 

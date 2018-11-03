@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label for="piggy_bank_id">{{ __('piggy-banks.piggy-bank') }}</label>
-            <select class="custom-select" name="piggy_bank_id" id="piggy_bank_id">
+            <select class="custom-select" name="piggy_bank_id" id="piggy_bank_id" {{ ($contribution->piggy_bank_id) ? '' : 'autofocus' }}>
                 <option value="">{{ __('form.select-one') }}</option>
                 @foreach ($piggyBanks as $piggyBank)
                     <option value="{{ $piggyBank->id }}" {{ (old('piggy_bank_id', $contribution->piggy_bank_id) == $piggyBank->id) ? 'selected' : '' }}>{{ $piggyBank->name }}</option>
@@ -40,7 +40,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('piggy-banks.contribution') }}" value="{{ old('actual', App\formatCurrency($contribution->actual, false)) }}">
+                <input {{ ($contribution->piggy_bank_id) ? 'autofocus' : '' }} type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('piggy-banks.contribution') }}" value="{{ old('actual', App\formatCurrency($contribution->actual, false)) }}">
             </div>
             @fieldError('actual')
         </div>
