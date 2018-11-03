@@ -14,6 +14,7 @@ use App\Traits\CashFlowPlan\ProcessesPiggyBankContributions;
 use App\Traits\CashFlowPlan\ProcessesRecurringExpenses;
 use App\Traits\CashFlowPlan\ProvidesChartData;
 use App\Traits\CashFlowPlan\StoresLifestyleExpenses;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -63,6 +64,13 @@ class CashFlowPlan extends Model
     }
 
 
+
+    public function monthAsDateTime()
+    {
+        $dateString = $this->year . '-' . $this->month . '-01';
+
+        return new Carbon($dateString);
+    }
 
     public function balance()
     {

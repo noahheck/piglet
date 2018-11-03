@@ -58,7 +58,7 @@
 
                             <div class="col-12 col-md-6 piggy-bank">
 
-                                <a href="{{ route('family.piggy-banks.edit', [$family, $piggyBank]) }}">
+                                <a href="{{ route('family.piggy-banks.show', [$family, $piggyBank]) }}">
 
                                     <div class="card shadow">
 

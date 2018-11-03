@@ -40,29 +40,56 @@
 
             <p>{!! nl2br(e($piggyBank->description)) !!}</p>
 
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($piggyBank->target_amount, false) }}"></div>
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <dl>
+
+                        <dt>{{ __('piggy-banks.dueDate') }}</dt>
+                        <dd>{{ App\formatDate($piggyBank->dueDate) }}</dd>
+
+                        <dt>{{ __('piggy-banks.starting-amount') }}</dt>
+                        <dd>{{ App\formatCurrency($piggyBank->starting_amount, true) }}</dd>
+
+                        <dt>{{ __('piggy-banks.balance') }}</dt>
+                        <dd>
+                            {{ App\formatCurrency($piggyBank->balance, true) }} / {{ App\formatCurrency($piggyBank->target_amount, true) }}
+                        </dd>
+
+                    </dl>
+
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($piggyBank->target_amount, false) }}"></div>
+                    </div>
+
+                </div>
+
             </div>
 
             <hr>
 
-            <dl>
+            <canvas id="piggyBankGrowthChart" class="piglet-chart" data-chart-data='@json($piggyBank->growthChartData())'></canvas>
 
-                <dt>{{ __('piggy-banks.dueDate') }}</dt>
-                <dd>{{ App\formatDate($piggyBank->dueDate) }}</dd>
+            <table class="table table-sm">
+                <caption>{{ $piggyBank->name }}</caption>
+                <thead>
+                <tr class="font-weight-bold">
+                    <td>{{ __('piggy-banks.date') }}</td>
+                    <td class="text-right">{{ __('piggy-banks.contribution') }}</td>
+                </tr>
+                </thead>
 
-                <dt>{{ __('piggy-banks.balance') }}</dt>
-                <dd>{{ App\formatCurrency($piggyBank->balance, true) }}</dd>
+                @foreach ($piggyBank->allContributions() as $contribution)
 
-                <dt>{{ __('piggy-banks.starting-amount') }}</dt>
-                <dd>{{ App\formatCurrency($piggyBank->starting_amount, true) }}</dd>
+                    <tr>
+                        <td>{{ \App\formatDate($contribution->date) }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($contribution->actual, true) }}</td>
+                    </tr>
 
-                <dt>{{ __('piggy-banks.target-amount') }}</dt>
-                <dd>{{ App\formatCurrency($piggyBank->target_amount, true) }}</dd>
+                @endforeach
 
-
-
-            </dl>
+            </table>
 
         </div>
 
