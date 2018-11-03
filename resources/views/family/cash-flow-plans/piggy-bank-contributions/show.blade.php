@@ -48,13 +48,8 @@
 
             <dl>
 
-                @if ($contribution->projected)
-                    <dt>{{ __('piggy-banks.projected') }}</dt>
-                    <dd>{{ App\formatCurrency($contribution->projected, true) }}</dd>
-                @endif
-
                 @if ($contribution->actual)
-                    <dt>{{ __('piggy-banks.actual') }}</dt>
+                    <dt>{{ __('piggy-banks.contribution') }}</dt>
                     <dd>{{ App\formatCurrency($contribution->actual, true) }}</dd>
                 @endif
 

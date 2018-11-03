@@ -58,8 +58,7 @@
                     <tr class="font-weight-bold">
                         <td>{{ __('piggy-banks.piggy-bank') }}</td>
                         <td>{{ __('piggy-banks.date') }}</td>
-                        <td class="text-right">{{ __('piggy-banks.projected') }}</td>
-                        <td class="text-right">{{ __('piggy-banks.actual') }}</td>
+                        <td class="text-right">{{ __('piggy-banks.contribution') }}</td>
                     </tr>
                     </thead>
 
@@ -68,7 +67,6 @@
                         <tr>
                             <td><a href="{{ route('family.cash-flow-plans.piggy-bank-contributions.edit', [$family, $cashFlowPlan, $contribution]) }}">{{ $contribution->piggyBank->name }}</a></td>
                             <td>{{ App\formatDate($contribution->date) }}</td>
-                            <td class="text-right">{{ App\formatCurrency($contribution->projected, true) }}</td>
                             <td class="text-right">{{ App\formatCurrency($contribution->actual, true) }}</td>
                         </tr>
 
@@ -76,7 +74,6 @@
 
                     <tr>
                         <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                        <td class="text-right"><strong>{{ App\formatCurrency($contributions->sum('projected'), true) }}</strong></td>
                         <td class="text-right"><strong>{{ App\formatCurrency($contributions->sum('actual'), true) }}</strong></td>
                     </tr>
                 </table>

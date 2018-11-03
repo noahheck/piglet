@@ -80,6 +80,15 @@
                 </tr>
                 </thead>
 
+                @if ($piggyBank->starting_amount)
+
+                    <tr>
+                        <td>{{ __('piggy-banks.starting-amount') }}</td>
+                        <td class="text-right">{{ \App\formatCurrency($piggyBank->starting_amount, true) }}</td>
+                    </tr>
+
+                @endif
+
                 @foreach ($piggyBank->allContributions() as $contribution)
 
                     <tr>
@@ -88,6 +97,11 @@
                     </tr>
 
                 @endforeach
+
+                <tr class="font-weight-bold">
+                    <td>{{ __('piggy-banks.balance') }}</td>
+                    <td class="text-right">{{ \App\formatCurrency($piggyBank->balance, true) }}</td>
+                </tr>
 
             </table>
 

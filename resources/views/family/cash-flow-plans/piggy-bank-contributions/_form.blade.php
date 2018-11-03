@@ -32,26 +32,15 @@
             @fieldError('piggy_bank_id')
         </div>
 
+        {{--<hr>--}}
+
         <div class="form-group">
-            <label for="projected">{{ __('piggy-banks.projected') }}</label>
+            <label for="actual">{{ __('piggy-banks.contribution') }}</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="projected" id="projected" class="form-control money-field" placeholder="{{ __('piggy-banks.projected') }}" value="{{ old('projected', App\formatCurrency($contribution->projected, false)) }}">
-            </div>
-            @fieldError('projected')
-        </div>
-
-        <hr>
-
-        <div class="form-group">
-            <label for="actual">{{ __('piggy-banks.actual') }}</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text"><span class="fa fa-dollar"></span></div>
-                </div>
-                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('piggy-banks.actual') }}" value="{{ old('actual', App\formatCurrency($contribution->actual, false)) }}">
+                <input type="text" name="actual" id="actual" class="form-control money-field" placeholder="{{ __('piggy-banks.contribution') }}" value="{{ old('actual', App\formatCurrency($contribution->actual, false)) }}">
             </div>
             @fieldError('actual')
         </div>

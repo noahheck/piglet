@@ -17,7 +17,6 @@ class CreateCashFlowPlanPiggyBankContributionsTable extends Migration
             $table->increments('id');
             $table->integer('cash_flow_plan_id');
             $table->integer('piggy_bank_id');
-            $table->decimal('projected')->nullable();
             $table->decimal('actual')->nullable();
             $table->date('date')->nullable();
             $table->text('detail')->nullable();

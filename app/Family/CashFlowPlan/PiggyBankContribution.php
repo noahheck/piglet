@@ -24,7 +24,6 @@ class PiggyBankContribution extends Model
 
     protected $fillable = [
         'piggy_bank_id',
-        'projected',
         'actual',
         'date',
         'detail',
@@ -34,7 +33,6 @@ class PiggyBankContribution extends Model
     {
         return [
             'piggy_bank_id' => 'required|integer',
-            'projected'     => 'numeric|nullable',
             'actual'        => 'numeric|nullable',
             'date'          => 'date|nullable',
         ];
