@@ -143,7 +143,12 @@
 
                                     <h4 class="text-center">{{ __('cash-flow-plans.pocket-money') }}</h4>
 
-                                    <h5 class="text-center">{{ \App\formatCurrency($cashFlowPlan->pocket_money, true) }}</h5>
+                                    <h5 class="text-center">
+                                        {{ \App\formatCurrency($cashFlowPlan->pocket_money, true) }}
+                                        @if ($cashFlowPlan->pocket_money_distributed)
+                                            <span class="text-success fa fa-check-circle-o"></span>
+                                        @endif
+                                    </h5>
 
                                 </div>
 
