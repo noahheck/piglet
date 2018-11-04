@@ -46,11 +46,53 @@
                 <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
                 <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
 
+
+                <h4>{{ __('cash-flow-plans.projected') }}</h4>
+
                 <div class="row mb-3">
 
                     <div class="col col-sm-6 order-1 order-sm-2">
 
-                        <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->balanceChartData())'></canvas>
+                        <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->projectedBalanceChartData())'></canvas>
+
+                    </div>
+
+                    <div class="col col-sm-6 order-2 order-sm-1">
+
+                        <ul class="list-group shadow-sm">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
+                                <span>{{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
+                                <span>
+                                {{ App\formatCurrency($cashFlowPlan->allProjectedExpendituresTotal(), true) }}
+                            </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
+                                <span>
+                                {{ App\formatCurrency($cashFlowPlan->projectedBalance(), true) }}
+                            </span>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <hr>
+
+                <h4>{{ __('cash-flow-plans.actual') }}</h4>
+
+                <div class="row mb-3">
+
+                    <div class="col col-sm-6 order-1 order-sm-2">
+
+                        <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->actualBalanceChartData())'></canvas>
 
                     </div>
 
@@ -79,7 +121,7 @@
 
                 </div>
 
-
+                <hr>
 
                 <canvas id="cfpSummaryChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->summaryChartData())'></canvas>
 

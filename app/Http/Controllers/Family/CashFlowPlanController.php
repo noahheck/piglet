@@ -173,6 +173,10 @@ class CashFlowPlanController extends Controller
 
         $cashFlowPlan->expenseGroups->load(['expenses', 'category']);
 
+        $cashFlowPlan->load(['incomeSources', 'recurringExpenses', 'piggyBanks', 'expenses']);
+
+        $cashFlowPlan->piggyBanks->load(['piggyBank', 'contributions']);
+
         return view('family.cash-flow-plans.show', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,

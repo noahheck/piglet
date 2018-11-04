@@ -108,6 +108,26 @@ class CashFlowPlan extends Model
 
 
 
+    public function projectedBalance()
+    {
+        return $this->projectedIncomeSourcesTotal() - $this->allProjectedExpendituresTotal();
+    }
+
+    public function allProjectedExpendituresTotal()
+    {
+
+        return   $this->allProjectedExpensesTotal()
+               + $this->projectedLifestyleExpensesTotal()
+               + $this->projectedPiggyBankTotal();
+    }
+
+    public function allProjectedExpensesTotal()
+    {
+        return $this->projectedRecurringExpensesTotal() + $this->expenseGroupsProjectedTotal();
+    }
+
+
+
     /**
      * @param $year
      * @param $month

@@ -27,7 +27,6 @@ trait ProvidesChartData
             ],
             'data' => [
                 'labels' => [
-//                    __('cash-flow-plans.income')                . ' - ' . formatCurrency($this->actualIncomeSourcesTotal(), true),
                     __('cash-flow-plans.lifestyle-expenses')    . ' - ' . formatCurrency($this->distributedLifestyleExpensesTotal(), true),
                     __('piggy-banks.piggy-banks')               . ' - ' . formatCurrency($this->actualPiggyBankContributionsTotal(), true),
                     __('recurring-expenses.recurring-expenses') . ' - ' . formatCurrency($this->actualRecurringExpensesTotal(), true),
@@ -37,7 +36,6 @@ trait ProvidesChartData
                     [
                         'label' => __('cash-flow-plans.projected'),
                         'data' => [
-//                            formatCurrency($this->projectedIncomeSourcesTotal()),
                             formatCurrency($this->projectedLifestyleExpensesTotal()),
                             formatCurrency($this->projectedPiggyBankTotal()),
                             formatCurrency($this->projectedRecurringExpensesTotal()),
@@ -50,14 +48,12 @@ trait ProvidesChartData
                     [
                         'label' => __('cash-flow-plans.actual'),
                         'data'  => [
-//                            formatCurrency($this->actualIncomeSourcesTotal()),
                             formatCurrency($this->distributedLifestyleExpensesTotal()),
                             formatCurrency($this->actualPiggyBankContributionsTotal()),
                             formatCurrency($this->actualRecurringExpensesTotal()),
                             formatCurrency($this->actualExpensesTotal()),
                         ],
                         'backgroundColor' => [
-//                            Charts::BACKGROUND_COLOR_BLUE,
                             Charts::BACKGROUND_COLOR_GREEN,
                             Charts::BACKGROUND_COLOR_GREEN,
                             ($this->recurringExpensesOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
@@ -77,14 +73,33 @@ trait ProvidesChartData
         ];
     }
 
-    public function balanceChartData()
-    {
-        $balance = $this->balance();
 
-        if ($balance > 0) {
+
+    public function projectedBalanceChartData()
+    {
+        return $this->balanceChartData(
+            $this->projectedBalance(),
+            $this->allProjectedExpendituresTotal(),
+            $this->projectedIncomeSourcesTotal()
+        );
+    }
+
+    public function actualBalanceChartData()
+    {
+        return $this->balanceChartData(
+            $this->balance(),
+            $this->allExpendituresTotal(),
+            $this->actualIncomeSourcesTotal()
+        );
+    }
+
+    protected function balanceChartData($balance, $expendituresTotal, $incomeSourcesTotal)
+    {
+
+        if ($balance >= 0) {
             // Not overspent
 
-            $firstPortion  = $this->allExpendituresTotal();
+            $firstPortion  = $expendituresTotal;
             $secondPortion = $balance;
 
             $firstPortionColor  = Charts::BACKGROUND_COLOR_BLUE;
@@ -101,7 +116,7 @@ trait ProvidesChartData
         } else {
             // Overspent
 
-            $firstPortion  = $this->actualIncomeSourcesTotal();
+            $firstPortion  = $incomeSourcesTotal;
             $secondPortion = abs($balance);
 
             $firstPortionColor  = Charts::BACKGROUND_COLOR_GRAY;
