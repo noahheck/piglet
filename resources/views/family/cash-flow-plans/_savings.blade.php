@@ -10,7 +10,7 @@ $distributedProperty = $investment . '_distributed';
 
             <h4>{{ __('cash-flow-plans.' . $investment)  }}</h4>
 
-            <h5 class="text-center">
+            <h5>
                 {{ App\formatCurrency($cashFlowPlan->$investment, true) }}
                 @if ($cashFlowPlan->$distributedProperty)
                     <span class="text-success fa fa-check-circle-o"></span>

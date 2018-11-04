@@ -21,4 +21,9 @@ return [
 
     'education-label'        => 'Education',
     'education-description'  => "Covering the education expenses for our children can be stressful, but, in the same way we approach retirement, we can ease this burden by planning ahead and making small contributions over time.",
+
+
+    'monthly-balance'          => 'Monthly Balance',
+    'lifestyle-expense-totals' => 'Lifestyle Expenses Totals',
+    'category-totals'          => 'Category Totals',
 ];

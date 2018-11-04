@@ -78,6 +78,12 @@ class CashFlowPlan extends Model
         return new Carbon($dateString);
     }
 
+
+    public function isOverspent()
+    {
+        return $this->balance() < 0;
+    }
+
     public function balance()
     {
         return $this->actualIncomeSourcesTotal() - $this->allExpendituresTotal();
