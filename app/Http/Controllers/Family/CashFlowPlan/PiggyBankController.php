@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Family\CashFlowPlan;
 use App\Family;
 use App\Family\CashFlowPlan;
 use App\Family\CashFlowPlan\PiggyBank;
+use App\Family\PiggyBank as FamilyPiggyBank;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -54,6 +56,14 @@ class PiggyBankController extends Controller
     public function store(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
         $request->validate(PiggyBank::getValidations());
+
+        // Check if cfp already has this piggy bank
+        $familyPiggyBank = new FamilyPiggyBank();
+        $familyPiggyBank->id = $request->get('piggy_bank_id');
+
+        if ($cashFlowPlan->hasPiggyBank($familyPiggyBank)) {
+            return redirect()->back()->withErrors(['piggy_bank_id' => __('piggy-banks.piggy-bank') . ' ' . __('form.already-in-use')]);
+        }
 
         $piggyBank = new PiggyBank();
 

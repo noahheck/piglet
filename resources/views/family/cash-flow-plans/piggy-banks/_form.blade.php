@@ -25,12 +25,23 @@
                 <option value="">{{ __('piggy-banks.select-piggy-bank') }}</option>
 
                 @foreach ($piggyBankTargets as $target)
+                    @php
+                        $disabled = '';
+                        $inUse    = '';
+
+                        if ($cashFlowPlan->hasPiggyBank($target)) {
+                            $disabled = 'disabled';
+                            $inUse    = ' - ' . __('form.already-in-use');
+                        }
+
+                    @endphp
                     <option
                         value="{{ $target->id }}"
+                        {{ $disabled }}
                         data-monthly-contribution="{{ App\FormatCurrency($target->monthly_contribution, false) }}"
                         {{ ($target->id == old('piggy_bank_id', $piggyBank->piggy_bank_id)) ? 'selected' : '' }}
 
-                    >{{ $target->name }} - {{ App\formatCurrency($target->monthly_contribution, true) }}</option>
+                    >{{ $target->name }} - {{ App\formatCurrency($target->monthly_contribution, true) }} {{ $inUse }}</option>
                 @endforeach
 
             </select>
