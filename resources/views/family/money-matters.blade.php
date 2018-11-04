@@ -34,21 +34,20 @@
             <hr>
 
 
-            <div class="float-right">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="yearSelectMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Year
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="yearSelectMenuButton">
-                        @foreach ($yearOptions as $year)
-                            <a class="dropdown-item" href="{{ route('family.money-matters', [$family, 'year' => $year]) }}">{{ $year }}</a>
-                        @endforeach
-                        {{--<a class="dropdown-item" href="">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>--}}
+            @if (count($yearOptions) > 1)
+                <div class="float-right">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="yearSelectMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Year
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="yearSelectMenuButton">
+                            @foreach ($yearOptions as $year)
+                                <a class="dropdown-item" href="{{ route('family.money-matters', [$family, 'year' => $year]) }}">{{ $year }}</a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
 
             <h4>{{ __('money-matters.monthly-balance') }}</h4>
