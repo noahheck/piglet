@@ -75,25 +75,27 @@ trait ProvidesChartData
 
 
 
-    public function projectedBalanceChartData()
+    public function projectedBalanceChartData($showLegend = true)
     {
         return $this->balanceChartData(
             $this->projectedBalance(),
             $this->allProjectedExpendituresTotal(),
-            $this->projectedIncomeSourcesTotal()
+            $this->projectedIncomeSourcesTotal(),
+            $showLegend
         );
     }
 
-    public function actualBalanceChartData()
+    public function actualBalanceChartData($showLegend = true)
     {
         return $this->balanceChartData(
             $this->balance(),
             $this->allExpendituresTotal(),
-            $this->actualIncomeSourcesTotal()
+            $this->actualIncomeSourcesTotal(),
+            $showLegend
         );
     }
 
-    protected function balanceChartData($balance, $expendituresTotal, $incomeSourcesTotal)
+    protected function balanceChartData($balance, $expendituresTotal, $incomeSourcesTotal, $showLegend)
     {
 
         if ($balance >= 0) {
@@ -139,6 +141,9 @@ trait ProvidesChartData
             'options' => [
                 'rotation'      => 3.14159,
                 'circumference' => 3.14159,
+                'legend' => [
+                    'display' => $showLegend,
+                ],
                 'title' => [
                     'display'  => true,
                     'position' => 'bottom',

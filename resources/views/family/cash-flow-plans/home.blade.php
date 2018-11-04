@@ -88,22 +88,27 @@ $months = [
                             }
                         @endphp
 
-                        <div class="col-6 col-sm-4 col-lg-3 mb-3">
 
-                            <a href="{{ $href }}">
-                                <div class="card shadow {{ $curMonthClass }}">
-                                    <div class="card-body">
-                                        {{ __('months.' .$month) }}
-                                        <hr>
+                        <div class="col-6 col-lg-4 mb-3">
 
-                                        @if ($hasPlan)
+                            <a class="card shadow {{ $curMonthClass }}" href="{{ $href }}">
+                                <div class="card-body text-center">
+                                    {{ __('months.' .$month) }}
+                                    <hr>
 
-                                            {{ App\formatCurrency($cashFlowPlan->allActualExpensesTotal(), true) }}
+                                    @if ($hasPlan)
 
-                                        @else
-                                            {{ __('cash-flow-plans.create-plan') }}
-                                        @endif
-                                    </div>
+                                        <canvas id="cfpBalanceChart_{{ $cashFlowPlan->id }}" class="piglet-chart" data-chart-data='@json($cashFlowPlan->actualBalanceChartData(false))'></canvas>
+
+                                    @else
+                                        <p>
+                                            <span class="fa-stack fa-lg">
+                                                <span class="fa fa-file-o fa-stack-2x"></span>
+                                                <span class="fa fa-bar-chart fa-stack-1x"></span>
+                                            </span>
+                                        </p>
+                                        <p>{{ __('cash-flow-plans.create-plan') }}</p>
+                                    @endif
                                 </div>
                             </a>
                         </div>
