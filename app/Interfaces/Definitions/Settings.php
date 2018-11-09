@@ -4,6 +4,8 @@ namespace App\Interfaces\Definitions;
 
 interface Settings
 {
+    const MONEY_MATTERS_FIRST_RUN_WIZARD_COMPLETE = 'money-matters_first-run-wizard-complete';
+
     const MONEY_MATTERS_POCKET_MONEY_AMOUNT   = 'money-matters_pocket-money-amount';
     const MONEY_MATTERS_RETIREMENT_AMOUNT     = 'money-matters_retirement-amount';
     const MONEY_MATTERS_EDUCATION_AMOUNT      = 'money-matters_education-amount';
