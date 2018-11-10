@@ -13,6 +13,9 @@ return [
     'delete'       => 'Delete',
     'other'        => 'Other',
 
+    'next' => 'Next',
+    'back' => 'Back',
+
     'already-in-use' => 'Already In Use',
 
     'photo'        => 'Photo',

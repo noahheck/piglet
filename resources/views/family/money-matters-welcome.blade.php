@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family/member/home.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.money-matters.welcome.css') }}" />
 @endpush
 
 @push('scripts')
-
+    <script type="text/javascript" src="{{ asset('js/family.money-matters.welcome.js') }}"></script>
 @endpush
 
 @section('content')
@@ -22,49 +22,92 @@
     ])
 
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center first-run-wizard">
 
-        <div class="col-12 col-md-10">
 
-            <h2>{{ __('money-matters.welcome!') }}</h2>
+        {{-- Beginning of page 1 --}}
+        <div class="col-12 col-md-10 wizard-page" id="wizard_page_1">
 
-            <p>{{ __('money-matters-welcome.introduction') }}</p>
+            <h1>{{ __('money-matters.welcome!') }}</h1>
 
-            <p>{{ __('money-matters-welcome.wizard-process') }}</p>
+            <p>{!! nl2br(e(__('money-matters-welcome.introduction'))) !!}</p>
+
+            <p>{!! nl2br(e(__('money-matters-welcome.wizard-process'))) !!}</p>
 
             <hr>
 
-            <div class="card border-lights mb-3">
-                <div class="card-header">
-                    <h4>{{ __('money-matters-welcome.navigation') }}</h4>
+            <div class="row introduction">
+                <div class="col-12 col-sm-5 text-center">
+                    <img src="{{ asset("img/money-matters-welcome/navigation_menu.png") }}" class="img-fluid" alt="{{ __('money-matters-welcome.navigation') }}">
                 </div>
-                <div class="row no-gutters">
-                    <div class="col-12 col-sm-3 text-center">
-                        <img src="{{ asset("img/money-matters-welcome/navigation_menu.png") }}" class="img-fluid" alt="{{ __('money-matters-welcome.navigation') }}">
-                    </div>
-                    <div class="col-12 col-sm-9">
-                        <div class="card-block px-2">
-                            <p class="card-text">{{ __('money-matters-welcome.navigation-details') }}</p>
-                        </div>
-                    </div>
+                <div class="col-12 col-sm-7">
+                    <h3>{{ __('money-matters-welcome.navigation') }}</h3>
+                    <p>{!! nl2br(e(__('money-matters-welcome.navigation-details'))) !!}</p>
                 </div>
             </div>
 
-            <div class="card border-lights mb-3">
-                <div class="card-header">
-                    <h4>{{ __('money-matters-welcome.overview') }}</h4>
+            <div class="row introduction mt-5 border shadow">
+                <div class="col-12 col-sm-7">
+                    <h3>{{ __('money-matters-welcome.overview') }}</h3>
+                    <p>{!! nl2br(e(__('money-matters-welcome.overview-details'))) !!}</p>
                 </div>
-                <div class="row no-gutters">
-                    <div class="col-12 col-sm-7">
-                        <div class="card-block px-2">
-                            <p class="card-text">{{ __('money-matters-welcome.overview-details') }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-5 text-center">
-                        <img src="{{ asset("img/money-matters-welcome/overview.png") }}" class="img-fluid" alt="{{ __('money-matters-welcome.navigation') }}">
-                    </div>
+                <div class="col-12 col-sm-5 text-center">
+                    <img src="{{ asset("img/money-matters-welcome/overview.png") }}" class="img-fluid" alt="{{ __('money-matters-welcome.overview') }}">
                 </div>
             </div>
+
+            <div class="row introduction mt-5">
+                <div class="col-12 col-sm-5 text-center">
+                    <img src="{{ asset("img/money-matters-welcome/cash_flow_plans.png") }}" class="img-fluid" alt="{{ __('cash-flow-plans.cash-flow-plans') }}">
+                </div>
+                <div class="col-12 col-sm-7">
+                    <h3>{{ __('cash-flow-plans.cash-flow-plans') }}</h3>
+                    <p>{!! nl2br(e(__('money-matters-welcome.cash-flow-plans-details'))) !!}</p>
+                </div>
+            </div>
+
+            <div class="row introduction mt-5 border shadow">
+                <div class="col-4 text-center">
+                    <img src="{{ asset("img/money-matters-welcome/piggy_banks.png") }}" class="img-fluid" alt="{{ __('piggy-banks.piggy-banks') }}">
+                </div>
+                <div class="col-8">
+                    <h3>{{ __('piggy-banks.piggy-banks') }}</h3>
+                    <p>{!! nl2br(e(__('money-matters-welcome.piggy-bank-details'))) !!}</p>
+                </div>
+            </div>
+
+        </div>
+        {{-- End of page 1 --}}
+
+
+
+        {{-- Beginning of page 2 --}}
+        <div class="col-12 col-md-10 wizard-page" id="wizard_page_2">
+            <h2></h2>
+        </div>
+        {{-- Beginning of page 2 --}}
+
+
+
+        {{-- Beginning of page 3 --}}
+        <div class="col-12 col-md-10 wizard-page" id="wizard_page_3">
+            <h2>Page 3</h2>
+        </div>
+        {{-- Beginning of page 3 --}}
+
+
+        <div class="col-12 col-md-10 mt-5 wizard-navigation text-center">
+
+            <hr>
+
+            <button class="btn btn-secondary wizard-navigation-button" type="button" id="wizard_button_back">
+                <span class="fa fa-chevron-left"></span> {{ __('form.back') }}
+            </button>
+            <button class="btn btn-primary wizard-navigation-button" type="button" id="wizard_button_forward">
+                {{ __('form.next') }} <span class="fa fa-chevron-right"></span>
+            </button>
+
+        </div>
 
             {{--<form class="has-bold-labels" name="money-matters-settings" action="{{ route('family.money-matters.settings-save', [$family, 'return' => url()->previous()]) }}" method="POST">
 
@@ -147,7 +190,6 @@
 
             </form>--}}
 
-        </div>
 
     </div>
 
