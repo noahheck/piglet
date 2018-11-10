@@ -65,11 +65,19 @@ class MerchantController extends Controller
      * @param  \App\Family\Merchant  $merchant
      * @return \Illuminate\Http\Response
      */
-    public function show(Family $family, Merchant $merchant)
+    public function show(Request $request, Family $family, Merchant $merchant)
     {
+        $year = ($request->query->has('year')) ? $request->query->get('year') : date('Y');
+
+        $yearOptions = $merchant->yearsWithExpenses();
+
+        \DebugBar::info($yearOptions);
+
         return view('family.merchants.show', [
-            'family'   => $family,
-            'merchant' => $merchant,
+            'family'      => $family,
+            'merchant'    => $merchant,
+            'year'        => $year,
+            'yearOptions' => $yearOptions,
         ]);
     }
 

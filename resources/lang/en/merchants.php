@@ -27,4 +27,6 @@ return [
     'state'                => 'State',
     'zip'                  => 'Zip',
 
+    'monthly-expenses'     => 'Monthly Expenses',
+
 ];

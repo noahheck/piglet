@@ -74,10 +74,10 @@
             <table class="table table-sm">
                 <caption>{{ $piggyBank->name }}</caption>
                 <thead>
-                <tr class="font-weight-bold">
-                    <td>{{ __('piggy-banks.date') }}</td>
-                    <td class="text-right">{{ __('piggy-banks.contribution') }}</td>
-                </tr>
+                    <tr class="font-weight-bold">
+                        <td>{{ __('piggy-banks.date') }}</td>
+                        <td class="text-right">{{ __('piggy-banks.contribution') }}</td>
+                    </tr>
                 </thead>
 
                 @if ($piggyBank->starting_amount)
