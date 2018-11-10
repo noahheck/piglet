@@ -34,7 +34,7 @@
 
             <p>{!! nl2br(e(__('money-matters-welcome.wizard-process'))) !!}</p>
 
-            <hr>
+            <hr style="width: 50%;">
 
             <div class="row introduction">
                 <div class="col-12 col-sm-5 text-center">
@@ -67,6 +67,16 @@
             </div>
 
             <div class="row introduction mt-5 border shadow">
+                <div class="col-8">
+                    <h3>{{ __('merchants.merchants') }}</h3>
+                    <p>{!! nl2br(e(__('money-matters-welcome.merchant-details'))) !!}</p>
+                </div>
+                <div class="col-4 text-center">
+                    <img src="{{ asset("img/money-matters-welcome/merchant.png") }}" class="img-fluid" alt="{{ __('merchants.merchant') }}">
+                </div>
+            </div>
+
+            <div class="row introduction mt-5">
                 <div class="col-4 text-center">
                     <img src="{{ asset("img/money-matters-welcome/piggy_banks.png") }}" class="img-fluid" alt="{{ __('piggy-banks.piggy-banks') }}">
                 </div>

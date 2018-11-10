@@ -16,6 +16,9 @@ return [
     'cash-flow-plans-details' => "Cash flow plans are where you'll plan your family's monthly budget and track your expenses.
     As the month progresses, you'll get real-time insights into how well you're sticking to your plan, as well as how efficiently you're utilizing your discretionary budget. You'll be able to identify opportunities to save money each month and know where you are able to make changes to your plan when the unexpected happens.",
 
+    'merchant-details' => "Merchants represent all the people and companies you do business with (everything from your favorite grocery store or gas station to the phone company and your DMV).
+    The Merchants component lets you see your expenditures for each Merchant over time, allowing you to identify trends and helping to accurately forecast future expenses.",
+
     'piggy-bank-details' => "Piggy Banks represent savings goals your family wants to achieve. Enter them here and watch your dreams become a reality as you work toward them each month!",
 
 ];
