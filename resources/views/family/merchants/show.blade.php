@@ -85,6 +85,68 @@
 
             </div>
 
+            <div class="row">
+
+                <div class="col-12">
+
+                    @if (count($yearOptions) > 1)
+                        <div class="float-right">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="yearSelectMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select Year
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="yearSelectMenuButton">
+                                    @foreach ($yearOptions as $yearOption)
+                                        <a class="dropdown-item" href="{{ route('family.merchants.show', [$family, $merchant, 'year' => $yearOption]) }}">{{ $yearOption }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    <h4>{{ $year }} {{ __('merchants.monthly-expenses') }}</h4>
+
+                    <canvas id="merchantMonthlyExpensesChart" class="piglet-chart" data-chart-data='@json($merchant->monthlyExpensesChartData($year))'></canvas>
+
+                    <table class="table table-sm">
+                        <caption>{{ __('merchants.merchant') }} {{ __('expenses.expenses') }}</caption>
+
+                        <thead>
+                            <tr class="font-weight-bold">
+                                <td>{{ __('expenses.date') }}</td>
+                                <td class="text-right">{{ __('expenses.projected') }}</td>
+                                <td class="text-right">{{ __('expenses.actual') }}</td>
+                            </tr>
+                        </thead>
+
+                        @foreach ($merchant->expensesByYear($year) as $monthlyExpenses)
+
+                            @foreach ($monthlyExpenses as $expense)
+                                @php
+                                    $href = '';
+
+                                    if (is_a($expense, '\App\Family\CashFlowPlan\Expense')) {
+                                        $href = route('family.cash-flow-plans.expenses.edit', [$family, $expense->cash_flow_plan_id, $expense]);
+                                    } elseif (is_a($expense, '\App\Family\CashFlowPlan\RecurringExpense')) {
+                                        $href = route('family.cash-flow-plans.recurring-expenses.edit', [$family, $expense->cash_flow_plan_id, $expense]);
+                                    }
+
+                                @endphp
+                                <tr>
+                                    <td><a href="{{ $href }}">{{ ($expense->date) ? \App\formatDate($expense->date) : '<no date>' }}</a></td>
+                                    <td class="text-right">{{ \App\formatCurrency($expense->projected, true) }}</td>
+                                    <td class="text-right">{{ \App\formatCurrency($expense->actual, true) }}</td>
+                                </tr>
+                            @endforeach
+
+                        @endforeach
+
+                    </table>
+
+                </div>
+
+            </div>
+
         <hr>
 
 

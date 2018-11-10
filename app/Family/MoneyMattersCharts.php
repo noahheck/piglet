@@ -84,22 +84,22 @@ class MoneyMattersCharts
 
         $data = [
             0 => [
-                'label' => 'Income',
+                'label' => __('cash-flow-plans.income'),
                 'backgroundColor' => Charts::BACKGROUND_COLOR_GRAY,
                 'borderColor'     => Charts::BORDER_COLOR_GRAY,
             ],
             1 => [
-                'label' => 'Overspent',
+                'label' => __('cash-flow-plans.overspent'),
                 'backgroundColor' => Charts::BACKGROUND_COLOR_RED,
                 'borderColor'     => Charts::BORDER_COLOR_RED,
             ],
             2 => [
-                'label' => 'Expenditures',
+                'label' => __('cash-flow-plans.expenditures'),
                 'backgroundColor' => Charts::BACKGROUND_COLOR_BLUE,
                 'borderColor'     => Charts::BORDER_COLOR_BLUE,
             ],
             3 => [
-                'label' => 'Balance',
+                'label' => __('cash-flow-plans.balance'),
                 'backgroundColor' => Charts::BACKGROUND_COLOR_GREEN,
                 'borderColor'     => Charts::BORDER_COLOR_GREEN,
             ],
