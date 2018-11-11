@@ -11,10 +11,22 @@
     margin-right: 8px;
   }
 
+  h2 {
+    border-bottom: 1px solid #c3c3c3;
+  }
+
+
   p {
     br {
       margin-bottom: 1.5em;
     }
+  }
+
+  p.note {
+    border-left: 3px solid #6666c9;
+    margin: 15px;
+    padding: 6px 6px 6px 18px;
+    color: #444;
   }
 
   .wizard-page:not(#wizard_page_1) {

@@ -4,7 +4,7 @@
 
 let $ = require('jquery');
 
-let currentPage = 1;
+let currentPage = 2;
 let numPages;
 let pages;
 
@@ -32,6 +32,19 @@ function showPage(pageNumber) {
     (pageNumber === 1)        ? previousButton.hide() : previousButton.show();
 }
 
+
+
+function cloneAndAddResourceRow(templateId, targetId) {
+    let newRow = $('#' + templateId).clone(true);
+
+    newRow.removeClass('template');
+    newRow.attr('id', '');
+
+    $('#' + targetId).append(newRow);
+}
+
+
+
 $(function() {
 
     pages = $('.wizard-page');
@@ -44,5 +57,18 @@ $(function() {
     nextButton.click(nextPage);
     previousButton.click(previousPage);
 
-    showPage(1);
+    showPage(currentPage);
+
+    $('.add-new-resource-button').click(function() {
+        let $this = $(this);
+
+        cloneAndAddResourceRow($this.data('template'), $this.data('target'));
+    });
+
+    $('.delete-resource-button').click(function() {
+
+        console.log($(this).closest('.money-matters-resource'));
+
+        $(this).closest('.money-matters-resource').remove();
+    });
 });
