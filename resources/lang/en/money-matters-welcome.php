@@ -43,6 +43,43 @@ return [
     'lifestyle-expenses-advisor-note' => "Working with a financial advisor is a great way to identify different strategies for how to fund these items.",
     'lifestyle-expenses-prompt' => "Go ahead and fill in an appropriate default amount for each Lifestyle Expense below.",
     'lifestyle-expenses-review-note' => "You'll be able to review and edit your Lifestyle Expense amounts later from the 'Settings' menu.",
-
     'lifestyle-expenses-next' => "Once you've entered your Lifestyle Expenses, go ahead and continue on to the next section.",
+
+    // Page 4
+    'recurring-expenses-details' => "Death, taxes, and bills. All families have expenses they're responsible for each month: rent/mortgage payments, electricity, gas, cable, vehicle payments, insurance, the list could go on.
+        And let's face it, nobody likes paying the bills. It's stressful, things get lost in the mail, it's time consuming, and just flat out no fun watching your hard earned money walk out the door each month.
+        The good news is that if we make a plan each month for how we're going to address all of these things, the process of paying the bills can become much less stressful with fewer surprises and less doom and gloom. You'll know ahead of time where your money is going, so saying goodbye to it doesn't taste so sour.",
+    'recurring-expenses-prompt' => "Fill in the name of the merchant you send each of the following monthly bills to, along with how much your family expects to pay each month. These items will automatically fill in on each month's Cash Flow Plan, so you can see ahead of time where your money is going.",
+    'recurring-expenses-prompt-note' => "If any of these items doesn't apply to your family, simply leave them blank and they won't appear on your Cash Flow Plan.
+        In addition, if you make one payment for more than one category below (such as paying one bill for both your Internet and television service), choose just one category to fill in with the merchant and the total for both categories.",
+    'recurring-expenses-review-note' => "You'll be able to review and edit your Recurring Expenses later from the 'Settings' menu.",
+    'recurring-expenses-next' => "Once you've entered your Recurring Expenses, go ahead and continue on to the next section.",
+
+    'recurring-expenses-housing'  => 'Housing',
+    'recurring-expenses-mortgage' => 'Mortgage',
+    'recurring-expenses-rent'     => 'Rent',
+    'recurring-expenses-hoa'      => 'HOA Dues',
+
+    'recurring-expenses-utilities'   => 'Utilities',
+    'recurring-expenses-electricity' => "Electricity",
+    'recurring-expenses-gas'         => "Gas",
+    'recurring-expenses-water'       => "Water",
+    'recurring-expenses-phone'       => "Phone",
+    'recurring-expenses-cable'       => "Cable",
+    'recurring-expenses-internet'    => "Internet",
+
+    'recurring-expenses-transportation' => "Transportation",
+    'recurring-expenses-bus'            => "Bus Pass",
+    'recurring-expenses-car1'            => "Car Payment",
+    'recurring-expenses-car2'            => "Car Payment",
+
+    'recurring-expenses-insurance'  => "Insurance",
+    'recurring-expenses-medical'    => "Medical",
+    'recurring-expenses-dental'     => "Dental",
+    'recurring-expenses-vision'     => "Vision",
+    'recurring-expenses-life'       => "Life",
+    'recurring-expenses-automobile' => "Automobile",
+
+
+
 ];

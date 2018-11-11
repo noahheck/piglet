@@ -27,7 +27,7 @@
 
         <div class="row justify-content-center first-run-wizard">
 
-            @foreach (range(1, 3) as $page)
+            @foreach (range(1, 4) as $page)
 
                 <div class="col-12 col-md-10 wizard-page" id="wizard_page_{{ $page }}">
                     @include ("family.money-matters-welcome.page_$page")
