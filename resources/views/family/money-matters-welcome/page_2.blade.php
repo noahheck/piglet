@@ -13,7 +13,7 @@
     <div class="row money-matters-resource">
         <div class="col-7">
             <div class="form-group">
-                <input type="text" name="income_sources_name[]" class="form-control" placeholder="{{ __('income-sources.name') }}">
+                <input type="text" name="income_sources_name[]" class="form-control" placeholder="{{ __('income-sources.income-source') }} {{ __('income-sources.name') }}">
             </div>
         </div>
 
@@ -46,6 +46,7 @@
 <hr>
 
 <p class="note">{!! nl2br(e(__('money-matters-welcome.income-sources-review-note'))) !!}</p>
+
 <p>{!! nl2br(e(__('money-matters-welcome.income-sources-next'))) !!}</p>
 
 
@@ -53,7 +54,7 @@
 <div class="row template money-matters-resource" id="income_sources_template">
     <div class="col-7">
         <div class="form-group">
-            <input type="text" name="income_sources_name[]" class="form-control" placeholder="{{ __('income-sources.name') }}">
+            <input type="text" name="income_sources_name[]" class="form-control" placeholder="{{ __('income-sources.income-source') }} {{ __('income-sources.name') }}">
         </div>
     </div>
 

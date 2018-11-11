@@ -37,6 +37,12 @@ return [
 
 
     // Page 3
-    '' => "",
+    'lifestyle-expenses-details' => "Lifestyle expenses refer to the funds your family allocates to the things that make life worth living. After all, we're not here to simply pay bills before we die. Having a plan for the life you want to live now, and in the future, can be key to helping create a life of enjoyment and fulfillment.
+        Often times, these things can seem either too far off and ambiguous, or approaching too soon and unattainable. What's important is that you make sure to prioritize these items in your monthly budget.
+        Your family should also reevaluate these items as situations in life change. For example, if you're focused on paying off debt, you might prefer to enter a smaller amount for each category now, then increase your contributions to each after you've eliminated that debt.",
+    'lifestyle-expenses-advisor-note' => "Working with a financial advisor is a great way to identify different strategies for how to fund these items.",
+    'lifestyle-expenses-prompt' => "Go ahead and fill in an appropriate default amount for each Lifestyle Expense below.",
+    'lifestyle-expenses-review-note' => "You'll be able to review and edit your Lifestyle Expense amounts later from the 'Settings' menu.",
 
+    'lifestyle-expenses-next' => "Once you've entered your Lifestyle Expenses, go ahead and continue on to the next section.",
 ];

@@ -21,26 +21,19 @@
         'location'   => __('money-matters.welcome'),
     ])
 
-    <form action="{{ route('family.money-matters-welcome-assemble', [$family]) }}" method="POST">
+    <form action="{{ route('family.money-matters-welcome-assemble', [$family]) }}" method="POST" class="has-bold-labels">
 
         @csrf
 
         <div class="row justify-content-center first-run-wizard">
 
-            @foreach (range(1, 2) as $page)
+            @foreach (range(1, 3) as $page)
 
                 <div class="col-12 col-md-10 wizard-page" id="wizard_page_{{ $page }}">
                     @include ("family.money-matters-welcome.page_$page")
                 </div>
 
             @endforeach
-
-
-            {{-- Beginning of page 3 --}}
-            <div class="col-12 col-md-10 wizard-page" id="wizard_page_3">
-                <h2>Page 3</h2>
-            </div>
-            {{-- Beginning of page 3 --}}
 
 
             <div class="col-12 col-md-10 mt-5 wizard-navigation text-center">

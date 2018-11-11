@@ -4,7 +4,7 @@
 
 let $ = require('jquery');
 
-let currentPage = 2;
+let currentPage = 3;
 let numPages;
 let pages;
 
