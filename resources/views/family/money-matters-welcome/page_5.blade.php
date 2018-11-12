@@ -35,7 +35,7 @@
         'color' => "green",
         'merchantTypes' => [
             'householdsupplier' => [
-                'icon' => "<span class='fa fa-road'></span>"
+                'icon' => "<span class='fa fa-home'></span>"
             ],
         ],
     ],

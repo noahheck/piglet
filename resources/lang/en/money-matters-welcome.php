@@ -105,7 +105,7 @@ return [
 
     'expense-groups-household'             => "Household",
     'expense-groups-household-details'     => "Cleaning supplies, laundry detergent, and everything that keeps you going",
-    'expense-groups-householdsuppliers'    => "Homegoods Store",
+    'expense-groups-householdsuppliers'    => "Homegoods Stores",
     'expense-groups-add-householdsupplier' => "Add New Homegoods Store",
 
     'expense-groups-stuff'         => "Stuff That Comes Up",

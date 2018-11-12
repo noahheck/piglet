@@ -12,7 +12,7 @@
                         {!! $icon !!}
                     </span>
                 </div>
-                <p>{{ __('money-matters-welcome.expense-groups-' . $expense . '-details') }}</p>
+                <p class="text-center">{{ __('money-matters-welcome.expense-groups-' . $expense . '-details') }}</p>
                 <label for="expense_groups_{{ $expense }}_amount">{{ __('cash-flow-plans.amount') }}</label>
 
                 <div class="form-group">
@@ -40,16 +40,10 @@
 
                         <div class="money-matters-resource row">
 
-                            <div class="col-10">
+                            <div class="col-12">
 
                                 <input type="text" class="form-control" name="expense_groups_{{ $type }}s[]" placeholder="{{ __('merchants.name') }}">
 
-                            </div>
-
-                            <div class="col-2 text-center">
-                                <button type="button" class="btn btn-sm btn-danger delete-resource-button">
-                                    <span class="fa fa-remove"></span>
-                                </button>
                             </div>
 
                         </div>
@@ -78,7 +72,7 @@
 
         <div class="col-10">
 
-            <input type="text" class="form-control" name="expense_groups_{{ $type }}[]" placeholder="{{ __('merchants.name') }}">
+            <input type="text" class="form-control" name="expense_groups_{{ $type }}s[]" placeholder="{{ __('merchants.name') }}">
 
         </div>
 
