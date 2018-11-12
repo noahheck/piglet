@@ -15,6 +15,7 @@ return [
 
     'next' => 'Next',
     'back' => 'Back',
+    'finish' => 'Finish',
 
     'already-in-use' => 'Already In Use',
 

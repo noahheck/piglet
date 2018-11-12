@@ -4,12 +4,13 @@
 
 let $ = require('jquery');
 
-let currentPage = 6;
+let currentPage = 1;
 let numPages;
 let pages;
 
 let nextButton;
 let previousButton;
+let finishButton;
 
 function nextPage() {
     currentPage++;
@@ -28,8 +29,10 @@ function showPage(pageNumber) {
 
     $('#wizard_page_' + pageNumber).show();
 
-    (pageNumber === numPages) ? nextButton.hide()     : nextButton.show();
-    (pageNumber === 1)        ? previousButton.hide() : previousButton.show();
+    finishButton.hide();
+
+    (pageNumber === numPages) ? nextButton.hide() && finishButton.show()    : nextButton.show();
+    (pageNumber === 1)        ? previousButton.hide()                       : previousButton.show();
 }
 
 
@@ -55,6 +58,7 @@ $(function() {
 
     nextButton     = $('#wizard_button_forward');
     previousButton = $('#wizard_button_back');
+    finishButton   = $('#wizard_button_finish');
 
     nextButton.click(nextPage);
     previousButton.click(previousPage);

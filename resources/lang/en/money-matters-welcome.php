@@ -117,4 +117,11 @@ return [
         For this reason, we provide the idea of Piggy Banks. Each savings goal your family has should be entered individually and an amount of money should be allocated toward each one every month. Give each Piggy Bank a target amount, specify how much you expect to contribute each month, provide a date you expect/need/want the goal to be met, and before you know it, your goals will be within reaching distance!
         It's important to stay focused when saving. It's hard to stay motivated to continue to save when your goals are never achieved, so stay focused on only few items at any given time (say, 1-3 at most). When one goal is achieved, celebrate that and get started working on the next one.",
     'piggy-banks-prompt' => "Go ahead and enter up to 3 Piggy Bank items your family can work toward. If you're already saving for something, include the amount you've already saved as the 'Starting Amount'.",
+    'piggy-banks-review-note' => "You'll be able to review and edit your Piggy Banks later from the Money Matters menu.",
+    'piggy-banks-next' => "Once you're ready to proceed, go ahead and continue on to the next section.",
+
+    // Page 7
+    'finished!' => "Finished!",
+    'finished-details' => "Congratulations! You're all set to get going using the Money Matters system.
+        Click 'Finish' below to save your information and get working on your first Cash Flow Plan.",
 ];

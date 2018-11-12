@@ -14,4 +14,7 @@
     @include ("family.money-matters-welcome.piggy-bank", ['piggyBank' => $piggyBank])
 @endforeach
 
+<p class="note">{!! nl2br(e(__('money-matters-welcome.piggy-banks-review-note'))) !!}</p>
+
+<p>{!! nl2br(e(__('money-matters-welcome.piggy-banks-next'))) !!}</p>
 
