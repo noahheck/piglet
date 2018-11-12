@@ -4,7 +4,7 @@
 
 let $ = require('jquery');
 
-let currentPage = 4;
+let currentPage = 5;
 let numPages;
 let pages;
 
@@ -41,6 +41,8 @@ function cloneAndAddResourceRow(templateId, targetId) {
     newRow.attr('id', '');
 
     $('#' + targetId).append(newRow);
+
+    newRow.find("input[type='text']").first().focus();
 }
 
 

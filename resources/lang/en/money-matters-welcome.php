@@ -52,7 +52,8 @@ return [
     'recurring-expenses-prompt' => "Fill in the name of the merchant you send each of the following monthly bills to, along with how much your family expects to pay each month. These items will automatically fill in on each month's Cash Flow Plan, so you can see ahead of time where your money is going.",
     'recurring-expenses-prompt-note' => "If any of these items doesn't apply to your family, simply leave them blank and they won't appear on your Cash Flow Plan.
         In addition, if you make one payment for more than one category below (such as paying one bill for both your Internet and television service), choose just one category to fill in with the merchant and the total for both categories.",
-    'recurring-expenses-review-note' => "You'll be able to review and edit your Recurring Expenses later from the 'Settings' menu.",
+    'recurring-expenses-review-note' => "It would be impossible for us to list all of the monthly expenses for every family, so has been just a starter set that should apply to most families. If your family has additional monthly expenses, you'll want to make sure to enter them as well.
+        You'll be able to review and edit your Recurring Expenses later from the 'Settings' menu.",
     'recurring-expenses-next' => "Once you've entered your Recurring Expenses, go ahead and continue on to the next section.",
 
     'recurring-expenses-housing'  => 'Housing',
@@ -70,8 +71,8 @@ return [
 
     'recurring-expenses-transportation' => "Transportation",
     'recurring-expenses-bus'            => "Bus Pass",
-    'recurring-expenses-car1'            => "Car Payment",
-    'recurring-expenses-car2'            => "Car Payment",
+    'recurring-expenses-car1'           => "Car Payment",
+    'recurring-expenses-car2'           => "Car Payment",
 
     'recurring-expenses-insurance'  => "Insurance",
     'recurring-expenses-medical'    => "Medical",
@@ -80,6 +81,31 @@ return [
     'recurring-expenses-life'       => "Life",
     'recurring-expenses-automobile' => "Automobile",
 
+    // Page 5
+    'expense-groups-details' => "Much of the rest of the expenses our families have each month can be combined together to be managed as a group, rather than as individual transactions. This gives us the benefit of having manageable line items on our budget while at the same time providing the freedom to use those funds how we see fit.
+        Also, because life generally seems to happen when we're alive, unforeseen things come up in during the month no matter how hard we try to budget for everything. Car batteries mysteriously die, your child's new best friend (who you had never heard of before) is having a birthday party that just has to be attended, or your crazy cousin is visiting from out of town and you get volunteered to do the entertaining.
+        That's why it's a good idea to provide a little wiggle room in your budget each month. Allocate a small amount each month for the things that always just seem to 'Come Up'.",
+    'expense-groups-prompt'  => "Go ahead and fill in the appropriate amounts your family typically allocates to each of the following expense groups each month.
+        Also, for each expense group, go ahead and enter a couple of your family's favorite places to spend that part of your budget.",
+
+    'expense-groups-review-note' => "You'll be able to review and edit your Expense Groups later from the 'Settings' menu.",
+    'expense-groups-next' => "Once you've entered your Expense Groups, go ahead and continue on to the next section.",
+
+    'expense-groups-food'           => "Food",
+    'expense-groups-grocers'        => "Grocery Stores",
+    'expense-groups-add-grocer'     => "Add New Grocery Store",
+    'expense-groups-restaurants'    => "Restaurants",
+    'expense-groups-add-restaurant' => "Add New Restaurant",
+
+    'expense-groups-gas'            => "Fuel",
+    'expense-groups-gasstations'    => "Gas Stations",
+    'expense-groups-add-gasstation' => "Add New Gas Station",
+
+    'expense-groups-household'             => "Household",
+    'expense-groups-householdsuppliers'    => "Homegoods Store",
+    'expense-groups-add-householdsupplier' => "Add New Homegoods Store",
+
+    'expense-groups-stuff' => "Stuff That Comes Up",
 
 
 ];
