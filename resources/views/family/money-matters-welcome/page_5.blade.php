@@ -10,7 +10,7 @@
 
 @foreach ([
     'food' => [
-        'icon'  => "<span class='fa fa-apple'></span>",
+        'icon'  => "<span class='fa fa-shopping-basket'></span>",
         'color' => 'red',
         'merchantTypes' => [
             'grocer' => [
@@ -54,19 +54,22 @@
 
 <div class="row justify-content-center">
 
-    <div class="col-12 col-sm-6">
+    <div class="col-12 col-sm-8 col-md-6">
 
         <div class="card shadow">
             <div class="card-body">
+
+                <h4 class="text-center">
+                    {{ __('money-matters-welcome.expense-groups-stuff') }}
+                </h4>
                 <div class="text-center">
                     <span class="circle-icon" style="color: #fff; background-color: purple;">
                         <span class="fa fa-question-circle-o"></span>
                     </span>
                 </div>
 
-                <h4 class="text-center">
-                    {{ __('money-matters-welcome.expense-groups-stuff') }}
-                </h4>
+                <p class="text-center">{{ __('money-matters-welcome.expense-groups-stuff-details') }}</p>
+
                 <label for="expense_groups_stuff_amount">{{ __('cash-flow-plans.amount') }}</label>
 
                 <div class="form-group">

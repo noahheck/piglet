@@ -92,20 +92,25 @@ return [
     'expense-groups-next' => "Once you've entered your Expense Groups, go ahead and continue on to the next section.",
 
     'expense-groups-food'           => "Food",
+    'expense-groups-food-details'   => "Delicious and (hopefully) Nutritious",
     'expense-groups-grocers'        => "Grocery Stores",
     'expense-groups-add-grocer'     => "Add New Grocery Store",
     'expense-groups-restaurants'    => "Restaurants",
     'expense-groups-add-restaurant' => "Add New Restaurant",
 
     'expense-groups-gas'            => "Fuel",
+    'expense-groups-gas-details'    => "To take you on all your adventures (even if that's just to the office)",
     'expense-groups-gasstations'    => "Gas Stations",
     'expense-groups-add-gasstation' => "Add New Gas Station",
 
     'expense-groups-household'             => "Household",
+    'expense-groups-household-details'     => "Cleaning supplies, laundry detergent, and everything that keeps you going",
     'expense-groups-householdsuppliers'    => "Homegoods Store",
     'expense-groups-add-householdsupplier' => "Add New Homegoods Store",
 
-    'expense-groups-stuff' => "Stuff That Comes Up",
+    'expense-groups-stuff'         => "Stuff That Comes Up",
+    'expense-groups-stuff-details' => "Because Life Happens When You Go On Living",
+
 
 
 ];

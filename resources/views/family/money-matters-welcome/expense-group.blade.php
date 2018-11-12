@@ -2,16 +2,17 @@
 
     <div class="col-12 col-sm-4 mb-4">
 
-        <div class="card shadow">
+        <div class="card ">
             <div class="card-body">
+                <h4 class="text-center">
+                    {{ __('money-matters-welcome.expense-groups-' . $expense) }}
+                </h4>
                 <div class="text-center">
                     <span class="circle-icon" style="color: #fff; background-color: {{ $iconColor }};">
                         {!! $icon !!}
                     </span>
                 </div>
-                <h4 class="text-center">
-                    {{ __('money-matters-welcome.expense-groups-' . $expense) }}
-                </h4>
+                <p>{{ __('money-matters-welcome.expense-groups-' . $expense . '-details') }}</p>
                 <label for="expense_groups_{{ $expense }}_amount">{{ __('cash-flow-plans.amount') }}</label>
 
                 <div class="form-group">
