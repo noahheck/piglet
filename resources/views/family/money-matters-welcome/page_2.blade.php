@@ -23,7 +23,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                     </div>
-                    <input type="text" name="income_sources_default_amount[]" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}"">
+                    <input type="text" name="income_sources_default_amount[]" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><span class="fa fa-dollar"></span></div>
                 </div>
-                <input type="text" name="income_sources_default_amount[]" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}"">
+                <input type="text" name="income_sources_default_amount[]" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}">
             </div>
         </div>
     </div>

@@ -83,7 +83,7 @@ return [
 
     // Page 5
     'expense-groups-details' => "Much of the rest of the expenses our families have each month can be combined together to be managed as a group, rather than as individual transactions. This gives us the benefit of having manageable line items on our budget while at the same time providing the freedom to use those funds how we see fit.
-        Also, because life generally seems to happen when we're alive, unforeseen things come up in during the month no matter how hard we try to budget for everything. Car batteries mysteriously die, your child's new best friend (who you had never heard of before) is having a birthday party that just has to be attended, or your crazy cousin is visiting from out of town and you get volunteered to do the entertaining.
+        Also, because life generally seems to happen when we're alive, unforeseen things come up during the month no matter how hard we try to budget for everything. Car batteries mysteriously die, your child's new best friend (who you had never heard of before) is having a birthday party that just has to be attended, or your crazy cousin is visiting from out of town and you get volunteered to do the entertaining.
         That's why it's a good idea to provide a little wiggle room in your budget each month. Allocate a small amount each month for the things that always just seem to 'Come Up'.",
     'expense-groups-prompt'  => "Go ahead and fill in the appropriate amounts your family typically allocates to each of the following expense groups each month.
         Also, for each expense group, go ahead and enter a couple of your family's favorite places to spend that part of your budget.",
@@ -112,5 +112,9 @@ return [
     'expense-groups-stuff-details' => "Because Life Happens When You Go On Living",
 
 
-
+    // Page 6
+    'piggy-banks-details' => "It seems that few things in life come free (only the best things, in fact), which is why it's important to work effective saving habits into your monthly budget. 
+        For this reason, we provide the idea of Piggy Banks. Each savings goal your family has should be entered individually and an amount of money should be allocated toward each one every month. Give each Piggy Bank a target amount, specify how much you expect to contribute each month, provide a date you expect/need/want the goal to be met, and before you know it, your goals will be within reaching distance!
+        It's important to stay focused when saving. It's hard to stay motivated to continue to save when your goals are never achieved, so stay focused on only few items at any given time (say, 1-3 at most). When one goal is achieved, celebrate that and get started working on the next one.",
+    'piggy-banks-prompt' => "Go ahead and enter up to 3 Piggy Bank items your family can work toward. If you're already saving for something, include the amount you've already saved as the 'Starting Amount'.",
 ];
