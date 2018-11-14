@@ -71,8 +71,6 @@ class MerchantController extends Controller
 
         $yearOptions = $merchant->yearsWithExpenses();
 
-        \DebugBar::info($yearOptions);
-
         return view('family.merchants.show', [
             'family'      => $family,
             'merchant'    => $merchant,

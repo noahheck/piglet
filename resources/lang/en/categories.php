@@ -28,6 +28,59 @@ return [
     'category-deleted' => 'Category Deleted',
 
 
+    'expense.mortgage'             => 'Mortgage',
+    'expense.mortgage.description' => 'Mortgage',
+    'expense.rent'                 => 'Rent',
+    'expense.rent.description'     => 'Rent',
+    'expense.hoa'                  => 'HOA Dues',
+    'expense.hoa.description'      => 'HOA Dues',
+
+    'expense.electricity'             => 'Electricity',
+    'expense.electricity.description' => 'Electric Bill',
+    'expense.gas'                     => 'Gas',
+    'expense.gas.description'         => 'Gas Bill',
+    'expense.water'                   => 'Water',
+    'expense.water.description'       => 'Water Bill',
+    'expense.phone'                   => 'Phone',
+    'expense.phone.description'       => 'Phone Bill',
+    'expense.cable'                   => 'Cable',
+    'expense.cable.description'       => 'Cable Bill',
+    'expense.internet'                => 'Internet',
+    'expense.internet.description'    => 'Internet Bill',
+
+    'expense.bus'             => 'Bus Pass',
+    'expense.bus.description' => 'Bus Pass',
+    'expense.car'             => 'Car Payment',
+    'expense.car.description' => 'Car Payment',
+
+    'expense.medical'                => 'Medical',
+    'expense.medical.description'    => 'Medical/Health Insurance',
+    'expense.dental'                 => 'Dental',
+    'expense.dental.description'     => 'Dental Insurance',
+    'expense.vision'                 => 'Vision',
+    'expense.vision.description'     => 'Vision Insurance',
+    'expense.life'                   => 'Life',
+    'expense.life.description'       => 'Life Insurance',
+    'expense.automobile'             => 'Automobile',
+    'expense.automobile.description' => 'Automobile Insurance',
+
+
+    'expense-group.food'             => 'Food',
+    'expense-group.food.groceries'   => 'Groceries',
+    'expense-group.food.restaurants' => 'Restaurants',
+
+    'expense-group.gas'      => 'Fuel',
+    'expense-group.gas.fuel' => 'Fuel',
+
+    'expense-group.household' => 'Household',
+    'expense-group.household.supplies' => 'Household Supplies',
+
+    'expense-group.stuff' => 'Stuff That Comes Up',
+
+
+
+
+
     // Default categories added with the migration:
     'default.food'                => 'Food',
     'default.food.desc'           => 'Food expenses',

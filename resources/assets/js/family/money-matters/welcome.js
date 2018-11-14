@@ -16,12 +16,16 @@ function nextPage() {
     currentPage++;
 
     showPage(currentPage);
+
+    window.scrollTo(0,0);
 }
 
 function previousPage() {
     currentPage--;
 
     showPage(currentPage);
+
+    window.scrollTo(0,0);
 }
 
 function showPage(pageNumber) {
@@ -72,8 +76,6 @@ $(function() {
     });
 
     $('.delete-resource-button').click(function() {
-
-        console.log($(this).closest('.money-matters-resource'));
 
         $(this).closest('.money-matters-resource').remove();
     });

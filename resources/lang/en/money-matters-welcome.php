@@ -124,4 +124,7 @@ return [
     'finished!' => "Finished!",
     'finished-details' => "Congratulations! You're all set to get going using the Money Matters system.
         Click 'Finish' below to save your information and get working on your first Cash Flow Plan.",
+
+    'wizard-completed' => "Money Matters setup completed!",
+    'already-completed' => "The Money Matters setup has already been completed.",
 ];
