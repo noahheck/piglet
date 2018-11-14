@@ -15,6 +15,7 @@ return [
     'total'               => 'Total',
     'totals'              => 'Totals',
 
+    'amount' => 'Amount',
 
     'income'       => 'Income',
     'expenditures' => 'Expenditures',

@@ -8,12 +8,17 @@ use App\Family\Category;
 use App\Family\MoneyMattersCharts;
 use App\Http\Controllers\Controller;
 
+use App\Interfaces\Definitions\Settings;
 use Illuminate\Http\Request;
 
 class MoneyMattersController extends Controller
 {
     public function index(Request $request, Family $family)
     {
+        if (!$family->getSetting(Family::MONEY_MATTERS_FIRST_RUN_WIZARD_COMPLETE)) {
+            return redirect()->route('family.money-matters-welcome', [$family]);
+        }
+
         $year = ($request->query->has('year')) ? $request->query->get('year') : date('Y');
 
         $cashFlowPlans = CashFlowPlan::where('year', $year)->get();

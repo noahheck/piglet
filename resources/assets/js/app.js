@@ -14,9 +14,13 @@ let $ = require("jquery");
 
         require('styled-notifications');
 
+        // require('@fortawesome/fontawesome-free/js/all.min.js')
+
 import Chart from 'chart.js';
 
 import "styled-notifications/dist/notifications.css";
+
+// import "@fortawesome/fontawesome-free/css/all.min.css";
 
 let pageMenu     = require('Component/pageMenu');
 let domSearch    = require('Component/domSearch');

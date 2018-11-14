@@ -26,4 +26,7 @@ return [
     'monthly-balance'          => 'Monthly Balance',
     'lifestyle-expense-totals' => 'Lifestyle Expenses Totals',
     'category-totals'          => 'Category Totals',
+
+    'welcome' => 'Welcome',
+    'welcome!' => 'Welcome!',
 ];
