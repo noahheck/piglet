@@ -33,7 +33,7 @@ class MoneyMattersWelcomeController extends Controller
         ]);
     }
 
-    
+
 
     public function assemble(Request $request, Family $family)
     {

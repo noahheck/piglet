@@ -39,7 +39,11 @@ $(function() {
     });
 
     $('.datepicker').datepicker({
-        autoclose: true
+        autoclose: true,
+        todayHighlight: true,
+        disableTouchKeyboard: true,
+        todayBtn: 'linked',
+        clearBtn: true
     });
 
     $('.dom-search').each(function() {

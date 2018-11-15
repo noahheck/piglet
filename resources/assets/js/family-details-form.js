@@ -2,9 +2,15 @@
  * js/family-details-form.js
  */
 
-var $ = require('jquery');
+let $ = require('jquery');
 
-$('#showChangePhotoFormButton').click(function() {
-    $(this).hide();
-    $('#familyPhotoInputContainer').removeClass('d-none');
+
+$(() => {
+
+    $('#family_name').focus();
+
+    $('#showChangePhotoFormButton').click(function() {
+        $(this).hide();
+        $('#familyPhotoInputContainer').removeClass('d-none');
+    });
 });
