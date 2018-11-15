@@ -11,6 +11,8 @@
         <meta name="family-id" content="{{ $family->id }}">
     @endif
 
+    @stack('meta')
+
     <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
 
     {{-- Scripts --}}

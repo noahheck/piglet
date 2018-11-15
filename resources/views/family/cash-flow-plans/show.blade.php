@@ -12,6 +12,9 @@
     <script type="text/javascript" src="{{ asset('js/family.cash-flow-plans.show.js') }}"></script>
 @endpush
 
+@push('meta')
+    <meta name="cash-flow-plan-id" content="{{ $cashFlowPlan->id }}">
+@endpush
 
 @section('content')
 

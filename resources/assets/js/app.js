@@ -14,6 +14,9 @@ let $ = require("jquery");
 
         require('styled-notifications');
 
+let jsCookie = require('js-cookie');
+
+
         // require('@fortawesome/fontawesome-free/js/all.min.js')
 
 import Chart from 'chart.js';
