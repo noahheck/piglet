@@ -33,6 +33,8 @@ class MoneyMattersWelcomeController extends Controller
         ]);
     }
 
+    
+
     public function assemble(Request $request, Family $family)
     {
         if ($family->getSetting(Settings::MONEY_MATTERS_FIRST_RUN_WIZARD_COMPLETE)) {

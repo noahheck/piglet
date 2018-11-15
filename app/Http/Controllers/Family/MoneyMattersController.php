@@ -53,7 +53,7 @@ class MoneyMattersController extends Controller
             Family::MONEY_MATTERS_POCKET_MONEY_AMOUNT,
             Family::MONEY_MATTERS_RETIREMENT_AMOUNT,
             Family::MONEY_MATTERS_EDUCATION_AMOUNT,
-            Family::MONEY_MATTERS_EMERGENCY_FUND_AMOUNT,
+            // Family::MONEY_MATTERS_EMERGENCY_FUND_AMOUNT,
         ]) as $setting => $value) {
             $family->setSetting($setting, $value);
         }

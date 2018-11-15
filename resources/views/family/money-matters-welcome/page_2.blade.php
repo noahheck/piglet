@@ -10,31 +10,6 @@
 
 <div id="income_sources_container" class="row justify-content-center">
 
-    {{--<div class="row money-matters-resource">
-        <div class="col-7">
-            <div class="form-group">
-                <input type="text" name="income_sources_name[]" class="form-control" placeholder="{{ __('income-sources.income-source') }} {{ __('income-sources.name') }}">
-            </div>
-        </div>
-
-        <div class="col-3">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><span class="fa fa-dollar"></span></div>
-                    </div>
-                    <input type="text" name="income_sources_default_amount[]" class="form-control money-field" placeholder="{{ __('income-sources.default-amount') }}">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-2 text-center">
-            <button type="button" class="btn btn-danger btn-sm delete-resource-button">
-                <span class="fa fa-remove"></span>
-            </button>
-        </div>
-    </div>--}}
-
     <div class="col-12 col-sm-6 col-md-4 money-matters-resource">
         <div class="card shadow mb-4">
             <div class="card-body">
