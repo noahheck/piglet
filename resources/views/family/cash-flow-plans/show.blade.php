@@ -13,8 +13,9 @@
 @endpush
 
 @push('meta')
-    <meta name="cash-flow-plan-id" content="{{ $cashFlowPlan->id }}">
+    @meta('cash-flow-plan-id', $cashFlowPlan->id)
 @endpush
+
 
 @section('content')
 

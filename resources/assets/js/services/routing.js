@@ -2,13 +2,15 @@
  * js/services/routing.js
  */
 
-let $ = require('jquery');
+let meta = require('Services/meta');
+
 
 let routing = {};
 
-let family  = $("meta[name='family-id']").attr('content');
 
 routing.getUrl = function(route, params) {
+
+    let family  = meta.get('family-id');
 
     if (typeof route === 'object') {
 
