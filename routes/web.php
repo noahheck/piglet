@@ -20,10 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Useful for debugging situations
-//Route::get('/{family}/ajax-test', 'Family\HomeController@ajaxTest')->name('test.ajax.get');
-//Route::post('/{family}/{name}/ajax-test', 'Family\HomeController@ajaxTest')->name('test.ajax.post');
-
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Auth::routes();
@@ -60,15 +56,18 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         Route::get('/', 'HomeController@index')->name('home');
 
-    //    Route::get('/emailTest', 'HomeController@emailTest')->name('email-test');
+        // Route::get('/emailTest', 'HomeController@emailTest')->name('email-test');
 
 
         // Family Members
         Route::resource('/members', 'MemberController');
         Route::get('/members/{member}/photo/{size}/{photoFile}', 'MemberController@photo')->name('member.photo');
 
+
+
         // Tasks
-        Route::resource('/taskLists', 'TaskListController');
+        // This early implementation of tasks is not exposed at this time
+        /*Route::resource('/taskLists', 'TaskListController');
 
         Route::prefix('/taskLists/{taskList}')->group(function() {
 
@@ -76,7 +75,7 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
             Route::post('/restore', 'TaskListController@restore')->name('taskList.restore');
 
             Route::resource('/tasks', 'TaskController');
-        });
+        });*/
 
 
 
