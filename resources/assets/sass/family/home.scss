@@ -20,3 +20,15 @@ img.family-photo {
 .card:hover {
   text-decoration: none;
 }
+
+.component-link {
+  h5 {
+    border-bottom: 1px solid $light-gray-border;
+    padding-bottom: 3px;
+    padding-left: 4px;
+
+    span {
+      margin-right: 8px;
+    }
+  }
+}

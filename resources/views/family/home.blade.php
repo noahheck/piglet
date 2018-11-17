@@ -30,30 +30,39 @@
 
         <div class="col-12 col-md-4">
 
-            <a class="card shadow" href="{{ route('family.members.index', $family) }}">
+            <a class="card shadow component-link" href="{{ route('family.members.index', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ __('family-members.family_members') }}</h5>
+                    <h5 class="card-title">
+                        <span class="fa fa-users"></span>
+                        {{ __('family-members.family_members') }}
+                    </h5>
                     @foreach ($members as $member)
                         {!! $member->icon(['rounded-circle'])  !!}
                     @endforeach
                 </div>
             </a>
 
-            <div class="card shadow">
+            {{--<div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">Goals <small class="text-muted">- Coming Soon!</small></h5>
                     Setting and tracking progress toward goals
                 </div>
-            </div>
+            </div>--}}
 
-            <a class="card shadow" href="{{ route('family.money-matters', $family) }}">
+            <a class="card shadow component-link" href="{{ route('family.money-matters', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ __('money-matters.money-matters') }}</h5>
-                    {{ __('money-matters.money-matters-shortDesc') }}
+                    <h5 class="card-title">
+                        <span class="fa fa-usd"></span>
+                        {{ __('money-matters.money-matters') }}
+                    </h5>
+                    <p>
+                        <span class="fa fa-pull-left fa-bar-chart fa-2x fa-border"></span>
+                        {{ __('money-matters.money-matters-shortDesc') }}
+                    </p>
                 </div>
             </a>
 
-            <a class="card shadow" href="{{ route('family.taskLists.index', $family) }}">
+            {{--<a class="card shadow" href="{{ route('family.taskLists.index', $family) }}">
                 <div class="card-body">
                     <h5 class="card-title">Things to do</h5>
                     To do lists and things
@@ -65,7 +74,7 @@
                     <h5 class="card-title">Schedule <small class="text-muted">- Coming Soon!</small></h5>
                     Schedule type things
                 </div>
-            </div>
+            </div>--}}
 
         </div>
 

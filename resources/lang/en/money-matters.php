@@ -2,7 +2,8 @@
 
 return [
     'money-matters'           => 'Money Matters',
-    'money-matters-shortDesc' => 'Budgeting, Tracking, and Saving',
+//    'money-matters-shortDesc' => 'Budgeting, Tracking, and Saving',
+    'money-matters-shortDesc' => 'Create a budget, track your expenses, and have a plan for the future!',
 
 
     'settings' => 'Settings',
