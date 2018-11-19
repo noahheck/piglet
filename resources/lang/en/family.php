@@ -6,4 +6,6 @@ return [
 
     'family_photo' => 'Family photo',
 
+    'create-a-family' => 'Create a Family',
+
 ];

@@ -100,6 +100,7 @@
             <div class="list-group">
                 <a class="list-group-item list-group-item-action" href="{{ route('user-settings.photo') }}"><span class="fa fa-smile-o"></span> {{ __('user-settings.change_photo') }}</a>
                 <a class="list-group-item list-group-item-action" href="{{ route('user-settings.password') }}"><span class="fa fa-shield"></span> {{ __('user-settings.change_password') }}</a>
+                <a class="list-group-item list-group-item-action" href="{{ route('family.create') }}"><span class="fa fa-users"></span> {{ __('family.create-a-family') }}</a>
             </div>
 
         </div>

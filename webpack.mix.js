@@ -16,6 +16,7 @@ mix
     .sass('resources/assets/sass/app.scss', 'public/css')
 
     .js('resources/assets/js/home.js', 'public/js')
+    .sass('resources/assets/sass/home.scss', 'public/css')
 
     .js('resources/assets/js/user-settings.js', 'public/js')
     .js('resources/assets/js/user-settings-password.js', 'public/js')

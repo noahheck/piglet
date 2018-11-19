@@ -34,6 +34,11 @@ class HomeController extends Controller
             ->get()
         ;
 
+        if ($invitations->count() === 0 && $user->families->count() === 1) {
+
+            return redirect()->route('family.home', [$user->families->first()]);
+        }
+
         return view('home', [
             'families'    => $user->families,
             'invitations' => $invitations,

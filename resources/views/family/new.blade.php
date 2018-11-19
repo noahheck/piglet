@@ -22,7 +22,7 @@
                 'legend' => trans('family-settings.new_family_details'),
                 'action' => route('family.store'),
                 'method' => false,
-                'cancelRoute' => route('home'),
+                'cancelRoute' => url()->previous(),
             ])
 
         </div>

@@ -1,0 +1,15 @@
+/**
+ * assets/sass/home/scss
+ */
+
+@import "variables";
+
+.piglet-carousel-control {
+  color: #444 !important;
+  font-size: 2em;
+
+  :hover,
+  :hover * {
+    color: #444 !important;
+  }
+}

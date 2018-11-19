@@ -170,7 +170,7 @@ class MemberController extends Controller
 
         $member->save();
 
-        if ($grantAccess) {
+        if ($grantAccess && $member->login_email) {
 
             $existingInvitation = Invitation::where([
                 ['family_id', '=', $family->id],
