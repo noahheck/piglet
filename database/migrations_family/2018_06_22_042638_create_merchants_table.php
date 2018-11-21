@@ -29,6 +29,7 @@ class CreateMerchantsTable extends Migration
             $table->string('url')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
             $table->foreign('default_category_id')->references('id')->on('categories');
         });
     }

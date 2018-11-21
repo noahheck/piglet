@@ -28,6 +28,9 @@ class FamilyConnectService
         // Ping the database. This will throw an exception in case the database does not exists.
         Schema::connection('family')->getConnection()->reconnect();
 
+        // Enable foreign key support for sqlite
+        Schema::connection('family')->getConnection()->raw('PRAGMA foreign_keys=1');
+
         return $this;
     }
 
