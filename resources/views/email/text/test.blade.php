@@ -4,4 +4,4 @@ Thanks for taking the time to test...
 
 Sincerely,
 
-Piglet (the team)
+{{ config('app.name') }} (the team)

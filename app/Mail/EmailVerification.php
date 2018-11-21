@@ -12,7 +12,7 @@ class EmailVerification extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * @var App\Http\User
+     * @var \App\User
      */
     public $user;
 

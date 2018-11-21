@@ -4,4 +4,4 @@
 
 <p>Sincerely,</p>
 
-<p>Piglet (the team)</p>
+<p>{{ config('app.name') }} (the team)</p>

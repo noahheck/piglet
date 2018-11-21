@@ -6,4 +6,4 @@ Here is your new email verification PIN:
 
 Sincerely,
 
-Piglet (the team)
+{{ config('app.name') }} (the team)
