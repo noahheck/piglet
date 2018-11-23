@@ -36,12 +36,21 @@
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("home") }}"><span class="fa fa-home"></span> Home</a>
+                    <a class="nav-link" href="{{ route("homepage") }}"><span class="fa fa-home"></span> {{ config('app.name') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("project") }}">Project</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("pricing") }}">Pricing</a>
                 </li>
             </ul>
 
-            @auth
-                <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route("home") }}"><span class="fa fa-home"></span> Home</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                             {!! Auth::user()->icon(['icon', 'user-photo']) !!}
@@ -57,8 +66,14 @@
                             </a>
                         </div>
                     </li>
-                </ul>
-            @endauth
+                @endauth
+
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-user"></span> Login</a>
+                    </li>
+                @endguest
+            </ul>
 
         </div>
     </nav>
