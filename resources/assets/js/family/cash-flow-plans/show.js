@@ -23,17 +23,18 @@ let scrollCookieName          = 'cfp-scroll';
 let expandedTargetsCookieName = 'cfp-targets';
 
 
-let currentCookieCFP = jsCookie.get(cfpCookieName);
-
-if (currentCookieCFP !== getCashFlowPlanId()) {
-    jsCookie.set(cfpCookieName, getCashFlowPlanId());
-    jsCookie.set(scrollCookieName, 0);
-    jsCookie.set(expandedTargetsCookieName, []);
-}
 
 
 
 $(function() {
+
+    let currentCookieCFP = jsCookie.get(cfpCookieName);
+
+    if (currentCookieCFP !== getCashFlowPlanId()) {
+        jsCookie.set(cfpCookieName, getCashFlowPlanId());
+        jsCookie.set(scrollCookieName, 0);
+        jsCookie.set(expandedTargetsCookieName, []);
+    }
 
     let $window = $(window);
 
