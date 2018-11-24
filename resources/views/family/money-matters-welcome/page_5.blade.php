@@ -10,7 +10,7 @@
 
 @foreach ([
     'food' => [
-        'icon'  => "<span class='fa fa-shopping-basket'></span>",
+        'icon'  => "shopping-basket",
         'color' => 'red',
         'merchantTypes' => [
             'grocer' => [
@@ -22,7 +22,7 @@
         ],
     ],
     'gas' => [
-        'icon'  => "<span class='fa fa-road'></span>",
+        'icon'  => "road",
         'color' => "orange",
         'merchantTypes' => [
             'gasstation' => [
@@ -31,7 +31,7 @@
         ],
     ],
     'household' => [
-        'icon'  => "<span class='fa fa-home'></span>",
+        'icon'  => "home",
         'color' => "green",
         'merchantTypes' => [
             'householdsupplier' => [
@@ -63,8 +63,9 @@
                     {{ __('money-matters-welcome.expense-groups-stuff') }}
                 </h4>
                 <div class="text-center">
-                    <span class="circle-icon" style="color: #fff; background-color: purple;">
-                        <span class="fa fa-question-circle-o"></span>
+                    <span class="fa-stack fa-3x">
+                        <span class="fa fa-circle fa-stack-2x color-purple"></span>
+                        <span class="fa fa-question-circle-o fa-stack-1x color-white"></span>
                     </span>
                 </div>
 

@@ -8,8 +8,12 @@
         <div class="card-body">
             @if ($details['icon'])
                 <div class="text-center">
-                    <span class="circle-icon" style="color: #fff; background-color: {{ $details['color'] }};">
+                    {{--<span class="circle-icon" style="color: #fff; background-color: {{ $details['color'] }};">
                         {!! $details['icon'] !!}
+                    </span>--}}
+                    <span class="fa-stack fa-3x">
+                        <span class="fa fa-circle fa-stack-2x" style="color: {{ $details['color'] }};"></span>
+                        <span class="fa fa-{{ $details['icon'] }} fa-stack-1x color-white"></span>
                     </span>
                 </div>
             @endif

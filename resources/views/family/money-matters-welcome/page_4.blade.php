@@ -18,15 +18,15 @@
 
     @foreach ([
         'mortgage' => [
-            'icon' => "<span class='fa fa-home'></span>",
+            'icon' => "home",
             'color' => "green",
         ],
         'rent'     => [
-            'icon' => "<span class='fa fa-home'></span>",
+            'icon' => "home",
             'color' => "red",
         ],
         'hoa'      => [
-            'icon' => "<span class='fa fa-book'></span>",
+            'icon' => "book",
             'color' => "purple",
         ],
     ] as $expense => $details)
@@ -45,27 +45,27 @@
 
     @foreach ([
         'electricity' => [
-            'icon'  => "<span class='fa fa-bolt'></span>",
+            'icon'  => "bolt",
             'color' => "#c7c769",
         ],
         'gas'         => [
-            'icon'  => "<span class='fa fa-fire'></span>",
+            'icon'  => "fire",
             'color' => "red",
         ],
         'water'       => [
-            'icon'  => "<span class='fa fa-tint'></span>",
+            'icon'  => "tint",
             'color' => "blue",
         ],
         'phone'       => [
-            'icon'  => "<span class='fa fa-phone'></span>",
+            'icon'  => "phone",
             'color' => "green",
         ],
         'cable'       => [
-            'icon'  => "<span class='fa fa-television'></span>",
+            'icon'  => "television",
             'color' => "gray",
         ],
         'internet'    => [
-            'icon'  => "<span class='fa fa-globe'></span>",
+            'icon'  => "globe",
             'color' => "#7777d2",
         ],
     ] as $expense => $details)
@@ -84,15 +84,15 @@
 
     @foreach ([
         'bus' => [
-            'icon'  => "<span class='fa fa-bus'></span>",
+            'icon'  => "bus",
             'color' => "green",
         ],
         'car1' => [
-            'icon'  => "<span class='fa fa-car'></span>",
+            'icon'  => "car",
             'color' => "purple",
         ],
         'car2' => [
-            'icon'  => "<span class='fa fa-car'></span>",
+            'icon'  => "car",
             'color' => "purple",
         ],
     ] as $expense => $details)
@@ -111,23 +111,23 @@
 
     @foreach ([
         'medical' => [
-            'icon'  => "<span class='fa fa-medkit'></span>",
+            'icon'  => "medkit",
             'color' => "green",
         ],
         'dental' => [
-            'icon'  => "<span class='fa fa-smile-o'></span>",
+            'icon'  => "smile-o",
             'color' => "orange",
         ],
         'vision' => [
-            'icon'  => "<span class='fa fa-eye'></span>",
+            'icon'  => "eye",
             'color' => "#7777d2",
         ],
         'life' => [
-            'icon'  => "<span class='fa fa-heartbeat'></span>",
+            'icon'  => "heartbeat",
             'color' => "red",
         ],
         'automobile' => [
-            'icon'  => "<span class='fa fa-car'></span>",
+            'icon'  => "car",
             'color' => "green",
         ],
     ] as $expense => $details)
