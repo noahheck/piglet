@@ -1,16 +1,51 @@
-@extends('layouts.app')
+@extends('layouts.marketing')
+
+@section('marketing')
+
+    <div class="jumbotron homepage-jumbotron">
 
 
-@push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
-@endpush
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-2">
+                <img class="img-fluid rounded-circle" src="{{ asset('img/cartoon_family_fullsize.jpg') }}" alt="{{ config('app.name') }}">
+            </div>
+            <div class="col-12 col-md-6 order-md-1 sjumbotron-content">
 
-@push('scripts')
-    <script src="{{ asset("js/home.js") }}"></script>
-@endpush
+                <div class="jumbotron-content">
 
-@section('content')
+                    <h1 class="text-center">Welcome to <br> {{ config('app.name') }}!</h1>
 
-    <h2>Hello</h2>
+                    <hr>
+
+                    <h3>Tools to keep your family organized so your energy can be spent on loving your life!</h3>
+
+                </div>
+
+                <p class="text-center">
+                    <span class="circle-icon" style="color: white; background-color: green;">
+                        <span class="fa fa-dollar"></span>
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h2>Money Matters</h2>
+
+        <div class="row">
+
+            <div class="col-12 col-md-6">
+
+            </div>
+            <div class="col-12 col-md-6">
+
+            </div>
+
+        </div>
+
+    </div>
 
 @endsection

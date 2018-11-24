@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.marketing')
 
-
+{{--
 @push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
-@endpush
-
+@endpush--}}
+{{--
 @push('scripts')
     <script src="{{ asset("js/home.js") }}"></script>
-@endpush
+@endpush--}}
 
-@section('content')
+@section('marketing')
 
-    <h1>Project</h1>
+    <h2>Project</h2>
 
 @endsection

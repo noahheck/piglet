@@ -1,0 +1,24 @@
+/**
+ * assets/sass/home/scss
+ */
+
+@import "variables";
+
+
+$marketing-background-color: #fcf592;
+
+
+.homepage-jumbotron {
+
+  background-color: #fff;
+
+  .jumbotron-content {
+    @include border-radius(30px);
+    border: 15px solid $marketing-background-color;
+    padding: 50px 15px;
+  }
+
+  h1 {
+  }
+}
+
