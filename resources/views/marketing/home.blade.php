@@ -13,7 +13,7 @@
 
                 <div class="jumbotron-content text-center">
 
-                    <h1 {{--class="text-center"--}}>Welcome to <br> {{ config('app.name') }}!</h1>
+                    <h1>Welcome to <br> {{ config('app.name') }}!</h1>
 
                     <hr>
 
@@ -43,8 +43,8 @@
 
             <div class="col-12 col-md-6">
 
-                <div class="card mb-5">
-                    <div class="card-body color-white bg-purple">
+                <div class="card border-0 shadow mb-5">
+                    <div class="card-body color-white bg-red">
                         <h4 class="card-title text-center">
                             <span class="fa fa-list-ul"></span>
                             Organize
@@ -62,8 +62,8 @@
 
             <div class="col-12 col-md-6">
 
-                <div class="card mb-5">
-                    <div class="card-body color-white bg-blue">
+                <div class="card border-0 shadow mb-5">
+                    <div class="card-body color-white bg-purple">
                         <h4 class="card-title text-center">
                             <span class="fa fa-arrow-circle-right"></span>
                             Plan
@@ -81,8 +81,8 @@
 
             <div class="col-12 col-md-6">
 
-                <div class="card">
-                    <div class="card-body color-white bg-red">
+                <div class="card border-0 shadow">
+                    <div class="card-body color-white bg-blue">
                         <h4 class="card-title text-center">
                             <span class="fa fa-bar-chart"></span>
                             Track
@@ -100,7 +100,7 @@
 
             <div class="col-12 col-md-6">
 
-                <div class="card">
+                <div class="card border-0 shadow">
                     <div class="card-body color-white bg-green">
                         <h4 class="card-title text-center">
                             <span class="fa fa-line-chart"></span>

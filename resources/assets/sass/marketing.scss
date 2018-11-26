@@ -16,7 +16,18 @@ $marketing-background-color: #fcf592;
     padding: 50px 15px;
   }
 
-  h1 {
-  }
 }
 
+.pricing-faqs {
+  margin-top: 30px;
+
+  dt {
+    margin-top: 15px;
+
+  }
+
+  br {
+    line-height: 2.5;
+    margin-top: 15px;
+  }
+}

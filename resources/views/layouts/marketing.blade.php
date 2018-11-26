@@ -30,7 +30,7 @@
                 &copy; {{ date('Y') }} - Noah Heck and Contributors
             </p>
             <p>
-                {{ config('app.name') }} is proud to be an open-source project - Find out more at: <a href="https://github.com/noahheck/piglet" target="_blank">https://github.com/noahheck/piglet</a>
+                {{ config('app.name') }} is proud to be an open-source project - Find out more at: <a href="{{ config('piglet.url') }}" target="_blank">{{ config('piglet.url') }}</a>
             </p>
         </div>
     </div>
