@@ -22,11 +22,11 @@ class MoneyMattersWelcomeController extends Controller
 {
     public function index(Request $request, Family $family)
     {
-        /*if ($family->getSetting(Settings::MONEY_MATTERS_FIRST_RUN_WIZARD_COMPLETE)) {
+        if ($family->getSetting(Settings::MONEY_MATTERS_FIRST_RUN_WIZARD_COMPLETE)) {
             flashWarning('money-matters-welcome.already-completed');
 
             return redirect()->route('family.money-matters', [$family]);
-        }*/
+        }
 
         return view('family.money-matters-welcome', [
             'family' => $family,
