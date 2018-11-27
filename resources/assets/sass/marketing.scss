@@ -18,7 +18,14 @@ $marketing-background-color: #fcf592;
 
 }
 
-.pricing-faqs {
+br {
+  @include paddedBr(15px);
+}
+
+
+.pricing-faqs,
+.project-details,
+.project-faqs {
   margin-top: 30px;
 
   dt {
@@ -26,7 +33,4 @@ $marketing-background-color: #fcf592;
 
   }
 
-  br {
-    @include paddedBr(15px);
-  }
 }
