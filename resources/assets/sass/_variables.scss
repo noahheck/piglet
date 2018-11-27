@@ -45,6 +45,12 @@ $subtle-highlight: #e3f3ff;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
+@mixin paddedBr($height) {
+  display: block;
+  margin-top: $height;
+  content: " ";
+}
+
 .noselect {
   @include noselect();
 }

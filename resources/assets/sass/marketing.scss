@@ -27,7 +27,6 @@ $marketing-background-color: #fcf592;
   }
 
   br {
-    line-height: 2.5;
-    margin-top: 15px;
+    @include paddedBr(15px);
   }
 }
