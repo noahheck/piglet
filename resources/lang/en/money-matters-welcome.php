@@ -7,7 +7,8 @@ return [
     // Page 1
     'introduction' => "The " . env('APP_NAME') . " Money Matters system is designed to provide your family some tools to gain and/or maintain control of your finances no matter what life throws at you.",
 
-    'wizard-process' => "The next few screens will introduce you to the Money Matters components and walk you through setting up the system for your family. If you need to refer back to this information, it will be available in the " . __('application.page-menu') . ".",
+    'wizard-process' => "The next few screens will introduce you to the Money Matters components and walk you through setting up the system for your family.",
+        //If you need to refer back to this information, it will be available in the " . __('application.page-menu') . ".",
 
     'navigation'         => 'Navigation',
     'navigation-details' => "You can access all the components of the Money Matters system from the navigation menu on the left. Click 'Settings' in the menu to show additional options that, while important to effectively using the system, shouldn't need to be accessed as often.",
@@ -115,7 +116,7 @@ return [
     // Page 6
     'piggy-banks-details' => "It seems that few things in life come free (only the best things, in fact), which is why it's important to work effective saving habits into your monthly budget. 
         For this reason, we provide the idea of Piggy Banks. Each savings goal your family has should be entered individually and an amount of money should be allocated toward each one every month. Give each Piggy Bank a target amount, specify how much you expect to contribute each month, provide a date you expect/need/want the goal to be met, and before you know it, your goals will be within reaching distance!
-        It's important to stay focused when saving. It's hard to stay motivated to continue to save when your goals are never achieved, so stay focused on only few items at any given time (say, 1-3 at most). When one goal is achieved, celebrate that and get started working on the next one.",
+        It's important to stay focused when saving. It's hard to stay motivated to continue to save when your goals are never achieved, so stay focused on only a few items at any given time (say, 1-3 at most). When one goal is achieved, celebrate that and get started working on the next one.",
     'piggy-banks-prompt' => "Go ahead and enter up to 3 Piggy Bank items your family can work toward. If you're already saving for something, include the amount you've already saved as the 'Starting Amount'.",
     'piggy-banks-review-note' => "You'll be able to review and edit your Piggy Banks later from the Money Matters menu.",
     'piggy-banks-next' => "Once you're ready to proceed, go ahead and continue on to the next section.",

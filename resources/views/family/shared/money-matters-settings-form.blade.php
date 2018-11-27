@@ -2,9 +2,10 @@
     <div class="card-body">
         <h4 class="text-center">{{ __('money-matters.pocket-money-label') }}</h4>
         <div class="text-center">
-                <span class="circle-icon" style="color: #fff; background-color: green;">
-                    <span class="fa fa-money"></span>
-                </span>
+            <span class="fa-stack fa-3x">
+                <span class="fa fa-circle fa-stack-2x color-green"></span>
+                <span class="fa fa-dollar fa-stack-1x color-white"></span>
+            </span>
         </div>
         <p>{{ __('money-matters.pocket-money-description') }}</p>
         <div class="form-group">
@@ -24,9 +25,10 @@
     <div class="card-body">
         <h4 class="text-center">{{ __('money-matters.retirement-label') }}</h4>
         <div class="text-center">
-                <span class="circle-icon" style="color: #fff; background-color: red;">
-                    <span class="fa fa-globe"></span>
-                </span>
+            <span class="fa-stack fa-3x">
+                <span class="fa fa-circle fa-stack-2x color-red"></span>
+                <span class="fa fa-globe fa-stack-1x color-white"></span>
+            </span>
         </div>
         <p>{{ __('money-matters.retirement-description') }}</p>
         <div class="form-group">
@@ -46,9 +48,10 @@
     <div class="card-body">
         <h4 class="text-center">{{ __('money-matters.education-label') }}</h4>
         <div class="text-center">
-                <span class="circle-icon" style="color: #fff; background-color: purple;">
-                    <span class="fa fa-graduation-cap"></span>
-                </span>
+            <span class="fa-stack fa-3x">
+                <span class="fa fa-circle fa-stack-2x color-purple"></span>
+                <span class="fa fa-graduation-cap fa-stack-1x color-white"></span>
+            </span>
         </div>
         <p>{{ __('money-matters.education-description') }}</p>
         <div class="form-group">

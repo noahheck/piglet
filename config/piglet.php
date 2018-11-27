@@ -22,4 +22,6 @@ return [
         'America/Adak'        => 'Hawaii',
         'America/Honolulu'    => 'Hawaii (no DST)',
     ],
+
+    'url' => 'https://github.com/noahheck/piglet',
 ];

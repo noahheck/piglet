@@ -8,8 +8,9 @@
                 <div class="col-12 col-sm-3 d-flex justify-content-center" style="background-color: {{ $color }}; align-items: center;">
 
                     <div class="text-center">
-                        <span class="circle-icon" style="color: {{ $color }}; background-color: white;">
-                            <span class="fa fa-dollar"></span>
+                        <span class="fa-stack fa-3x">
+                            <span class="fa fa-circle fa-stack-2x color-white"></span>
+                            <span class="fa fa-dollar fa-stack-1x color-{{ $color }}"></span>
                         </span>
                     </div>
 

@@ -8,8 +8,9 @@
                     {{ __('money-matters-welcome.expense-groups-' . $expense) }}
                 </h4>
                 <div class="text-center">
-                    <span class="circle-icon" style="color: #fff; background-color: {{ $iconColor }};">
-                        {!! $icon !!}
+                    <span class="fa-stack fa-3x">
+                        <span class="fa fa-circle fa-stack-2x" style="color: {{ $iconColor }};"></span>
+                        <span class="fa fa-{{ $icon }} fa-stack-1x color-white"></span>
                     </span>
                 </div>
                 <p class="text-center">{{ __('money-matters-welcome.expense-groups-' . $expense . '-details') }}</p>

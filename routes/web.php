@@ -16,13 +16,14 @@ use App\Http\Middleware\VerifyFamilyAccess;
 
 Route::singularResourceParameters();
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Auth::routes();
+Route::get('/'       , 'MarketingController@home')->name('homepage');
+Route::get('/project', 'MarketingController@project')->name('project');
+Route::get('/pricing', 'MarketingController@pricing')->name('pricing');
+
+
 
 Route::middleware('auth')->group(function() {
 

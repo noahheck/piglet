@@ -15,8 +15,9 @@
             <div class="card-body">
 
                 <div class="text-center">
-                    <span class="circle-icon" style="color: white; background-color: green;">
-                        <span class="fa fa-dollar"></span>
+                    <span class="fa-stack fa-3x">
+                        <span class="fa fa-circle fa-stack-2x color-green" style="color: green;"></span>
+                        <span class="fa fa-dollar fa-stack-1x color-white"></span>
                     </span>
                 </div>
 
@@ -61,9 +62,10 @@
         <div class="card-body">
 
             <div class="text-center">
-                    <span class="circle-icon" style="color: white; background-color: green;">
-                        <span class="fa fa-dollar"></span>
-                    </span>
+                <span class="fa-stack fa-3x">
+                    <span class="fa fa-circle fa-stack-2x color-green" style="color: green;"></span>
+                    <span class="fa fa-dollar fa-stack-1x color-white"></span>
+                </span>
             </div>
 
             <div class="form-group">
