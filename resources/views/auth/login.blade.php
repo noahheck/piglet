@@ -46,6 +46,11 @@
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
                                     </label>
                                 </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="terms" {{ old('terms', true) ? 'checked' : '' }}> I agree to the <a href="{{ route('terms-of-use') }}">Terms of Use</a> and I've had an opportunity to review the <a href="{{ route('privacy') }}">Privacy Policy</a>
+                                    </label>
+                                </div>
                             </div>
                         </div>
 

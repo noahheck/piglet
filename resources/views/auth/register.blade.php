@@ -92,6 +92,16 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="terms" {{ old('terms', true) ? 'checked' : '' }}> I agree to the <a href="{{ route('terms-of-use') }}">Terms of Use</a> and I've had an opportunity to review the <a href="{{ route('privacy') }}">Privacy Policy</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -23,6 +23,12 @@
                 <li>
                     <a href="{{ route('pricing') }}">Pricing</a>
                 </li>
+                <li>
+                    <a href="{{ route('terms-of-use') }}">Terms of Use</a>
+                </li>
+                <li>
+                    <a href="{{ route('privacy') }}">Privacy Policy</a>
+                </li>
             </ul>
         </div>
         <div class="col-12 col-sm-6 text-right">

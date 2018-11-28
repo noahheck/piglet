@@ -61,6 +61,13 @@
                                 <span class="fa fa-cogs"></span> Settings
                             </a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('terms-of-use') }}">
+                                <span class="fa fa-gavel"></span> Terms of Use
+                            </a>
+                            <a class="dropdown-item" href="{{ route('privacy') }}">
+                                <span class="fa fa-shield"></span> Privacy Policy
+                            </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route("logout") }}">
                                 <span class="fa fa-sign-out"></span> Logout
                             </a>
@@ -70,7 +77,10 @@
 
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-user"></span> Login</a>
+                        <a class="nav-link" href="{{ route("register") }}"><span class="fa fa-user-plus"></span> Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-sign-in"></span> Login</a>
                     </li>
                 @endguest
             </ul>

@@ -23,6 +23,9 @@ Route::get('/'       , 'MarketingController@home')->name('homepage');
 Route::get('/project', 'MarketingController@project')->name('project');
 Route::get('/pricing', 'MarketingController@pricing')->name('pricing');
 
+Route::get('/terms-of-use', 'LegalController@terms')->name('terms-of-use');
+Route::get('/privacy'     , 'LegalController@privacy')->name('privacy');
+
 
 
 Route::middleware('auth')->group(function() {
