@@ -14,7 +14,7 @@
 
     @stack('meta')
 
-    <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
+    <title>{{ config('app.name', 'Piglet') }} @yield('title')</title>
 
     {{-- Scripts --}}
     @routes
@@ -22,11 +22,11 @@
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Fonts -->
+    {{--<!-- Fonts -->--}}
     {{--<link rel="dns-prefetch" href="https://fonts.gstatic.com">--}}
     {{--<link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">--}}
 
-    <!-- Styles -->
+    {{--<!-- Styles -->--}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('stylesheets')
 </head>
@@ -49,7 +49,13 @@
             <ul class="navbar-nav ml-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("home") }}"><span class="fa fa-home"></span> Home</a>
+                        <a class="nav-link" href="{{ route("home") }}">
+                            <span class="fa-stack" aria-hidden="true">
+                                <span class="fa fa-square-o fa-stack-2x"></span>
+                                <span class="fa fa-home fa-stack-1x"></span>
+                            </span>
+                            Home
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
@@ -58,18 +64,18 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route("user-settings") }}">
-                                <span class="fa fa-cogs"></span> Settings
+                                <span class="fa fa-cogs fa-fw" aria-hidden="true"></span> Settings
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('terms-of-use') }}">
-                                <span class="fa fa-gavel"></span> Terms of Use
+                                <span class="fa fa-institution fa-fw aria-hidden="true""></span> Terms of Use
                             </a>
                             <a class="dropdown-item" href="{{ route('privacy') }}">
-                                <span class="fa fa-shield"></span> Privacy Policy
+                                <span class="fa fa-shield fa-fw aria-hidden="true""></span> Privacy Policy
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route("logout") }}">
-                                <span class="fa fa-sign-out"></span> Logout
+                                <span class="fa fa-sign-out fa-fw aria-hidden="true""></span> Logout
                             </a>
                         </div>
                     </li>

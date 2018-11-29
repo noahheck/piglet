@@ -19,6 +19,8 @@
 
             <h2>Welcome Home!</h2>
 
+            <hr>
+
             @if ($invitations->count())
                 <div class="row justify-content-center">
 
