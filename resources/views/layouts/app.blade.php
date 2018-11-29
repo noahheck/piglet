@@ -81,14 +81,21 @@
                     </li>
                 @endauth
 
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("register") }}"><span class="fa fa-user-plus"></span> Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-sign-in"></span> Login</a>
-                    </li>
-                @endguest
+                {{-- $this check is to tell if we're rendering a HTTP error page. The session middleware may not have
+                    run so we won't be able to tell if there's a user or not and it looks really silly if the user is
+                    logged in and they have the option to log in or register --}}
+                @if (!isset($exception))
+
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("register") }}"><span class="fa fa-user-plus"></span> Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-sign-in"></span> Login</a>
+                        </li>
+                    @endguest
+
+                @endif
             </ul>
 
         </div>

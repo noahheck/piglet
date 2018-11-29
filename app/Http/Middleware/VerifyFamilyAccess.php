@@ -6,6 +6,7 @@ use App\Family;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class VerifyFamilyAccess
 {
@@ -23,6 +24,13 @@ class VerifyFamilyAccess
         if ($family) {
             if (!($family instanceof Family)) {
                 $family = Family::find($family);
+            }
+
+            /**
+             * Note the addition of the ! in the first instance
+             */
+            if (!$family) {
+                throw new AccessDeniedHttpException("You don't have access to this family!");
             }
 
             if (!$family->isAccessibleBy(Auth::user())) {
