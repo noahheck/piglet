@@ -32,12 +32,17 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <div class="navbar-collapse collapse">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ route("homepage") }}">{{ config('app.name') }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbar">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                {{--<li class="nav-item">
                     <a class="nav-link" href="{{ route("homepage") }}"><span class="fa fa-home"></span> {{ config('app.name') }}</a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("project") }}">Project</a>
                 </li>
@@ -62,7 +67,7 @@
                             {!! Auth::user()->icon(['icon', 'user-photo']) !!}
                             {{ Auth::user()->firstName }}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu user-options-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route("user-settings") }}">
                                 <span class="fa fa-cogs fa-fw" aria-hidden="true"></span> Settings
                             </a>
@@ -110,6 +115,7 @@
     @stack('scripts')
 
     @php
+        // This is how long each notification should remain on the screen before fading (0 means click to dismiss)
         $flashMessages = [
             'error'   => '0',
             'warning' => '0',
