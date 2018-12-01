@@ -42,6 +42,7 @@ class FamilyConnectService
         Artisan::call('migrate', [
             '--database' => 'family',
             '--path'     => 'database/migrations_family',
+            '--force'    => true,
         ]);
 
         return $this;
@@ -55,6 +56,7 @@ class FamilyConnectService
         Artisan::call('migrate:rollback', [
             '--database' => 'family',
             '--path'     => 'database/migrations_family',
+            '--force'    => true,
         ]);
     }
 }

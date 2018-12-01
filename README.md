@@ -53,6 +53,12 @@ Use your text editor to change the relevant values to suit your environment, inc
 
 *You might also wish to configure your environment with appropriate `MAIL` parameters if you want to send emails. See the [Laravel documentation](https://laravel.com/docs/5.7/mail).*
 
+Execute the database migrations:
+
+```bash
+./artisan migrate
+```
+
 ### Running the Application
 
 Start the Artisan development server:
