@@ -12,6 +12,11 @@
         @meta('family-id', $family->id)
     @endif
 
+    @meta('og:title', e(config('app.name')))
+    @meta('og:type', 'website')
+    @meta('og:image', asset('img/cartoon_family_fullsize.jpg'))
+    @meta('og:url', config('app.url'))
+
     @stack('meta')
 
     <title>{{ config('app.name', 'Piglet') }} @yield('title')</title>
