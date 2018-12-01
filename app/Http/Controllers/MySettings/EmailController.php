@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Support\Facades\Mail;
+
+use function App\flashSuccess;
 
 class EmailController extends Controller
 {
@@ -29,9 +30,9 @@ class EmailController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors(['verification' => 'The PIN was invalid']);
         }
 
-        $request->session()->flash('user-settings-success', 'Email verified successfully');
+        flashSuccess('auth.email-verified');
 
-        return redirect()->route('user-settings');
+        return redirect()->route('home');
     }
 
     public function requestNewPin(Request $request)
@@ -46,7 +47,7 @@ class EmailController extends Controller
 
         Mail::to($user)->send(new EmailVerification($user, $newPin));
 
-        $request->session()->flash('new-user-email-verification', 'A new PIN has been emailed to you');
+        flashSuccess('auth.new-email-pin');
 
         return redirect()->route('user-settings.show-verify-email');
     }

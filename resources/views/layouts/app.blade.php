@@ -63,9 +63,6 @@
 
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="navbar-nav">
-                {{--<li class="nav-item">
-                    <a class="nav-link" href="{{ route("homepage") }}"><span class="fa fa-home"></span> {{ config('app.name') }}</a>
-                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("project") }}">Project</a>
                 </li>

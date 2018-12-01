@@ -16,4 +16,6 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'email-verified' => 'Email verified successfully',
+    'new-email-pin'  => 'A new PIN has been emailed to you',
 ];

@@ -62,7 +62,7 @@
 
             @endif
 
-            @if ($families)
+            @if ($families->count())
 
                 <div class="row justify-content-center">
 
@@ -108,7 +108,31 @@
 
             @else
 
-                <a class="btn btn-lg btn-block btn-primary" href="{{ route('family.create') }}"><span class="fa fa-users"></span> {{ __('family.create-a-family') }}</a>
+                <div class="row justify-content-center">
+
+                    <div class="col-12 col-sm-10 col-md-6">
+
+                        <a href="{{ route('family.create') }}" class="card shadow border-0 mb-5 text-center">
+
+                            <div class="card-body">
+                                <p class="display-3" aria-hidden="true">
+                                    <span class="fa fa-users"></span>
+                                </p>
+                                <h3>
+                                    Get started by creating your family
+                                </h3>
+                            </div>
+
+                        </a>
+
+                        <p class="text-muted text-center">
+                            *Note - if a member of your family has already created a family here, have them invite you to their instance from the "Family Members" component
+                        </p>
+
+                    </div>
+
+                </div>
+
 
             @endif
 
