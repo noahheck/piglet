@@ -13,9 +13,11 @@
 
     <div class="row justify-content-center">
 
+
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
 
-            <div class="card border-0 shadow">
+            @include ('marketing.shared._pricing-card')
+            {{--<div class="card border-0 shadow">
 
                 <div class="card-body color-white bg-red text-center">
 
@@ -41,7 +43,7 @@
                     <li class="list-group-item"><span class="fa fa-check color-green"></span> Savings Goal Tracking</li>
                 </ul>
 
-            </div>
+            </div>--}}
 
         </div>
 
