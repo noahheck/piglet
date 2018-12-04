@@ -53,7 +53,7 @@ return [
     'recurring-expenses-prompt' => "Fill in the name of the merchant you send each of the following monthly bills to, along with how much your family expects to pay each month. These items will automatically fill in on each month's Cash Flow Plan, so you can see ahead of time where your money is going.",
     'recurring-expenses-prompt-note' => "If any of these items doesn't apply to your family, simply leave them blank and they won't appear on your Cash Flow Plan.
         In addition, if you make one payment for more than one category below (such as paying one bill for both your Internet and television service), choose just one category to fill in with the merchant and the total for both categories.",
-    'recurring-expenses-review-note' => "It would be impossible for us to list all of the monthly expenses for every family, so has been just a starter set that should apply to most families. If your family has additional monthly expenses, you'll want to make sure to enter them as well.
+    'recurring-expenses-review-note' => "It would be impossible for us to list all of the monthly expenses for every family, so this has been just a starter set that should apply to most families. If your family has additional monthly expenses, you'll want to make sure to enter them as well.
         You'll be able to review and edit your Recurring Expenses later from the 'Settings' menu.",
     'recurring-expenses-next' => "Once you've entered your Recurring Expenses, go ahead and continue on to the next section.",
 
