@@ -13,10 +13,9 @@
 
         <div class="row">
 
-            <div class="col-12 col-md-6 col-xl-7 text-center">
+            <div class="col-12 col-md-6 col-xl-7 text-center" data-controller="image-upload-preview">
                 <div>
-                    <img class="img-fluid rounded-circle family-photo" alt="{{ __('family.family_photo') }}" src="{{ $family->imagePath() }}">
-
+                    {!! $family->photo(['rounded-circle', 'img-fluid', 'family-photo'], ['target' => 'image-upload-preview.image']) !!}
                     @fieldError('familyPhoto')
                 </div>
 
@@ -27,7 +26,7 @@
                 @endif
 
                 <div class="custom-file {{ ($family->image) ? "d-none" : "" }}" id="familyPhotoInputContainer">
-                    <input type="file" class="custom-file-input" id="familyPhoto" name="familyPhoto">
+                    <input type="file" class="custom-file-input" id="familyPhoto" name="familyPhoto" data-action="image-upload-preview#preview" data-target="image-upload-preview.input">
                     <label class="custom-file-label" for="familyPhoto">{{ __('family.family_photo') }}</label>
                 </div>
             </div>

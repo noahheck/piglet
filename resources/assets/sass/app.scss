@@ -133,6 +133,10 @@ img.thumbnail {
   max-width: 200px;
 }
 
+img.in-preview {
+  opacity: .5;
+}
+
 //
 .has-bold-labels label {
   font-weight: bold;

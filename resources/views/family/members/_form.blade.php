@@ -8,11 +8,11 @@
 
     <div class="row">
 
-        <div class="col-12 col-md-4 col-lg-5">
+        <div class="col-12 col-md-4 col-lg-5" data-controller="image-upload-preview">
 
             <div class="text-center member-photo-image-container">
                 <div class="card shadow">
-                    {!! $member->photo(['card-img-top']) !!}
+                    {!! $member->photo(['card-img-top'], ['target' => 'image-upload-preview.image']) !!}
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
             @endif
 
             <div class="custom-file {{ ($member->image) ? "d-none" : "" }}" id="memberPhotoInputContainer">
-                <input type="file" class="custom-file-input" id="memberPhoto" name="memberPhoto">
+                <input type="file" class="custom-file-input" id="memberPhoto" name="memberPhoto" data-action="image-upload-preview#preview" data-target="image-upload-preview.input">
                 <label class="custom-file-label" for="memberPhoto">{{ __('form.photo') }}</label>
             </div>
 

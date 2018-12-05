@@ -42,27 +42,47 @@ trait IsPhotogenic
      * protected function storageDisk()
      */
 
+    private function getDataString(array $dataAttrs = [])
+    {
+        $dataString = "";
+
+        foreach ($dataAttrs as $name => $value) {
+            $dataString .= " data-{$name}=\"" . e($value) . "\"";
+        }
+
+        return $dataString;
+    }
+
 
     /**
      *
      */
-    public function icon(array $withClasses = [])
+    public function icon(array $withClasses = [], array $dataAttrs = [])
     {
         $classes = array_merge(['icon', 'rounded-circle'], $withClasses);
         $classes = implode(' ', $classes);
+
+        $dataString = $this->getDataString($dataAttrs);
+
         return "<img class='{$classes}' src='{$this->imagePath('icon') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
     }
 
-    public function thumbnail(array $withClasses = [])
+    public function thumbnail(array $withClasses = [], array $dataAttrs = [])
     {
         $classes = implode(' ', $withClasses);
-        return "<img class='{$classes}' src='{$this->imagePath('thumbnail') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
+
+        $dataString = $this->getDataString($dataAttrs);
+
+        return "<img class='{$classes}' {$dataString} src='{$this->imagePath('thumbnail') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
     }
 
-    public function photo(array $withClasses = [])
+    public function photo(array $withClasses = [], array $dataAttrs = [])
     {
         $classes = implode(' ', $withClasses);
-        return "<img class='{$classes}' src='{$this->imagePath('full') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
+
+        $dataString = $this->getDataString($dataAttrs);
+
+        return "<img class='{$classes}' {$dataString} src='{$this->imagePath('full') }' alt='{$this->photoAltText()}' title='{$this->photoAltText()}'>";
     }
 
     public function photoAltText()

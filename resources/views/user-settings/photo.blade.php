@@ -16,10 +16,10 @@
 
     <div class="row">
 
-        <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+        <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3" data-controller="image-upload-preview">
 
             <div class="text-center">
-                {!! $user->thumbnail(['user-photo', 'mb-2']) !!}
+                {!! $user->thumbnail(['user-photo', 'mb-2'], ['target' => 'image-upload-preview.image']) !!}
             </div>
 
             <div class="card">
@@ -37,7 +37,7 @@
 
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="profilePhoto" name="profilePhoto">
+                                    <input type="file" class="custom-file-input" id="profilePhoto" name="profilePhoto" data-action="image-upload-preview#preview" data-target="image-upload-preview.input">
                                     <label class="custom-file-label" for="profilePhoto">{{ __('form.choose_file') }}</label>
                                 </div>
                                 @fieldError('profilePhoto')

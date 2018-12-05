@@ -8,6 +8,15 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context     = require.context("./controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+
+
+
 let $ = require("jquery");
         require('./bootstrap');
         require('bootstrap-datepicker');
@@ -17,7 +26,7 @@ let $ = require("jquery");
 let jsCookie = require('js-cookie');
 
 
-        // require('@fortawesome/fontawesome-free/js/all.min.js')
+// require('@fortawesome/fontawesome-free/js/all.min.js')
 
 import Chart from 'chart.js';
 
