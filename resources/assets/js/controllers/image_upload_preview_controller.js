@@ -19,8 +19,6 @@ export default class extends Controller {
     }
 
     preview() {
-        console.log("Updating preview")
-        console.log(this.inputTarget)
 
         if (!this.inputTarget.files ||!this.inputTarget.files[0]) {
             return ""
