@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Family;
 use App\Family;
 use App\Family\RecurringExpense;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CreatesNewMerchants;
 use Illuminate\Http\Request;
 
 use function App\flashSuccess;
 
 class RecurringExpenseController extends Controller
 {
+    use CreatesNewMerchants;
+
     /**
      * Display a listing of the resource.
      *
@@ -57,6 +60,12 @@ class RecurringExpenseController extends Controller
         $recurringExpense->fill($request->only($recurringExpense->getFillable()));
 
         $recurringExpense->active = $request->has('active');
+
+        if ($this->shouldCreateNewMerchant($request)) {
+            $merchant = $this->createNewMerchant($request);
+
+            $recurringExpense->merchant_id = $merchant->id;
+        }
 
         $recurringExpense->save();
 
@@ -107,6 +116,12 @@ class RecurringExpenseController extends Controller
         $recurringExpense->fill($request->only($recurringExpense->getFillable()));
 
         $recurringExpense->active = $request->has('active');
+
+        if ($this->shouldCreateNewMerchant($request)) {
+            $merchant = $this->createNewMerchant($request);
+
+            $recurringExpense->merchant_id = $merchant->id;
+        }
 
         $recurringExpense->save();
 

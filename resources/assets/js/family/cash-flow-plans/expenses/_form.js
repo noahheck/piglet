@@ -56,6 +56,10 @@ $(function() {
         }
     });
 
+
+
+
+
     $('.create-new-merchant').click(function() {
         $('#existingMerchantGroup').toggleClass('d-none');
         $('#merchant_id').val('');

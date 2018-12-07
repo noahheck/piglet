@@ -8,7 +8,7 @@
     <script type="text/javascript" src="{{ asset('js/family.recurring-expenses._form.js') }}"></script>
 @endpush
 
-<form name="incomeSource" action="{{ $action }}" method="POST" class="has-bold-labels">
+<form name="incomeSource" action="{{ $action }}" method="POST" class="has-bold-labels" data-controller="toggle-new-merchant">
 
     @csrf
 
@@ -45,15 +45,23 @@
             </label>
         </div>
 
-        <div class="form-group">
-            <label for="merchant_id">{{ __('recurring-expenses.merchant') }}</label>
-            <select name="merchant_id" id="merchant_id" class="custom-select">
+        <div class="form-group" data-target="toggle-new-merchant.existingGroup">
+            <label for="merchant_id">{{ __('recurring-expenses.merchant') }}</label><button tabindex="-1" type="button" class="btn btn-sm btn-link" data-action="toggle-new-merchant#showNewMerchant">{{ __('merchants.add-new-merchant') }}</button>
+            <select name="merchant_id" id="merchant_id" class="custom-select" data-target="toggle-new-merchant.merchantId">
                 <option value="">--</option>
                 @foreach ($merchants as $merchant)
                     <option value="{{ $merchant->id }}" {{ ($recurringExpense->merchant_id == $merchant->id) ? ' selected' : '' }} data-default-category="{{ $merchant->default_category_id }}" data-default-sub-category="{{ $merchant->default_sub_category }}">{{ $merchant->name }}</option>
                 @endforeach
             </select>
             @fieldError('merchant_id')
+        </div>
+
+        <div class="form-group d-none" id="newMerchantGroup" data-target="toggle-new-merchant.newGroup">
+            <div class="form-group">
+                <label for="merchant_name">{{ __('merchants.add-new-merchant') }}</label><button type="button" class="btn btn-sm btn-link" id="cancelCreateNewMerchantsss"  data-action="toggle-new-merchant#cancelNewMerchant">{{ __('form.cancel') }}</button>
+                <input type="text" name="merchant_name" id="merchant_name" class="form-control" data-target="toggle-new-merchant.newMerchantName" placeholder="{{ __('merchants.merchant') . ' ' . __('merchants.name') }}" value="{{ old('merchant_name', '') }}">
+                @fieldError('merchant_name')
+            </div>
         </div>
 
         <div class="form-group">

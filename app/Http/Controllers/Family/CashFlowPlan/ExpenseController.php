@@ -7,6 +7,7 @@ use App\Family\CashFlowPlan;
 use App\Family\CashFlowPlan\Expense;
 use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\Category;
+use App\Http\Controllers\Traits\CreatesNewMerchants;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,6 +15,8 @@ use function App\flashSuccess;
 
 class ExpenseController extends Controller
 {
+    use CreatesNewMerchants;
+
     /**
      * Display a listing of the resource.
      *
@@ -78,14 +81,8 @@ class ExpenseController extends Controller
 
         $expense->fill($request->only($expense->getFillable()));
 
-        if ($request->has('merchant_name') && !$request->get('merchant_id')) {
-
-            $merchant = new Family\Merchant();
-            $merchant->name                 = $request->get('merchant_name');
-            $merchant->default_category_id  = $request->get('category_id');
-            $merchant->default_sub_category = $request->get('sub_category');
-
-            $merchant->save();
+        if ($this->shouldCreateNewMerchant($request)) {
+            $merchant = $this->createNewMerchant($request);
 
             $expense->merchant_id = $merchant->id;
         }
@@ -144,14 +141,8 @@ class ExpenseController extends Controller
 
         $expense->fill($request->only($expense->getFillable()));
 
-        if ($request->has('merchant_name') && !$request->get('merchant_id')) {
-
-            $merchant = new Family\Merchant();
-            $merchant->name                 = $request->get('merchant_name');
-            $merchant->default_category_id  = $request->get('category_id');
-            $merchant->default_sub_category = $request->get('sub_category');
-
-            $merchant->save();
+        if ($this->shouldCreateNewMerchant($request)) {
+            $merchant = $this->createNewMerchant($request);
 
             $expense->merchant_id = $merchant->id;
         }
