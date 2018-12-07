@@ -25,7 +25,7 @@
     <fieldset>
         <legend>{{ __('expenses.details') }}</legend>
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow mb-4">
             <div class="card-body">
 
                 <div class="form-group">

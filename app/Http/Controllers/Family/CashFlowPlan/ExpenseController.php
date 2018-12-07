@@ -8,6 +8,7 @@ use App\Family\CashFlowPlan\Expense;
 use App\Family\CashFlowPlan\ExpenseGroup;
 use App\Family\Category;
 use App\Http\Controllers\Traits\CreatesNewMerchants;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,6 +47,8 @@ class ExpenseController extends Controller
     public function create(Request $request, Family $family, CashFlowPlan $cashFlowPlan)
     {
         $expense = new Expense();
+
+        $expense->date = Carbon::now();
 
         if ($request->query('expense_group_id')) {
             $expense_group_id = $request->query('expense_group_id');
