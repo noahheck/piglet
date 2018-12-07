@@ -63,32 +63,36 @@
 
                             <h2>{{ $expenseGroup->name }}</h2>
 
-                                <p class="card-text">
-                                    <small class="text-muted float-right" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
-                                        {{ App\formatCurrency($expenseGroup->actualVsProjected(), true) }}
-                                    </small>
-                                    {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
-                                </p>
+                            <p class="card-text">
+                                <small class="text-muted float-right" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
+                                    {{ App\formatCurrency($expenseGroup->actualVsProjected(), true) }}
+                                </small>
+                                {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
+                            </p>
 
-                                <div class="progress">
+                            <div class="progress">
 
-                                    @php
-                                        $statusClass = '';
-                                        if ($expenseGroup->isOverspent()) {
-                                            $statusClass = 'bg-danger';
-                                        } elseif ($expenseGroup->isCloseToOverspent()) {
-                                            $statusClass = 'bg-warning';
-                                        }
-                                    @endphp
+                                @php
+                                    $statusClass = '';
+                                    if ($expenseGroup->isOverspent()) {
+                                        $statusClass = 'bg-danger';
+                                    } elseif ($expenseGroup->isCloseToOverspent()) {
+                                        $statusClass = 'bg-warning';
+                                    }
+                                @endphp
 
-                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
-                                </div>
+                                <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
+                            </div>
+
+
+                            @if ($expenseGroup->detail)
+
+                                <hr>
+
+                                {!! nl2br(e($expenseGroup->detail)) !!}
+                            @endif
 
                         </div>
-
-                        @if ($expenseGroup->detail)
-                            {!! nl2br(e($expenseGroup->detail)) !!}
-                        @endif
 
                     </div>
 
