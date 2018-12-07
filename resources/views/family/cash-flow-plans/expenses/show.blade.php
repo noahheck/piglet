@@ -52,10 +52,10 @@
                     <dd>{{ $expense->expenseGroup->name  }}</dd>
                 @endif
 
-                @if ($expense->projected)
+                {{--@if ($expense->projected)
                     <dt>{{ __('expenses.projected') }}</dt>
                     <dd>{{ App\formatCurrency($expense->projected, true) }}</dd>
-                @endif
+                @endif--}}
 
                 @if ($expense->actual)
                     <dt>{{ __('expenses.actual') }}</dt>

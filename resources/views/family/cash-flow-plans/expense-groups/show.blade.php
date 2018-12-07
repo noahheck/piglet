@@ -106,8 +106,7 @@
                 <tr class="font-weight-bold">
                     <td>{{ __('expenses.date') }}</td>
                     <td>{{ __('expenses.merchant') }}</td>
-                    <td class="text-right">{{ __('expenses.projected') }}</td>
-                    <td class="text-right">{{ __('expenses.actual') }}</td>
+                    <td class="text-right">{{ __('expenses.amount') }}</td>
                 </tr>
                 </thead>
 
@@ -115,7 +114,6 @@
                     <tr>
                         <td style="border-left: 4px solid transparent">{{ App\formatDate($expense->date) }}</td>
                         <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                        <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
                         <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                     </tr>
                 @endforeach
@@ -125,7 +123,6 @@
                         <tr>
                             <td style="border-left: 4px solid {{ $category->color }}" title="{{ $category->name }}">{{ App\formatDate($expense->date) }}</td>
                             <td><a href="{{ route('family.cash-flow-plans.expenses.edit', [$family, $cashFlowPlan, $expense, 'return' => url()->current()]) }}">{{ $expense->title() }}</a></td>
-                            <td class="text-right">{{ ($expense->projected) ? App\formatCurrency($expense->projected, true) : '' }}</td>
                             <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                         </tr>
                     @endforeach
@@ -133,7 +130,6 @@
 
                 <tr>
                     <td colspan="2"><strong>{{ __('cash-flow-plans.total') }}</strong></td>
-                    <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('projected'), true) }}</strong></td>
                     <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->expenses->sum('actual'), true) }}</strong></td>
                 </tr>
 

@@ -10,7 +10,12 @@ $(function() {
     let categorySelect = $('#category_id');
     let subCategorySelect = $('#sub_category');
 
-    $('#description').focus();
+    $('#actual').focus();
+
+    $('#showAdditionalFields').click(function() {
+        $('#additionalFields').slideToggle();
+        $(this).toggleClass('shown');
+    });
 
     categoryMap.attach('#category_id', '#sub_category');
 

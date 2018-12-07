@@ -1,0 +1,23 @@
+/**
+ * sass/family/cash-flow-plans/expenses/_form.scss
+ */
+
+.additional-fields {
+  display: none;
+}
+
+.show-additional-fields {
+  .hide-additional {
+    display: none;
+  }
+}
+
+.show-additional-fields.shown {
+  .hide-additional {
+    display: initial;
+  }
+
+  .show-additional {
+    display: none;
+  }
+}

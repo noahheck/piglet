@@ -30,7 +30,6 @@ class Expense extends Model
         'category_id',
         'sub_category',
         'name',
-        'projected',
         'actual',
         'date',
         'payment_detail',
@@ -44,7 +43,6 @@ class Expense extends Model
             'expense_group_id' => 'integer',
             'merchant_id'      => 'integer|nullable',
             'category_id'      => 'integer|nullable',
-            'projected'        => 'numeric|nullable',
             'actual'           => 'numeric|nullable',
             'date'             => 'date|nullable',
         ];

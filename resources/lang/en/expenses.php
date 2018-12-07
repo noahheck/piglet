@@ -16,6 +16,7 @@ return [
     'name'                 => 'Name',
     'date'                 => 'Date',
     'actual'               => 'Actual',
+    'amount'               => 'Amount',
     'projected'            => 'Projected',
     'detail'               => 'Detail',
     'payment-detail'       => 'Payment Detail',
