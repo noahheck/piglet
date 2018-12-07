@@ -17,7 +17,7 @@
                                         @method('DELETE')
                                         <input type="submit" class="d-none" id="pageMenuDeleteButton">
                                         <label for="pageMenuDeleteButton" class="delete-label d-block" style="cursor: pointer;">
-                                            <span class="fa fa-trash-o"></span> {{ (isset($item['text'])) ? $item['text'] : 'Delete' }}
+                                            <span class="fa fa-trash-o fa-fw"></span> {{ (isset($item['text'])) ? $item['text'] : 'Delete' }}
                                         </label>
                                     </form>
                                 </li>
@@ -27,14 +27,14 @@
                                         @csrf
                                         <input type="submit" class="d-none" id="{{ $item['id'] }}">
                                         <label for="{{ $item['id'] }}" class="d-block" style="cursor: pointer;">
-                                            <span class="{{ $item['icon'] }}"></span> {{ $item['text'] }}
+                                            <span class="{{ $item['icon'] }} fa-fw"></span> {{ $item['text'] }}
                                         </label>
                                     </form>
                                 </li>
                             @elseif (isset($item['type']) && $item['type'] === 'link')
                                 <li>
                                     <a href="{{ $item['href'] }}">
-                                        <span class="{{ $item['icon'] }}"></span> {{ $item['text'] }}
+                                        <span class="{{ $item['icon'] }} fa-fw"></span> {{ $item['text'] }}
                                     </a>
                                 </li>
                             @endif

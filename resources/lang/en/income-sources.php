@@ -3,7 +3,7 @@
 return [
     'income-sources'           => 'Income Sources',
     'income-source'            => 'Income Source',
-    'add-new-income-source'    => 'Add New Income Source',
+    'add-new-income-source'    => 'Add Income Source',
     'no-income-sources-create' => "You haven't added any income sources yet. Go ahead and create your first one now.",
     'active-income-sources'    => 'Active Income Sources',
     'inactive-income-sources'  => 'Inactive Income Sources',
