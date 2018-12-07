@@ -11,11 +11,11 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
 @endsection
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.cash-flow-plans.create.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.cash-flow-plans.create.css') }}" />
 @endpush
 
 @push('scripts')
-{{--    <script type="text/javascript" src="{{ asset('js/family.categories.index.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ mix('js/family.categories.index.js') }}"></script>--}}
 @endpush
 
 

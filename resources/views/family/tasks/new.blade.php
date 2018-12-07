@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family/home.css') }}" />--}}
+    {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/family/home.css') }}" />--}}
 @endpush
 
 @push('scripts')
-    <script src="{{ asset("js/family.tasks._form.js") }}"></script>
+    <script src="{{ mix("js/family.tasks._form.js") }}"></script>
 @endpush
 
 @section('content')

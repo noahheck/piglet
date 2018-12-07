@@ -5,7 +5,7 @@
 @endsection
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.member.show.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.member.show.css') }}" />
 @endpush
 
 @push('scripts')

@@ -96,6 +96,10 @@ mix
 
     .disableNotifications();
 
+if (mix.inProduction()) {
+    mix.version();
+}
+
 mix.webpackConfig({
     resolve: {
         alias: {

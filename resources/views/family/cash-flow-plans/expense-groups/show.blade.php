@@ -11,11 +11,11 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family/member/home.css') }}" />--}}
+    {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/family/member/home.css') }}" />--}}
 @endpush
 
 @push('scripts')
-{{--    <script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ mix('js/family.merchants.index.js') }}"></script>--}}
 @endpush
 
 @section('content')

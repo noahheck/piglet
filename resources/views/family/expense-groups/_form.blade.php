@@ -3,7 +3,7 @@
 @endphp
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/family.expense-groups._form.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/family.expense-groups._form.js') }}"></script>
 @endpush
 
 <form name="incomeSource" action="{{ $action }}" method="POST" class="has-bold-labels">

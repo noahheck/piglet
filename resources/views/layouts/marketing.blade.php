@@ -2,7 +2,7 @@
 
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/marketing.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/marketing.css') }}" />
 @endpush
 
 @section('content')

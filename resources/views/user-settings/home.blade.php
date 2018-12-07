@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/user-settings.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/user-settings.css') }}" />
 @endpush
 
 @push('scripts')
-    {{--<script src="{{ asset("js/home.js") }}"></script>--}}
+    {{--<script src="{{ mix("js/home.js") }}"></script>--}}
 @endpush
 
 @section('content')

@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.piggy-banks.index.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.piggy-banks.index.css') }}" />
 @endpush
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/family.merchants.index.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/family.merchants.index.js') }}"></script>
 @endpush
 
 @section('content')

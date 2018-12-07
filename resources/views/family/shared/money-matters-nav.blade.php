@@ -1,9 +1,9 @@
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.money-matters.nav.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.money-matters.nav.css') }}" />
 @endpush
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/family.money-matters.nav.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/family.money-matters.nav.js') }}"></script>
 @endpush
 
 @php

@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/family.categories.index.css') }}" />--}}
+    {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/family.categories.index.css') }}" />--}}
 @endpush
 
 @push('scripts')
-{{--    <script type="text/javascript" src="{{ asset('js/family.cash-flow-plans.income-sources.index.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ mix('js/family.cash-flow-plans.income-sources.index.js') }}"></script>--}}
 @endpush
 
 

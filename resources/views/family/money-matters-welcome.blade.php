@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/family.money-matters.welcome.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.money-matters.welcome.css') }}" />
 @endpush
 
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/family.money-matters.welcome.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/family.money-matters.welcome.js') }}"></script>
 @endpush
 
 @section('content')

@@ -1,5 +1,5 @@
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('js/family.merchants._form.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/family.merchants._form.js') }}"></script>
 @endpush
 
 @php
