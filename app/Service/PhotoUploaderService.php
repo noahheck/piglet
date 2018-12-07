@@ -14,7 +14,7 @@ class PhotoUploaderService
         $thumbPhotoName = $basePhotoName . '.thumbnail.' . $extension;
         $iconPhotoName  = $basePhotoName . '.icon.'      . $extension;
 
-        $baseImage       = Image::make($file);
+        $baseImage       = Image::make($file)->orientate();
         $baseImageWidth  = $baseImage->width();
         $baseImageHeight = $baseImage->height();
 
@@ -40,12 +40,12 @@ class PhotoUploaderService
             $constraint->aspectRatio();
         });
 
-        $thumbImage = Image::make($file);
+        $thumbImage = Image::make($file)->orientate();
         $thumbImage->resize($thumbWidth, $thumbHeight, function($constraint) {
             $constraint->aspectRatio();
         });
 
-        $iconImage = Image::make($file);
+        $iconImage = Image::make($file)->orientate();
         $iconImage->resize($iconWidth, $iconHeight, function($constraint) {
             $constraint->aspectRatio();
         });

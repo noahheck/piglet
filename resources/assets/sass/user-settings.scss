@@ -10,3 +10,8 @@
   color: $blue-text-color;
 }
 
+.user-upload-photo-container,
+.user-upload-photo-container .user-photo {
+  max-width: 100%;
+}
+

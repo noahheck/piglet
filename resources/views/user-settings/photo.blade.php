@@ -5,7 +5,7 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/user-settings.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/user-settings.css') }}" />
 @endpush
 
 @push('scripts')
@@ -18,8 +18,8 @@
 
         <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3" data-controller="image-upload-preview">
 
-            <div class="text-center">
-                {!! $user->thumbnail(['user-photo', 'mb-2'], ['target' => 'image-upload-preview.image']) !!}
+            <div class="text-center user-upload-photo-container">
+                {!! $user->thumbnail(['user-photo', 'mb-2', 'user-photo-upload'], ['target' => 'image-upload-preview.image']) !!}
             </div>
 
             <div class="card">
