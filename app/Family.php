@@ -128,7 +128,13 @@ class Family extends Model implements Settings
      */
     public function dbFilePath()
     {
-        return storage_path('piglet/'. $this->familyStorageDirectory() . '/db.sqlite');
+        return $this->storagePath() . '/db.sqlite';
+    }
+
+
+    public function storagePath()
+    {
+        return storage_path('piglet/' . $this->familyStorageDirectory());
     }
 
 
