@@ -30,6 +30,18 @@
 
                 <hr>
 
+                @auth
+                    <p class="text-center">
+                        <a class="btn btn-primary btn-lg" href="{{ route("home") }}">
+                            <span class="fa-stack" aria-hidden="true">
+                                <span class="fa fa-square-o fa-stack-2x"></span>
+                                <span class="fa fa-home fa-stack-1x"></span>
+                            </span>
+                            Home
+                        </a>
+                    </p>
+                @endauth
+
                 @guest
 
                     <h4 class="text-center">
