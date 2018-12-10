@@ -13,11 +13,11 @@
 
                 <div class="jumbotron-content text-center">
 
-                    <h1>Welcome to <br> {{ config('app.name') }}!</h1>
+                    <h1>{{ __('marketing.welcome-to-appName') }}</h1>
 
                     <hr>
 
-                    <h3>Tools to keep your family organized so your energy can be spent on loving your life!</h3>
+                    <h3>{{ __('marketing.hook') }}</h3>
 
                 </div>
 
@@ -37,7 +37,7 @@
                                 <span class="fa fa-square-o fa-stack-2x"></span>
                                 <span class="fa fa-home fa-stack-1x"></span>
                             </span>
-                            Home
+                            {{ __('application.home') }}
                         </a>
                     </p>
                 @endauth
@@ -45,17 +45,17 @@
                 @guest
 
                     <h4 class="text-center">
-                        Ready to get started?
+                        {{ __('marketing.ready-to-start') }}
                     </h4>
 
                     <p class="text-center">
                         <a class="btn btn-primary btn-lg" href="{{ route('register') }}">
                             <span class="fa fa-user-plus"></span>
-                            Sign Up Now
+                            {{ __('marketing.sign-up-now') }}
                         </a>
                         <a class="btn btn-primary btn-lg" href="{{ route('login') }}">
                             <span class="fa fa-sign-in"></span>
-                            Log In
+                            {{ __('application.log-in') }}
                         </a>
                     </p>
 
@@ -71,14 +71,14 @@
 
         <div class="col-12 col-md-6 col-lg-8">
 
-            <h2 class="pb-4">Pricing</h2>
+            <h2 class="pb-4">{{ __('marketing.pricing') }}</h2>
 
             <p class="lead">
-                Our greatest hope is that your family will find the software we write useful to you. With that in mind, the {{ config('app.name') }} project is proud to be offered at no cost to you and your family.
+                {{ __('marketing.greatest-hope-offer-free') }}
             </p>
 
             <p>
-                Find out more about how (and why) we're able to offer the service for free on the <a href="{{ route('pricing') }}">Pricing</a> page.
+                {!! __('marketing.more-info-pricing') !!}
             </p>
 
         </div>
@@ -89,14 +89,14 @@
 
     </div>
 
-    <h2>Features</h2>
+    <h2>{{ __('marketing.features') }}</h2>
 
 
     <div class="row mt-5 border shadow-sm pb-5 m-1">
 
         <div class="col-12">
 
-            <h3 class="pb-4 pt-4">Money Matters</h3>
+            <h3 class="pb-4 pt-4">{{ __('marketing.money-matters') }}</h3>
 
         </div>
 
@@ -106,13 +106,13 @@
                 <div class="card-body color-white bg-red">
                     <h4 class="card-title text-center">
                         <span class="fa fa-list-ul"></span>
-                        Organize
+                        {{ __('marketing.money-matters-features.organize') }}
                     </h4>
                 </div>
                 <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/organize.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
-                        All your family's money habits together
+                        {{ __('marketing.money-matters-features.organize-desc') }}
                     </p>
                 </div>
             </div>
@@ -125,13 +125,13 @@
                 <div class="card-body color-white bg-purple">
                     <h4 class="card-title text-center">
                         <span class="fa fa-arrow-circle-right"></span>
-                        Plan
+                        {{ __('marketing.money-matters-features.plan') }}
                     </h4>
                 </div>
                 <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/plan.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
-                        Put your family's financial plan in place
+                        {{ __('marketing.money-matters-features.plan-desc') }}
                     </p>
                 </div>
             </div>
@@ -144,13 +144,13 @@
                 <div class="card-body color-white bg-blue">
                     <h4 class="card-title text-center">
                         <span class="fa fa-bar-chart"></span>
-                        Track
+                        {{ __('marketing.money-matters-features.track') }}
                     </h4>
                 </div>
                 <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/track.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
-                        Track your progress and make your plan work
+                        {{ __('marketing.money-matters-features.track-desc') }}
                     </p>
                 </div>
             </div>
@@ -163,13 +163,13 @@
                 <div class="card-body color-white bg-green">
                     <h4 class="card-title text-center">
                         <span class="fa fa-line-chart"></span>
-                        Save
+                        {{ __('marketing.money-matters-features.save') }}
                     </h4>
                 </div>
                 <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/save.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
-                        Save for and meet your family's financial goals
+                        {{ __('marketing.money-matters-features.save-desc') }}
                     </p>
                 </div>
             </div>

@@ -69,10 +69,10 @@
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("project") }}">Project</a>
+                    <a class="nav-link" href="{{ route("project") }}">{{ __('marketing.project') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("pricing") }}">Pricing</a>
+                    <a class="nav-link" href="{{ route("pricing") }}">{{ __('marketing.pricing') }}</a>
                 </li>
             </ul>
 
@@ -84,7 +84,7 @@
                                 <span class="fa fa-square-o fa-stack-2x"></span>
                                 <span class="fa fa-home fa-stack-1x"></span>
                             </span>
-                            Home
+                            {{ __('application.home') }}
                         </a>
                     </li>
                     <li class="nav-item">
@@ -94,18 +94,18 @@
                         </a>
                         <div class="dropdown-menu user-options-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route("user-settings") }}">
-                                <span class="fa fa-cogs fa-fw" aria-hidden="true"></span> Settings
+                                <span class="fa fa-cogs fa-fw" aria-hidden="true"></span> {{ __('application.settings') }}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('terms-of-use') }}">
-                                <span class="fa fa-institution fa-fw" aria-hidden="true"></span> Terms of Use
+                                <span class="fa fa-institution fa-fw" aria-hidden="true"></span> {{ __('application.terms-of-use') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('privacy') }}">
-                                <span class="fa fa-shield fa-fw" aria-hidden="true"></span> Privacy Policy
+                                <span class="fa fa-shield fa-fw" aria-hidden="true"></span> {{ __('application.privacy-policy') }}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route("logout") }}">
-                                <span class="fa fa-sign-out fa-fw" aria-hidden="true"></span> Logout
+                                <span class="fa fa-sign-out fa-fw" aria-hidden="true"></span> {{ __('application.log-out') }}
                             </a>
                         </div>
                     </li>
@@ -118,10 +118,10 @@
 
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("register") }}"><span class="fa fa-user-plus"></span> Register</a>
+                            <a class="nav-link" href="{{ route("register") }}"><span class="fa fa-user-plus"></span> {{ __('application.register') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-sign-in"></span> Login</a>
+                            <a class="nav-link" href="{{ route("login") }}"><span class="fa fa-sign-in"></span> {{ __('application.log-in') }}</a>
                         </li>
                     @endguest
 

@@ -4,7 +4,7 @@
 
         <h4 class="card-title text-center">
             <span class="fa fa-dollar"></span>
-            Pricing
+            {{ __('marketing.pricing') }}
         </h4>
 
     </div>
@@ -18,10 +18,10 @@
     </div>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><span class="fa fa-check color-green"></span> Budgeting Tools</li>
-        <li class="list-group-item"><span class="fa fa-check color-green"></span> Cash Flow Planning</li>
-        <li class="list-group-item"><span class="fa fa-check color-green"></span> Expense Tracking</li>
-        <li class="list-group-item"><span class="fa fa-check color-green"></span> Savings Goal Tracking</li>
+        <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.budgeting-tools') }}</li>
+        <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.cash-flow-planning') }}</li>
+        <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.expense-tracking') }}</li>
+        <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.savings-goal-tracking') }}</li>
     </ul>
 
 </div>

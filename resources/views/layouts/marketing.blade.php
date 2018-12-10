@@ -18,25 +18,25 @@
                     <a href="{{ route('homepage') }}">{{ config('app.name') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('project') }}">Project</a>
+                    <a href="{{ route('project') }}">{{ __('marketing.project') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('pricing') }}">Pricing</a>
+                    <a href="{{ route('pricing') }}">{{ __('marketing.pricing') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('terms-of-use') }}">Terms of Use</a>
+                    <a href="{{ route('terms-of-use') }}">{{ __('application.terms-of-use') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('privacy') }}">Privacy Policy</a>
+                    <a href="{{ route('privacy') }}">{{ __('application.privacy-policy') }}</a>
                 </li>
             </ul>
         </div>
         <div class="col-12 col-sm-6 text-right">
             <p>
-                &copy; {{ date('Y') }} - Noah Heck and Contributors
+                {!! __('application.copyright') !!}
             </p>
             <p>
-                {{ config('app.name') }} is proud to be an open-source project - Find out more at: <a href="{{ config('piglet.url') }}" target="_blank">{{ config('piglet.url') }}</a>
+                {!! __('application.proud-open-source') !!}
             </p>
         </div>
     </div>
