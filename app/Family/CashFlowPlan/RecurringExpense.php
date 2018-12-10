@@ -80,4 +80,11 @@ class RecurringExpense extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+
+
+    public function isFulfilled()
+    {
+        return ($this->actual) ? true : false;
+    }
 }
