@@ -57,7 +57,7 @@
                     <thead>
                     <tr class="font-weight-bold">
                         <td>{{ __('expenses.date') }}</td>
-                        <td>{{ __('expenses.merchant') }}</td>
+                        <td>&nbsp;</td>
                         <td class="text-right">{{ __('expenses.amount') }}</td>
                     </tr>
                     </thead>

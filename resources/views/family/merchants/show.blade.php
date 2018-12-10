@@ -114,8 +114,8 @@
                         <thead>
                             <tr class="font-weight-bold">
                                 <td>{{ __('expenses.date') }}</td>
-                                <td class="text-right">{{ __('expenses.projected') }}</td>
-                                <td class="text-right">{{ __('expenses.actual') }}</td>
+                                <td>&nbsp;</td>
+                                <td class="text-right">{{ __('expenses.amount') }}</td>
                             </tr>
                         </thead>
 
@@ -134,7 +134,7 @@
                                 @endphp
                                 <tr>
                                     <td><a href="{{ $href }}">{{ ($expense->date) ? \App\formatDate($expense->date) : '<no date>' }}</a></td>
-                                    <td class="text-right">{{ \App\formatCurrency($expense->projected, true) }}</td>
+                                    <td>{{ $expense->title() }}</td>
                                     <td class="text-right">{{ \App\formatCurrency($expense->actual, true) }}</td>
                                 </tr>
                             @endforeach
