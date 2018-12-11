@@ -7,6 +7,7 @@ return [
     'log-out'  => 'Log Out',
 
     'page-menu' => 'Page Menu',
+    'help'      => 'Help',
 
     'faqs'     => 'FAQs',
     'settings' => 'Settings',

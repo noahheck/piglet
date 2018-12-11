@@ -27,6 +27,8 @@ Route::get('/terms-of-use', 'LegalController@terms')->name('terms-of-use');
 Route::get('/privacy'     , 'LegalController@privacy')->name('privacy');
 
 
+Route::get('/help/{key?}', 'HelpController@help')->name('help');
+
 
 Route::middleware('auth')->group(function() {
 

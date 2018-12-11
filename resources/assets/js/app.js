@@ -35,6 +35,7 @@ import "styled-notifications/dist/notifications.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
 let pageMenu     = require('Component/pageMenu');
+let help         = require('Component/help');
 let domSearch    = require('Component/domSearch');
 let moneyField   = require('Component/moneyField');
 let tabNavOnLoad = require('Component/tabNavOnLoad');

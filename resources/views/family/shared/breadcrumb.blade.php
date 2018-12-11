@@ -37,7 +37,14 @@
                                         <span class="{{ $item['icon'] }} fa-fw"></span> {{ $item['text'] }}
                                     </a>
                                 </li>
+                            @elseif (isset($item['type']) && $item['type'] === 'help')
+                                <li>
+                                    <a href="{{ route("help", [$item['key']]) }}" class="help-link" data-help-section="{{ $item['key'] }}">
+                                        <span class="fa fa-question-circle fa-fw"></span> {{ __('application.help') }}
+                                    </a>
+                                </li>
                             @endif
+
 
                         @endforeach
                     </ul>

@@ -97,6 +97,10 @@
                                 <span class="fa fa-cogs fa-fw" aria-hidden="true"></span> {{ __('application.settings') }}
                             </a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route("help") }}">
+                                <span class="fa fa-question-circle fa-fw"></span> {{ __('application.help') }}
+                            </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('terms-of-use') }}">
                                 <span class="fa fa-institution fa-fw" aria-hidden="true"></span> {{ __('application.terms-of-use') }}
                             </a>
@@ -130,6 +134,25 @@
 
         </div>
     </nav>
+
+    <div id="applicationModal" class="modal fade " tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg shadow-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle" data-default-title="{{ config('app.name') }}"></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="main container shadow">
 
