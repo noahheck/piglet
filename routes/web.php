@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function() {
 
 Route::middleware('auth', 'auth.email_verified')->group(function() {
 
+    Route::get('/welcome', 'WelcomeController@index')->name('welcome');
+
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('family', 'FamilyController');

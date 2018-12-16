@@ -17,8 +17,12 @@ mix
 
     .sass('resources/assets/sass/marketing.scss', 'public/css')
 
+    .sass('resources/assets/sass/help.scss', 'public/css')
+
     .js('resources/assets/js/home.js', 'public/js')
     .sass('resources/assets/sass/home.scss', 'public/css')
+
+    .sass('resources/assets/sass/welcome.scss', 'public/css')
 
     .js('resources/assets/js/user-settings.js', 'public/js')
     .js('resources/assets/js/user-settings-password.js', 'public/js')

@@ -1,10 +1,14 @@
 @extends('layouts.marketing')
 
+@push('stylesheets')
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/help.css') }}" />
+@endpush
+
 @section('marketing')
 
-    <h1>Help</h1>
+    {{--<h1>Help</h1>
 
-    <hr>
+    <hr>--}}
 
     <div class="row">
 

@@ -1,0 +1,27 @@
+/**
+ * assets/sass/welcome.scss
+ */
+
+@import "variables";
+
+img {
+  max-width: 100%;
+}
+
+.image-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/*
+.piglet-carousel-control {
+  color: #444 !important;
+  font-size: 2em;
+
+  :hover,
+  :hover * {
+    color: #444 !important;
+  }
+}
+*/
