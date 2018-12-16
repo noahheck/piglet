@@ -18,7 +18,7 @@
 
 
 <h2>Links To External Sites</h2>
-<p>Our Service may contain links to external sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy and terms and conditions of every site you visit.</p>
+<p>Our Service may contain links to external sites that are not operated by us. If you event on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy and terms and conditions of every site you visit.</p>
 <p>We have no control over, and assume no responsibility for the content, privacy policies or practices of any third party sites, products or services.</p>
 
 
