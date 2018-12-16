@@ -28,13 +28,13 @@
     <a href="{{ route('family.cash-flow-plans.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'cash-flow-plans') ? 'active' : '' }}">Cash Flow Plans</a>
     <a href="{{ route('family.merchants.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'merchants') ? 'active' : '' }}">{{ __('merchants.merchants') }}</a>
     <a href="{{ route('family.piggy-banks.index', [$family]) }}" class="list-group-item-action list-group-item {{ ($active === 'piggy-banks') ? 'active' : '' }}">{{ __('piggy-banks.piggy-banks') }}</a>
-    <a href="#" class="list-group-item-action list-group-item settingsItem {{ ($settingsActive) ? 'settingsActive' : '' }}" id="settingsItem">
+    <button class="list-group-item-action list-group-item settingsItem {{ ($settingsActive) ? 'settingsActive' : '' }}" id="settingsItem">
         <span class="float-right">
             <span class="fa fa-chevron-down settings-shown"></span>
             <span class="fa fa-chevron-up settings-hidden"></span>
         </span>
         Settings
-    </a>
+    </button>
     <a href="{{ route('family.categories.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'categories') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('categories.categories') }}</a>
     <a href="{{ route('family.income-sources.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'income-sources') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('income-sources.income-sources') }}</a>
     <a href="{{ route('family.recurring-expenses.index', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'recurring-expenses') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('recurring-expenses.recurring-expenses') }}</a>
