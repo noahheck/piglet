@@ -104,4 +104,6 @@
         {{ __('form.cancel') }}
     </a>
 
+    <button type="button" class="btn btn-outline-primary sr-only" data-action="toggle-new-merchant#showNewMerchant">{{ __('merchants.add-new-merchant') }}</button>
+
 </form>
