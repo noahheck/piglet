@@ -4,6 +4,7 @@ $__app_name = config('app.name');
 
 return [
     'navigation' => 'Navigation',
+    'main-navigation' => 'Top-level Navigation',
     'main-navigation-details' => <<<EOT
 <p>Along the top of the screen, you'll find the main navigation bar. From here, you are able to access various areas of the application:</p>
 <ol>
@@ -13,6 +14,7 @@ return [
 </ol>
 EOT
     ,
+    'family-navigation' => 'Navigating within the Family application',
     'family-navigation-details' => <<<EOT
 <p>The family navigation bar shows your current location within the suite of application tools, along with quick links back to each page you've visited to get to your current location.</p>
 <p>Most pages also present a dropdown menu providing options for interacting with the current page (for example, if you're looking at a merchant, the page menu will provide an option for editing that merchant).</p>
