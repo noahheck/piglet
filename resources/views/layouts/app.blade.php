@@ -163,7 +163,7 @@
     @stack('scripts')
 
     @php
-        // This is how long each notification should remain on the screen before fading (0 means click to dismiss)
+        // This is how long each notification should remain on the screen before fading (0 means event to dismiss)
         $flashMessages = [
             'error'   => '0',
             'warning' => '0',

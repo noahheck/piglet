@@ -81,7 +81,7 @@
 
                             <div class="col">
                                 <p>
-                                    If you didn't receive an email with your PIN number, click here and we'll send you a new one:
+                                    If you didn't receive an email with your PIN number, event here and we'll send you a new one:
                                 </p>
 
                                 @fieldError('newPin')
