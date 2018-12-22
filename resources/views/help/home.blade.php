@@ -6,10 +6,6 @@
 
 @section('marketing')
 
-    {{--<h1>Help</h1>
-
-    <hr>--}}
-
     <div class="row">
 
         <div class="col-12 col-md-3">
@@ -21,7 +17,8 @@
             @if (isset($key) && $key)
                 @include("help.section.{$key}")
             @else
-                Default help content
+                {{--Default help content--}}
+                @include("help.section.home")
             @endif
 
         </div>
