@@ -109,6 +109,7 @@ class PiggyBank extends Model
             return ($earliest && $earliest < $cfpDate) ? $earliest : $cfpDate;
         });
 
+        $start = (is_null($start)) ? $created : $start;
 
         $start = ($start < $created) ? $start : $created;
 
@@ -147,6 +148,10 @@ class PiggyBank extends Model
 
         $this->monthlyPiggyBanks->each(function ($piggyBank, $key) use (&$monthContributions, $monthFormat) {
             $cfpDateString = $piggyBank->cashFlowPlan->monthAsDateTime()->format($monthFormat);
+
+            if (!isset($monthContributions[$cfpDateString])) {
+                $monthContributions[$cfpDateString] = 0;
+            }
 
             $monthContributions[$cfpDateString] += $piggyBank->actualTotal();
         });
