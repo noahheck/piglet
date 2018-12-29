@@ -12,9 +12,26 @@
     {{--<script src="{{ mix("js/home.js") }}"></script>--}}
 @endpush
 
+@php
+
+$menu = [];
+
+if (Auth::user()->member->is_administrator) {
+    $menu[] = [
+        'type' => 'link',
+        'href' => route('family.edit', [$family]),
+        'icon' => 'fa fa-pencil-square-o',
+        'text' => ucwords(__('form.edit_details')),
+    ];
+}
+
+@endphp
+
 @section('content')
 
-    @include('family.shared.breadcrumb', [])
+    @include('family.shared.breadcrumb', [
+        'menu' => $menu,
+    ])
 
     <div class="row">
 

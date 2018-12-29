@@ -2,7 +2,7 @@
 
     <div class="col-12">
 
-        @if (isset($menu))
+        @if (isset($menu) && count($menu) > 0)
             <div class="page-menu-container" id="pageMenuContainer">
                 <span class="fa fa-chevron-down rounded-circle dropdown-trigger" id="pageMenuDropdownTrigger"></span>
                 <div class="dropdown-content" id="pageMenuDropdownContent">
