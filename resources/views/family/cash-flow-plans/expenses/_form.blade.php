@@ -63,6 +63,7 @@
                             <option value="{{ $merchant->id }}" data-category="{{ $merchant->default_category_id }}" data-sub-category="{{ $merchant->default_sub_category }}" {{ (old('merchant_id', $expense->merchant_id) == $merchant->id) ? 'selected' : '' }}>{{ $merchant->name }}</option>
                         @endforeach
                     </select>
+                    @fieldError('merchant_id')
                 </div>
 
                 <div class="form-group d-none" id="newMerchantGroup" data-target="toggle-new-merchant.newGroup">
