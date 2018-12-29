@@ -5,6 +5,7 @@
 let $     = require('jquery');
 let ajax  = require('Services/ajax');
 let modal = require('Component/modal');
+let notify = require('Component/notify');
 
 $(function() {
 
@@ -22,7 +23,7 @@ $(function() {
         ajax.get({url: url}).then(function(response) {
             modal.display('Help', '<div class="help-content">' + response.data.content + '</div>');
         }).catch(function() {
-            alert("Oh man, it looks like we can't find the help section for this page.");
+            notify.error("Oh man, it looks like we can't find the help section for this page.");
         });
     });
 
