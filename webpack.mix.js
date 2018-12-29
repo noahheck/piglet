@@ -17,6 +17,7 @@ mix
 
     .sass('resources/assets/sass/marketing.scss', 'public/css')
 
+    .js('resources/assets/js/help.js', 'public/js')
     .sass('resources/assets/sass/help.scss', 'public/css')
 
     .js('resources/assets/js/home.js', 'public/js')

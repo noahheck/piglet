@@ -2,8 +2,8 @@
  * js/component/pageMenu.js
  */
 
-let $    = require('jquery');
-let ajax = require('Services/ajax');
+let $     = require('jquery');
+let ajax  = require('Services/ajax');
 let modal = require('Component/modal');
 
 $(function() {
@@ -20,9 +20,9 @@ $(function() {
         let url = $(this).attr('href');
 
         ajax.get({url: url}).then(function(response) {
-            console.log(response);
-
-            modal.display('Help', response.data.content);
+            modal.display('Help', '<div class="help-content">' + response.data.content + '</div>');
+        }).catch(function() {
+            alert("Oh man, it looks like we can't find the help section for this page.");
         });
     });
 

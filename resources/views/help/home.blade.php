@@ -4,6 +4,10 @@
     <link rel="stylesheet" type="text/css" href="{{ mix('css/help.css') }}" />
 @endpush
 
+@push('scripts')
+    <script type="text/javascript" src="{{ mix('js/help.js') }}"></script>
+@endpush
+
 @section('marketing')
 
     <div class="row">

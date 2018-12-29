@@ -25,6 +25,11 @@ if (Auth::user()->member->is_administrator) {
     ];
 }
 
+$menu[] = [
+    'type' => 'help',
+    'key'  => 'family',
+];
+
 @endphp
 
 @section('content')

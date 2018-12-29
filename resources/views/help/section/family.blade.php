@@ -1,8 +1,6 @@
-<h1>{{ __('help/home.welcome') }}</h1>
+<h1>{{ __('help/family.family') }}</h1>
 
-{!! __('help/home.overview') !!}
 
-{!! __('help/home.getting-started') !!}
 
 {{--
 

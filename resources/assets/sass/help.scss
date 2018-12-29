@@ -7,6 +7,7 @@
 h1 {
   border-bottom: 1px solid $light-gray-border;
   margin-bottom: 30px;
+  padding-bottom: 15px;
 }
 
 img {
@@ -17,4 +18,23 @@ img {
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
+}
+
+.tip {
+  border: 1px solid $light-gray-border;
+  background-color: $subtle-highlight;
+  margin: 15px;
+  padding: 15px;
+
+  h5 {
+    border-bottom: 1px solid $light-gray-border;
+    padding-bottom: 7px;
+
+  }
+
+  h5::before {
+    padding-right: 4px;
+    font-family: "FontAwesome";
+    content: "\f0eb";
+  }
 }

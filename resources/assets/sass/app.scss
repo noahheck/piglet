@@ -209,3 +209,22 @@ img.in-preview {
   text-decoration: underline dotted;
   cursor: help;
 }
+
+
+/* Help content displayed in the modal */
+.help-content {
+  h1 {
+    font-size: 1.95rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .image-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+}
