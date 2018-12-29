@@ -40,6 +40,8 @@ let moneyField   = require('Component/moneyField');
 let tabNavOnLoad = require('Component/tabNavOnLoad');
 let copyValue    = require('Component/copyValue');
 
+let notify       = require('Component/notify');
+
 let phone = require('Services/phone');
 let ajax  = require('Services/ajax');
 
@@ -91,19 +93,5 @@ $(function() {
 
         $this.data('chart', myChart);
     });
-
-
-    /*
-    let route = {
-
-        // url: '/ajax-test',
-        name: 'test.ajax.post',
-        params: {name: 'noah'}
-    };
-
-    ajax.post(route, {}).then((response) => {
-        console.log(response);
-    });
-    /**/
 
 });
