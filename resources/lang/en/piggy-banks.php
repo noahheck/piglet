@@ -6,6 +6,7 @@ return [
     'add-new-piggy-bank'    => 'Add Piggy Bank',
     'no-piggy-banks-create' => "You haven't added any piggy banks yet. Go ahead and create your first one now.",
     'active-piggy-banks'    => 'Active Piggy Banks',
+    'completed-piggy-banks' => 'Completed Piggy Banks',
     'inactive-piggy-banks'  => 'Inactive Piggy Banks',
     'select-piggy-bank'     => 'Select Piggy Bank',
 

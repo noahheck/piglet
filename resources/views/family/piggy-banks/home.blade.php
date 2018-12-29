@@ -48,46 +48,17 @@
 
             @else
 
-                @if (count($piggyBanks->where('active', true)) > 0)
+                @if (count($piggyBanks->where('active', true)->where('completed', false)) > 0)
 
                     <h3>{{ __('piggy-banks.active-piggy-banks') }}</h3>
 
                     <div class="row">
 
-                        @foreach ($piggyBanks->where('active', true) as $piggyBank)
+                        @foreach ($piggyBanks->where('active', true)->where('completed', false) as $piggyBank)
 
                             <div class="col-12 col-md-6 piggy-bank">
 
-                                <a href="{{ route('family.piggy-banks.show', [$family, $piggyBank]) }}">
-
-                                    <div class="card shadow">
-
-                                        <div class="card-body">
-
-                                            <h5 class="card-title">{{ $piggyBank->name }}</h5>
-
-                                            <p class="card-text text-dark">
-                                                {{ App\formatDate($piggyBank->dueDate) }}
-                                                @if ($piggyBank->monthly_contribution)
-                                                    ({{ App\formatCurrency($piggyBank->monthly_contribution, true) }} / {{ __('months.month') }})
-                                                @endif
-                                            </p>
-
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($piggyBank->target_amount, false) }}"></div>
-                                            </div>
-
-                                            <hr>
-
-                                            <p class="card-text text-dark">
-                                                {{ App\formatCurrency($piggyBank->balance, true) }} / {{ App\formatCurrency($piggyBank->target_amount, true) }}
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
+                                @include('family.piggy-banks._card', ['family' => $family, 'piggyBank' => $piggyBank,])
 
                             </div>
 
@@ -96,6 +67,30 @@
                     </div>
 
                 @endif
+
+
+
+                    @if (count($piggyBanks->where('active', true)->where('completed', true)) > 0)
+
+                        <h3>{{ __('piggy-banks.completed-piggy-banks') }}</h3>
+
+                        <div class="row">
+
+                            @foreach ($piggyBanks->where('active', true)->where('completed', true) as $piggyBank)
+
+                                <div class="col-12 col-md-6 piggy-bank">
+
+                                    @include('family.piggy-banks._card', ['family' => $family, 'piggyBank' => $piggyBank,])
+
+                                </div>
+
+                            @endforeach
+
+                        </div>
+
+                    @endif
+
+
 
                 @if (count($piggyBanks->where('active', false)) > 0)
 
@@ -107,33 +102,7 @@
 
                             <div class="col-12 col-md-6 piggy-bank">
 
-                                <a href="{{ route('family.piggy-banks.edit', [$family, $piggyBank]) }}">
-
-                                    <div class="card shadow">
-
-                                        <div class="card-body">
-
-                                            <h5 class="card-title">{{ $piggyBank->name }}</h5>
-
-                                            <p class="card-text">
-                                                {{ App\formatDate($piggyBank->dueDate) }}
-                                            </p>
-
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: {{ $piggyBank->percentCompleted }}%" aria-valuenow="{{ $piggyBank->balance }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($piggyBank->target_amount, false) }}"></div>
-                                            </div>
-
-                                            <hr>
-
-                                            <p class="card-text">
-                                                {{ App\formatCurrency($piggyBank->balance, true) }} / {{ App\formatCurrency($piggyBank->target_amount, true) }}
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
+                                @include('family.piggy-banks._card', ['family' => $family, 'piggyBank' => $piggyBank,])
 
                             </div>
 
