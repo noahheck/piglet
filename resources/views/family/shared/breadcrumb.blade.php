@@ -52,12 +52,17 @@
             </div>
         @endif
 
-        <a href="{{ route('family.home', [$family]) }}">{{ __('family.family_home') }}</a> &gt;
+        <a href="{{ route('family.home', [$family]) }}">{{ __('family.family_home') }}</a>
 
-        @foreach ($breadcrumb as $href => $text)
-            <a href="{{ $href }}">{{ $text }}</a> &gt;
-        @endforeach
-        {{ $location }}
+        @if (isset($breadcrumb))
+            @foreach ($breadcrumb as $href => $text)
+                &gt; <a href="{{ $href }}">{{ $text }}</a>
+            @endforeach
+        @endif
+
+        @if (isset($location))
+            &gt; {{ $location }}
+        @endif
 
     </div>
 
