@@ -5,9 +5,11 @@
 let $     = require('jquery');
 let event = require('Services/event');
 
+let $dropdownContent;
+
 $(function() {
 
-    let $dropdownContent = $("#pageMenuDropdownContent");
+    $dropdownContent = $("#pageMenuDropdownContent");
 
     $("#pageMenuContainer .dropdown-trigger").click(function() {
         $dropdownContent.slideToggle(150);
@@ -28,3 +30,13 @@ $(function() {
         }
     })
 });
+
+let pageMenu = {};
+
+pageMenu.close = function() {
+    if ($dropdownContent.is(":visible")) {
+        $dropdownContent.slideToggle(150);
+    }
+};
+
+module.exports = pageMenu;

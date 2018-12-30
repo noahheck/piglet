@@ -21,7 +21,7 @@
         'location'   => __('merchants.merchants'),
         'menu' => [
             ['type' => 'link', 'href' => route('family.merchants.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => __('merchants.add-new-merchant')],
-            ['type' => 'help', 'key' => 'merchants'],
+            //['type' => 'help', 'key' => 'merchants'],
         ]
     ])
 

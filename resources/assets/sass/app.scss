@@ -227,4 +227,36 @@ img.in-preview {
     text-align: center;
   }
 
+  .note,
+  .tip {
+    border: 1px solid $light-gray-border;
+    padding: 15px;
+    margin: 15px;
+
+    h5 {
+      border-bottom: 1px solid $light-gray-border;
+      padding-bottom: 7px;
+    }
+
+    h5::before {
+      padding-right: 4px;
+      font-family: "FontAwesome";
+    }
+  }
+
+  .note {
+    background-color: $subtle-note;
+
+    h5:before {
+      content: "\f044";
+    }
+  }
+
+  .tip {
+    background-color: $subtle-highlight;
+
+    h5::before {
+      content: "\f0eb";
+    }
+  }
 }

@@ -24,7 +24,7 @@ modal.setTitle = function(title) {
 
 modal.setContent = function(content) {
     let modalBody = appModal.find('#modalBody');
-    modalBody.html(content);
+    modalBody.empty().html(content);
 };
 
 

@@ -1,11 +1,14 @@
 /**
+ * This is the help content screens
+ *
  * js/help.js
  */
 
-let $ = require('jquery');
+let $    = require('jquery');
+let help = require('Component/help');
 
 $(function() {
 
-    $(".tip").prepend("<h5>Tip!</h5>");
+    help.augmentMarkup($("body"));
 
 });
