@@ -17,6 +17,9 @@
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
         'location'   => __('family-settings.edit_family_details'),
+        'menu' => [
+            ['type' => 'help', 'key' => 'family'],
+        ]
     ])
 
     <div class="row">

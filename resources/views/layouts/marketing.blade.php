@@ -24,6 +24,9 @@
                     <a href="{{ route('pricing') }}">{{ __('marketing.pricing') }}</a>
                 </li>
                 <li>
+                    <a href="{{ route('help') }}">{{ __('application.help') }}</a>
+                </li>
+                <li>
                     <a href="{{ route('terms-of-use') }}">{{ __('application.terms-of-use') }}</a>
                 </li>
                 <li>
