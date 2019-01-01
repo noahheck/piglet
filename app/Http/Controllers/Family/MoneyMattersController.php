@@ -19,7 +19,9 @@ class MoneyMattersController extends Controller
             return redirect()->route('family.money-matters-welcome', [$family]);
         }
 
-        $year = ($request->query->has('year')) ? $request->query->get('year') : date('Y');
+        $today = \Auth::user()->today();
+
+        $year = ($request->query->has('year')) ? $request->query->get('year') : $today->format('Y');
 
         $cashFlowPlans = CashFlowPlan::where('year', $year)->get();
         $cashFlowPlans->load(['recurringExpenses', 'expenses', 'incomeSources']);
@@ -28,7 +30,7 @@ class MoneyMattersController extends Controller
 
         $chartDataProvider = new MoneyMattersCharts($cashFlowPlans, $categories);
 
-        $yearOptions = CashFlowPlan::select('year')->get()->pluck('year')->unique();
+        $yearOptions = CashFlowPlan::select('year')->get()->pluck('year')->prepend($today->format('Y'))->unique();
 
         return view('family.money-matters', [
             'family'            => $family,
