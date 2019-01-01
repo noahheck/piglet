@@ -27,7 +27,7 @@ class CashFlowPlanController extends Controller
     {
         $cashFlowPlans = CashFlowPlan::all();
 
-        $curYear  = date('Y');
+        $curYear  = \Auth::user()->today()->format('Y');
         $nextYear = $curYear + 1;
 
         $minExisting = $cashFlowPlans->min('year');

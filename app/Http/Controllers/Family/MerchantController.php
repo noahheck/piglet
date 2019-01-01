@@ -67,9 +67,10 @@ class MerchantController extends Controller
      */
     public function show(Request $request, Family $family, Merchant $merchant)
     {
-        $year = ($request->query->has('year')) ? $request->query->get('year') : date('Y');
+        $today = \Auth::user()->today();
+        $year = ($request->query->has('year')) ? $request->query->get('year') : $today->format('Y');
 
-        $yearOptions = $merchant->yearsWithExpenses();
+        $yearOptions = $merchant->yearsWithExpenses()->prepend($today->format('Y'))->unique();
 
         return view('family.merchants.show', [
             'family'      => $family,

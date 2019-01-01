@@ -15,8 +15,10 @@
 
 @php
 
-$curYear  = date('Y');
-$curMonth = (string) date('m');
+$today = \Auth::user()->today();
+
+$curYear  = $today->format('Y');
+$curMonth = (string) $today->format('m');
 
 $months = [
     '01',
