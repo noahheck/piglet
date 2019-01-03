@@ -40,7 +40,10 @@
             <ul class="nav nav-tabs" id="memberTabs" role="tablist">
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">{{ __('family-members.details_tab') }}</a>
+                    <a class="nav-link active" id="infoTab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">{{ __('family-members.info_tab') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="detailsTab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">{{ __('family-members.details_tab') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="loginTab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">{{ __('family-members.login_tab') }}</a>
@@ -49,7 +52,7 @@
 
             <div class="tab-content" id="memberTabsContent">
 
-                <div class="tab-pane show active fade" id="details" role="tabpanel" aria-labelledby="detailsTab">
+                <div class="tab-pane show active fade" id="info" role="tabpanel" aria-labelledby="infoTab">
 
                     <fieldset>
                         <legend>{{ $legend }}</legend>
@@ -105,6 +108,78 @@
 
                 </div>
 
+                <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="detailsTab">
+
+                    <fieldset>
+
+                        <legend>{{ __('family-members.details') }}</legend>
+
+                        <div class="form-group">
+                            <label for="race">{{ __('family-members.race') }}</label>
+                            <select class="custom-select" id="race" name="race" aria-describedby="">
+                                <option value="">--</option>
+                                @foreach(config('piglet.races') as $value)
+                                    <option value="{{ $value }}" {{ ($value === old('race', $member->race)) ? "selected='selected'" : "" }}>{{ $value }}</option>
+                                @endforeach
+                            </select>
+                            @fieldError('race')
+                        </div>
+
+                        <div class="form-group">
+                            <label for="height">{{ __('family-members.height') }}</label>
+                            <input type="text" name="height" id="height" class="form-control" placeholder="{{ __('family-members.height_placeholder') }}" value="{{ old('height', $member->height) }}">
+                            @fieldError('height')
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">{{ __('family-members.weight') }}</label>
+                            <input type="text" name="weight" id="weight" class="form-control" placeholder="{{ __('family-members.weight_placeholder') }}" value="{{ old('weight', $member->weight) }}">
+                            @fieldError('weight')
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eye_color">{{ __('family-members.eye_color') }}</label>
+                            <input type="text" name="eye_color" id="eye_color" class="form-control" placeholder="{{ __('family-members.eye_color_placeholder') }}" value="{{ old('eye_color', $member->eye_color) }}">
+                            @fieldError('eye_color')
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hair_color">{{ __('family-members.hair_color') }}</label>
+                            <input type="text" name="hair_color" id="hair_color" class="form-control" placeholder="{{ __('family-members.hair_color_placeholder') }}" value="{{ old('hair_color', $member->hair_color) }}">
+                            @fieldError('hair_color')
+                        </div>
+
+                        <hr>
+
+                        <p>{{ __('family-members.does_member_wear') }}</p>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="glasses" id="glasses" {{ (old('glasses', $member->glasses)) ? ' checked' : '' }}>
+                            <label for="glasses">{{ __('family-members.glasses') }}</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="contacts" id="contacts" {{ (old('contacts', $member->contacts)) ? ' checked' : '' }}>
+                            <label for="contacts">{{ __('family-members.contacts') }}</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="braces" id="braces" {{ (old('braces', $member->braces)) ? ' checked' : '' }}>
+                            <label for="braces">{{ __('family-members.braces') }}</label>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="identifying_features">{{ __('family-members.identifying_features') }}</label> <small>-  {{ __('family-members.identifying_features_examples') }}</small>
+                            <textarea name="identifying_features" id="identifying_features" class="form-control" placeholder="{{ __('family-members.identifying_features_placeholder') }}">{{ old('identifying_features', $member->identifying_features) }}</textarea>
+                            @fieldError('details')
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
                 <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="loginTab">
 
                     <fieldset>
@@ -151,13 +226,13 @@
 
                         </div>
 
-                        <hr>
-
                     </fieldset>
 
                 </div>
 
             </div>
+
+            <hr>
 
             <button type="submit" class="btn btn-primary">
                 {{ __('form.save') }}

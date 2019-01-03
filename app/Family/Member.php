@@ -32,6 +32,12 @@ class Member extends Model
         'gender',
         'color',
         'login_email',
+        'race',
+        'height',
+        'weight',
+        'eye_color',
+        'hair_color',
+        'identifying_features',
     ];
 
     public static function getValidations()

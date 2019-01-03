@@ -6,6 +6,7 @@ return [
 
     'change_photo' => 'Change photo',
 
+    'info_tab'       => 'Info',
     'details_tab'    => 'Details',
     'login_tab'      => 'Login',
 
@@ -20,6 +21,25 @@ return [
 
     'male'       => 'Male',
     'female'     => 'Female',
+
+    'details' => 'Details',
+
+    'race'                             => 'Race',
+    'height'                           => 'Height',
+    'height_placeholder'               => 'ex. 5 ft 10 in',
+    'weight'                           => 'Weight',
+    'weight_placeholder'               => 'ex. 197 pounds',
+    'eye_color'                        => 'Eye Color',
+    'eye_color_placeholder'            => 'ex. Blue',
+    'hair_color'                       => 'Hair Color',
+    'hair_color_placeholder'           => 'ex. Blonde',
+    'does_member_wear'                 => 'Does this family member wear:',
+    'glasses'                          => 'Glasses',
+    'contacts'                         => 'Contacts',
+    'braces'                           => 'Braces',
+    'identifying_features'             => 'Identifying Features',
+    'identifying_features_examples'    => 'Scars, birthmarks, tattoos, piercings, etc.',
+    'identifying_features_placeholder' => 'ex. Scar on thumb, birthmark on back, tribal tattoos on shoulders',
 
     'member_can_log_in'     => 'This member can log in',
     'login_information'     => 'Login Information',

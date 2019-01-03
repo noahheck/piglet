@@ -24,4 +24,13 @@ return [
     ],
 
     'url' => 'https://github.com/noahheck/piglet',
+
+    'races' => [
+        'American Indian or Alaska Native',
+        'Asian',
+        'Black or African American',
+        'Native Hawaiian or Other Pacific Islander',
+        'White',
+        'Other',
+    ],
 ];

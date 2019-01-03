@@ -67,6 +67,10 @@ class MemberController extends Controller
 
         $member->family = $family->id;
 
+        $member->glasses  = $request->has('glasses');
+        $member->contacts = $request->has('contacts');
+        $member->braces   = $request->has('braces');
+
         $member->allow_login      = $request->has('allow_login');
         $member->is_administrator = $request->has('is_administrator');
 
@@ -141,6 +145,10 @@ class MemberController extends Controller
         $oldLoginEmail = $member->login_email;
 
         $member->fill($request->only($member->getFillable()));
+
+        $member->glasses  = $request->has('glasses');
+        $member->contacts = $request->has('contacts');
+        $member->braces   = $request->has('braces');
 
         $member->allow_login      = $request->has('allow_login');
         $member->is_administrator = $request->has('is_administrator');
