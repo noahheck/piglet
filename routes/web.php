@@ -51,6 +51,15 @@ Route::middleware('auth')->group(function() {
 
 
 
+Route::middleware('auth', 'auth.email_verified', 'auth.is_admin')->prefix('admin')->name('admin.')->group(function() {
+    Route::get('/', 'AdminController@index')->name('home');
+
+    Route::get('/users', 'AdminController@users')->name('users');
+    Route::get('/families', 'AdminController@families')->name('families');
+});
+
+
+
 Route::middleware('auth', 'auth.email_verified')->group(function() {
 
     Route::get('/welcome', 'WelcomeController@index')->name('welcome');

@@ -20,6 +20,9 @@ mix
     .js('resources/assets/js/help.js', 'public/js')
     .sass('resources/assets/sass/help.scss', 'public/css')
 
+    // .js('resources/assets/js/admin.js', 'public/js')
+    .sass('resources/assets/sass/admin.scss', 'public/css')
+
     .js('resources/assets/js/home.js', 'public/js')
     .sass('resources/assets/sass/home.scss', 'public/css')
 

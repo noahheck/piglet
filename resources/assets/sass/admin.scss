@@ -1,0 +1,56 @@
+/**
+ * assets/sass/admin.scss
+ */
+
+@import "variables";
+
+h1 {
+  border-bottom: 1px solid $light-gray-border;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+}
+/*
+
+img {
+  max-width: 100%;
+}
+
+.image-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.note,
+.tip {
+  border: 1px solid $light-gray-border;
+  margin: 15px;
+  padding: 15px;
+
+  h5 {
+    border-bottom: 1px solid $light-gray-border;
+    padding-bottom: 7px;
+  }
+
+  h5::before {
+    padding-right: 4px;
+    font-family: "FontAwesome";
+  }
+}
+
+.tip {
+  background-color: $subtle-highlight;
+
+  h5::before {
+    content: "\f0eb";
+  }
+}
+
+.note {
+  background-color: $subtle-note;
+
+  h5:before {
+    content: "\f044";
+  }
+}
+*/

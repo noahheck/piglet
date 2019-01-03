@@ -39,7 +39,7 @@ class Family extends Model implements Settings
         ];
     }
 
-    public function creator()
+    public function createdBy()
     {
         return $this->belongsTo('App\User', 'creator', 'id');
     }

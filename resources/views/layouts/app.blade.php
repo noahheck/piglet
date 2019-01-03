@@ -78,6 +78,19 @@
 
             <ul class="navbar-nav ml-auto">
                 @auth
+
+                    @if (Auth::user()->is_admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.home') }}">
+                                <span class="fa-stack" aria-hidden="true">
+                                    <span class="fa fa-square-o fa-stack-2x"></span>
+                                    <span class="fa fa-wrench fa-stack-1x" aria-hidden="true"></span>
+                                </span>
+                                Admin
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route("home") }}">
                             <span class="fa-stack" aria-hidden="true">
