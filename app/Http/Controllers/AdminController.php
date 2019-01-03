@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function users()
     {
-        $users = User::all()->sortBy(['lastName', 'firstName']);
+        $users = User::orderBy('lastName')->orderBy('firstName')->get();
 
         return view('admin.home', [
             'key'   => 'users',
@@ -33,7 +33,7 @@ class AdminController extends Controller
 
     public function families()
     {
-        $families = Family::all()->sortBy('name');
+        $families = Family::orderBy('name')->get();
 
         return view('admin.home', [
             'key'      => 'families',

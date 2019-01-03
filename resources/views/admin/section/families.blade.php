@@ -1,21 +1,30 @@
 <h1>Families - {{ $families->count() }}</h1>
 
-<table class="table table-sm table-striped table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>Name</th>
-            <th>Created By</th>
-            <th>Last Accessed</th>
-        </tr>
-    </thead>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <div class="input-group-text"><span class="fa fa-search"></span></div>
+    </div>
+    <input autofocus type="text" class="form-control dom-search" data-search-items="#familiesTable tbody tr" id="familiesSearch" placeholder="Search">
+</div>
 
-    <tbody>
-        @foreach ($families as $family)
+<div class="table-responsive">
+    <table class="table table-sm table-striped table-hover" id="familiesTable">
+        <thead class="thead-dark">
             <tr>
-                <td>{{ $family->name }}</td>
-                <td>{{ $family->createdBy->firstName }} {{ $family->createdBy->lastName }}</td>
-                <td>&nbsp;</td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created By</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach ($families as $family)
+                <tr>
+                    <td>{{ $family->id }}</td>
+                    <td>{{ $family->name }}</td>
+                    <td>{{ $family->createdBy->firstName }} {{ $family->createdBy->lastName }} ({{ $family->createdBy->id }})</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
