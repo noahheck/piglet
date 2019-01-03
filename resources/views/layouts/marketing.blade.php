@@ -39,7 +39,12 @@
                 {!! __('application.copyright') !!}
             </p>
             <p>
+                <a href="mailto:{{ config('piglet.support-email') }}">{{ __('application.contact-support') }}</a>
+                <span class="fa fa-envelope-o fa-fw"></span>
+            </p>
+            <p>
                 {!! __('application.proud-open-source') !!}
+                <span class="fa fa-github fa-fw"></span>
             </p>
         </div>
     </div>

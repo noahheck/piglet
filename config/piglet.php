@@ -24,6 +24,7 @@ return [
     ],
 
     'url' => 'https://github.com/noahheck/piglet',
+    'support-email' => 'support@honeyshousehold.com',
 
     'races' => [
         'American Indian or Alaska Native',

@@ -121,6 +121,10 @@
                                 <span class="fa fa-shield fa-fw" aria-hidden="true"></span> {{ __('application.privacy-policy') }}
                             </a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="mailto:{{ config('piglet.support-email') }}">
+                                <span class="fa fa-envelope-o fa-fw"></span> {{ __('application.contact-support') }}
+                            </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route("logout") }}">
                                 <span class="fa fa-sign-out fa-fw" aria-hidden="true"></span> {{ __('application.log-out') }}
                             </a>
