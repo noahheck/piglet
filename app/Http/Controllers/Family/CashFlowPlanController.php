@@ -78,7 +78,10 @@ class CashFlowPlanController extends Controller
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
 
         // Get current set of active piggy banks to show to the user
-        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+        $piggyBanks = PiggyBank::where([
+            ['active', '=', true],
+            ['completed', '=', false],
+        ])->orderBy('dueDate')->get();
 
         // Get current set of recurring expenses to show to the user
         $recurringExpenses = RecurringExpense::where('active', true)->orderBy('active', 'DESC')->orderBy('name')->get();
@@ -130,7 +133,10 @@ class CashFlowPlanController extends Controller
         $incomeSources = IncomeSource::where('active', true)->orderBy('name')->get();
 
         // Get current set of active piggy banks to show to the user
-        $piggyBanks = PiggyBank::where('active', true)->orderBy('dueDate')->get();
+        $piggyBanks = PiggyBank::where([
+            ['active', '=', true],
+            ['completed', '=', false],
+        ])->orderBy('dueDate')->get();
 
         // Get current set of recurring expenses to add to the plan
         $recurringExpenses = RecurringExpense::where('active', true)->orderBy('active', 'DESC')->orderBy('name')->get();
