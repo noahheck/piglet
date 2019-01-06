@@ -56,6 +56,10 @@ class ExpenseGroup extends Model
 
     public function percentUtilized()
     {
+        if (!$this->projected) {
+            return 0;
+        }
+
         return ($this->actualTotal() / $this->projected) * 100;
     }
 
