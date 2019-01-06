@@ -84,16 +84,19 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         // Tasks
         // This early implementation of tasks is not exposed at this time
-        /*Route::resource('/taskLists', 'TaskListController');
+        if (\App::isLocal()) {
 
-        Route::prefix('/taskLists/{taskList}')->group(function() {
+            Route::resource('/taskLists', 'TaskListController');
 
-            Route::post('/archive', 'TaskListController@archive')->name('taskList.archive');
-            Route::post('/restore', 'TaskListController@restore')->name('taskList.restore');
+            Route::prefix('/taskLists/{taskList}')->group(function() {
 
-            Route::resource('/tasks', 'TaskController');
-        });*/
+                Route::post('/archive', 'TaskListController@archive')->name('taskList.archive');
+                Route::post('/restore', 'TaskListController@restore')->name('taskList.restore');
 
+                Route::resource('/tasks', 'TaskController');
+            });
+
+        }
 
 
         // Money Matters
