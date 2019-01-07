@@ -1,5 +1,8 @@
 @php
-    $piggyBankTargets = \App\Family\PiggyBank::where('active', true)->orderBy('dueDate')->get();
+    $piggyBankTargets = \App\Family\PiggyBank::where([
+    ['active', '=', true],
+    ['completed', '=', false],
+])->orderBy('dueDate')->get();
 @endphp
 
 @push('scripts')

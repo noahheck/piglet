@@ -1,9 +1,3 @@
-@php
-    /*$categories = \App\Family\Category::where('active', true)->orderBy('d_order')->get();
-
-    $merchants = \App\Family\Merchant::orderBy('name')->get();*/
-@endphp
-
 @push('scripts')
     {{--<script type="text/javascript" src="{{ mix('js/family.cash-flow-plans.expenses._form.js') }}"></script>--}}
 @endpush
@@ -31,8 +25,6 @@
             </select>
             @fieldError('piggy_bank_id')
         </div>
-
-        {{--<hr>--}}
 
         <div class="form-group">
             <label for="actual">{{ __('piggy-banks.contribution') }}</label>
