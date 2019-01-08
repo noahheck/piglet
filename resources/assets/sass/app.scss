@@ -21,7 +21,7 @@
 
 
 
-body {
+body:not(.print-body) {
   background-color: $body-bg;
 
   background-color: #a2d8f0;

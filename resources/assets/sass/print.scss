@@ -1,0 +1,21 @@
+/**
+ * sass/print.scss
+ */
+
+
+// Variables
+@import "variables";
+
+.print-options {
+  height: 60px;
+  border-bottom: 1px solid $light-gray-border;
+  margin-bottom: 15px;
+  background-color: #343a40;
+  padding: 10px 7px;
+}
+
+@media print {
+  .print-options {
+    display: none;
+  }
+}

@@ -191,6 +191,31 @@ class CashFlowPlanController extends Controller
         ]);
     }
 
+    public function print(Family $family, CashFlowPlan $cashFlowPlan)
+    {
+        $categories = Category::orderBy('active', 'DESC')->orderBy('d_order')->get();
+
+        $recurringExpenses = $cashFlowPlan->recurringExpenses()->orderBy('date')->get();
+
+        $cashFlowPlan->expenseGroups->load(['expenses', 'category']);
+
+        $cashFlowPlan->load(['incomeSources', 'recurringExpenses', 'piggyBanks', 'expenses']);
+
+        $cashFlowPlan->piggyBanks->load(['piggyBank', 'contributions']);
+
+        return view('family.cash-flow-plans.print', [
+            'family'       => $family,
+            'cashFlowPlan' => $cashFlowPlan,
+            'categories'   => $categories,
+            'recurringExpenses' => $recurringExpenses,
+        ]);
+    }
+
+
+
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -224,6 +249,11 @@ class CashFlowPlanController extends Controller
     {
         //
     }
+
+
+
+
+
 
 
 

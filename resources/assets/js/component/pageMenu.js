@@ -28,7 +28,17 @@ $(function() {
         if (!confirm("Are you sure you want to delete this?")) {
             return false;
         }
-    })
+    });
+
+    // Print option
+    $("#pageMenuPrintOption").click(function(e) {
+
+        e.preventDefault();
+
+        let target = $(this).attr("href");
+
+        window.open(target, '', 'width=700,height=500');
+    });
 });
 
 let pageMenu = {};

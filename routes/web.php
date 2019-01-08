@@ -128,6 +128,8 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         Route::prefix('/cash-flow-plans/{cashFlowPlan}')->name('cash-flow-plans.')->group(function() {
 
+            Route::get('/print', 'CashFlowPlanController@print')->name('print');
+
 
             Route::get('/lifestyle-expenses', 'CashFlowPlanController@lifestyleExpensesView')->name('lifestyle-expenses');
             Route::post('/lifestyle-expenses', 'CashFlowPlanController@lifestyleExpensesSave')->name('lifestyle-expenses-update');
