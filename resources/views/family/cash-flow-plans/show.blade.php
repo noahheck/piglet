@@ -49,14 +49,14 @@
 
 
                 <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
-                <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
+                <p>{!! nl2br(e($cashFlowPlan->details)) !!}</p>
 
 
                 <h4>{{ __('cash-flow-plans.projected') }}</h4>
 
                 <div class="row mb-3">
 
-                    <div class="col col-sm-6 order-1 order-sm-2">
+                    <div class="col col-sm-6 order-1 order-sm-2 text-center">
 
                         <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->projectedBalanceChartData())'></canvas>
 

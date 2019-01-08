@@ -37,7 +37,7 @@ $(function() {
 
         let target = $(this).attr("href");
 
-        window.open(target, '', 'width=700,height=500');
+        window.open(target, '', 'width=800,height=600');
     });
 });
 
