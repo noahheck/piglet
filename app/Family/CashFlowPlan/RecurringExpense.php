@@ -53,7 +53,6 @@ class RecurringExpense extends Model
     public static function getValidations()
     {
         return [
-            // 'name'                 => 'required|nullable',
             'recurring_expense_id' => 'required|integer',
             'date'                 => 'date|nullable',
             'projected'            => 'numeric|nullable',
@@ -86,5 +85,18 @@ class RecurringExpense extends Model
     public function isFulfilled()
     {
         return ($this->actual) ? true : false;
+    }
+
+    public function title()
+    {
+        $title = '';
+
+        if ($this->merchant) {
+            $title .= ($title) ? ' - ' . $this->merchant->name : $this->merchant->name;
+        }
+
+        $title = ($title) ? $title : __('expenses.no-merchant');
+
+        return $title;
     }
 }
