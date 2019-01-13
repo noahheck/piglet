@@ -28,7 +28,20 @@ $(function() {
         if (!confirm("Are you sure you want to delete this?")) {
             return false;
         }
-    })
+    });
+
+    // Print option
+    $("#pageMenuPrintOption").click(function(e) {
+
+        e.preventDefault();
+
+        let target = $(this).attr("href");
+
+        // Consider adding a print window service
+        window.open(target, '', 'width=800,height=600');
+
+        pageMenu.close();
+    });
 });
 
 let pageMenu = {};

@@ -43,6 +43,12 @@
                                         <span class="fa fa-question-circle fa-fw"></span> {{ __('application.help') }}
                                     </a>
                                 </li>
+                            @elseif (isset($item['type']) && $item['type'] === 'print')
+                                <li>
+                                    <a href="{{ $item['href'] }}" id="pageMenuPrintOption">
+                                        <span class="fa fa-print fa-fw"></span> Print
+                                    </a>
+                                </li>
                             @endif
 
 

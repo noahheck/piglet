@@ -36,23 +36,33 @@ class MoneyMattersCharts
         $cashFlowPlans = $this->cashFlowPlans;
 
         $this->categories->each(function($category) use (&$labels, &$colors, &$data, $cashFlowPlans) {
-            $labels[] = $category->name;
-            $colors[] = $category->color;
 
-            $data[] = formatCurrency($cashFlowPlans->reduce(function($carry, $cfp) use ($category) {
+            $total = $cashFlowPlans->reduce(function($carry, $cfp) use ($category) {
 
                 $recurringExpenseTotal = $cfp->recurringExpenses->where('category_id', $category->id)->sum('actual');
                 $expenseTotal = $cfp->expenses->where('category_id', $category->id)->sum('actual');
 
                 return $carry + $recurringExpenseTotal + $expenseTotal;
-            }, 0));
+            }, 0);
+
+            $labels[] = $category->name;
+            $colors[] = $category->color;
+            $data[]   = formatCurrency($total);
+
+            /*$data[] = formatCurrency($cashFlowPlans->reduce(function($carry, $cfp) use ($category) {
+
+                $recurringExpenseTotal = $cfp->recurringExpenses->where('category_id', $category->id)->sum('actual');
+                $expenseTotal = $cfp->expenses->where('category_id', $category->id)->sum('actual');
+
+                return $carry + $recurringExpenseTotal + $expenseTotal;
+            }, 0));*/
         });
 
         return [
             'type' => 'pie',
             'options' => [
                 'legend' => [
-                    'position' => 'bottom',
+                    'position' => 'left',
                 ],
             ],
             'data' => [

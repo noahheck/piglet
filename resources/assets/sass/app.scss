@@ -21,7 +21,7 @@
 
 
 
-body {
+body:not(.print-body) {
   background-color: $body-bg;
 
   background-color: #a2d8f0;
@@ -97,6 +97,12 @@ h2 {
   background-color: white;
 }
 
+
+.page-break {
+  height: 1px;
+
+  page-break-after: always;
+}
 
 
 // Header

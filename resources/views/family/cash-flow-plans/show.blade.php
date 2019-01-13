@@ -30,6 +30,7 @@
             ['type' => 'link', 'href' => route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-refresh', 'text' => __('recurring-expenses.add-new-recurring-expense')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-folder-open-o', 'text' => __('expense-groups.add-new-expense-group')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]), 'icon' => 'fa fa-dollar', 'text' => __('expenses.add-new-expense')],
+            ['type' => 'print', 'href' => route('family.cash-flow-plans.print', [$family, $cashFlowPlan,])],
         ]
     ])
 
@@ -48,14 +49,14 @@
 
 
                 <h2>{{ __('months.' . $cashFlowPlan->month) }} {{ $cashFlowPlan->year }}</h2>
-                <p>{!! nl2br(__($cashFlowPlan->details)) !!}</p>
+                <p>{!! nl2br(e($cashFlowPlan->details)) !!}</p>
 
 
                 <h4>{{ __('cash-flow-plans.projected') }}</h4>
 
                 <div class="row mb-3">
 
-                    <div class="col col-sm-6 order-1 order-sm-2">
+                    <div class="col col-sm-6 order-1 order-sm-2 text-center">
 
                         <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->projectedBalanceChartData())'></canvas>
 
@@ -129,6 +130,11 @@
 
                 <canvas id="cfpSummaryChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->summaryChartData())'></canvas>
 
+                <hr>
+
+                <h4 class="mt-3">{{ __('money-matters.category-totals') }}</h4>
+
+                <canvas id="categoryTotalsChart" class="piglet-chart" data-chart-data='@json($chartDataProvider->categoryTotalsChartData())'></canvas>
             </div>
             {{-- End of summary section --}}
 
@@ -311,7 +317,7 @@
             <div class="section">
 
                 <h3>
-                    <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expenses</a>
+                    <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">{{ __('expenses.expenses') }}</a>
                 </h3>
 
                 <div class="row">
