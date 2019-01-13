@@ -302,14 +302,15 @@
                 <tr>
                     <td style="width: 100px;">&nbsp;</td>
                     <td>{{ __('expenses.name') }}</td>
-                    <td class="text-right">{{ __('expenses.amount') }}</td>
+                    <td class="text-right">{{ __('expense-groups.projected') }}</td>
+                    <td class="text-right" style="width: 150px;">{{ __('expenses.amount') }}</td>
                 </tr>
             </thead>
 
             @foreach ($expenseGroup->expenses->where('category_id', null) as $expense)
                 <tr>
                     <td style="border-left: 4px solid transparent">{{ App\formatDate($expense->date) }}</td>
-                    <td>>{{ $expense->title() }}</td>
+                    <td colspan="2">{{ $expense->title() }}</td>
                     <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                 </tr>
             @endforeach
@@ -318,7 +319,7 @@
                 @foreach ($expenseGroup->expenses->where('category_id', $category->id) as $expense)
                     <tr>
                         <td style="border-left: 4px solid {{ $category->color }}">{{ App\formatDate($expense->date) }}</td>
-                        <td>{{ $expense->title() }}</td>
+                        <td colspan="2">{{ $expense->title() }}</td>
                         <td class="text-right">{{ ($expense->actual) ? App\formatCurrency($expense->actual, true) : '' }}</td>
                     </tr>
                 @endforeach
@@ -327,6 +328,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
+                <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->projected, true) }}</strong></td>
                 <td class="text-right"><strong>{{ App\formatCurrency($expenseGroup->actualTotal(), true) }}</strong></td>
             </tr>
 
