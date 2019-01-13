@@ -42,3 +42,16 @@ button.card-footer:hover {
     }
   }
 }
+
+.print-body {
+  .table {
+    thead {
+
+      font-weight: bold;
+
+      td {
+        border-top: none;
+      }
+    }
+  }
+}

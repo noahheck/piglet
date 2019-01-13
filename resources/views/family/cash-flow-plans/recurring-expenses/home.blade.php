@@ -85,6 +85,7 @@
                     @endforeach
 
                     <tr>
+                        <td>&nbsp;</td>
                         <td><strong>{{ __('cash-flow-plans.total') }}</strong></td>
                         <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->projectedRecurringExpensesTotal(), true) }}</strong></td>
                         <td class="text-right"><strong>{{ App\formatCurrency($cashFlowPlan->actualRecurringExpensesTotal(), true) }}</strong></td>

@@ -6,6 +6,7 @@ use App\Family;
 use App\Family\Category;
 use App\Family\CashFlowPlan;
 use App\Family\ExpenseGroup;
+use App\Family\MoneyMattersCharts;
 use App\Family\PiggyBank;
 use App\Family\RecurringExpense;
 use App\Family\IncomeSource;
@@ -183,11 +184,14 @@ class CashFlowPlanController extends Controller
 
         $cashFlowPlan->piggyBanks->load(['piggyBank', 'contributions']);
 
+        $chartDataProvider = new MoneyMattersCharts(collect([$cashFlowPlan]), $categories);
+
         return view('family.cash-flow-plans.show', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,
             'categories'   => $categories,
             'recurringExpenses' => $recurringExpenses,
+            'chartDataProvider' => $chartDataProvider,
         ]);
     }
 
@@ -197,17 +201,20 @@ class CashFlowPlanController extends Controller
 
         $recurringExpenses = $cashFlowPlan->recurringExpenses()->orderBy('date')->get();
 
-        $cashFlowPlan->expenseGroups->load(['expenses', 'category']);
+        $cashFlowPlan->expenseGroups->load(['expenses.merchant', 'category']);
 
         $cashFlowPlan->load(['incomeSources', 'recurringExpenses', 'piggyBanks', 'expenses']);
 
         $cashFlowPlan->piggyBanks->load(['piggyBank', 'contributions']);
+
+        $chartDataProvider = new MoneyMattersCharts(collect([$cashFlowPlan]), $categories);
 
         return view('family.cash-flow-plans.print', [
             'family'       => $family,
             'cashFlowPlan' => $cashFlowPlan,
             'categories'   => $categories,
             'recurringExpenses' => $recurringExpenses,
+            'chartDataProvider' => $chartDataProvider,
         ]);
     }
 

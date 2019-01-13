@@ -37,7 +37,10 @@ $(function() {
 
         let target = $(this).attr("href");
 
+        // Consider adding a print window service
         window.open(target, '', 'width=800,height=600');
+
+        pageMenu.close();
     });
 });
 

@@ -130,6 +130,11 @@
 
                 <canvas id="cfpSummaryChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->summaryChartData())'></canvas>
 
+                <hr>
+
+                <h4 class="mt-3">{{ __('money-matters.category-totals') }}</h4>
+
+                <canvas id="categoryTotalsChart" class="piglet-chart" data-chart-data='@json($chartDataProvider->categoryTotalsChartData())'></canvas>
             </div>
             {{-- End of summary section --}}
 
@@ -312,7 +317,7 @@
             <div class="section">
 
                 <h3>
-                    <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">Expenses</a>
+                    <a href="{{ route('family.cash-flow-plans.expense-groups.index', [$family, $cashFlowPlan]) }}">{{ __('expenses.expenses') }}</a>
                 </h3>
 
                 <div class="row">
