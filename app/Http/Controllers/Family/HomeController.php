@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Family;
 
 use App\Family;
+use App\Family\CashFlowPlan;
 use App\Http\Response\AjaxResponse;
 use App\Mail\MailgunTest;
 use Illuminate\Http\Request;
@@ -14,34 +15,13 @@ class HomeController extends Controller
 {
     public function index(Family $family)
     {
+        $currentCfp = CashFlowPlan::current(Auth::user()->today());
+
         return view('family.home', [
             'family'     => $family,
             'familyUser' => $family->familyUser(Auth::user()),
             'members'    => Family\Member::all(),
+            'currentCfp' => $currentCfp,
         ]);
     }
-
-    /*
-    public function ajaxTest(Request $request)
-    {
-        $response = new AjaxResponse();
-
-        $response->success(true)
-            ->set('test', 'Something')
-            ->set('member', 1)
-            ->addError("Something went wrong")
-            ->addError("Another problem")
-            ->success(false)
-        ;
-
-        return response()->json($response);
-    }
-    /**/
-
-    /*
-    public function emailTest()
-    {
-        Mail::to(Auth::user())->send(new MailgunTest(Auth::user()));
-    }
-    /**/
 }

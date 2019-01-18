@@ -58,7 +58,7 @@
 
                     <div class="col col-sm-6 order-1 order-sm-2 text-center">
 
-                        <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->projectedBalanceChartData())'></canvas>
+                        <canvas id="cfpProjectedBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->projectedBalanceChartData())'></canvas>
 
                     </div>
 
@@ -97,7 +97,7 @@
 
                     <div class="col col-sm-6 order-1 order-sm-2">
 
-                        <canvas id="cfpBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->actualBalanceChartData())'></canvas>
+                        <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($cashFlowPlan->actualBalanceChartData())'></canvas>
 
                     </div>
 

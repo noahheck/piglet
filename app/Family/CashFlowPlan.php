@@ -38,6 +38,61 @@ class CashFlowPlan extends Model
     ];
 
 
+    /**
+     * Returns the CFP for the current month, last month, or next month relative to the provided date, or the latest
+     * month for which a CFP was created
+     *
+     * @return mixed bool|CashFlowPlan
+     */
+    public static function current(Carbon $today)
+    {
+        $cfps = self::orderBy('year', 'DESC')->orderBy('month', 'DESC')->get();
+
+        if ($cfps->count() === 0) {
+            return false;
+        }
+
+        $year  = $today->format('Y');
+        $month = $today->format('n');
+
+        $currentCfp = $cfps->where('year', $year)->where('month', $month);
+
+        if ($currentCfp->count()) {
+            return $currentCfp->first();
+        }
+
+        // ---
+
+        $lastMonth = $today->copy()->subMonthNoOverflow();
+
+        $lastMonthYear = $lastMonth->format('Y');
+        $lastMonthMonth = $lastMonth->format('n');
+
+        $currentCfp = $cfps->where('year', $lastMonthYear)->where('month', $lastMonthMonth);
+
+        if ($currentCfp->count()) {
+            return $currentCfp->first();
+        }
+
+        // ---
+
+        $nextMonth = $today->copy()->addMonthNoOverflow();
+
+        $nextMonthYear = $nextMonth->format('Y');
+        $nextMonthMonth = $nextMonth->format('n');
+
+        $currentCfp = $cfps->where('year', $nextMonthYear)->where('month', $nextMonthMonth);
+
+        if ($currentCfp->count()) {
+            return $currentCfp->first();
+        }
+
+        // No relevant close cfp found, return the latest one created
+
+        return $cfps->first();
+    }
+
+
 
     public function incomeSources()
     {

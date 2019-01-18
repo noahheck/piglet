@@ -112,4 +112,31 @@ $menu[] = [
 
     </div>
 
+    @if ($currentCfp)
+
+        <hr>
+
+        <h3>{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }}</h3>
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-6">
+
+                <a class="card shadow" href="{{ route('family.cash-flow-plans.show', [$family, $currentCfp]) }}">
+
+                    <div class="card-body">
+
+                        <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    @endif
+
 @endsection
