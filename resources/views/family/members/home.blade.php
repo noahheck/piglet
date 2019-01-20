@@ -19,6 +19,7 @@
         'location'   => __('family-members.family_members'),
         'menu' => [
             ['type' => 'link', 'href' => route('family.members.create', [$family]), 'icon' => 'fa fa-plus-circle', 'text' => 'Add New'],
+            ['type' => 'help', 'key' => 'family-members'],
             /*['type' => 'delete', 'href' => route('family.members.create', [$family]), 'text' => 'Delete Family'],*/
         ]
     ])
