@@ -6,6 +6,8 @@ $__navigation_url = route('help', 'navigation');
 
 $__family_homescreen_image = asset("img/help/family/home_screen.png");
 
+$__current_cfp_image = asset("img/help/family/current_cfp.png");
+
 return [
     'family' => 'Family',
     'introduction' => <<<EOT
@@ -31,5 +33,13 @@ EOT
 <p>You can easily return to this screen at any time by selecting the "Home" option either from the main navigation bar or from the family navigation bar. See the <a href="{$__navigation_url}" class="help-link">Navigation</a> page for more details.</p>
 EOT
     ,
+    'current-cfp' => "Your Family's Current Cash Flow Plan",
+    'current-cfp-details' => <<<EOT
+<p>From the Family Home Screen, you also have access to see your family's progress toward the current month's Cash Flow Plan. Here, you can quickly see how much of your budget has been appropriated across all your expense categories.</p>
+<p>Here, you're also able to easily add expenses to your expense groups throughout the month, which makes keeping your Cash Flow Plan up to date a breeze!</p> 
+<div class="image-container">
+    <img src="{$__current_cfp_image}" alt="A colorful graph showing the how much of the family's total income has been appropriated for the current month; also showing a listing of expense groups with a display of their individual appropriation progress with buttons for quickly adding expenses to each group.">
+</div>
+EOT
 
 ];

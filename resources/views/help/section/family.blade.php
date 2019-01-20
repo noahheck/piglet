@@ -9,3 +9,7 @@
 <h3>{{ __('help/family.homescreen') }}</h3>
 
 {!! __('help/family.homescreen-details') !!}
+
+<h3>{{ __('help/family.current-cfp') }}</h3>
+
+{!! __('help/family.current-cfp-details') !!}
