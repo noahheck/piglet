@@ -44,7 +44,7 @@ function clickHelpLink(link, e) {
 
 $(function() {
 
-    $(".help-link").click(function(e) {
+    $(".load-help-link").click(function(e) {
         clickHelpLink(this, e);
     });
 

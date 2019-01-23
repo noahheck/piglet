@@ -15,13 +15,15 @@
 @section('content')
 
     @php
-        $menu = null;
+        $menu = [];
 
         if (Auth::user()->member->is_administrator) {
             $menu = [
                 ['type' => 'link', 'href' => route('family.members.edit', [$family, $member]), 'icon' => 'fa fa-pencil-square-o', 'text' => ucwords(__('form.edit_details'))],
             ];
         }
+
+        $menu[] = ['type' => 'help', 'key' => 'family-members'];
     @endphp
 
     @include('family.shared.breadcrumb', [
@@ -34,9 +36,9 @@
 
     <h2>{{ $member->firstName }} {{ $member->lastName }}</h2>
 
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-12 col-md-4 col-lg-3">
+        <div class="col-12 col-md-8 col-lg-6{{--col-md-4 col-lg-3--}}">
 
             <div class="card shadow">
                 {!! $member->photo(['img-fluid', 'card-img-top']) !!}
