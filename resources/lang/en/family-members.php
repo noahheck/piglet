@@ -3,6 +3,7 @@
 return [
     'family_members'        => 'Family Members',
     'add_new_family_member' => 'Add new family member',
+    'add_family_member' => 'Add Family Member',
 
     'change_photo' => 'Change photo',
 
