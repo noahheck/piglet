@@ -41,7 +41,7 @@ moneyField.attach = function(element) {
         let curVal = $(this).val();
         let hasDecimal = curVal.match(/\./);
 
-        let charCode = (e.which) ? e.which : w.keyCode;
+        let charCode = (e.which) ? e.which : e.keyCode;
 
         if (isControlCode(charCode)) {
             return true;
