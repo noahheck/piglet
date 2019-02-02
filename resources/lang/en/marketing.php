@@ -85,7 +85,7 @@ return [
         'why-open-source'   => "Why is " . config('app.name') . " open source?",
         'why-open-source-a' => "There are many reasons. Most importantly, we wanted " . config('app.name') . " to help families achieve their goals, and we know we can't do that if you don't trust us with your information.
                     <br>
-                    Having our source code available online, we can, for example, point you to <a href='https://github.com/noahheck/piglet/blob/master/app/Http/Middleware/VerifyFamilyAccess.php#L36' target='_blank'>this line of code</a> to show how we keep your data safe from unauthorized access.
+                    Having our source code available online, we can, for example, point you to <a href='https://github.com/noahheck/piglet/blob/master/app/Http/Middleware/VerifyFamilyAccess.php#L34' target='_blank'>this line of code</a> to show how we keep your data safe from unauthorized access.
                     <small class='text-muted'>(That line of code prevents the application from executing a request if the user making the request isn't listed as a member of your family; if you see any problems with how that's done, let us know and we'll get it fixed!)</small>",
 
         'why-name'   => "Why do you call it " . config('app.name') . "?",
