@@ -27,7 +27,7 @@
 
                 <div class="form-group">
                     <label for="dueDate">Due Date <small class="text-muted">mm/dd/yyyy</small></label>
-                    <input type="text" name="dueDate" id="dueDate" class="form-control dateField" placeholder="Due Date" value="{{ old('dueDate', App\formatDate($taskList->dueDate)) }}">
+                    <input type="text" name="dueDate" id="dueDate" class="form-control dateField datepicker" placeholder="Due Date" value="{{ old('dueDate', App\formatDate($taskList->dueDate)) }}">
                     @fieldError('dueDate')
                 </div>
 
