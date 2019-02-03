@@ -101,12 +101,18 @@ $menu[] = [
                 </a>
             @endif
 
-            {{--<div class="card shadow">
+            <a class="card shadow component-link" href="#">
                 <div class="card-body">
-                    <h5 class="card-title">Schedule <small class="text-muted">- Coming Soon!</small></h5>
-                    Schedule type things
+                    <h5 class="card-title">
+                        <span class="fa fa-calendar"></span>
+                        {{ __('calendar.calendar') }}
+                    </h5>
+                    <p>
+                        <span class="fa fa-pull-left fa-2x fa-border fa-list-alt"></span>
+                    </p>
+                    {{ __('calendar.calendar-short-desc') }}
                 </div>
-            </div>--}}
+            </a>
 
         </div>
 
