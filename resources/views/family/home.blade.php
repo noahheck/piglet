@@ -101,7 +101,7 @@ $menu[] = [
                 </a>
             @endif
 
-            <a class="card shadow component-link" href="#">
+            <a class="card shadow component-link" href="{{ route('family.calendar', $family) }}">
                 <div class="card-body">
                     <h5 class="card-title">
                         <span class="fa fa-calendar"></span>
