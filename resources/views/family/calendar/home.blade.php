@@ -5,7 +5,7 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/family/home.css') }}" />--}}
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.calendar.calendar.css') }}" />
 @endpush
 
 @push('scripts')
@@ -15,6 +15,14 @@
 @php
 $lastMonth = $monthDetailProvider->previousMonth();
 $nextMonth = $monthDetailProvider->nextMonth();
+
+$emptyCellsAtBeginning = $monthDetailProvider->emptyCellsAtBeginningOfMonth();
+$emptyCellsAtEnd       = $monthDetailProvider->emptyCellsAtEndOfMonth();
+$daysInMonth           = $monthDetailProvider->daysInMonth();
+
+
+$weekPositionCounter = $emptyCellsAtBeginning;
+
 @endphp
 
 @section('content')
@@ -51,6 +59,46 @@ $nextMonth = $monthDetailProvider->nextMonth();
                     <span class="fa fa-chevron-right"></span>
                 </a>
             </div>
+
+            <table class="calendar" id="calendar">
+
+                <thead>
+                    <tr>
+                        @for($x = 0; $x < 7; $x++)
+                            <td>
+                                <span class="d-none d-lg-inline">{{ __('days.' . $x) }}</span>
+                                <span class="d-none d-sm-inline d-lg-none">{{ __('days.' . $x . '_') }}</span>
+                                <span class="d-inline d-sm-none">{{ __('days.' . $x . '__') }}</span>
+                            </td>
+                        @endfor
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        @for ($x = 1; $x <= $emptyCellsAtBeginning; $x++)
+                            <td class="empty-cell">&nbsp;</td>
+                        @endfor
+
+                        @for ($x = 1; $x <= $daysInMonth; $x++, $weekPositionCounter++)
+
+                            @if ($weekPositionCounter == 7)
+                                </tr><tr>
+                                @php $weekPositionCounter = 0; @endphp
+                            @endif
+
+                            <td>{{ $x }}</td>
+
+                        @endfor
+
+                        @for ($x = 1; $x <= $emptyCellsAtEnd; $x++)
+                            <td class="empty-cell">&nbsp;</td>
+                        @endfor
+
+                    </tr>
+                </tbody>
+
+            </table>
 
         </div>
 

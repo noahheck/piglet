@@ -59,6 +59,9 @@ mix
     .sass('resources/assets/sass/family/taskLists.scss', 'public/css/family.taskLists.css')
 
 
+    .sass('resources/assets/sass/family/calendar/calendar.scss', 'public/css/family.calendar.calendar.css')
+
+
     .js('resources/assets/js/family/money-matters/nav.js',       'public/js/family.money-matters.nav.js')
     .sass('resources/assets/sass/family/money-matters/nav.scss', 'public/css/family.money-matters.nav.css')
 
