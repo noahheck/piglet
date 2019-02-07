@@ -30,6 +30,7 @@ class ExpenseGroup extends Model
         'name',
         'projected',
         'detail',
+        'cash',
     ];
 
     public static function getValidations()
