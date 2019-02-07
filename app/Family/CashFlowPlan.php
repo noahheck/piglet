@@ -265,6 +265,7 @@ class CashFlowPlan extends Model
                 'sub_category'     => $expenseGroupTemplate->sub_category,
                 'name'             => $expenseGroupTemplate->name,
                 'projected'        => $expenseGroupTemplate->default_amount,
+                'cash'             => $expenseGroupTemplate->cash,
             ]);
 
             $expenseGroup->save();
