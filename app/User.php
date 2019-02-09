@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\User\FormatsCurrency;
+use App\Traits\User\FormatsDateTimes;
 use App\Traits\User\ProvidesTodaysDate;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,6 +21,7 @@ class User extends Authenticatable
     use Notifiable,
         IsPhotogenic,
         FormatsDates,
+        FormatsDateTimes,
         ProvidesTodaysDate,
         FormatsCurrency
         ;

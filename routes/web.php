@@ -102,6 +102,8 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         Route::get('/calendar/{year?}/{month?}', 'CalendarController@show')->name('calendar');
 
+        Route::resource('/events', 'EventController');
+
 
         // Money Matters
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');

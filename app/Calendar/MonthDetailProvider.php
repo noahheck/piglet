@@ -34,6 +34,15 @@ class MonthDetailProvider
         $this->carbon = Carbon::createFromDate($this->year, $this->month, '15');
     }
 
+    public function __get($name)
+    {
+        if (in_array($name, ['month', 'year'])) {
+            return $this->$name;
+        }
+
+        throw new \InvalidArgumentException("Can't access non-existent property: {$name}");
+    }
+
     /**
      * @return object
      */

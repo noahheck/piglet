@@ -124,7 +124,7 @@ class TaskList extends Model
      */
     public function tasks()
     {
-        return $this->hasMany(Task::class)->with('member');
+        return $this->hasMany(Task::class)->orderBy('dueDate')->with('member');
     }
 
     /**

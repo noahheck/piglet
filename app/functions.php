@@ -7,9 +7,15 @@ function formatCurrency($amount = null, $withFormatting = null) {
 }
 
 
+
 function formatDate(\DateTime $date = null) {
     return \Auth::user()->formatDate($date);
 }
+
+function formatDateTime(\DateTime $datetime, $format = null) {
+    return \Auth::user()->formatDateTime($datetime, $format);
+}
+
 
 
 function flashMessage($category, $message) {

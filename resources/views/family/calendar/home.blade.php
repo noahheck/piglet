@@ -87,7 +87,9 @@ $weekPositionCounter = $emptyCellsAtBeginning;
                                 @php $weekPositionCounter = 0; @endphp
                             @endif
 
-                            <td>{{ $x }}</td>
+                            <td>
+                                <div class="day-number">{{ $x }}</div>
+                            </td>
 
                         @endfor
 
