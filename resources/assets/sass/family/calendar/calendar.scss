@@ -53,3 +53,19 @@ table.calendar {
     //text-align: right;
   }
 }
+
+
+.day-card {
+  h3 {
+    margin-bottom: 0;
+  }
+}
+
+.entry {
+  border-top: 1px solid $light-gray-border;
+  padding: 7px;
+}
+
+.entry:first-of-type {
+  border-top: none;
+}

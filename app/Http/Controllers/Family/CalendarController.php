@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Family;
 use App\Calendar\DayDetailProvider;
 use App\Calendar\MonthDetailProvider;
 use App\Family;
+use App\Family\CalendarEntryProvider;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -21,12 +22,15 @@ class CalendarController extends Controller
 
         $monthDetailProvider = new MonthDetailProvider($year, $month);
 
+        $entryProvider = new CalendarEntryProvider($year, $month);
+
         return view('family.calendar.month', [
             'family'              => $family,
             'today'               => $today,
             'year'                => $year,
             'month'               => $month,
             'monthDetailProvider' => $monthDetailProvider,
+            'entryProvider'       => $entryProvider,
         ]);
     }
 
@@ -34,12 +38,15 @@ class CalendarController extends Controller
     {
         $dayDetailProvider = new DayDetailProvider($year, $month, $day);
 
+        $entryProvider = new CalendarEntryProvider($year, $month, $day);
+
         return view('family.calendar.day', [
             'family'            => $family,
             'year'              => $year,
             'month'             => $month,
             'day'               => $day,
             'dayDetailProvider' => $dayDetailProvider,
+            'entryProvider'     => $entryProvider,
         ]);
     }
 }
