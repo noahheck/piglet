@@ -14,6 +14,18 @@ table.calendar {
     border: 1px solid black;
     height: 70px;
     vertical-align: top;
+
+    a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      color: #000;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background-color: $subtle-note;
+    }
   }
 
   td.empty-cell {
@@ -27,6 +39,14 @@ table.calendar {
     font-weight: bold;
     color: var(--light);
     background-color: var(--dark);
+  }
+
+  td.is-today {
+    background-color: $subtle-highlight;
+
+    .day-number {
+      font-weight: bold;
+    }
   }
 
   .day-number {

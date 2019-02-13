@@ -53,7 +53,7 @@
 
                             @foreach ($events as $event)
                                 <li class="event list-group-item">
-                                    <a href="{{ route('family.events.edit', [$family, $event]) }}">{{ $event->title }}</a> - {{ $event->date }} {{ ($event->all_day) ? "All day" : $event->time }}
+                                    <a href="{{ route('family.events.edit', [$family, $event]) }}">{{ $event->title }}</a> - {{ $event->date }} {{ ($event->all_day) ? __('events.all_day') : $event->time }}
                                 </li>
                             @endforeach
 

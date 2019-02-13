@@ -100,7 +100,8 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         // Calendar
 
-        Route::get('/calendar/{year?}/{month?}', 'CalendarController@show')->name('calendar');
+        Route::get('/calendar/{year?}/{month?}', 'CalendarController@month')->name('calendar');
+        Route::get('/calendar/{year}/{month}/{day}', 'CalendarController@day')->name('calendar.day');
 
         Route::resource('/events', 'EventController');
 

@@ -36,7 +36,7 @@
                 <dd>{{ $event->date }}</dd>
 
                 <dt>{{ __('events.time') }}</dt>
-                <dd>{{ ($event->all_day) ? 'All Day' : $event->time }}</dd>
+                <dd>{{ ($event->all_day) ? __('events.all_day') : $event->time }}</dd>
             </dl>
 
             <p>

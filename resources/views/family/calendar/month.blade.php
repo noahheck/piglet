@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- - {{ $family->name }} Calendar
+ - {{ $family->name }} - Calendar - {{ __('months.' . $month) }} {{ $year }}
 @endsection
 
 @push('stylesheets')
@@ -52,11 +52,13 @@ $weekPositionCounter = $emptyCellsAtBeginning;
             </div>
 
             <div>
-                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $lastMonth->year, $lastMonth->month]) }}">
+                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $lastMonth->year, $lastMonth->month]) }}" title="{{ __('calendar.previous-month') }}">
                     <span class="fa fa-chevron-left"></span>
+                    <span class="sr-only">{{ __('calendar.previous-month') }}</span>
                 </a>
-                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $nextMonth->year, $nextMonth->month]) }}">
+                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $nextMonth->year, $nextMonth->month]) }}" title="{{ __('calendar.next-month') }}">
                     <span class="fa fa-chevron-right"></span>
+                    <span class="sr-only">{{ __('calendar.next-month') }}</span>
                 </a>
             </div>
 
@@ -66,9 +68,9 @@ $weekPositionCounter = $emptyCellsAtBeginning;
                     <tr>
                         @for($x = 0; $x < 7; $x++)
                             <td>
-                                <span class="d-none d-lg-inline">{{ __('days.' . $x) }}</span>
-                                <span class="d-none d-sm-inline d-lg-none">{{ __('days.' . $x . '_') }}</span>
-                                <span class="d-inline d-sm-none">{{ __('days.' . $x . '__') }}</span>
+                                <span class="d-none d-lg-inline">{{           __('days.' . $x)        }}</span>
+                                <span class="d-none d-sm-inline d-lg-none">{{ __('days.' . $x . '_')  }}</span>
+                                <span class="d-inline d-sm-none">{{           __('days.' . $x . '__') }}</span>
                             </td>
                         @endfor
                     </tr>
@@ -87,8 +89,16 @@ $weekPositionCounter = $emptyCellsAtBeginning;
                                 @php $weekPositionCounter = 0; @endphp
                             @endif
 
-                            <td>
-                                <div class="day-number">{{ $x }}</div>
+                            @php
+                                $isToday = false;
+                                if ($today->month == $month && $today->year == $year && $today->day == $x) {
+                                    $isToday = true;
+                                }
+                            @endphp
+                            <td class="{{ ($isToday) ? "is-today" : "" }}">
+                                <a href="{{ route("family.calendar.day", [$family, $year, $month, $x]) }}">
+                                    <div class="day-number">{{ $x }}</div>
+                                </a>
                             </td>
 
                         @endfor

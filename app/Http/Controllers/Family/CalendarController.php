@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Family;
 
+use App\Calendar\DayDetailProvider;
 use App\Calendar\MonthDetailProvider;
 use App\Family;
 use App\Http\Controllers\Controller;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    public function show(Family $family, $year = null, $month = null)
+    public function month(Family $family, $year = null, $month = null)
     {
         $today = \Auth::user()->today();
 
@@ -20,12 +21,25 @@ class CalendarController extends Controller
 
         $monthDetailProvider = new MonthDetailProvider($year, $month);
 
-        return view('family.calendar.home', [
+        return view('family.calendar.month', [
             'family'              => $family,
             'today'               => $today,
             'year'                => $year,
             'month'               => $month,
             'monthDetailProvider' => $monthDetailProvider,
+        ]);
+    }
+
+    public function day(Family $family, $year, $month, $day)
+    {
+        $dayDetailProvider = new DayDetailProvider($year, $month, $day);
+
+        return view('family.calendar.day', [
+            'family'            => $family,
+            'year'              => $year,
+            'month'             => $month,
+            'day'               => $day,
+            'dayDetailProvider' => $dayDetailProvider,
         ]);
     }
 }
