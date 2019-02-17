@@ -19,13 +19,13 @@ $returnRoute = isset($returnRoute) ? $returnRoute : route('family.calendar', [$f
 
         <div>
             <span data-controller="calendar--day-loader">
-                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $previousDay->year, $previousDay->month, $previousDay->day]) }}" title="{{ __('calendar.previous-day') }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
+                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $previousDay->year, $previousDay->month, $previousDay->day, 'return' => $returnRoute]) }}" title="{{ __('calendar.previous-day') }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
                     <span class="fa fa-chevron-left"></span>
                     <span class="sr-only">{{ __('calendar.previous-day') }}</span>
                 </a>
             </span>
             <span data-controller="calendar--day-loader">
-                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $nextDay->year, $nextDay->month, $nextDay->day]) }}" title="{{ __('calendar.next-day') }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
+                <a class="btn btn-secondary" href="{{ route('family.calendar', [$family, $nextDay->year, $nextDay->month, $nextDay->day, 'return' => $returnRoute]) }}" title="{{ __('calendar.next-day') }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
                     <span class="fa fa-chevron-right"></span>
                     <span class="sr-only">{{ __('calendar.next-day') }}</span>
                 </a>

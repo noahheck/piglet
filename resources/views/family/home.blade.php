@@ -6,6 +6,7 @@
 
 @push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ mix('css/family/home.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.calendar.calendar.css') }}" />
 @endpush
 
 @push('scripts')
@@ -126,9 +127,17 @@ $menu[] = [
 
         <hr>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-around">
 
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5" id="calendar_dayDetails">
+
+                @include('family.calendar._day-detail', [
+                    'returnRoute' => route('family.home', $family),
+                ])
+
+            </div>
+
+            <div class="col-12 col-sm-8 col-md-6">
 
                 <div class="card shadow">
 

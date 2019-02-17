@@ -93,6 +93,11 @@ $weekPositionCounter = $emptyCellsAtBeginning;
                             <td class="{{ ($isToday) ? "is-today" : "" }}" data-controller="calendar--day-loader">
                                 <a href="{{ route("family.calendar", [$family, $year, $month, $x]) }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
                                     <div class="day-number">{{ $x }}</div>
+
+                                    @if ($monthEntryProvider->hasEntryForDay($x))
+                                        <span class="fa fa-circle"></span>
+                                    @endif
+
                                 </a>
                             </td>
 

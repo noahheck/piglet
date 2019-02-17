@@ -57,6 +57,15 @@ class CalendarEntryProvider
         return $this->entries;
     }
 
+    public function hasEntryForDay($day)
+    {
+        $filterDate = Carbon::createFromDate($this->year, $this->month, $day)->format('m/d/Y');
+
+        $entriesForDay = $this->entries->where('date', $filterDate);
+
+        return $entriesForDay->count() > 0;
+    }
+
     /**
      * @return array
      */

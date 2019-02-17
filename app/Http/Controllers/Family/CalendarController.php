@@ -22,7 +22,7 @@ class CalendarController extends Controller
         }
 
         if (!$day) {
-            $day = \Auth::user()->today()->day;
+            $day = $today->day;
         }
 
         $monthDetailProvider = new MonthDetailProvider($year, $month);
@@ -36,6 +36,9 @@ class CalendarController extends Controller
 
 
         if ($request->expectsJson()) {
+
+            $returnRoute = ($request->has('return')) ? $request->get('return') : null;
+
             $response = (new AjaxResponse(true))->set('content', view('family.calendar._day-detail', [
                 'family'              => $family,
                 'today'               => $today,
@@ -46,6 +49,7 @@ class CalendarController extends Controller
                 'monthEntryProvider'  => $monthEntryProvider,
                 'dayDetailProvider'   => $dayDetailProvider,
                 'dayEntryProvider'    => $dayEntryProvider,
+                'returnRoute'         => $returnRoute,
             ])->render());
 
             return response()->json($response);
