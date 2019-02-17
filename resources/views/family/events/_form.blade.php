@@ -2,7 +2,7 @@
     <script type="text/javascript" src="{{ mix('js/family.events._form.js') }}"></script>
 @endpush
 
-<form name="event" action="{{ $action }}" method="POST" class="has-bold-labels">
+<form name="event" action="{{ $action }}" method="POST" class="has-bold-labels" autocomplete="off">
 
     @csrf
 

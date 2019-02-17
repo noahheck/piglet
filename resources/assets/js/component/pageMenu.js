@@ -17,7 +17,7 @@ $(function() {
 
     window.addEventListener("click", function(e) {
 
-        if (!$dropdownContent.is(":visible") || event.inside(e, 'pageMenuContainer')) {
+        if (!$dropdownContent.is(":visible") || event(e).inside('pageMenuContainer')) {
             return false;
         }
 

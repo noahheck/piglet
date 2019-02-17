@@ -9,7 +9,7 @@
 @endpush
 
 @push('scripts')
-    {{--<script src="{{ mix("js/home.js") }}"></script>--}}
+    <script src="{{ mix("js/family.calendar.month.js") }}"></script>
 @endpush
 
 @php
@@ -19,7 +19,6 @@ $nextMonth = $monthDetailProvider->nextMonth();
 $emptyCellsAtBeginning = $monthDetailProvider->emptyCellsAtBeginningOfMonth();
 $emptyCellsAtEnd       = $monthDetailProvider->emptyCellsAtEndOfMonth();
 $daysInMonth           = $monthDetailProvider->daysInMonth();
-
 
 $weekPositionCounter = $emptyCellsAtBeginning;
 
@@ -37,17 +36,13 @@ $weekPositionCounter = $emptyCellsAtBeginning;
 
         <div class="col-12 col-md-8">
 
-
             <div class="text-center">
                 <h1>{{ __('months.' . $month) }} {{ $year }}</h1>
             </div>
 
             <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{{ route('family.calendar', [$family, $today->year, $today->month]) }}">
+                <a class="btn btn-outline-secondary" href="{{ route('family.calendar', [$family, $today->year, $today->month, $today->day]) }}">
                     <span class="fa fa-calendar-check-o"></span> Today
-                </a>
-                <a class="btn btn-primary" href="#">
-                    <span class="fa fa-calendar-plus-o"></span>
                 </a>
             </div>
 
@@ -95,8 +90,8 @@ $weekPositionCounter = $emptyCellsAtBeginning;
                                     $isToday = true;
                                 }
                             @endphp
-                            <td class="{{ ($isToday) ? "is-today" : "" }}">
-                                <a href="{{ route("family.calendar.day", [$family, $year, $month, $x]) }}">
+                            <td class="{{ ($isToday) ? "is-today" : "" }}" data-controller="calendar--day-loader">
+                                <a href="{{ route("family.calendar", [$family, $year, $month, $x]) }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
                                     <div class="day-number">{{ $x }}</div>
                                 </a>
                             </td>
@@ -114,8 +109,9 @@ $weekPositionCounter = $emptyCellsAtBeginning;
 
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 pt-5" id="calendar_dayDetails">
 
+            @include('family.calendar._day-detail', [])
 
         </div>
 

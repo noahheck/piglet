@@ -97,8 +97,14 @@ class CalendarEntryProvider
                 }
             }
 
-            $_a = Carbon::createFromFormat('m/d/Y g:i A', "{$a->date} {$a->time}");
-            $_b = Carbon::createFromFormat('m/d/Y g:i A', "{$b->date} {$b->time}");
+            $aTime  = $a->date . ' ';
+            $aTime .= ($a->time) ? $a->time : '00:00 AM';
+            $bTime  = $b->date . ' ';
+            $bTime .= ($b->time) ? $b->time : '00:00 AM';
+
+
+            $_a = Carbon::createFromFormat('m/d/Y g:i A', $aTime);
+            $_b = Carbon::createFromFormat('m/d/Y g:i A', $bTime);
 
             return $_a->timestamp <=> $_b->timestamp;
         });

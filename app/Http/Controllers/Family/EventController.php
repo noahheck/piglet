@@ -37,9 +37,13 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Family $family)
+    public function create(Request $request, Family $family)
     {
         $event = new Event();
+
+        if ($request->has('eventDate')) {
+            $event->date = $request->get('eventDate');
+        }
 
         return view('family.events.new', [
             'family' => $family,

@@ -56,16 +56,31 @@ table.calendar {
 
 
 .day-card {
-  h3 {
+  h4 {
     margin-bottom: 0;
+  }
+
+  .weekday-name {
+    font-size: 1.3rem;
   }
 }
 
 .entry {
   border-top: 1px solid $light-gray-border;
   padding: 7px;
+  display: block;
+  color: #000;
+}
+
+.entry:hover {
+  background-color: $subtle-highlight;
+  text-decoration: none;
 }
 
 .entry:first-of-type {
   border-top: none;
+}
+
+.entry.all-day-entry {
+  background-color: $subtle-note;
 }

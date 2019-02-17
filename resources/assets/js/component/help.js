@@ -3,10 +3,12 @@
  */
 
 let $        = require('jquery');
+let event    = require('Services/event');
 let ajax     = require('Services/ajax');
 let modal    = require('Component/modal');
 let notify   = require('Component/notify');
 let pageMenu = require('Component/pageMenu');
+
 
 function loadHelp(url) {
     ajax.get({url: url}).then(function(response) {
@@ -30,12 +32,14 @@ function loadHelp(url) {
 
 function clickHelpLink(link, e) {
     // Allow the link to load in a new tab
-    if (e.ctrlKey || e.shiftKey) {
+    let clickEvent = event(e);
+
+    if (clickEvent.openingInNewWindow()) {
         pageMenu.close();
         return;
     }
 
-    e.preventDefault();
+    clickEvent.preventDefault();
 
     let url = $(link).attr('href');
 

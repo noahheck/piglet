@@ -12,6 +12,16 @@
 
 @endpush
 
+@php
+
+    $returnRoute = url()->previous();
+
+    if (app('request')->query('return')) {
+        $returnRoute = app('request')->query('return');
+    }
+
+@endphp
+
 @section('content')
 
     @include('family.shared.breadcrumb', [
@@ -30,9 +40,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.events._form', [
-                'action'      => route('family.events.update', [$family, $event, 'return' => url()->previous()]),
+                'action'      => route('family.events.update', [$family, $event, 'return' => $returnRoute]),
                 'method'      => 'PUT',
-                'cancelRoute' => url()->previous(),
+                'cancelRoute' => $returnRoute,
             ])
 
         </div>

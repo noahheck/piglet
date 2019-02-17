@@ -61,6 +61,7 @@ mix
 
 
 
+    .js('resources/assets/js/family/calendar/month.js', 'public/js/family.calendar.month.js')
     .sass('resources/assets/sass/family/calendar/calendar.scss', 'public/css/family.calendar.calendar.css')
 
 

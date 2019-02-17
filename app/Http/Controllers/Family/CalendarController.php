@@ -7,11 +7,12 @@ use App\Calendar\MonthDetailProvider;
 use App\Family;
 use App\Family\CalendarEntryProvider;
 use App\Http\Controllers\Controller;
+use App\Http\Response\AjaxResponse;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    public function month(Family $family, $year = null, $month = null)
+    public function month(Request $request, Family $family, $year = null, $month = null, $day = null)
     {
         $today = \Auth::user()->today();
 
@@ -20,25 +21,54 @@ class CalendarController extends Controller
             $month = $today->month;
         }
 
+        if (!$day) {
+            $day = \Auth::user()->today()->day;
+        }
+
         $monthDetailProvider = new MonthDetailProvider($year, $month);
 
-        $entryProvider = new CalendarEntryProvider($year, $month);
+        $monthEntryProvider = new CalendarEntryProvider($year, $month);
+
+        $dayDetailProvider   = new DayDetailProvider($year, $month, $day);
+
+        $dayEntryProvider = new CalendarEntryProvider($year, $month, $day);
+
+
+
+        if ($request->expectsJson()) {
+            $response = (new AjaxResponse(true))->set('content', view('family.calendar._day-detail', [
+                'family'              => $family,
+                'today'               => $today,
+                'year'                => $year,
+                'month'               => $month,
+                'day'                 => $day,
+                'monthDetailProvider' => $monthDetailProvider,
+                'monthEntryProvider'  => $monthEntryProvider,
+                'dayDetailProvider'   => $dayDetailProvider,
+                'dayEntryProvider'    => $dayEntryProvider,
+            ])->render());
+
+            return response()->json($response);
+        }
 
         return view('family.calendar.month', [
             'family'              => $family,
             'today'               => $today,
             'year'                => $year,
             'month'               => $month,
+            'day'                 => $day,
             'monthDetailProvider' => $monthDetailProvider,
-            'entryProvider'       => $entryProvider,
+            'monthEntryProvider'  => $monthEntryProvider,
+            'dayDetailProvider'   => $dayDetailProvider,
+            'dayEntryProvider'    => $dayEntryProvider,
         ]);
     }
 
-    public function day(Family $family, $year, $month, $day)
+    /*public function day(Family $family, $year, $month, $day)
     {
         $dayDetailProvider = new DayDetailProvider($year, $month, $day);
 
-        $entryProvider = new CalendarEntryProvider($year, $month, $day);
+        $dayEntryProvider = new CalendarEntryProvider($year, $month, $day);
 
         return view('family.calendar.day', [
             'family'            => $family,
@@ -46,7 +76,7 @@ class CalendarController extends Controller
             'month'             => $month,
             'day'               => $day,
             'dayDetailProvider' => $dayDetailProvider,
-            'entryProvider'     => $entryProvider,
+            'dayEntryProvider'  => $dayEntryProvider,
         ]);
-    }
+    }*/
 }
