@@ -13,6 +13,7 @@ use App\Family\Event;
 use App\Family;
 use function App\flashSuccess;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -42,7 +43,7 @@ class EventController extends Controller
         $event = new Event();
 
         if ($request->has('eventDate')) {
-            $event->date = $request->get('eventDate');
+            $event->date = Carbon::createFromFormat("m/d/Y", $request->get('eventDate'))->format("m/d/Y");
         }
 
         return view('family.events.new', [
