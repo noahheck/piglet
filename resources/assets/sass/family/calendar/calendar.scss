@@ -1,0 +1,86 @@
+/**
+ * sass/family/calendar/calendar.scss
+ */
+
+@import "~Css/variables";
+
+table.calendar {
+
+  width: 100%;
+  table-layout: fixed;
+  margin-top: 7px;
+
+  td {
+    border: 1px solid black;
+    height: 70px;
+    vertical-align: top;
+
+    a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      color: #000;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background-color: $subtle-note;
+    }
+  }
+
+  td.empty-cell {
+    background-color: #e9e9e9;
+  }
+
+  thead td {
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    color: var(--light);
+    background-color: var(--dark);
+  }
+
+  td.is-today {
+    background-color: $subtle-highlight;
+
+    .day-number {
+      font-weight: bold;
+    }
+  }
+
+  .day-number {
+    //text-align: right;
+  }
+}
+
+
+.day-card {
+  h4 {
+    margin-bottom: 0;
+  }
+
+  .weekday-name {
+    font-size: 1.3rem;
+  }
+}
+
+.entry {
+  border-top: 1px solid $light-gray-border;
+  padding: 7px;
+  display: block;
+  color: #000;
+}
+
+.entry:hover {
+  background-color: $subtle-highlight;
+  text-decoration: none;
+}
+
+.entry:first-of-type {
+  border-top: none;
+}
+
+.entry.all-day-entry {
+  background-color: $subtle-note;
+}

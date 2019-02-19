@@ -6,6 +6,7 @@
 
 @push('stylesheets')
     <link rel="stylesheet" type="text/css" href="{{ mix('css/family/home.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/family.calendar.calendar.css') }}" />
 @endpush
 
 @push('scripts')
@@ -101,12 +102,18 @@ $menu[] = [
                 </a>
             @endif
 
-            {{--<div class="card shadow">
+            <a class="card shadow component-link" href="{{ route('family.calendar', $family) }}">
                 <div class="card-body">
-                    <h5 class="card-title">Schedule <small class="text-muted">- Coming Soon!</small></h5>
-                    Schedule type things
+                    <h5 class="card-title">
+                        <span class="fa fa-calendar"></span>
+                        {{ __('calendar.calendar') }}
+                    </h5>
+                    <p>
+                        <span class="fa fa-pull-left fa-2x fa-border fa-list-alt"></span>
+                    </p>
+                    {{ __('calendar.calendar-short-desc') }}
                 </div>
-            </div>--}}
+            </a>
 
         </div>
 
@@ -120,9 +127,17 @@ $menu[] = [
 
         <hr>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-around">
 
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5" id="calendar_dayDetails">
+
+                @include('family.calendar._day-detail', [
+                    'returnRoute' => route('family.home', $family),
+                ])
+
+            </div>
+
+            <div class="col-12 col-sm-8 col-md-6">
 
                 <div class="card shadow">
 

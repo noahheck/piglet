@@ -19,9 +19,9 @@ $(function() {
             let route = {name: 'family.categories.update-order'};
 
             ajax.post(route, {orderedCategories: orderedCategories}).then(function(response) {
-                console.log(response);
+                // console.log(response);
             }).catch(function(response) {
-                console.log(response);
+                // console.log(response);
             });
         }
     });

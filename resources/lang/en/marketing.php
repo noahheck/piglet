@@ -16,10 +16,17 @@ return [
         'cash-flow-planning' => 'Cash Flow Planning',
         'expense-tracking'   => 'Expense Tracking',
         'savings-goal-tracking' => 'Savings Goal Tracking',
+
+        'family-calendar' => 'Family Calendar',
     ],
 
 
     'features' => 'Features',
+
+
+    'calendar' => 'Family Calendar',
+    'calendar-desc' => "<p class='lead'>Keep your family coordinated on all of life's important events using the Family Calendar.</p>
+                        <p>School plays, birthday parties, and doctor appointments all find ways to slip under the radar. Having a coordinated calendar makes keeping track of all your family's activities a breeze!</p>",
 
 
     'money-matters' => 'Money Matters',

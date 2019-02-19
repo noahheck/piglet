@@ -50,6 +50,7 @@ mix
     .sass('resources/assets/sass/family/member/home.scss', 'public/css/family/member')
 
 
+
     .js('resources/assets/js/family/taskLists/home.js',  'public/js/family.taskLists.home.js')
     .js('resources/assets/js/family/taskLists/show.js',  'public/js/family.taskLists.show.js')
     .js('resources/assets/js/family/taskLists/_form.js', 'public/js/family.taskLists._form.js')
@@ -57,6 +58,15 @@ mix
     .js('resources/assets/js/family/tasks/_form.js',     'public/js/family.tasks._form.js')
 
     .sass('resources/assets/sass/family/taskLists.scss', 'public/css/family.taskLists.css')
+
+
+
+    .js('resources/assets/js/family/calendar/month.js', 'public/js/family.calendar.month.js')
+    .sass('resources/assets/sass/family/calendar/calendar.scss', 'public/css/family.calendar.calendar.css')
+
+
+    .js('resources/assets/js/family/events/_form.js', 'public/js/family.events._form.js')
+
 
 
     .js('resources/assets/js/family/money-matters/nav.js',       'public/js/family.money-matters.nav.js')

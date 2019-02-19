@@ -98,6 +98,13 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
         }
 
+        // Calendar
+
+        Route::get('/calendar/{year?}/{month?}/{day?}', 'CalendarController@month')->name('calendar');
+//        Route::get('/calendar/{year}/{month}/{day}', 'CalendarController@day')->name('calendar.day');
+
+        Route::resource('/events', 'EventController');
+
 
         // Money Matters
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');

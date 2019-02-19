@@ -17,9 +17,22 @@ application.load(definitionsFromContext(context))
 
 
 
-let $ = require("jquery");
+let $ = window.jquery = window.$ = require("jquery");
+
+
+window.moment = require('moment');
+
+require('moment-timezone');
+
+
+
         require('./bootstrap');
+        require('popper.js');
+
+
         require('bootstrap-datepicker');
+
+        require('tempusdominus-bootstrap-4');
 
         require('styled-notifications');
 
@@ -60,6 +73,30 @@ $(function() {
         todayBtn: 'linked',
         clearBtn: true
     });
+
+    $('.timepicker').each(function() {
+
+        let $this = $(this);
+
+        $this.attr('data-target', '#' + $this.attr('id'));
+        $this.attr('data-toggle', 'datetimepicker');
+
+        $this.datetimepicker({
+            format: 'LT'
+        });
+
+        $this.focusout(function() {
+            $this.datetimepicker('hide');
+        });
+
+    });
+
+    // Not implemented yet
+    /*
+        $('.datetime-picker').each(function() {
+            $(this).datetimepicker();
+        });
+    */
 
     $('.dom-search').each(function() {
         let jThis = $(this);
