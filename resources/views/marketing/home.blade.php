@@ -26,6 +26,10 @@
                         <span class="fa fa-circle fa-stack-2x color-green"></span>
                         <span class="fa fa-dollar fa-stack-1x color-white"></span>
                     </span>
+                    <span class="fa-stack fa-3x">
+                        <span class="fa fa-circle fa-stack-2x color-red"></span>
+                        <span class="fa fa-calendar fa-stack-1x color-white"></span>
+                    </span>
                 </p>
 
                 <hr>
@@ -92,7 +96,26 @@
     <h2>{{ __('marketing.features') }}</h2>
 
 
-    <div class="row mt-5 border shadow-sm pb-5 m-1">
+    <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set">
+
+        <div class="col-12">
+            <h3 class="pb-4 pt-4">{{ __('marketing.calendar') }}</h3>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="card shadow p-3">
+                <img class="card-img" src="{{ asset('img/marketing/calendar.png') }}" alt="">
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 pt-3 pt-md-0">
+            {!! __('marketing.calendar-desc') !!}
+        </div>
+
+    </div>
+
+
+    <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set">
 
         <div class="col-12">
 
@@ -109,7 +132,7 @@
                         {{ __('marketing.money-matters-features.organize') }}
                     </h4>
                 </div>
-                <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/organize.png') }}" alt="">
+                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/organize.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.organize-desc') }}
@@ -128,7 +151,7 @@
                         {{ __('marketing.money-matters-features.plan') }}
                     </h4>
                 </div>
-                <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/plan.png') }}" alt="">
+                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/plan.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.plan-desc') }}
@@ -147,7 +170,7 @@
                         {{ __('marketing.money-matters-features.track') }}
                     </h4>
                 </div>
-                <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/track.png') }}" alt="">
+                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/track.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.track-desc') }}
@@ -166,7 +189,7 @@
                         {{ __('marketing.money-matters-features.save') }}
                     </h4>
                 </div>
-                <img class="card-img border-bottom border-top" src="{{ asset('img/marketing/save.png') }}" alt="">
+                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/save.png') }}" alt="">
                 <div class="card-body">
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.save-desc') }}
