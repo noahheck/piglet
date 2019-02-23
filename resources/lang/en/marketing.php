@@ -82,6 +82,10 @@ return [
                         <br>
                         Using our current set of tools has allowed us to have a great deal of insight into how we are putting our money to use every month, and keeping the communication around money open has removed so many stressors from our marriage.",
 
+    'project-calendar' => "Life is busy: school events, sports, dance, doctor appointments, and business trips. It can be hard to keep track of everything going on in our world.
+                        <br>
+                        The Calendar tool in Honey's Household has a very simple inspiration: keep it simple. We don't want or need all the functionality you find in most other calendar apps (event overlap detection, location management, status indicators). We wanted to take the paper calendar we have hanging in our kitchen and take it on the go with us.",
+
     'project-faqs' => [
         'really-free'   => 'Is it really free?',
         'really-free-a' => "<a href='" . route('pricing') . "'>Yes!</a>",

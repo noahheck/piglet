@@ -29,7 +29,7 @@
             <div class="card shadow">
 
                 <div class="card-body">
-                    <h3 class="text-centssser">
+                    <h3>
                         <span class="fa-stack fa-1x">
                             <span class="fa fa-circle fa-stack-2x color-green"></span>
                             <span class="fa fa-usd fa-stack-1x color-white"></span>
@@ -39,6 +39,24 @@
 
                     <p>
                         {!! __('marketing.project-money-matters') !!}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card shadow mt-3">
+
+                <div class="card-body">
+                    <h3>
+                        <span class="fa-stack fa-1x">
+                            <span class="fa fa-circle fa-stack-2x color-red"></span>
+                            <span class="fa fa-calendar fa-stack-1x color-white"></span>
+                        </span>
+                        {{ __('marketing.calendar') }}
+                    </h3>
+
+                    <p>
+                        {!! __('marketing.project-calendar') !!}
                     </p>
                 </div>
 
