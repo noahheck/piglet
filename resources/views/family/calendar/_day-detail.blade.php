@@ -12,7 +12,7 @@ $returnRoute = isset($returnRoute) ? $returnRoute : route('family.calendar', [$f
     <div class="col-12">
 
         <div class="float-right">
-            <a class="btn btn-primary" href="{{ route('family.events.create', [$family, 'eventDate' => "{$month}/{$day}/{$year}", 'return' => $returnRoute]) }}">
+            <a class="btn btn-primary" href="{{ route('family.events.create', [$family, 'eventDate' => "{$month}/{$day}/{$year}", 'return' => $returnRoute]) }}" title="{{ __('events.add-new-event') }}">
                 <span class="fa fa-calendar-plus-o"></span>
             </a>
         </div>

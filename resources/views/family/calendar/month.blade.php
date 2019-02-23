@@ -41,8 +41,8 @@ $weekPositionCounter = $emptyCellsAtBeginning;
             </div>
 
             <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{{ route('family.calendar', [$family, $today->year, $today->month, $today->day]) }}">
-                    <span class="fa fa-calendar-check-o"></span> Today
+                <a class="btn btn-outline-secondary" href="{{ route('family.calendar', [$family, $today->year, $today->month, $today->day]) }}" title="{{ __('calendar.today') }}">
+                    <span class="fa fa-calendar-check-o"></span> {{ __('calendar.today') }}
                 </a>
             </div>
 
