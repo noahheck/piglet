@@ -29,7 +29,9 @@ $weekPositionCounter = $emptyCellsAtBeginning;
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
         'location'   => __('calendar.calendar') . ' - ' . __('months.' . $month) . ' ' . $year,
-        //'menu' => $menu,
+        'menu' => [
+            ['type' => 'help', 'key' => 'calendar'],
+        ],
     ])
 
     <div class="row">
