@@ -14,3 +14,6 @@
 
 <h3>{{ __('help/calendar.create-edit-events') }}</h3>
 {!! __('help/calendar.create-edit-events-details') !!}
+
+<h3>{{ __('help/calendar.email-summary') }}</h3>
+{!! __('help/calendar.email-summary-details') !!}

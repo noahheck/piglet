@@ -71,6 +71,15 @@
                                 @fieldError('timezone')
                             </div>
 
+                            <hr>
+
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="user-settings_eventsEmail" name="events_email" {{ (old('events_email', $user->events_email)) ? "checked" : "" }}>
+                                <label class="form-check-label" for="user-settings_eventsEmail">Send me an email each morning with events scheduled for that day</label>
+                            </div>
+
+                            <hr>
+
                             <div class="row">
 
                                 <div class="col">

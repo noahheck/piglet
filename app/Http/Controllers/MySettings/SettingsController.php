@@ -27,6 +27,8 @@ class SettingsController extends Controller
 
         $user->fill($request->only(['firstName', 'lastName', 'email', 'timezone']));
 
+        $user->events_email = $request->has('events_email');
+
         $pin  = false;
         if ($user->isDirty('email')) {
             $pin = $user->setNewEmailVerificationPin();

@@ -8,7 +8,11 @@ use App\Family;
 use App\Family\CalendarEntryProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Response\AjaxResponse;
+use App\Mail\DailyEvents;
+use App\Service\FamilyConnectService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CalendarController extends Controller
 {
@@ -67,20 +71,4 @@ class CalendarController extends Controller
             'dayEntryProvider'    => $dayEntryProvider,
         ]);
     }
-
-    /*public function day(Family $family, $year, $month, $day)
-    {
-        $dayDetailProvider = new DayDetailProvider($year, $month, $day);
-
-        $dayEntryProvider = new CalendarEntryProvider($year, $month, $day);
-
-        return view('family.calendar.day', [
-            'family'            => $family,
-            'year'              => $year,
-            'month'             => $month,
-            'day'               => $day,
-            'dayDetailProvider' => $dayDetailProvider,
-            'dayEntryProvider'  => $dayEntryProvider,
-        ]);
-    }*/
 }

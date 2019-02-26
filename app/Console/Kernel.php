@@ -24,8 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // Send Calendar Event email to users in each timezone at 7:00 am in that timezone
+        foreach (config('piglet.timezones') as $timezone => $description) {
+            $schedule->command("piglet:events:daily-email {$timezone}")
+                ->dailyAt('7:00')
+                ->timezone($timezone);
+        }
     }
 
     /**

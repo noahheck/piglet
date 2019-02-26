@@ -10,6 +10,8 @@ $__day_calendar_image = asset("img/help/calendar/day_calendar.png");
 
 $__calendar_event_image = asset("img/help/calendar/calendar_event.png");
 
+$__navigation_url = route('help', 'navigation');
+
 return [
     'calendar' => 'Calendar',
     'introduction' => <<<EOT
@@ -60,6 +62,11 @@ EOT
 <div class="note">
     <p>An event can be deleted by choosing that option from the page menu, but beware: once an event is deleted, it's gone for good.</p>
 </div>
+EOT
+    ,
+    'email-summary' => 'Daily Email Summary',
+    'email-summary-details' => <<<EOT
+<p>To help you keep on top of your schedule, each morning {$__app_name} will send an email with a summary of the day's events. If you decide not to receive this email, update your preference from your user settings screen (available from the <a href="{$__navigation_url}" class="help-link">main navigation menu</a>).</p>
 EOT
     ,
 ];
