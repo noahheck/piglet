@@ -20,7 +20,7 @@ return [
         'America/Los_Angeles' => 'Pacific',
         'America/Anchorage'   => 'Alaska',
         'America/Adak'        => 'Hawaii',
-        'America/Honolulu'    => 'Hawaii (no DST)',
+        'Pacific/Honolulu'    => 'Hawaii (no DST)',
     ],
 
     'url' => 'https://github.com/noahheck/piglet',
