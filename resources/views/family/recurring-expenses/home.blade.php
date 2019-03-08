@@ -56,7 +56,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><span class="fa fa-search"></span></div>
                             </div>
-                            <input type="text" class="form-control dom-search" data-search-items="#activeRecurringExpenses .recurring-expense, #inactiveRecurringExpenses .recurring-expense" id="recurringExpenseSearch" placeholder="{{ __('recurring-expenses.search-recurring-expenses') }}">
+                            <input type="text" class="form-control dom-search" data-search-items="#activeRecurringExpenses .recurring-expense, #inactiveRecurringExpenses .recurring-expense" id="recurringExpenseSearch" placeholder="{{ __('recurring-expenses.search-recurring-expenses') }}" autofocus>
                         </div>
 
                         @if ($recurringExpenses->where('active', true)->count() > 0)

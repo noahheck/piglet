@@ -56,7 +56,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><span class="fa fa-search"></span></div>
                             </div>
-                            <input type="text" class="form-control dom-search" data-search-items="#activeIncomeSources .income-source, #inactiveIncomeSources .income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}">
+                            <input type="text" class="form-control dom-search" data-search-items="#activeIncomeSources .income-source, #inactiveIncomeSources .income-source" id="incomeSourceSearch" placeholder="{{ __('income-sources.search-income-sources') }}" autofocus>
                         </div>
 
                         @if ($incomeSources->where('active', true)->count() > 0)

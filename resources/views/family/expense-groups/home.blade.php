@@ -55,7 +55,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><span class="fa fa-search"></span></div>
                             </div>
-                            <input type="text" class="form-control dom-search" data-search-items=".expense-group" id="expenseGroupSearch" placeholder="{{ __('expense-groups.search-expense-groups') }}">
+                            <input type="text" class="form-control dom-search" data-search-items=".expense-group" id="expenseGroupSearch" placeholder="{{ __('expense-groups.search-expense-groups') }}" autofocus>
                         </div>
 
                         @if ($expenseGroups->where('active', true)->count() > 0)
