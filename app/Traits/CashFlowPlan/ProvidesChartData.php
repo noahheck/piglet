@@ -27,6 +27,7 @@ trait ProvidesChartData
             ],
             'data' => [
                 'labels' => [
+                    __('income-sources.income-sources')         . ' - ' . formatCurrency($this->actualIncomeSourcesTotal(), true),
                     __('cash-flow-plans.lifestyle-expenses')    . ' - ' . formatCurrency($this->distributedLifestyleExpensesTotal(), true),
                     __('piggy-banks.piggy-banks')               . ' - ' . formatCurrency($this->actualPiggyBankContributionsTotal(), true),
                     __('recurring-expenses.recurring-expenses') . ' - ' . formatCurrency($this->actualRecurringExpensesTotal(), true),
@@ -36,6 +37,7 @@ trait ProvidesChartData
                     [
                         'label' => __('cash-flow-plans.projected'),
                         'data' => [
+                            formatCurrency($this->projectedIncomeSourcesTotal()),
                             formatCurrency($this->projectedLifestyleExpensesTotal()),
                             formatCurrency($this->projectedPiggyBankTotal()),
                             formatCurrency($this->projectedRecurringExpensesTotal()),
@@ -48,6 +50,7 @@ trait ProvidesChartData
                     [
                         'label' => __('cash-flow-plans.actual'),
                         'data'  => [
+                            formatCurrency($this->actualIncomeSourcesTotal()),
                             formatCurrency($this->distributedLifestyleExpensesTotal()),
                             formatCurrency($this->actualPiggyBankContributionsTotal()),
                             formatCurrency($this->actualRecurringExpensesTotal()),
@@ -56,11 +59,13 @@ trait ProvidesChartData
                         'backgroundColor' => [
                             Charts::BACKGROUND_COLOR_GREEN,
                             Charts::BACKGROUND_COLOR_GREEN,
+                            Charts::BACKGROUND_COLOR_GREEN,
                             ($this->recurringExpensesOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
                             ($this->expenseGroupsOverspent()) ? Charts::BACKGROUND_COLOR_RED : Charts::BACKGROUND_COLOR_GREEN,
                         ],
                         'borderColor' => [
 //                            Charts::BORDER_COLOR_BLUE,
+                            Charts::BORDER_COLOR_GREEN,
                             Charts::BORDER_COLOR_GREEN,
                             Charts::BORDER_COLOR_GREEN,
                             ($this->recurringExpensesOverspent()) ? Charts::BORDER_COLOR_RED : Charts::BORDER_COLOR_GREEN,
