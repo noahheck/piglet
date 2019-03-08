@@ -16,5 +16,7 @@ return [
     'privacy-policy'    => 'Privacy Policy',
     'copyright'         => "&copy; " . date('Y') . " - Noah Heck",
     'contact-support'   => 'Contact Support',
-    'proud-open-source' => config('app.name') . " is proud to be an open-source project - Find out more at: <a href='" . config('piglet.url') . "' target='_blank'>" . config('piglet.url') . "</a>"
+    'proud-open-source' => config('app.name') . " is proud to be an open-source project - Find out more at: <a href='" . config('piglet.url') . "' target='_blank'>" . config('piglet.url') . "</a>",
+
+    'good-morning' => 'Good Morning',
 ];

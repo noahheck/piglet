@@ -43,7 +43,7 @@ class DailyEvents extends Mailable
     public function build()
     {
         return $this
-            ->subject('Good Morning')
+            ->subject(__('application.good-morning'))
             ->view('email.daily-events')
             ->text('email.text.daily-events');
     }
