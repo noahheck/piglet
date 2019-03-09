@@ -8,8 +8,12 @@
     <link rel="stylesheet" type="text/css" href="{{ mix('css/user-settings.css') }}" />
 @endpush
 
+@push('meta')
+    @meta('default-background-color', config('piglet.default-background-color'))
+@endpush
+
 @push('scripts')
-    {{--<script src="{{ mix("js/home.js") }}"></script>--}}
+    <script src="{{ mix("js/user-settings.js") }}"></script>
 @endpush
 
 @section('content')
@@ -71,30 +75,44 @@
                                 @fieldError('timezone')
                             </div>
 
-                            <hr>
+                        </fieldset>
+
+                        <hr>
+
+                        <fieldset>
+
+                            <legend>{{ __('user-settings.preferences') }}</legend>
+
+                            <div class="form-group">
+                                <label for="background_color">{{ __('user-settings.background_color') }}</label>
+                                <button type="button" class="btn btn-link btn-sm" id="restoreBackgroundColorButton">{{ __('user-settings.restore-default') }}</button>
+                                <input type="color" name="background_color" id="background_color" class="form-control" placeholder="{{ __('user-settings.background_color') }}" value="{{ old('background_color', $user->background_color) }}">
+                                @fieldError('background_color')
+                            </div>
 
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="user-settings_eventsEmail" name="events_email" {{ (old('events_email', $user->events_email)) ? "checked" : "" }}>
-                                <label class="form-check-label" for="user-settings_eventsEmail">Send me an email each morning with events scheduled for that day</label>
-                            </div>
-
-                            <hr>
-
-                            <div class="row">
-
-                                <div class="col">
-                                    <button class="btn btn-primary btn-block" type="submit">
-                                        {{ __('form.save') }}
-                                    </button>
-                                </div>
-
-                                <div class="col">
-                                    <a class="btn btn-secondary btn-block" href="{{ route("home") }}">{{ __('form.cancel') }}</a>
-                                </div>
-
+                                <label class="form-check-label" for="user-settings_eventsEmail">{{ __('user-settings.daily_event_email_pref') }}</label>
                             </div>
 
                         </fieldset>
+
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <button class="btn btn-primary btn-block" type="submit">
+                                    {{ __('form.save') }}
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <a class="btn btn-secondary btn-block" href="{{ route("home") }}">{{ __('form.cancel') }}</a>
+                            </div>
+
+                        </div>
+
 
                     </form>
 

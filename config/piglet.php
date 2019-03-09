@@ -26,6 +26,8 @@ return [
     'url' => 'https://github.com/noahheck/piglet',
     'support-email' => 'support@honeyshousehold.com',
 
+    'default-background-color' => '#a2d8f0',
+
     'races' => [
         'American Indian or Alaska Native',
         'Asian',

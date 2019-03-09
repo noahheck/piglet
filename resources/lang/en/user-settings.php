@@ -8,6 +8,11 @@ return [
     'change_password' => 'Change your password',
     'change_photo'    => 'Update your profile photo',
 
+    'preferences'            => 'Preferences',
+    'background_color'       => 'Background Color',
+    'restore-default'        => 'Restore Default',
+    'daily_event_email_pref' => 'Send me an email each morning with events scheduled for that day',
+
 
     'password'         => 'Password',
     'current_password' => 'Current password',

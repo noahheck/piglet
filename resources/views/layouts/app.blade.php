@@ -1,3 +1,6 @@
+@php
+    $backgroundColor = (\Auth::user()) ? \Auth::user()->background_color : config('piglet.default-background-color');
+@endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -58,7 +61,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @stack('stylesheets')
 </head>
-<body>
+<body style="background-color: {{ $backgroundColor }};">
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ route("homepage") }}">{{ config('app.name') }}</a>

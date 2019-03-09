@@ -25,7 +25,7 @@ class SettingsController extends Controller
 
         $request->validate(User::getValidations($user->id));
 
-        $user->fill($request->only(['firstName', 'lastName', 'email', 'timezone']));
+        $user->fill($request->only(['firstName', 'lastName', 'email', 'timezone', 'background_color']));
 
         $user->events_email = $request->has('events_email');
 
