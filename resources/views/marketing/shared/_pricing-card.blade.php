@@ -1,4 +1,4 @@
-<div class="card border-0 shadow">
+<div class="card border-0 shadow pricing-card">
 
     <div class="card-body color-white bg-red text-center">
 

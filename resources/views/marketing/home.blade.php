@@ -9,7 +9,7 @@
             <div class="col-12 col-md-6 order-md-2">
                 <img class="img-fluid rounded-circle" src="{{ asset('img/cartoon_family_fullsize.jpg') }}" alt="{{ config('app.name') }}">
             </div>
-            <div class="col-12 col-md-6 order-md-1 sjumbotron-content">
+            <div class="col-12 col-md-6 order-md-1">
 
                 <div class="jumbotron-content text-center">
 
@@ -71,11 +71,11 @@
 
     </div>
 
-    <div class="row pt-5 mt-5 pb-4 mb-4 m-1 justify-content-center border-top border-bottom">
+    <h2 class="p-2 pl-4 bg-purple color-white">{{ __('marketing.pricing') }}</h2>
+
+    <div class="row pb-2 justify-content-center pricing-section">
 
         <div class="col-12 col-md-6 col-lg-8">
-
-            <h2 class="pb-4">{{ __('marketing.pricing') }}</h2>
 
             <p class="lead">
                 {{ __('marketing.greatest-hope-offer-free') }}
@@ -93,8 +93,7 @@
 
     </div>
 
-    <h2>{{ __('marketing.features') }}</h2>
-
+    <h2 class="p-2 pl-4 bg-blue color-white">{{ __('marketing.features') }}</h2>
 
     <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set">
 
@@ -115,7 +114,15 @@
     </div>
 
 
-    <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set">
+
+
+
+
+
+
+
+
+    <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set justify-content-around">
 
         <div class="col-12">
 
@@ -123,83 +130,72 @@
 
         </div>
 
-        <div class="col-12 col-md-6">
-
-            <div class="card border-0 shadow mb-5">
-                <div class="card-body color-white bg-red">
-                    <h4 class="card-title text-center">
+        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
+            <div class="card sborder-0 shadow mb-5">
+                <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/organize.png') }}" alt="">
+                <div class="card-body text-center">
+                    <h5>
                         <span class="fa fa-list-ul"></span>
                         {{ __('marketing.money-matters-features.organize') }}
-                    </h4>
-                </div>
-                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/organize.png') }}" alt="">
-                <div class="card-body">
+                    </h5>
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.organize-desc') }}
                     </p>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-12 col-md-6">
-
-            <div class="card border-0 shadow mb-5">
-                <div class="card-body color-white bg-purple">
-                    <h4 class="card-title text-center">
+        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
+            <div class="card sborder-0 shadow mb-5">
+                <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/plan.png') }}" alt="">
+                <div class="card-body text-center">
+                    <h5>
                         <span class="fa fa-arrow-circle-right"></span>
                         {{ __('marketing.money-matters-features.plan') }}
-                    </h4>
-                </div>
-                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/plan.png') }}" alt="">
-                <div class="card-body">
+                    </h5>
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.plan-desc') }}
                     </p>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-12 col-md-6">
-
-            <div class="card border-0 shadow mb-5">
-                <div class="card-body color-white bg-blue">
-                    <h4 class="card-title text-center">
+        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
+            <div class="card sborder-0 shadow mb-5">
+                <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/track.png') }}" alt="">
+                <div class="card-body text-center">
+                    <h5>
                         <span class="fa fa-bar-chart"></span>
                         {{ __('marketing.money-matters-features.track') }}
-                    </h4>
-                </div>
-                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/track.png') }}" alt="">
-                <div class="card-body">
+                    </h5>
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.track-desc') }}
                     </p>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-12 col-md-6">
-
-            <div class="card border-0 shadow mb-5">
-                <div class="card-body color-white bg-green">
-                    <h4 class="card-title text-center">
+        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
+            <div class="card sborder-0 shadow mb-5">
+                <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/save.png') }}" alt="">
+                <div class="card-body text-center">
+                    <h5>
                         <span class="fa fa-line-chart"></span>
                         {{ __('marketing.money-matters-features.save') }}
-                    </h4>
-                </div>
-                <img class="card-img border-bottom border-top p-3" src="{{ asset('img/marketing/save.png') }}" alt="">
-                <div class="card-body">
+                    </h5>
                     <p class="card-text">
                         {{ __('marketing.money-matters-features.save-desc') }}
                     </p>
                 </div>
             </div>
+        </div>
+
+        <div class="col-12">
 
         </div>
 
     </div>
+
 
 
 @endsection
