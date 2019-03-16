@@ -22,10 +22,14 @@ br {
   @include paddedBr(15px);
 }
 
+.pricing-card {
+  color: black;
+}
 
 .pricing-faqs,
 .project-details,
 .project-faqs {
+
   margin-top: 30px;
 
   dt {
@@ -34,10 +38,8 @@ br {
 
 }
 
-.feature-set {
-  .card-title {
-    margin-bottom: 0;
-  }
+h4.card-title {
+  margin-bottom: 0;
 }
 
 .calendar-img {

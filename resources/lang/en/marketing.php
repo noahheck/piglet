@@ -26,7 +26,12 @@ return [
 
     'calendar' => 'Family Calendar',
     'calendar-desc' => "<p class='lead'>Keep your family coordinated on all of life's important events using the Family Calendar.</p>
-                        <p>School plays, birthday parties, and doctor appointments all find ways to slip under the radar. Having a coordinated calendar makes keeping track of all your family's activities a breeze!</p>",
+                        <p>School plays, birthday parties, and doctor appointments all find ways to slip under the radar. Having a coordinated calendar makes keeping track of all your family's activities a breeze!</p>
+                        <p>
+                            <span class='fa fa-envelope -o sfa-stack-1x color-purple scolor-white'></span>
+                            <strong>NEW!</strong> - Receive a listing of the day's events each morning in your inbox so you never miss out!
+                        </p>
+                        ",
 
 
     'money-matters' => 'Money Matters',
