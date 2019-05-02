@@ -75,7 +75,7 @@
 
     <div class="row pb-2 justify-content-center pricing-section">
 
-        <div class="col-12 col-md-6 col-lg-8">
+        <div class="col-12 col-md-6 col-lg-5 pt-md-3">
 
             <p class="lead">
                 {{ __('marketing.greatest-hope-offer-free') }}
