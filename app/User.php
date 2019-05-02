@@ -114,7 +114,7 @@ class User extends Authenticatable
 
     public function photoAltText()
     {
-        return $this->firstName . ' ' . $this->lastName;
+        return e($this->firstName) . ' ' . e($this->lastName);
     }
 
     /**
