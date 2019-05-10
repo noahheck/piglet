@@ -63,7 +63,7 @@ class Family extends Model implements Settings
 
     public function photoAltText()
     {
-        return $this->name;
+        return e($this->name);
     }
 
     /**
