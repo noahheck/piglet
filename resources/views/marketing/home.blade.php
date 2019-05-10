@@ -122,16 +122,18 @@
 
 
 
-    <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set justify-content-around">
+    <div class="row mt-5 border shadow-sm pb-3 m-1 feature-set justify-content-around">
 
         <div class="col-12">
 
             <h3 class="pb-4 pt-4">{{ __('marketing.money-matters') }}</h3>
 
+            {!! __('marketing.money-matters-desc') !!}
+
         </div>
 
-        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
-            <div class="card sborder-0 shadow mb-5">
+        <div class="col-6 col-md-5 col-lg-3">
+            <div class="card shadow mb-5">
                 <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/organize.png') }}" alt="">
                 <div class="card-body text-center">
                     <h5>
@@ -145,8 +147,8 @@
             </div>
         </div>
 
-        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
-            <div class="card sborder-0 shadow mb-5">
+        <div class="col-6 col-md-5 col-lg-3">
+            <div class="card shadow mb-5">
                 <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/plan.png') }}" alt="">
                 <div class="card-body text-center">
                     <h5>
@@ -160,8 +162,8 @@
             </div>
         </div>
 
-        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
-            <div class="card sborder-0 shadow mb-5">
+        <div class="col-6 col-md-5 col-lg-3">
+            <div class="card shadow mb-5">
                 <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/track.png') }}" alt="">
                 <div class="card-body text-center">
                     <h5>
@@ -175,8 +177,8 @@
             </div>
         </div>
 
-        <div class="col-10 col-sm-6 col-md-5 col-lg-3">
-            <div class="card sborder-0 shadow mb-5">
+        <div class="col-6 col-md-5 col-lg-3">
+            <div class="card shadow mb-5">
                 <img class="card-img p-3 border-bottom" src="{{ asset('img/marketing/save.png') }}" alt="">
                 <div class="card-body text-center">
                     <h5>
@@ -190,9 +192,12 @@
             </div>
         </div>
 
-        <div class="col-12">
+        {{--<div class="col-12">
 
-        </div>
+            {!! __('marketing.money-matters-more-info') !!}
+
+        </div>--}}
+
 
     </div>
 

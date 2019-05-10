@@ -1,5 +1,7 @@
 <?php
 
+$__app_name = config('app.name');
+
 return [
     'welcome-to-appName' => 'Welcome to ' . config('app.name') . '!',
     'hook'               => 'Tools to keep your family organized so your energy can be spent on loving your life!',
@@ -9,7 +11,7 @@ return [
 
     'project'                  => 'Project',
     'pricing'                  => 'Pricing',
-    'greatest-hope-offer-free' => "Our greatest hope is that your family will find the software we write useful to you. With that in mind, the " . config('app.name') . " service is proud to be offered at no cost to you and your family.",
+    'greatest-hope-offer-free' => "Our greatest hope is that your family will find the software we write useful to you. With that in mind, the {$__app_name} service is proud to be offered at no cost to you and your family.",
     'more-info-pricing'        => "Find out more about how (and why) we're able to offer the service for free on the <a href='" . route('pricing')  . "'>Pricing</a> page.",
     'pricing-features' => [
         'budgeting-tools'    => 'Budgeting Tools',
@@ -28,13 +30,19 @@ return [
     'calendar-desc' => "<p class='lead'>Keep your family coordinated on all of life's important events using the Family Calendar.</p>
                         <p>School plays, birthday parties, and doctor appointments all find ways to slip under the radar. Having a coordinated calendar makes keeping track of all your family's activities a breeze!</p>
                         <p>
-                            <span class='fa fa-envelope -o sfa-stack-1x color-purple scolor-white'></span>
+                            <span class='fa fa-envelope color-purple'></span>
                             <strong>NEW!</strong> - Receive a listing of the day's events each morning in your inbox so you never miss out!
                         </p>
                         ",
 
 
     'money-matters' => 'Money Matters',
+    'money-matters-desc' => "<p class='lead'>Tell your money where to go instead of wondering where it went!</p>
+                            <p>{$__app_name} makes it easy to organize your family's expenses, categorize your expenses, and see how well your family is working toward meeting your financial goals.</p>
+                            <p>All it takes is a few minutes each month to set up your Cash Flow Plan! Right away, you'll gain valuable insights into all your family's money habits.</p>
+                            ",
+    'money-matters-more-info' => "<p>Read more about {$__app_name}'s approach to managing your family's budget on the <a href=''>Money Matters information</a> page.</p>
+                                ",
     'money-matters-features' => [
         'organize'      => 'Organize',
         'organize-desc' => "All your family's money habits together",
@@ -63,8 +71,8 @@ return [
         'operation-costs'   => "What about server costs and maintenance? Don't those things cost money?",
         'operation-costs-a' => 'Certainly! The project has, however, been able to keep those costs to a minimum.',
 
-        'ever-cost'   => 'Will there ever be a cost to use ' . config('app.name') . '?',
-        'ever-cost-a' => "There will always be a free, hosted version of " . config('app.name') . ". If the world changes such that it's not possible to offer all of the features of " . config('app.name') . " without cost, all the functionality available for free up to that time will continue to be offered to existing users at no cost.
+        'ever-cost'   => 'Will there ever be a cost to use ' . $__app_name . '?',
+        'ever-cost-a' => "There will always be a free, hosted version of " . $__app_name . ". If the world changes such that it's not possible to offer all of the features of " . config('app.name') . " without cost, all the functionality available for free up to that time will continue to be offered to existing users at no cost.
                     <br>
                     The source code for the project will forever be free and open source, so you will always be able to host the service on your own server and avoid any potential future costs (<a href='" . config('piglet.url') . "' target='_blank'>" . config('piglet.url') . "</a>).",
 
@@ -75,15 +83,15 @@ return [
 
     // Project page
     'project-hook' => 'What this is all about',
-    'project-intro' => config('app.name') . " is a collection of tools designed to help families keep their activities organized so they can enjoy as much of life as possible.
+    'project-intro' => "{$__app_name} is a collection of tools designed to help families keep their activities organized so they can enjoy as much of life as possible.
                 <br>
                 These tools are created to help our family achieve our goals, and we feel that if they're able to help us, we should provide them to other families to help them achieve theirs as well.
                 <br>
-                " . config('app.name') . " is proud to provide a free implementation of the open-source <a href='" . config('piglet.url') . "' target='_blank'>Piglet project</a>.",
+                {$__app_name} is proud to provide a free implementation of the open-source <a href='" . config('piglet.url') . "' target='_blank'>Piglet project</a>.",
 
     'project-money-matters' => "In August of 2018, we celebrated our 10 year wedding anniversary. At dinner, I asked my wife what one thing she would change about our life together to that point, to which she quickly responded that she wished we had started working a budget together much sooner in our marriage.
                         <br>
-                        The budgeting tools provided in " . config('app.name') . " represent the culmination of the different tools we've used to track our expenses for nearly a decade. Our first budgeting tool was just a simple spreadsheet, but having a system in place for us to easily review our expenses and forecast for the future proved to be invaluable.
+                        The budgeting tools provided in {$__app_name} represent the culmination of the different tools we've used to track our expenses for nearly a decade. Our first budgeting tool was just a simple spreadsheet, but having a system in place for us to easily review our expenses and forecast for the future proved to be invaluable.
                         <br>
                         Using our current set of tools has allowed us to have a great deal of insight into how we are putting our money to use every month, and keeping the communication around money open has removed so many stressors from our marriage.",
 
@@ -98,13 +106,13 @@ return [
         'open-source-mean'   => 'What does open-source mean?',
         'open-source-mean-a' => "<a href='https://en.wikipedia.org/wiki/Open-source_software' target='_blank'>Open-source</a> means the source code for the application is available for other people to read, study, learn from, and improve. The source code for " . config('app.name') . " is <a href='" .  config('piglet.url') . "' target='_blank'>available online</a>. Please feel free to take a look!",
 
-        'why-open-source'   => "Why is " . config('app.name') . " open source?",
-        'why-open-source-a' => "There are many reasons. Most importantly, we wanted " . config('app.name') . " to help families achieve their goals, and we know we can't do that if you don't trust us with your information.
+        'why-open-source'   => "Why is {$__app_name} open source?",
+        'why-open-source-a' => "There are many reasons. Most importantly, we wanted {$__app_name} to help families achieve their goals, and we know we can't do that if you don't trust us with your information.
                     <br>
                     Having our source code available online, we can, for example, point you to <a href='https://github.com/noahheck/piglet/blob/master/app/Http/Middleware/VerifyFamilyAccess.php#L34' target='_blank'>this line of code</a> to show how we keep your data safe from unauthorized access.
                     <small class='text-muted'>(That line of code prevents the application from executing a request if the user making the request isn't listed as a member of your family; if you see any problems with how that's done, let us know and we'll get it fixed!)</small>",
 
-        'why-name'   => "Why do you call it " . config('app.name') . "?",
+        'why-name'   => "Why do you call it {$__app_name}?",
         'why-name-a' => "There are only <a href='https://martinfowler.com/bliki/TwoHardThings.html' target='_blank'>two hard things in computer science</a>: cache invalidation and naming things. When we finally decide on a name we love, we have to make enough concessions about that name to be happy with a unique domain name we can afford (this is why we have services with <a href='https://www.fastcompany.com/3014582/why-startups-have-such-stupid-names' target='_blank'>really silly names</a>).
                     <br>
                     We feel lucky that we could get the rights to " . config('app.url') . " as a set of real words that convey what we are going for. We're glad you like it :)",
