@@ -47,7 +47,7 @@
         <ul class="list-group list-group-flush recurring-expenses-list" id="recurring-expenses-list_{{ $categoryId }}">
 
             @foreach ($cashFlowPlan->recurringExpenses->where('category_id', $categoryId) as $recurringExpense)
-                <li class="list-group-item">
+                <li class="list-group-item {{ ($recurringExpense->hasMissingProjectedValue()) ? 'bg-subtle-warning' : '' }}">
                     <a href="{{ route('family.cash-flow-plans.recurring-expenses.edit', [$family, $cashFlowPlan, $recurringExpense]) }}">
                         {{ $recurringExpense->name }} -
                         {{ App\formatCurrency($recurringExpense->actual, true) }} /

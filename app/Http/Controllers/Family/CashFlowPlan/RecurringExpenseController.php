@@ -136,11 +136,15 @@ class RecurringExpenseController extends Controller
      * @param  \App\Family\CashFlowPlan\RecurringExpense  $recurringExpense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
+    public function destroy(Request $request, Family $family, CashFlowPlan $cashFlowPlan, RecurringExpense $recurringExpense)
     {
         $recurringExpense->delete();
 
         flashSuccess("recurring-expenses.recurring-expense-deleted");
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
 
         return redirect()->route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]);
     }
