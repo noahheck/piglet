@@ -81,6 +81,10 @@ class RecurringExpense extends Model
     }
 
 
+    public function hasMissingProjectedValue()
+    {
+        return $this->projected == 0 && $this->actual == 0;
+    }
 
     public function isFulfilled()
     {

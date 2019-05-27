@@ -103,6 +103,24 @@ trait ProcessesRecurringExpenses
             ) * 100;
     }
 
+
+    /**
+     * Returns whether the category provided has any zero dollar projected amounts - If an expense has been paid, it is
+     * not considered a zero dollar projected amount because the amount is already known.
+     *
+     * @param null $categoryId
+     * @return bool
+     */
+    public function recurringExpenseCategoryHasMissingProjectedValue($categoryId = null)
+    {
+        $recurringExpenses = $this->recurringExpenses->where('category_id', $categoryId)->filter(function($expense, $key) {
+            return $expense->projected == 0 && $expense->actual == 0;
+        });
+
+        return $recurringExpenses->count() > 0;
+    }
+
+
     public function hasRecurringExpense($template)
     {
         return $this->recurringExpenses->pluck('recurring_expense_id')->contains($template->id);

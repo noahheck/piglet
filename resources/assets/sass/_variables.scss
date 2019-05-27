@@ -55,3 +55,7 @@ $subtle-note: #fff3e3;
 .noselect {
   @include noselect();
 }
+
+.bg-subtle-warning {
+  background-color: $subtle-note;
+}

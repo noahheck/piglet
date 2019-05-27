@@ -2,7 +2,7 @@
 
     <div class="card shadow-sm mb-5 recurring-expense-category" style="border-top: 3px solid {{ $borderColor }};">
 
-        <div class="card-body">
+        <div class="card-body {{ $cashFlowPlan->recurringExpenseCategoryHasMissingProjectedValue($categoryId) ? 'bg-subtle-warning' : '' }}">
 
             <h3>{{ $categoryName }}</h3>
 

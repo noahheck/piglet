@@ -145,7 +145,7 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
                     </thead>
 
                     @foreach ($recurringExpenses->where('category_id', null) as $recurringExpense)
-                        <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
+                        <tr class="{{ ($recurringExpense->default_amount == 0) ? "bg-subtle-warning" : "" }}" id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                             <td style="border-left: 4px solid transparent" title="{{ $recurringExpense->name }} - {{ __('recurring-expenses.uncategorized') }}"><a href="{{ route('family.recurring-expenses.edit', [$family, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
                             <td class="text-right">{{ App\formatCurrency($recurringExpense->default_amount, true) }}</td>
                         </tr>
@@ -153,7 +153,7 @@ $lifestyleExpensesTotal = array_sum($lifestyleExpenses);
 
                     @foreach ($categories as $category)
                         @foreach ($recurringExpenses->where('category_id', $category->id) as $recurringExpense)
-                            <tr id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
+                            <tr class="{{ ($recurringExpense->default_amount == 0) ? "bg-subtle-warning" : "" }}" id="recurringExpense_{{ $recurringExpense->id }}" data-recurring-expense-id="{{ $recurringExpense->id }}">
                                 <td style="border-left: 4px solid {{ $category->color }}" title="{{ $recurringExpense->name }} - {{ $category->name }}"><a href="{{ route('family.recurring-expenses.edit', [$family, $recurringExpense, 'return' => url()->current()]) }}">{{ $recurringExpense->name }}</a></td>
                                 <td class="text-right">{{ App\formatCurrency($recurringExpense->default_amount, true) }}</td>
                             </tr>
