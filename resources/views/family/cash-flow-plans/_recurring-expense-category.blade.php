@@ -58,7 +58,7 @@
 
         </ul>
 
-        <button type="button" class="card-footer text-center toggle-recurring-expenses-list toggle-entries-list" data-toggle-target="recurring-expenses-list_{{ $categoryId }}">
+        <button type="button" class="card-footer text-center toggle-recurring-expenses-list toggle-entries-list" id="recurring-expenses-list_{{ $categoryId }}_toggle-button" data-toggle-target="recurring-expenses-list_{{ $categoryId }}">
 
             <span class="show-list-items list-item-display-action">
                 <span class="fa fa-eye"></span> <span class="action">View Expenses</span>

@@ -39,9 +39,11 @@ $(function() {
     let $window = $(window);
 
     // Expand the sections that were expanded on the last request
+    // Make sure to toggle the buttons so the correct label is shown
     if (jsCookie.getJSON(expandedTargetsCookieName)) {
         $(jsCookie.getJSON(expandedTargetsCookieName)).each(function() {
             $('#' + this).show();
+            $('#' + this + '_toggle-button .list-item-display-action').toggle();
         });
     }
 
