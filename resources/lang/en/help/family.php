@@ -6,6 +6,10 @@ $__navigation_url = route('help', 'navigation');
 
 $__family_homescreen_image = asset("img/help/family/home_screen.png");
 
+$__current_calendar_image = asset("img/help/family/current_calendar.png");
+
+$__calendar_url = route('help', 'calendar');
+
 $__current_cfp_image = asset("img/help/family/current_cfp.png");
 
 return [
@@ -31,6 +35,15 @@ EOT
     'homescreen-details' => <<<EOT
 <p>The Family Home Screen acts as the hub for all activity within {$__app_name}. From here, you're able to access the different tools available.</p>
 <p>You can easily return to this screen at any time by selecting the "Home" option either from the main navigation bar or from the family navigation bar. See the <a href="{$__navigation_url}" class="help-link">Navigation</a> page for more details.</p>
+EOT
+    ,
+    'current-calendar' => "Today's Calendar Events",
+    'current-calendar-details' => <<<EOT
+<div class="image-container">
+    <img src="{$__current_calendar_image}" alt="A screenshot of the current day's events, including the husband's birthday, the son's dentist appointment, and dinner reservations for this evening">
+</div>
+<p>On the Family Home Screen, you'll have easy access to view all of your family's activity. Birthdays, appointments, and reservations are all readily visible so you'll never miss the important things. You can easily edit these events, and create new ones, from here.</p>
+<p>Find out more about the <a href="{$__calendar_url}" class="help-link">Calendar feature</a>.</p>
 EOT
     ,
     'current-cfp' => "Your Family's Current Cash Flow Plan",
