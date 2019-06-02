@@ -31,6 +31,20 @@ class AdminController extends Controller
         ]);
     }
 
+    public function deleteUser(User $user)
+    {
+        if ($user->email_verified) {
+            \App\flashError("Unable to delete: email is verified");
+            return redirect()->route('admin.users');
+        }
+
+        $user->delete();
+
+        \App\flashSuccess('User deleted');
+
+        return redirect()->route('admin.users');
+    }
+
     public function families()
     {
         $families = Family::orderBy('name')->get();

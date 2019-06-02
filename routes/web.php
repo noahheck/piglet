@@ -55,6 +55,8 @@ Route::middleware('auth', 'auth.email_verified', 'auth.is_admin')->prefix('admin
     Route::get('/', 'AdminController@index')->name('home');
 
     Route::get('/users', 'AdminController@users')->name('users');
+    Route::delete('/users/{user}', 'AdminController@deleteUser')->name('user.delete');
+
     Route::get('/families', 'AdminController@families')->name('families');
 });
 

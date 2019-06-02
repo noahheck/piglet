@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\User\FormatsCurrency;
 use App\Traits\User\FormatsDateTimes;
 use App\Traits\User\ProvidesTodaysDate;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,8 @@ class User extends Authenticatable
         FormatsDates,
         FormatsDateTimes,
         ProvidesTodaysDate,
-        FormatsCurrency
+        FormatsCurrency,
+        SoftDeletes
         ;
 
     const MIN_PASSWORD_LENGTH = 8;

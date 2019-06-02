@@ -26,7 +26,19 @@
                     <td>{{ $user->firstName }}</td>
                     <td>{{ $user->lastName }}</td>
                     <td>{{ $user->email }}</td>
-                    <td class="text-center"><span class="fa {{ ($user->email_verified) ? "fa-check-square-o" : "fa-square-o" }}"></span></td>
+                    <td class="text-center">
+                        @if ($user->email_verified)
+                            <span class="fa fa-check-square-o"</span>
+                        @else
+                            <form action="{{ route('admin.user.delete', [$user]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <span class="fa fa-trash-o"></span>
+                                </button>
+                            </form>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
