@@ -46,3 +46,24 @@ function flashInfo($key, $replace = []) {
 
     return flashMessage('info', $message);
 }
+
+
+function stripQueryString($url) {
+    if (!$index = strpos($url, '?')) {
+        return $url;
+    }
+
+    return substr($url, 0, $index);
+}
+
+function urlWithQueryString($url, $queryParams) {
+    $url = stripQueryString($url);
+
+    $queryStringArguments = [];
+
+    foreach ($queryParams as $key => $value) {
+        $queryStringArguments[] = urlencode($key) . '=' . urlencode($value);
+    }
+
+    return $url . '?' . implode('&', $queryStringArguments);
+}

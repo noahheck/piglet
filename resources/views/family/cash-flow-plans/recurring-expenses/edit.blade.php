@@ -24,7 +24,7 @@
         ],
         'location'   => __('form.edit'),
         'menu' => [
-            ['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->previous()]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],
+            ['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1]),]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],
             /*['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],*/
         ]
@@ -35,10 +35,10 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.recurring-expenses._form', [
-                'action'      => route('family.cash-flow-plans.recurring-expenses.update', [$family, $cashFlowPlan, $recurringExpense, 'return' => url()->previous()]),
+                'action'      => route('family.cash-flow-plans.recurring-expenses.update', [$family, $cashFlowPlan, $recurringExpense, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1]),]),
                 'method'      => 'PUT',
                 'editing'     => true,
-                'cancelRoute' => url()->previous(),
+                'cancelRoute' => App\urlWithQueryString(url()->previous(), ['scroll' => 1]),
             ])
 
         </div>

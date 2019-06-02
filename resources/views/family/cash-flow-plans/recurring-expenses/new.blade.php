@@ -33,10 +33,10 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.recurring-expenses._form', [
-                'action'      => route('family.cash-flow-plans.recurring-expenses.store', [$family, $cashFlowPlan]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.cash-flow-plans.recurring-expenses.store', [$family, $cashFlowPlan, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1])]),
                 'method'      => false,
                 'editing'     => false,
-                'cancelRoute' => route('family.cash-flow-plans.recurring-expenses.index', [$family, $cashFlowPlan]),
+                'cancelRoute' => App\urlWithQueryString(url()->previous(), ['scroll' => 1]),
             ])
 
         </div>

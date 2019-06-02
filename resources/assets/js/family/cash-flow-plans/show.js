@@ -2,9 +2,10 @@
  * js/family/cash-flow-plans/show.js
  */
 
-let $        = require('jquery');
-let meta     = require('Services/meta');
-let jsCookie = require('js-cookie');
+let $         = require('jquery');
+let meta      = require('Services/meta');
+let urlParams = require('Services/urlParameters');
+let jsCookie  = require('js-cookie');
 
 
 let cashFlowPlanId = false;
@@ -48,7 +49,13 @@ $(function() {
     }
 
     // Scroll to the position the window was scrolled to on the last request
-    if (jsCookie.get(scrollCookieName)) {
+
+    let shouldScroll = urlParams.has('scroll');
+    console.log(shouldScroll);
+
+    console.log(jsCookie.get(scrollCookieName) && shouldScroll);
+
+    if (jsCookie.get(scrollCookieName) && shouldScroll) {
         $window.scrollTop(jsCookie.get(scrollCookieName));
     }
 

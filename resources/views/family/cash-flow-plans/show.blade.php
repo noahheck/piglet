@@ -305,7 +305,7 @@
                 </div>
 
                 <div class="text-right">
-                    <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('recurring-expenses.add-new-recurring-expense') }}</a>
+                    <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.recurring-expenses.create', [$family, $cashFlowPlan]) }}">{{ __('recurring-expenses.add-new-recurring-expense') }}</a>
                 </div>
 
             </div>
