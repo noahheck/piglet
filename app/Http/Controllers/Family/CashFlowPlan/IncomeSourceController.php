@@ -128,11 +128,15 @@ class IncomeSourceController extends Controller
      * @param  \App\Family\IncomeSource  $cashFlowPlanIncomeSource
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
+    public function destroy(Request $request, Family $family, CashFlowPlan $cashFlowPlan, IncomeSource $incomeSource)
     {
         $incomeSource->delete();
 
         flashSuccess("income-sources.income-source-deleted");
+
+        if ($request->query('return')) {
+            return redirect($request->query('return'));
+        }
 
         return redirect()->route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]);
     }

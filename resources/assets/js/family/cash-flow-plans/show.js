@@ -51,9 +51,6 @@ $(function() {
     // Scroll to the position the window was scrolled to on the last request
 
     let shouldScroll = urlParams.has('scroll');
-    console.log(shouldScroll);
-
-    console.log(jsCookie.get(scrollCookieName) && shouldScroll);
 
     if (jsCookie.get(scrollCookieName) && shouldScroll) {
         $window.scrollTop(jsCookie.get(scrollCookieName));

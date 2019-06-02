@@ -24,7 +24,7 @@
         ],
         'location'   => __('form.edit'),
         'menu' => [
-            ['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1]),]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],
+            ['type' => 'delete', 'href' => route('family.cash-flow-plans.recurring-expenses.destroy', [$family, $cashFlowPlan, $recurringExpense, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1])]), 'text' => __('form.delete') . ' ' . __('recurring-expenses.recurring-expense')],
             /*['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],*/
         ]

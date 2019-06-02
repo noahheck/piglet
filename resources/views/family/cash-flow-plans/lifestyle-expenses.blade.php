@@ -9,7 +9,7 @@
 @endpush
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/family.cash-flow-plans.show.js') }}"></script>
+{{--    <script type="text/javascript" src="{{ mix('js/family.cash-flow-plans.show.js') }}"></script>--}}
 @endpush
 
 
@@ -38,7 +38,7 @@
 
             <p class="small">* {{ __('cash-flow-plans.distributed-description') }}</p>
 
-            <form class="has-bold-labels" name="lifestyle-expenses" action="{{ route('family.cash-flow-plans.lifestyle-expenses-update', [$family, $cashFlowPlan, 'return' => url()->previous()]) }}" method="POST">
+            <form class="has-bold-labels" name="lifestyle-expenses" action="{{ route('family.cash-flow-plans.lifestyle-expenses-update', [$family, $cashFlowPlan, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1])]) }}" method="POST">
 
                 @csrf
 
@@ -122,7 +122,7 @@
                     {{ __('form.save') }}
                 </button>
 
-                <a class="btn btn-secondary" href="{{ url()->previous() }}">
+                <a class="btn btn-secondary" href="{{ App\urlWithQueryString(url()->previous(), ['scroll' => 1]) }}">
                     {{ __('form.cancel') }}
                 </a>
 

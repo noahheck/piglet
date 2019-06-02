@@ -24,7 +24,7 @@
         ],
         'location'   => __('form.edit'),
         'menu' => [
-            ['type' => 'delete', 'href' => route('family.cash-flow-plans.income-sources.destroy', [$family, $cashFlowPlan, $incomeSource]), 'text' => __('form.delete') . ' ' . __('income-sources.income-source')],
+            ['type' => 'delete', 'href' => route('family.cash-flow-plans.income-sources.destroy', [$family, $cashFlowPlan, $incomeSource, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1])]), 'text' => __('form.delete') . ' ' . __('income-sources.income-source')],
             /*['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.create', [$family, $cashFlowPlan]), 'icon' => 'fa fa-plus-circle', 'text' => __('income-sources.add-new-income-source')],
             ['type' => 'link', 'href' => route('family.cash-flow-plans.income-sources.edit', [$family, $cashFlowPlan, $incomeSource]), 'icon' => 'fa fa-pencil-square-o', 'text' => __('form.edit')],*/
         ]
@@ -35,9 +35,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-7">
 
             @include('family.cash-flow-plans.income-sources._form', [
-                'action'      => route('family.cash-flow-plans.income-sources.update', [$family, $cashFlowPlan, $incomeSource]) . '?' . app('request')->getQueryString(),
+                'action'      => route('family.cash-flow-plans.income-sources.update', [$family, $cashFlowPlan, $incomeSource, 'return' => App\urlWithQueryString(url()->previous(), ['scroll' => 1])]),
                 'method'      => 'PUT',
-                'cancelRoute' => route('family.cash-flow-plans.income-sources.index', [$family, $cashFlowPlan]),
+                'cancelRoute' => App\urlWithQueryString(url()->previous(), ['scroll' => 1]),
             ])
 
         </div>
