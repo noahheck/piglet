@@ -375,7 +375,7 @@
                 </div>
 
                 <div class="text-right">
-                    <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan, 'return' => url()->current()]) }}">{{ __('expense-groups.add-new-expense-group') }}</a>
+                    <a class="btn btn-outline-primary" href="{{ route('family.cash-flow-plans.expense-groups.create', [$family, $cashFlowPlan]) }}">{{ __('expense-groups.add-new-expense-group') }}</a>
                 </div>
 
             </div>
