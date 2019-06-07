@@ -24,6 +24,8 @@ trait FormatsCurrency
             return ($withFormatting) ? $sigil . '0.00' : null;
         }
 
+        $amount = preg_replace("/[^0-9\.]/", '', $amount);
+
         return $minus . $sigil . number_format($amount, 2, '.', $separator);
     }
 }
