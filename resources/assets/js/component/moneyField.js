@@ -5,6 +5,7 @@
  */
 
 let $ = require('jquery');
+let currency = require('Services/currency');
 
 let moneyField = {};
 
@@ -43,6 +44,11 @@ moneyField.attach = function(element) {
 
         let charCode = (e.which) ? e.which : e.keyCode;
 
+        // Allow cut/copy/paste (and probably bugs...)
+        if (e.ctrlKey) {
+            return true;
+        }
+
         if (isControlCode(charCode)) {
             return true;
         }
@@ -71,6 +77,16 @@ moneyField.attach = function(element) {
                 return false;
             }
         }
+    });
+
+    $(element).on("paste", function(e) {
+
+        let $this = $(this);
+
+        setTimeout(function() {
+            $this.val(currency.format($this.val()));
+        }, 0);
+
     });
 
 };
