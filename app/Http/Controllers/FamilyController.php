@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Family;
 use App\FamilyUser;
+use function App\flashSuccess;
+use function App\flashWarning;
 use App\Service\FamilyConnectService;
 use App\Service\PhotoUploaderService;
 use Illuminate\Http\Request;
@@ -83,7 +85,7 @@ class FamilyController extends Controller
      */
     public function edit(Family $family)
     {
-        if (!Auth::user()->member->is_administrator) {
+        if (!Auth::user()->familyMember()->is_administrator) {
             throw new AccessDeniedHttpException("You need to be an administrator to update this family");
         }
 
@@ -101,7 +103,7 @@ class FamilyController extends Controller
      */
     public function update(Request $request, Family $family, PhotoUploaderService $photoUploaderService)
     {
-        if (!Auth::user()->member->is_administrator) {
+        if (!Auth::user()->familyMember()->is_administrator) {
             throw new AccessDeniedHttpException("You need to be an administrator to update this family");
         }
 
@@ -148,6 +150,30 @@ class FamilyController extends Controller
         return response()->file(Storage::disk('family')->path($family->imageFile($size)))
             ->setLastModified($lastModified)
             ->setPublic();
+    }
+
+
+
+    public function enableSupportAccess(Family $family, Request $request)
+    {
+        $family->allow_support_access = true;
+
+        $family->save();
+
+        flashWarning('family.support-access-enabled');
+
+        return redirect()->route('family.home', $family);
+    }
+
+    public function disableSupportAccess(Family $family, Request $request)
+    {
+        $family->allow_support_access = false;
+
+        $family->save();
+
+        flashSuccess('family.support-access-disabled');
+
+        return redirect()->route('family.home', $family);
     }
 
 }

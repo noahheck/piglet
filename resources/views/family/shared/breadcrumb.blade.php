@@ -1,5 +1,19 @@
 <div class="row">
 
+    @if ($family->allow_support_access)
+
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+                {{ __('family.in-support-access-mode') }}
+
+                @if (Auth::user()->familyMember()->is_administrator && Route::current()->getName() !== 'family.edit')
+                    <a href="{{ route('family.edit', [$family]) }}">{{ __('application.take-me-there') }}</a>
+                @endif
+            </div>
+        </div>
+
+    @endif
+
     <div class="col-12">
 
         @if (isset($menu) && count($menu) > 0)

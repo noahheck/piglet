@@ -58,6 +58,8 @@ Route::middleware('auth', 'auth.email_verified', 'auth.is_admin')->prefix('admin
     Route::delete('/users/{user}', 'AdminController@deleteUser')->name('user.delete');
 
     Route::get('/families', 'AdminController@families')->name('families');
+
+    Route::get('/support', 'AdminController@support')->name('support');
 });
 
 
@@ -70,6 +72,9 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
 
     Route::resource('family', 'FamilyController');
     Route::get('{family}/photo/{size}/{photoFile}', 'FamilyController@photo')->name('family.photo');
+
+    Route::post('{family}/enableSupportAccess', 'FamilyController@enableSupportAccess')->name('family.enableSupportAccess');
+    Route::post('{family}/disableSupportAccess', 'FamilyController@disableSupportAccess')->name('family.disableSupportAccess');
 
     Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(VerifyFamilyAccess::class, ConnectFamilyDatabase::class)->group(function() {
 

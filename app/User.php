@@ -74,6 +74,22 @@ class User extends Authenticatable
 
 
 
+    public function familyMember()
+    {
+        /**
+         * Check if admin user providing support
+         */
+        if ($this->is_admin && !Member::where('user_id', $this->id)->get()->count()) {
+            $tempMember = new Member();
+
+            $tempMember->is_administrator = true;
+
+            return $tempMember;
+        }
+
+        return $this->member;
+    }
+
     public function member()
     {
         return $this->hasOne(Member::class);

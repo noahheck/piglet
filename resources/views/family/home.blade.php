@@ -17,7 +17,7 @@
 
 $menu = [];
 
-if (Auth::user()->member->is_administrator) {
+if (Auth::user()->familyMember()->is_administrator) {
     $menu[] = [
         'type' => 'link',
         'href' => route('family.edit', [$family]),
@@ -47,7 +47,7 @@ $menu[] = [
 
             {!! $family->photo(['rounded-circle', 'img-fluid', 'family-photo']) !!}
 
-            @if (Auth::user()->member->is_administrator)
+            @if (Auth::user()->familyMember()->is_administrator)
                 <p><a href="{{ route('family.edit', $family) }}" class="btn btn-outline-primary">{{ ucwords(__('form.edit_details')) }}</a></p>
             @endif
 

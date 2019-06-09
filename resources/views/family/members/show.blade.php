@@ -17,7 +17,7 @@
     @php
         $menu = [];
 
-        if (Auth::user()->member->is_administrator) {
+        if (Auth::user()->familyMember()->is_administrator) {
             $menu = [
                 ['type' => 'link', 'href' => route('family.members.edit', [$family, $member]), 'icon' => 'fa fa-pencil-square-o', 'text' => ucwords(__('form.edit_details'))],
             ];
@@ -65,7 +65,7 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->member->is_administrator)
+                @if (Auth::user()->familyMember()->is_administrator)
                     <a href="{{ route('family.members.edit', [$family, $member]) }}">
                         <div class="card-footer text-right text-muted">
                             <span class="fa fa-pencil-square-o"></span> {{ ucwords(__('form.edit_details')) }}

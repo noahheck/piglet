@@ -14,10 +14,13 @@ class AdminController extends Controller
 
         $numFamilies = Family::count();
 
+        $numFamiliesInSupportMode = Family::where('allow_support_access', true)->count();
+
         return view('admin.home', [
             'key'         => null,
             'numUsers'    => $numUsers,
             'numFamilies' => $numFamilies,
+            'numFamiliesInSupportMode' => $numFamiliesInSupportMode,
         ]);
     }
 
@@ -51,6 +54,16 @@ class AdminController extends Controller
 
         return view('admin.home', [
             'key'      => 'families',
+            'families' => $families,
+        ]);
+    }
+
+    public function support()
+    {
+        $families = Family::where('allow_support_access', true)->get();
+
+        return view('admin.home', [
+            'key'      => 'support',
             'families' => $families,
         ]);
     }

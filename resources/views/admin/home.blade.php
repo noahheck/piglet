@@ -60,6 +60,26 @@
                             </div>
                         </a>
                     </div>
+
+
+                    <div class="col-12 col-md-6 offset-md-3">
+                        <a href="{{ route('admin.support') }}" class="card border-0 shadow mb-5">
+                            <div class="card-body color-white bg-purple">
+                                <h4 class="card-title text-center">
+                                    Families in Support Mode
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-center display-2">
+                                    <span class="fa fa-wrench"></span>
+                                </p>
+                                <p class="text-center display-3">
+                                    {{ $numFamiliesInSupportMode }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
             @endif
 

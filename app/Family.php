@@ -106,6 +106,10 @@ class Family extends Model implements Settings
      */
     public function isAccessibleBy(User $user)
     {
+        if ($this->allow_support_access && $user->is_admin) {
+            return true;
+        }
+
         return $this->users->contains($user);
     }
 
@@ -116,6 +120,13 @@ class Family extends Model implements Settings
      */
     public function familyUser(User $user)
     {
+        /**
+         * User that is an admin providing support assistance for a family they are not a part of
+         */
+        if ($this->allow_support_access && $user->is_admin && !$this->users->contains($user)) {
+//            return new FamilyUser();
+        }
+
         return $this->users()->where('user_id', $user->id)->first()->pivot;
     }
 

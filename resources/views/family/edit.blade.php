@@ -12,14 +12,26 @@
     <script src="{{ mix("js/family-details-form.js") }}"></script>
 @endpush
 
+@php
+
+$menu = [
+    ['type' => 'help', 'key' => 'family'],
+];
+
+if (!$family->allow_support_access) {
+    $menu[] = ['type' => 'form', 'href' => route('family.enableSupportAccess', [$family]), 'id' => 'enableSupportAccess', 'icon' => 'fa fa-wrench', 'text' => __('family.enable-support-access')];
+} else {
+    $menu[] = ['type' => 'form', 'href' => route('family.disableSupportAccess', [$family]), 'id' => 'disableSupportAccess', 'icon' => 'fa fa-wrench', 'text' => __('family.disable-support-access')];
+}
+
+@endphp
+
 @section('content')
 
     @include('family.shared.breadcrumb', [
         'breadcrumb' => [],
         'location'   => __('family-settings.edit_family_details'),
-        'menu' => [
-            ['type' => 'help', 'key' => 'family'],
-        ]
+        'menu' => $menu,
     ])
 
     <div class="row">
