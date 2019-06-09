@@ -156,6 +156,10 @@ class FamilyController extends Controller
 
     public function enableSupportAccess(Family $family, Request $request)
     {
+        if (!Auth::user()->familyMember()->is_administrator) {
+            throw new AccessDeniedHttpException("You need to be an administrator to enable support mode.");
+        }
+
         $family->allow_support_access = true;
 
         $family->save();
@@ -167,6 +171,10 @@ class FamilyController extends Controller
 
     public function disableSupportAccess(Family $family, Request $request)
     {
+        if (!Auth::user()->familyMember()->is_administrator) {
+            throw new AccessDeniedHttpException("You need to be an administrator to disable support mode");
+        }
+
         $family->allow_support_access = false;
 
         $family->save();

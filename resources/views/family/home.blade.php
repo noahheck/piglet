@@ -119,87 +119,89 @@ $menu[] = [
 
     </div>
 
-    @if ($currentCfp)
 
-        @php
-            $cfpRoute = route("family.cash-flow-plans.show", [$family, $currentCfp]);
-        @endphp
 
-        <hr>
+    <hr>
 
-        <div class="row justify-content-around">
+    <div class="row justify-content-around">
 
-            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5" id="calendar_dayDetails">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5" id="calendar_dayDetails">
 
-                @include('family.calendar._day-detail', [
-                    'returnRoute' => route('family.home', $family),
-                ])
-
-            </div>
-
-            <div class="col-12 col-sm-8 col-md-6">
-
-                <div class="card shadow">
-
-                    <a class="card-header" href="{{ $cfpRoute }}">
-                        <h3>{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
-                    </a>
-
-                    <a href="{{ $cfpRoute }}">
-                        <div class="card-body">
-
-                            <h4>{{ __('cash-flow-plans.actual') }} {{ __('cash-flow-plans.expenditures') }}</h4>
-
-                            <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
-
-                        </div>
-                    </a>
-
-                    <div class="card-header border-top">
-                        <h4>{{ __('expense-groups.expense-groups') }}</h4>
-                    </div>
-
-                    <ul class="list-group list-group-flush">
-
-                        @foreach ($currentCfp->expenseGroups as $group)
-                            <li class="list-group-item">
-
-                                <h5>{{ $group->name }}</h5>
-
-                                <p>
-                                    <a class="float-right btn btn-sm btn-outline-primary" href="{{ route("family.cash-flow-plans.expenses.create", [$family, $currentCfp, 'expense_group_id' => $group]) }}">
-                                        <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                    </a>
-                                    {{ App\formatCurrency($group->actualTotal(), true) }} / {{ App\formatCurrency($group->projected, true) }}
-                                    <small class="text-muted" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
-                                        {{ App\formatCurrency($group->actualVsProjected(), true) }}
-                                    </small>
-                                </p>
-
-                                <div class="progress">
-
-                                    @php
-                                        $statusClass = '';
-                                        if ($group->isOverspent()) {
-                                            $statusClass = 'bg-danger';
-                                        } elseif ($group->isCloseToOverspent()) {
-                                            $statusClass = 'bg-warning';
-                                        }
-                                    @endphp
-
-                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $group->percentUtilized() }}%" aria-valuenow="{{ $group->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($group->projected, false) }}"></div>
-                                </div>
-                            </li>
-                        @endforeach
-
-                    </ul>
-
-                </div>
-
-            </div>
+            @include('family.calendar._day-detail', [
+                'returnRoute' => route('family.home', $family),
+            ])
 
         </div>
 
-    @endif
+            @if ($currentCfp)
+
+                @php
+                    $cfpRoute = route("family.cash-flow-plans.show", [$family, $currentCfp]);
+                @endphp
+
+                <div class="col-12 col-sm-8 col-md-6">
+
+                    <div class="card shadow">
+
+                        <a class="card-header" href="{{ $cfpRoute }}">
+                            <h3>{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
+                        </a>
+
+                        <a href="{{ $cfpRoute }}">
+                            <div class="card-body">
+
+                                <h4>{{ __('cash-flow-plans.actual') }} {{ __('cash-flow-plans.expenditures') }}</h4>
+
+                                <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
+
+                            </div>
+                        </a>
+
+                        <div class="card-header border-top">
+                            <h4>{{ __('expense-groups.expense-groups') }}</h4>
+                        </div>
+
+                        <ul class="list-group list-group-flush">
+
+                            @foreach ($currentCfp->expenseGroups as $group)
+                                <li class="list-group-item">
+
+                                    <h5>{{ $group->name }}</h5>
+
+                                    <p>
+                                        <a class="float-right btn btn-sm btn-outline-primary" href="{{ route("family.cash-flow-plans.expenses.create", [$family, $currentCfp, 'expense_group_id' => $group]) }}">
+                                            <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                        </a>
+                                        {{ App\formatCurrency($group->actualTotal(), true) }} / {{ App\formatCurrency($group->projected, true) }}
+                                        <small class="text-muted" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
+                                            {{ App\formatCurrency($group->actualVsProjected(), true) }}
+                                        </small>
+                                    </p>
+
+                                    <div class="progress">
+
+                                        @php
+                                            $statusClass = '';
+                                            if ($group->isOverspent()) {
+                                                $statusClass = 'bg-danger';
+                                            } elseif ($group->isCloseToOverspent()) {
+                                                $statusClass = 'bg-warning';
+                                            }
+                                        @endphp
+
+                                        <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $group->percentUtilized() }}%" aria-valuenow="{{ $group->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($group->projected, false) }}"></div>
+                                    </div>
+                                </li>
+                            @endforeach
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            @endif
+
+        </div>
 
 @endsection
