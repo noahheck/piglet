@@ -220,6 +220,20 @@ img.in-preview {
 }
 
 
+
+// Family navigation bar
+.family-navigation-bar {
+  margin-top: -15px;
+  padding-top: 15px;
+
+  margin-bottom: 15px;
+
+  hr {
+    margin: 15px -15px 0 -15px;
+  }
+}
+
+
 /* Help content displayed in the modal */
 .help-content {
   h1 {

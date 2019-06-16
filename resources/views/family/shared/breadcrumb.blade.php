@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row sticky-top bg-white family-navigation-bar">
 
     @if ($family->allow_support_access)
 
@@ -84,8 +84,9 @@
             &gt; {{ $location }}
         @endif
 
+        <hr>
+
     </div>
 
 </div>
 
-<hr>

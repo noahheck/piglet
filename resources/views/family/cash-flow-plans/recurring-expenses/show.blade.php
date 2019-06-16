@@ -65,7 +65,7 @@
                 <dd><a href="{{ route('family.merchants.show', [$family, $recurringExpense->merchant]) }}">{{ $recurringExpense->merchant->name }}</a></dd>
 
                 <dt>{{ __('recurring-expenses.category') }}</dt>
-                <dd>{{ $recurringExpense->category->name }} {{ ($recurringExpense->sub_category) ? '(' . $recurringExpense->sub_category . ')' : '' }}</dd>
+                <dd>{{ ($recurringExpense->category) ? $recurringExpense->category->name : '' }} {{ ($recurringExpense->sub_category) ? '(' . $recurringExpense->sub_category . ')' : '' }}</dd>
 
                 <dt>{{ __('recurring-expenses.details') }}</dt>
                 <dd>{!! nl2br(e($recurringExpense->detail)) !!}</dd>
