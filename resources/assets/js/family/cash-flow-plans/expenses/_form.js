@@ -13,8 +13,12 @@ $(function() {
     $('#actual').focus();
 
     $('#showAdditionalFields').click(function() {
-        $('#additionalFields').slideToggle();
+        $('#additionalFields').slideToggle(null, () => {
+
+            $('#description').focus();
+        });
         $(this).toggleClass('shown');
+
     });
 
     categoryMap.attach('#category_id', '#sub_category');
