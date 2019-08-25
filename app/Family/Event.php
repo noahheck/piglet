@@ -26,4 +26,9 @@ class Event extends Model
             'date'  => 'required|date',
         ];
     }
+
+    public function isBirthday()
+    {
+        return false;
+    }
 }

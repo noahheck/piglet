@@ -43,6 +43,11 @@ class MonthDetailProvider
         throw new \InvalidArgumentException("Can't access non-existent property: {$name}");
     }
 
+    public function monthWithLeadingZero()
+    {
+        return ($this->month < 10) ? '0' . $this->month : $this->month;
+    }
+
     /**
      * @return object
      */

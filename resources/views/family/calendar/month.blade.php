@@ -96,6 +96,10 @@ $weekPositionCounter = $emptyCellsAtBeginning;
                                 <a href="{{ route("family.calendar", [$family, $year, $month, $x]) }}" data-target="calendar--day-loader.link" data-action="calendar--day-loader#loadDayView">
                                     <div class="day-number">{{ $x }}</div>
 
+                                    @if ($monthEntryProvider->hasBirthdayForDay($x))
+                                        <span class="fa fa-birthday-cake"></span>
+                                    @endif
+
                                     @if ($monthEntryProvider->hasEntryForDay($x))
                                         <span class="fa fa-circle"></span>
                                     @endif

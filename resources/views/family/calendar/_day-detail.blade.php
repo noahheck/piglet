@@ -47,6 +47,18 @@ $returnRoute = isset($returnRoute) ? $returnRoute : route('family.calendar', [$f
         <div class="entries">
 
             @foreach ($dayEntryProvider->events() as $event)
+
+                @if ($event->isBirthday())
+
+                    <a class="entry all-day-entry birthday" href="{{ route('family.members.show', [$family, $event->member_id]) }}">
+                        <h4>
+                            <span class="fa fa-birthday-cake"></span> {{ App\str_possessive($event->first_name) }} Birthday!
+                        </h4>
+                    </a>
+
+                    @continue
+                @endif
+
                 @php
                     $iconClass = ($event->all_day) ? 'calendar' : 'clock-o';
                     $eventTime = ($event->all_day) ? '' : '<small>- ' . $event->time . '</small>';

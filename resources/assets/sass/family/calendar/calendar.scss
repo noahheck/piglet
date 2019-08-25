@@ -84,3 +84,11 @@ table.calendar {
 .entry.all-day-entry {
   background-color: $subtle-note;
 }
+
+.entry.birthday {
+  background-color: $subtle-highlight;
+
+  .fa {
+    color: $primary-blue;
+  }
+}

@@ -59,11 +59,24 @@ class CalendarEntryProvider
 
     public function hasEntryForDay($day)
     {
+        $nonBirthdayEvents = $this->nonBirthdayEvents();
+
         $filterDate = Carbon::createFromDate($this->year, $this->month, $day)->format('m/d/Y');
 
-        $entriesForDay = $this->entries->where('date', $filterDate);
+        $nonBirthdayEventsForDay = $nonBirthdayEvents->where('date', $filterDate);
 
-        return $entriesForDay->count() > 0;
+        return $nonBirthdayEventsForDay->count() !== 0;
+    }
+
+    public function hasBirthdayForDay($day)
+    {
+        $birthdayEvents = $this->birthdayEvents();
+
+        $filterDate = Carbon::createFromDate($this->year, $this->month, $day)->format('m/d/Y');
+
+        $birthdaysForDay = $birthdayEvents->where('date', $filterDate);
+
+        return $birthdaysForDay->count() !== 0;
     }
 
     /**
@@ -76,6 +89,7 @@ class CalendarEntryProvider
 
     private function fetchEntries()
     {
+
         if (!$this->day) {
             // Calendar scope is a month
             $monthDetails = new MonthDetailProvider($this->year, $this->month);
@@ -84,12 +98,27 @@ class CalendarEntryProvider
             $endOfMonth   = Carbon::createFromdate($this->year, $this->month, $monthDetails->daysInMonth())->format('m/d/Y');
 
             $events = Event::whereBetween('date', [$startOfMonth, $endOfMonth])->orderBy('date')->get();
+
+            $birthdayContacts = Member::whereMonth('birthdate', $monthDetails->monthWithLeadingZero())->orderBy('birthdate')->get();
+
+            $birthdayEvents = $this->contactsToBirthdayEvents($birthdayContacts);
         } else {
             // Calendar scope is a day
-            $date = Carbon::createFromDate($this->year, $this->month, $this->day)->format('m/d/Y');
+            $carbon = Carbon::createFromDate($this->year, $this->month, $this->day);
+            $date = $carbon->format('m/d/Y');
 
             $events = Event::where('date', $date)->orderBy('all_day', 'desc')->get();
+
+            $birthdayContacts = Member::whereMonth('birthdate', $carbon->format('m'))
+                                      ->whereDay('birthdate', $carbon->format('d'))
+                                      ->get();
+
+            $birthdayEvents = $this->contactsToBirthdayEvents($birthdayContacts);
         }
+
+        $birthdayEvents->each(function($event, $key) use ($events) {
+            $events->push($event);
+        });
 
         $sortedEvents = $events->sort(function($a, $b) {
 
@@ -98,6 +127,10 @@ class CalendarEntryProvider
 
             if ($_a == $_b) {
                 // Same date, so check if one is all day and other is not
+
+                if ($a->isBirthday() || $b->isBirthday()) {
+                    return $b->isBirthday() - $a->isBirthday();
+                }
 
                 if ($a->all_day || $b->all_day) {
                     // At least one is all day, so we can compare on that
@@ -120,5 +153,36 @@ class CalendarEntryProvider
 
         $this->events  = $sortedEvents;
         $this->entries = $sortedEvents;
+    }
+
+    private function contactsToBirthdayEvents($birthdayContacts)
+    {
+        $events = collect([]);
+
+        $birthdayContacts->each(function($contact, $key) use ($events) {
+            $bdayEvent = new BirthdayEvent($contact->toArray());
+
+            $date = Carbon::createFromFormat('Y-m-d G:i:s', $bdayEvent->birthdate);
+            $date->year($this->year);
+            $bdayEvent->date = $date->format('m/d/Y');
+
+            $events->push($bdayEvent);
+        });
+
+        return $events;
+    }
+
+    private function nonBirthdayEvents()
+    {
+        return $this->entries->filter(function($event) {
+            return !$event->isBirthday();
+        });
+    }
+
+    private function birthdayEvents()
+    {
+        return $this->entries->filter(function($event) {
+            return $event->isBirthday();
+        });
     }
 }

@@ -67,3 +67,8 @@ function urlWithQueryString($url, $queryParams) {
 
     return $url . '?' . implode('&', $queryStringArguments);
 }
+
+
+function str_possessive($string) {
+    return $string . '\'' . ($string[strlen($string) - 1] != 's' ? 's' : '');
+}
