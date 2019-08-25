@@ -11,7 +11,11 @@ Good morning! Here's what your day looks like:
     {{ $details['family']->name }}
 
     @foreach ($details['events'] as $event)
-        {{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}
+        @if ($event->isBirthday())
+            {{ \App\str_possessive($event->first_name) }} Birthday!
+        @else
+            {{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}
+        @endif
     @endforeach
 
     ----------

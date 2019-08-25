@@ -11,7 +11,11 @@
     <h4>{{ $details['family']->name }}</h4>
 
     @foreach ($details['events'] as $event)
-        <p>{{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}</p>
+        @if ($event->isBirthday())
+            <p>{{ \App\str_possessive($event->first_name) }} Birthday!</p>
+        @else
+            <p>{{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}</p>
+        @endif
     @endforeach
 
     <p>----------</p>
