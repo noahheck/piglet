@@ -28,6 +28,8 @@ class HomeController extends Controller
 
         $currentCfp = CashFlowPlan::current($today);
 
+        $currentCfp->load(['expenseGroups.expenses']);
+
         return view('family.home', [
             'family'     => $family,
             'members'    => Family\Member::all(),
