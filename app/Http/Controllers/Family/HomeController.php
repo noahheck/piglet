@@ -26,9 +26,9 @@ class HomeController extends Controller
         $dayDetailProvider = new DayDetailProvider($year, $month, $day);
         $dayEntryProvider  = new CalendarEntryProvider($year, $month, $day);
 
-        $currentCfp = CashFlowPlan::current($today);
-
-        $currentCfp->load(['expenseGroups.expenses']);
+        if ($currentCfp = CashFlowPlan::current($today)) {
+            $currentCfp->load(['expenseGroups.expenses']);
+        }
 
         return view('family.home', [
             'family'     => $family,
