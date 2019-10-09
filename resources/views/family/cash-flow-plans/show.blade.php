@@ -67,19 +67,21 @@
                         <ul class="list-group shadow-sm">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
-                                <span>{{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}</span>
+                                <span>
+                                    {{ App\formatCurrency($cashFlowPlan->projectedIncomeSourcesTotal(), true) }}
+                                </span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
                                 <span>
-                                {{ App\formatCurrency($cashFlowPlan->allProjectedExpendituresTotal(), true) }}
-                            </span>
+                                    {{ App\formatCurrency($cashFlowPlan->allProjectedExpendituresTotal(), true) }}
+                                </span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
                                 <span>
-                                {{ App\formatCurrency($cashFlowPlan->projectedBalance(), true) }}
-                            </span>
+                                    {{ App\formatCurrency($cashFlowPlan->projectedBalance(), true) }}
+                                </span>
                             </li>
                         </ul>
 
@@ -106,19 +108,21 @@
                         <ul class="list-group shadow-sm">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
-                                <span>{{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}</span>
+                                <span>
+                                    {{ App\formatCurrency($cashFlowPlan->actualIncomeSourcesTotal(), true) }}
+                                </span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
                                 <span>
-                                {{ App\formatCurrency($cashFlowPlan->allExpendituresTotal(), true) }}
-                            </span>
+                                    {{ App\formatCurrency($cashFlowPlan->allExpendituresTotal(), true) }}
+                                </span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
                                 <span>
-                                {{ App\formatCurrency($cashFlowPlan->balance(), true) }}
-                            </span>
+                                    {{ App\formatCurrency($cashFlowPlan->balance(), true) }}
+                                </span>
                             </li>
                         </ul>
 

@@ -120,6 +120,24 @@ $(function() {
         copyValue.attach($this, $this.data('copySource'), $this.data('copyTarget'));
     });
 
+    $('.scroll-to-top-button').click(function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    let $scrollTopContainer = $('.scroll-top-container');
+
+    $(window).scroll(function() {
+        if (window.scrollY > 400) {
+            $scrollTopContainer.addClass('d-md-block');
+        } else {
+            $scrollTopContainer.removeClass('d-md-block');
+        }
+    });
+
+
 
 
     $('.piglet-chart').each(function() {

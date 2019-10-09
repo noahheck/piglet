@@ -42,3 +42,9 @@
     <a href="{{ route('family.money-matters.settings', [$family]) }}" class="list-group-item-action list-group-item settings-item {{ ($active === 'settings') ? 'active' : '' }}" style="display: {{ $settingsActive ? 'inline' : 'none' }}">{{ __('money-matters.settings') }}</a>
 
 </div>
+
+<div class="sticky-top d-none mm-nav-scroll-top-container scroll-top-container">
+    <button type="button" class="btn btn-outline-primary scroll-to-top-button sticky-top w-100">
+        <span class="fa fa-arrow-circle-up"></span> Back to top
+    </button>
+</div>
