@@ -71,7 +71,8 @@ $(function() {
         todayHighlight: true,
         disableTouchKeyboard: true,
         todayBtn: 'linked',
-        clearBtn: true
+        clearBtn: true,
+        zIndexOffset: 1020
     });
 
     $('.timepicker').each(function() {

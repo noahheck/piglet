@@ -214,6 +214,11 @@ img.in-preview {
   cursor: move;
 }
 
+// Bootstrap datetimepicker
+.bootstrap-datetimepicker-widget {
+  z-index: 1020; // Make sure timepicker stays on top of breadcrumb bar
+}
+
 /* Adds underline to items with title attribute */
 [title] {
   text-decoration: underline dotted;
