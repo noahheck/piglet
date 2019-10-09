@@ -14,9 +14,16 @@
 use App\Http\Middleware\ConnectFamilyDatabase;
 use App\Http\Middleware\VerifyFamilyAccess;
 
+use \Spatie\Honeypot\ProtectAgainstSpam;
+
 Route::singularResourceParameters();
 
-Auth::routes();
+Route::middleware(ProtectAgainstSpam::class)->group(function() {
+
+    Auth::routes();
+
+});
+
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/'       , 'MarketingController@home')->name('homepage');
