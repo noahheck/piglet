@@ -54,5 +54,15 @@ EOT
     <img src="{$__current_cfp_image}" alt="A colorful graph showing the how much of the family's total income has been appropriated for the current month; also showing a listing of expense groups with a display of their individual appropriation progress with buttons for quickly adding expenses to each group.">
 </div>
 EOT
-
+    ,
+    'archiving-family' => "Archiving a Family Account",
+    'archiving-family-details' => <<<EOT
+<p>Sometimes, a family's situation changes and the current configuration in {$__app_name} is no longer appropriate. {$__app_name} allows you to archive and create new family accounts to suit your changing needs.</p>
+<p>In the Page Menu of the "Edit Details" screen, you'll find an option to archive the current family account. Select that option to archive the family account.</p>
+<p>Archived families will no longer appear in the default home screen. You will also no longer receive the <a href="{$__calendar_url}" class="help-link">Calendar Daily Summary email</a> for that family.</p>
+<div class="note">
+    <p>You can find all of the family accounts you have access to, including archived families, from the User Settings screen. You can un-archive an archived family account by choosing the appropriate option from the Page Menu of the Edit Details screen.</p>
+</div>
+EOT
+    ,
 ];

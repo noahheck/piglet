@@ -19,7 +19,7 @@
 
         <tbody>
             @foreach ($families as $family)
-                <tr>
+                <tr class="{{ ($family->active) ? '' : 'text-muted' }}">
                     <td>{{ $family->id }}</td>
                     <td>{{ $family->name }}</td>
                     <td>{{ $family->createdBy->firstName }} {{ $family->createdBy->lastName }} ({{ $family->createdBy->id }})</td>

@@ -23,5 +23,13 @@ $(() => {
 
             return false;
         }
-    })
+    });
+
+    $('#unarchiveFamily').click(function(e) {
+        if (!confirm("Are you sure you want to un-archive this family?")) {
+            e.preventDefault();
+
+            return false;
+        }
+    });
 });

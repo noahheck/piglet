@@ -14,6 +14,14 @@
 
     @endif
 
+    @if (!$family->active)
+        <div class="col-12">
+            <div class="alert alert-secondary" role="alert">
+                {{ __('family-settings.family_archived_notice') }}
+            </div>
+        </div>
+    @endif
+
     <div class="col-12">
 
         @if (isset($menu) && count($menu) > 0)

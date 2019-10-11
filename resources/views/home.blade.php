@@ -62,7 +62,7 @@
 
             @endif
 
-            @if ($families->count())
+            @if ($activeFamilies->count())
 
                 <div class="row justify-content-center">
 
@@ -71,7 +71,7 @@
                         <div id="familiesCarousel" class="carousel slide" data-interval="false">
                             <div class="carousel-inner">
 
-                                @foreach ($families as $family)
+                                @foreach ($activeFamilies as $family)
 
                                     @php
                                         $active = ($loop->first) ? 'active' : '';
@@ -89,7 +89,7 @@
                             </div>
                         </div>
 
-                        @if ($families->count() > 1)
+                        @if ($activeFamilies->count() > 1)
 
                             <a class="carousel-control-prev piglet-carousel-control" href="#familiesCarousel" role="button" data-slide="prev">
                                 <span class="fa fa-chevron-left"></span>
@@ -133,6 +133,16 @@
 
                 </div>
 
+
+            @endif
+
+            @if ($inactiveFamilies->count() > 0)
+
+                <hr>
+
+                <a href="{{ route('allFamilies') }}" class="btn btn-light">
+                    {{ __('family-settings.view_archived_families') }}
+                </a>
 
             @endif
 

@@ -17,3 +17,7 @@
 <h3>{{ __('help/family.current-cfp') }}</h3>
 
 {!! __('help/family.current-cfp-details') !!}
+
+<h3>{{ __('help/family.archiving-family') }}</h3>
+
+{!! __('help/family.archiving-family-details') !!}

@@ -14,6 +14,8 @@
 use App\Http\Middleware\ConnectFamilyDatabase;
 use App\Http\Middleware\VerifyFamilyAccess;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use \Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::singularResourceParameters();
@@ -58,7 +60,7 @@ Route::middleware('auth')->group(function() {
 
 
 
-Route::middleware('auth', 'auth.email_verified', 'auth.is_admin')->prefix('admin')->name('admin.')->group(function() {
+Route::middleware(['auth', 'auth.email_verified', 'auth.is_admin'])->prefix('admin')->name('admin.')->group(function() {
     Route::get('/', 'AdminController@index')->name('home');
 
     Route::get('/users', 'AdminController@users')->name('users');
@@ -71,11 +73,13 @@ Route::middleware('auth', 'auth.email_verified', 'auth.is_admin')->prefix('admin
 
 
 
-Route::middleware('auth', 'auth.email_verified')->group(function() {
+Route::middleware(['auth', 'auth.email_verified'])->group(function() {
 
     Route::get('/welcome', 'WelcomeController@index')->name('welcome');
 
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/families', 'HomeController@families')->name('allFamilies');
 
     Route::resource('family', 'FamilyController');
     Route::get('{family}/photo/{size}/{photoFile}', 'FamilyController@photo')->name('family.photo');
@@ -83,7 +87,12 @@ Route::middleware('auth', 'auth.email_verified')->group(function() {
     Route::post('{family}/enableSupportAccess', 'FamilyController@enableSupportAccess')->name('family.enableSupportAccess');
     Route::post('{family}/disableSupportAccess', 'FamilyController@disableSupportAccess')->name('family.disableSupportAccess');
 
-    Route::namespace('Family')->prefix("{family}")->name('family.')->middleware(VerifyFamilyAccess::class, ConnectFamilyDatabase::class)->group(function() {
+
+    Route::namespace('Family')->prefix("{family}")->name('family.')->middleware([VerifyFamilyAccess::class, ConnectFamilyDatabase::class])->group(function() {
+
+        Route::get('/archive', 'FamilyController@archive')->name('archive');
+        Route::post('/archive', 'FamilyController@archiveNow');
+        Route::post('/unarchive', 'FamilyController@unarchive')->name('unarchive');
 
         Route::get('/', 'HomeController@index')->name('home');
 

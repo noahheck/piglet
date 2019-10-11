@@ -28,20 +28,33 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
+        $activeFamilies = $user->families->where('active', true);
+        $inactiveFamilies = $user->families->where('active', false);
+
         $invitations = Invitation
             ::where('email', '=', $user->email)
             ->whereNull('accepted_date')
             ->get()
         ;
 
-        if ($invitations->count() === 0 && $user->families->count() === 1) {
+        if ($invitations->count() === 0 && $activeFamilies->count() === 1) {
 
-            return redirect()->route('family.home', [$user->families->first()]);
+            return redirect()->route('family.home', [$activeFamilies->first()]);
         }
 
         return view('home', [
-            'families'    => $user->families,
-            'invitations' => $invitations,
+            'activeFamilies'   => $activeFamilies,
+            'inactiveFamilies' => $inactiveFamilies,
+            'invitations'      => $invitations,
+        ]);
+    }
+
+    public function families(Request $request)
+    {
+        $families = $request->user()->families->sortBy('name');
+
+        return view('all-families', [
+            'families' => $families,
         ]);
     }
 

@@ -31,6 +31,10 @@ class Family extends Model implements Settings
         'name', 'details',
     ];
 
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
     public static function getValidations()
     {
         return [

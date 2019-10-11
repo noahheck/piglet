@@ -18,6 +18,12 @@ $menu = [
     ['type' => 'help', 'key' => 'family'],
 ];
 
+if ($family->active) {
+    $menu[] = ['type' => 'link', 'icon' => 'fa fa-archive', 'text' => __('family-settings.archive_family'), 'href' => route('family.archive', [$family])];
+} else {
+    $menu[] = ['type' => 'form', 'href' => route('family.unarchive', [$family]), 'id' => 'unarchiveFamily', 'icon' => 'fa fa-check-circle', 'text' => __('family-settings.unarchive_family')];
+}
+
 if (!$family->allow_support_access) {
     $menu[] = ['type' => 'form', 'href' => route('family.enableSupportAccess', [$family]), 'id' => 'enableSupportAccess', 'icon' => 'fa fa-wrench', 'text' => __('family.enable-support-access')];
 } else {
