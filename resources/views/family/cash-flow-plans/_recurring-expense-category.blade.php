@@ -1,6 +1,6 @@
 <div class="col-12 col-lg-6">
 
-    <div class="card shadow-sm mb-5 recurring-expense-category" style="border-top: 3px solid {{ $borderColor }};">
+    <div class="card shadow-sm mb-3 recurring-expense-category" style="border-top: 3px solid {{ $borderColor }};">
 
         <div class="card-body {{ $cashFlowPlan->recurringExpenseCategoryHasMissingProjectedValue($categoryId) ? 'bg-subtle-warning' : '' }}">
 
@@ -61,11 +61,11 @@
         <button type="button" class="card-footer text-center toggle-recurring-expenses-list toggle-entries-list" id="recurring-expenses-list_{{ $categoryId }}_toggle-button" data-toggle-target="recurring-expenses-list_{{ $categoryId }}">
 
             <span class="show-list-items list-item-display-action">
-                <span class="fa fa-eye"></span> <span class="action">View Expenses</span>
+                <span class="fa fa-expand rotate-minus-45"></span> <span class="action">View Expenses</span>
             </span>
 
             <span class="hide-list-items list-item-display-action" style="display: none;">
-                <span class="fa fa-eye-slash"></span> <span class="action">Hide Expenses</span>
+                <span class="fa fa-compress rotate-minus-45"></span> <span class="action">Hide Expenses</span>
             </span>
 
         </button>

@@ -329,9 +329,9 @@
                     @foreach ($cashFlowPlan->expenseGroups as $expenseGroup)
 
                         <div class="col-12 col-lg-6">
-                            <div class="card shadow-sm mb-5 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
+                            <div class="card shadow-sm mb-3 expense-group" style="border-top: 3px solid {{ $expenseGroup->category ? $expenseGroup->category->color : '' }}">
 
-                                <a class="card-body" href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">
+                                <div class="card-body">
 
                                     @if ($expenseGroup->category)
                                         <span class="text-muted float-right">{{ $expenseGroup->category->name }}</span>
@@ -341,14 +341,20 @@
                                     @endif
 
                                     <h3>
-                                        {{ $expenseGroup->name }}
+                                        <a  href="{{ route('family.cash-flow-plans.expense-groups.show', [$family, $cashFlowPlan, $expenseGroup, 'return' => url()->current()]) }}">
+                                            {{ $expenseGroup->name }}
+                                        </a>
                                     </h3>
 
                                     <p class="text-dark card-text">
-                                        <small class="text-muted float-right" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
+                                        {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
+                                        <small class="text-muted" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
                                             {{ App\formatCurrency($expenseGroup->actualVsProjected(), true) }}
                                         </small>
-                                        {{ App\formatCurrency($expenseGroup->actualTotal(), true) }} / {{ App\formatCurrency($expenseGroup->projected, true) }}
+                                        <a class="float-right text-center btn btn-sm btn-outline-primary" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'expense_group_id' => $expenseGroup->id]) }}">
+                                            <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                        </a>
+
                                     </p>
 
                                     <div class="progress">
@@ -365,11 +371,7 @@
                                         <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $expenseGroup->percentUtilized() }}%" aria-valuenow="{{ $expenseGroup->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($expenseGroup->projected, false) }}"></div>
                                     </div>
 
-                                </a>
-
-                                <a class="card-footer text-center" href="{{ route('family.cash-flow-plans.expenses.create', [$family, $cashFlowPlan, 'expense_group_id' => $expenseGroup->id]) }}">
-                                    <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                </a>
+                                </div>
 
                             </div>
                         </div>

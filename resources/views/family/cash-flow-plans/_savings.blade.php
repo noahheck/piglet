@@ -4,7 +4,7 @@ $distributedProperty = $investment . '_distributed';
 
 <div class="col-12 col-lg-6">
 
-    <div class="card shadow-sm mb-5 investment">
+    <div class="card shadow-sm mb-3 investment">
 
         <div class="card-body text-center">
 
