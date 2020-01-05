@@ -29,5 +29,14 @@
 }
 
 .mm-nav-scroll-top-container {
-  padding-top: 60px;
+  top: 60px;
+
+  .family-inactive &,
+  .in-support-mode & {
+    top: 125px;
+  }
+
+  .family-inactive.in-support-mode & {
+    top: 190px;
+  }
 }

@@ -19,5 +19,5 @@ return [
     'proud-open-source' => config('app.name') . " is proud to be an open-source project - Find out more at: <a href='" . config('piglet.url') . "' target='_blank'>" . config('piglet.url') . "</a>",
 
     'good-morning' => 'Good Morning',
-    'take-me-there' => 'Take me there',
+    'take-me-there' => 'Go there',
 ];

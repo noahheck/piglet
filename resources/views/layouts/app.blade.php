@@ -1,5 +1,11 @@
 @php
     $backgroundColor = (\Auth::user()) ? \Auth::user()->background_color : config('piglet.default-background-color');
+
+    $bodyClass = '';
+    if (isset($family)) {
+        $bodyClass .= ($family->allow_support_access) ? "in-support-mode " : '';
+        $bodyClass .= (!$family->active) ? 'family-inactive ' : '';
+    }
 @endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -61,7 +67,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @stack('stylesheets')
 </head>
-<body style="background-color: {{ $backgroundColor }};">
+<body style="background-color: {{ $backgroundColor }};" class="{{ $bodyClass }}">
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ route("homepage") }}">{{ config('app.name') }}</a>
