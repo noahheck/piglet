@@ -51,9 +51,21 @@
 
             <p>{!! nl2br(e($recurringExpense->description)) !!}</p>
 
-        </div>
+            <hr>
 
-        <hr>
+            <canvas id="monthlyAmountsByYearChart" class="piglet-chart" data-chart-data='@json($chartDataProvider->monthlyAmountsByYearChartData())'></canvas>
+
+            <hr>
+
+            @if (!$tableData = $tableDataProvider->monthlyAmountsByYearTableData())
+                <p class="text-muted">{{ __('application.no-data-to-display') }}</p>
+            @else
+
+                @include('component.table', ['tableData' => $tableData])
+
+            @endif
+
+        </div>
 
     </div>
 

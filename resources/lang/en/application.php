@@ -20,4 +20,5 @@ return [
 
     'good-morning' => 'Good Morning',
     'take-me-there' => 'Go there',
+    'no-data-to-display' => 'No data to display',
 ];

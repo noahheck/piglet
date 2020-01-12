@@ -4,6 +4,7 @@ return [
     'recurring-expenses'           => 'Recurring Expenses',
     'recurring-expense'            => 'Recurring Expense',
     'add-new-recurring-expense'    => 'Add Recurring Expense',
+    'recurring-expense-by-month'   => 'Recurring Expense by Month - :name',
     'no-recurring-expenses-create' => "You haven't added any recurring expenses yet. Go ahead and create your first one now.",
     'active-recurring-expenses'    => 'Active Recurring Expenses',
     'inactive-recurring-expenses'  => 'Inactive Recurring Expenses',

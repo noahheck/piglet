@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesheets')
-    {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/family/member/home.css') }}" />--}}
+
 @endpush
 
 @push('scripts')
-    {{--<script type="text/javascript" src="{{ mix('js/family.merchants.index.js') }}"></script>--}}
+
 @endpush
 
 @section('content')
@@ -68,7 +68,7 @@
                             @foreach ($recurringExpenses->where('active', true) as $expense)
 
                                 <li class="recurring-expense list-group-item">
-                                    <a href="{{ route('family.recurring-expenses.edit', [$family, $expense]) }}">
+                                    <a href="{{ route('family.recurring-expenses.show', [$family, $expense]) }}">
                                         {{ $expense->name }}
                                         {{ ($expense->default_amount) ? ' - ' . App\formatCurrency($expense->default_amount, true) : '' }}
                                     </a>
@@ -88,7 +88,7 @@
                             @foreach ($recurringExpenses->where('active', false) as $expense)
 
                                 <li class="recurring-expense list-group-item">
-                                    <a href="{{ route('family.recurring-expenses.edit', [$family, $expense]) }}">
+                                    <a href="{{ route('family.recurring-expenses.show', [$family, $expense]) }}">
                                         {{ $expense->name }}
                                         {{ ($expense->default_amount) ? ' - ' . App\formatCurrency($expense->default_amount, true) : '' }}
                                     </a>

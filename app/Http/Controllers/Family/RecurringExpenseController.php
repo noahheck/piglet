@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Family;
 
 use App\Family;
 use App\Family\RecurringExpense;
+use App\Family\RecurringExpenseCharts;
+use App\Family\RecurringExpenseTables;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CreatesNewMerchants;
 use Illuminate\Http\Request;
@@ -82,9 +84,17 @@ class RecurringExpenseController extends Controller
      */
     public function show(Family $family, RecurringExpense $recurringExpense)
     {
+        $recurringExpense->load(['recurringExpenseInstances', 'recurringExpenseInstances.cashFlowPlan']);
+
+        $chartDataProvider = new RecurringExpenseCharts($recurringExpense);
+
+        $tableDataProvider = new RecurringExpenseTables($recurringExpense);
+
         return view('family.recurring-expenses.show', [
-            'family'           => $family,
-            'recurringExpense' => $recurringExpense,
+            'family'            => $family,
+            'recurringExpense'  => $recurringExpense,
+            'chartDataProvider' => $chartDataProvider,
+            'tableDataProvider' => $tableDataProvider,
         ]);
     }
 
