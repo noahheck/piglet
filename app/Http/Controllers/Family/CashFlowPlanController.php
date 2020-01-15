@@ -26,23 +26,29 @@ class CashFlowPlanController extends Controller
      */
     public function index(Family $family)
     {
+        $today = \Auth::user()->today();
         $cashFlowPlans = CashFlowPlan::all();
 
-        $curYear  = \Auth::user()->today()->format('Y');
+        $curYear  = $today->format('Y');
         $nextYear = $curYear + 1;
 
         $minExisting = $cashFlowPlans->min('year');
 
         $minYear = ($minExisting && $curYear > $minExisting) ? $minExisting : $curYear;
 
-        $years = array_merge(range($minYear, $nextYear), [$curYear]);
+        $years = range($minYear, $nextYear);
 
-        $years = array_unique(array_reverse($years));
+        $currentCfpYear = $curYear;
+
+        if ($currentCfp = CashFlowPlan::current($today)) {
+            $currentCfpYear = $currentCfp->year;
+        }
 
         return view('family.cash-flow-plans.home', [
-            'family'        => $family,
-            'cashFlowPlans' => $cashFlowPlans,
-            'years'         => $years,
+            'family'         => $family,
+            'cashFlowPlans'  => $cashFlowPlans,
+            'years'          => $years,
+            'currentCfpYear' => $currentCfpYear,
         ]);
     }
 
