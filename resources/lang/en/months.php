@@ -3,6 +3,7 @@
 return [
 
     'month' => 'month',
+    'Month' => 'Month',
 
     '01'      => 'January',
      '1'      => 'January',

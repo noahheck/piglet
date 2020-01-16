@@ -108,40 +108,46 @@
 
                     <canvas id="merchantMonthlyExpensesChart" class="piglet-chart" data-chart-data='@json($merchant->monthlyExpensesChartData($year))'></canvas>
 
-                    <table class="table table-sm">
-                        <caption>{{ __('merchants.merchant') }} {{ __('expenses.expenses') }}</caption>
+                    <div class="table-responsive">
 
-                        <thead>
-                            <tr class="font-weight-bold">
-                                <td>{{ __('expenses.date') }}</td>
-                                <td>&nbsp;</td>
-                                <td class="text-right">{{ __('expenses.amount') }}</td>
-                            </tr>
-                        </thead>
+                        <table class="table table-sm">
+                            <caption>{{ __('merchants.merchant') }} {{ __('expenses.expenses') }}</caption>
 
-                        @foreach ($merchant->expensesByYear($year) as $monthlyExpenses)
-
-                            @foreach ($monthlyExpenses as $expense)
-                                @php
-                                    $href = '';
-
-                                    if (is_a($expense, '\App\Family\CashFlowPlan\Expense')) {
-                                        $href = route('family.cash-flow-plans.expenses.edit', [$family, $expense->cash_flow_plan_id, $expense]);
-                                    } elseif (is_a($expense, '\App\Family\CashFlowPlan\RecurringExpense')) {
-                                        $href = route('family.cash-flow-plans.recurring-expenses.edit', [$family, $expense->cash_flow_plan_id, $expense]);
-                                    }
-
-                                @endphp
-                                <tr>
-                                    <td><a href="{{ $href }}">{{ ($expense->date) ? \App\formatDate($expense->date) : '<no date>' }}</a></td>
-                                    <td>{{ $expense->title() }}</td>
-                                    <td class="text-right">{{ \App\formatCurrency($expense->actual, true) }}</td>
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td>{{ __('cash-flow-plans.cash-flow-plan') }} {{ __('months.Month') }}</td>
+                                    <td>{{ __('expenses.date') }}</td>
+                                    <td>&nbsp;</td>
+                                    <td class="text-right">{{ __('expenses.amount') }}</td>
                                 </tr>
+                            </thead>
+
+                            @foreach ($merchant->expensesByYear($year) as $monthlyExpenses)
+
+                                @foreach ($monthlyExpenses as $expense)
+                                    @php
+                                        $href = '';
+
+                                        if (is_a($expense, '\App\Family\CashFlowPlan\Expense')) {
+                                            $href = route('family.cash-flow-plans.expenses.edit', [$family, $expense->cash_flow_plan_id, $expense]);
+                                        } elseif (is_a($expense, '\App\Family\CashFlowPlan\RecurringExpense')) {
+                                            $href = route('family.cash-flow-plans.recurring-expenses.edit', [$family, $expense->cash_flow_plan_id, $expense]);
+                                        }
+
+                                    @endphp
+                                    <tr>
+                                        <td>{{ __('months.' . $expense->cashFlowPlan->month) }}</td>
+                                        <td><a href="{{ $href }}">{{ ($expense->date) ? \App\formatDate($expense->date) : '<no date>' }}</a></td>
+                                        <td>{{ $expense->title() }}</td>
+                                        <td class="text-right">{{ \App\formatCurrency($expense->actual, true) }}</td>
+                                    </tr>
+                                @endforeach
+
                             @endforeach
 
-                        @endforeach
+                        </table>
 
-                    </table>
+                    </div>
 
                 </div>
 
