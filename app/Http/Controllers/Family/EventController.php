@@ -11,10 +11,11 @@ use App\Calendar\MonthDetailProvider;
 use App\Family\CalendarEntryProvider;
 use App\Family\Event;
 use App\Family;
-use function App\flashSuccess;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
+use function App\flashSuccess;
 
 class EventController extends Controller
 {
@@ -25,7 +26,7 @@ class EventController extends Controller
      */
     public function index(Family $family)
     {
-        $events = Event::orderBy('date', 'DESC')->get();
+        $events = Event::orderByDateDescending()->get();
 
         return view('family.events.home', [
             'family' => $family,
