@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+$__yearlyExpensesTotal = $merchant->totalYearlyExpensesForYear($year);
+@endphp
+
 @section('title')
     - {{ $family->name }} - {{ __('merchants.merchants') }} - {{ $merchant->name }}
 @endsection
@@ -104,7 +108,7 @@
                         </div>
                     @endif
 
-                    <h4>{{ $year }} {{ __('merchants.monthly-expenses') }}</h4>
+                    <h4>{{ $year }} {{ __('merchants.monthly-expenses') }} - {{ \App\formatCurrency($__yearlyExpensesTotal, true) }}</h4>
 
                     <canvas id="merchantMonthlyExpensesChart" class="piglet-chart" data-chart-data='@json($merchant->monthlyExpensesChartData($year))'></canvas>
 

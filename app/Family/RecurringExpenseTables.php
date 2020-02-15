@@ -33,6 +33,7 @@ class RecurringExpenseTables
             __('months.oct'),
             __('months.nov'),
             __('months.dec'),
+            __('recurring-expenses.total'),
         ];
 
         $columnLabels = [''];
@@ -60,6 +61,8 @@ class RecurringExpenseTables
 
             $columnLabels[] = $year;
 
+            $thisYearsTotal = 0;
+
             $thisYearsCfps = $cfps->filter(function($cfp, $key) use ($year) {
 
                 return $cfp->year === $year;
@@ -78,8 +81,14 @@ class RecurringExpenseTables
 
                 $thisMonthsInstance = $instances->firstWhere('cash_flow_plan_id', $thisMonthsCfp->id);
 
-                $columnData[$x][] = ($thisMonthsInstance) ? \App\formatCurrency($thisMonthsInstance->actual, true) : '';
+                $thisMonthsActual = ($thisMonthsInstance) ? $thisMonthsInstance->actual : 0;
+
+                $columnData[$x][] = ($thisMonthsActual) ? \App\formatCurrency($thisMonthsActual, true) : '';
+
+                $thisYearsTotal += $thisMonthsActual;
             }
+
+            $columnData[$x][] = \App\formatCurrency($thisYearsTotal, true);
 
             $x++;
         }
@@ -96,7 +105,7 @@ class RecurringExpenseTables
 
         $tData->setHeaders($columnLabels);
 
-        for ($y = 0; $y < 12; $y++) {
+        for ($y = 0; $y < 13; $y++) {
 
             $row = [$rowLabels[$y]];
 

@@ -106,6 +106,15 @@ class Merchant extends Model
         return collect([$expenseCashFlowPlans, $recurringExpenseCashFlowPlans])->flatten()->pluck('year')->unique();
     }
 
+    public function totalYearlyExpensesForYear($year)
+    {
+        $expenses = collect($this->expensesByYear($year))->flatten();
+
+        $total = $expenses->pluck('actual')->sum();
+
+        return $total;
+    }
+
     public function expensesByYear($year)
     {
         $this->loadExpenses();
@@ -113,7 +122,7 @@ class Merchant extends Model
         $allExpenses = $this->expenses;
 
         $yearlyExpenses = $allExpenses->filter(function($expense, $key) use ($year) {
-            return $expense->cashFlowPlan->year === $year;
+            return optional($expense->cashFlowPlan)->year === $year;
         });
 
 

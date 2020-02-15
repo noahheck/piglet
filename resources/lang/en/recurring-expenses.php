@@ -32,6 +32,8 @@ return [
     'date'           => 'Date',
     'payment-detail' => 'Payment Detail',
 
+    'total' => 'Total',
+
     'recurring-expense-created' => 'Recurring Expense Created',
     'recurring-expense-updated' => 'Recurring Expense Updated',
     'recurring-expense-deleted' => 'Recurring Expense Deleted',
