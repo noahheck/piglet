@@ -72,6 +72,10 @@ class Member extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function todos()
+    {
+        return $this->hasMany(Todo::class, 'created_by');
+    }
 
 
     public function getInitialsAttribute()

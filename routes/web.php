@@ -129,6 +129,9 @@ Route::middleware(['auth', 'auth.email_verified'])->group(function() {
         Route::resource('/events', 'EventController');
 
 
+        Route::resource('/todos', 'TodoController');
+
+
 
         // Money Matters
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');
