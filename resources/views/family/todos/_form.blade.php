@@ -23,6 +23,7 @@
             @fieldError('title')
         </div>
 
+
         <div class="row">
 
             <div class="col-6">
@@ -35,19 +36,24 @@
 
             </div>
 
-            <div class="col-6">
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="private" id="private" {{ $todo->isPrivate() ? 'checked' : '' }} value="1">
-                    <label class="form-check-label" for="private">
-                        {{ __('todos.private') }}
-                    </label>
-                </div>
-                {{ __('todos.private_description') }}
-
-            </div>
-
         </div>
+
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" name="private" id="private" {{ $todo->isPrivate() ? 'checked' : '' }} value="1">
+            <label class="form-check-label ml-2" for="private">
+                {{ __('todos.private') }}
+            </label>
+            <small class="text-muted">{{ __('todos.private_description') }}</small>
+        </div>
+
+        @if ($todo->id)
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="active" id="active" {{ $todo->active ? 'checked' : '' }} value="1">
+                <label class="form-check-label ml-2" for="active">
+                    {{ __('todos.active') }}
+                </label>
+            </div>
+        @endif
 
         <div class="form-group">
             <label for="details">{{ __('todos.details') }}</label>

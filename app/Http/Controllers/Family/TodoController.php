@@ -8,10 +8,13 @@ use App\Http\Controllers\Controller;
 use App\Family\Todo;
 
 use App\Http\Requests\Family\Todo\Store as StoreRequest;
+use App\Http\Requests\Family\Todo\Update as UpdateRequest;
 
 use App\Jobs\Family\Todo\Create;
+use App\Jobs\Family\Todo\Update;
 use Illuminate\Http\Request;
 use function App\flashSuccess;
+use function App\flashWarning;
 
 class TodoController extends Controller
 {
@@ -23,6 +26,8 @@ class TodoController extends Controller
     public function index(Request $request, Family $family, TodoProvider $todoProvider)
     {
         $allTodos = $todoProvider->getTodosAccessibleByMember($request->user()->familyMember());
+
+        $allTodos->load('createdBy');
 
         return view('family.todos.home', compact('family', 'allTodos'));
     }
@@ -75,7 +80,9 @@ class TodoController extends Controller
      */
     public function show(Family $family, Todo $todo)
     {
-        //
+        $todo->load('createdBy');
+
+        return view('family.todos.show', compact('family', 'todo'));
     }
 
     /**
@@ -86,7 +93,7 @@ class TodoController extends Controller
      */
     public function edit(Family $family, Todo $todo)
     {
-        //
+        return view('family.todos.edit', compact('family', 'todo'));
     }
 
     /**
@@ -96,9 +103,25 @@ class TodoController extends Controller
      * @param  \App\Family\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Family $family, Todo $todo)
+    public function update(UpdateRequest $request, Family $family, Todo $todo)
     {
-        //
+        $this->dispatchNow($todoUpdated = new \App\Jobs\Family\Todo\Update(
+            $todo,
+            $request->title,
+            $request->due_date,
+            $request->details,
+            $request->has('private'),
+            $request->has('active')
+        ));
+
+        flashSuccess('todos.todo-updated');
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('family.home', [$family]);
     }
 
     /**
@@ -109,6 +132,10 @@ class TodoController extends Controller
      */
     public function destroy(Family $family, Todo $todo)
     {
-        //
+        $todo->delete();
+
+        flashWarning('todos.todo-deleted');
+
+        return redirect()->route('family.home', [$family]);
     }
 }

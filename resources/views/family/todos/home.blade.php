@@ -6,6 +6,13 @@
 
 @push('stylesheets')
     {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/family/member/home.css') }}" />--}}
+    <style type="text/css">
+        .inactive,
+        .inactive:hover {
+            color: #999;
+
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -54,8 +61,11 @@
                         <div class="list-group shadow mt-3 todo-list" id="todos">
 
                             @foreach ($allTodos as $todo)
-                                <a class="todo list-group-item list-group-item-action" href="{{ route('family.todos.edit', [$family, $todo]) }}">
+                                <a class="todo list-group-item list-group-item-action {{ $todo->active ? '' : 'inactive' }}" href="{{ route('family.todos.edit', [$family, $todo]) }}">
                                     {!! $todo->createdBy->icon(['mr-2']) !!}
+                                    @if ($todo->private)
+                                        <span class="fa fa-lock" title="{{ __('todos.private') }}"></span>
+                                    @endif
                                     {{ $todo->title }} - {{ $todo->due_date }}
                                 </a>
                             @endforeach

@@ -2,40 +2,34 @@
 
 namespace App\Jobs\Family\Todo;
 
-use App\Family\Member;
 use App\Family\Todo;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class Create
+class Update
 {
     use Dispatchable, Queueable;
 
+    private $todo;
     private $title;
     private $due_date;
     private $details;
     private $private;
-    private $member;
-
-    private $todo;
+    private $active;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($title, $due_date, $details, $private, Member $member)
+    public function __construct(Todo $todo, $title, $due_date, $details, $private, $active)
     {
+        $this->todo = $todo;
         $this->title = $title;
         $this->due_date = $due_date;
         $this->details = $details;
         $this->private = $private;
-        $this->member = $member;
-    }
-
-    public function getTodo(): Todo
-    {
-        return $this->todo;
+        $this->active = $active;
     }
 
     /**
@@ -45,16 +39,13 @@ class Create
      */
     public function handle()
     {
-        $todo = new Todo;
+        $todo = $this->todo;
         $todo->title = $this->title;
-        $todo->details = $this->details;
         $todo->due_date = $this->due_date;
+        $todo->details = $this->details;
         $todo->private = $this->private;
-        $todo->created_by = $this->member->id;
-        $todo->active = true;
+        $todo->active = $this->active;
 
         $todo->save();
-
-        $this->todo = $todo;
     }
 }

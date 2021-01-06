@@ -83,6 +83,11 @@ class Member extends Model
         return substr($this->firstName, 0, 1) . substr($this->lastName, 0, 1);
     }
 
+    public function getNameAttribute()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
     public function icon(array $withClasses = [])
     {
         if ($this->image) {
