@@ -32,3 +32,71 @@ img.family-photo {
     }
   }
 }
+
+.margin {
+  border-right: 2px solid pink;
+  padding-left: 45px;
+}
+
+.sheet {
+  background-color: white;
+
+  background-image: linear-gradient(#d2d9f1 .1em, transparent .05em);
+  background-size: 100% 1.5em;
+
+
+  min-height: 200px;
+
+
+  .todo-list {
+    margin-left: 3px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+
+    .todo {
+      margin-bottom: 7px;
+      padding-left: 12px;
+
+      &:hover {
+        background-color: rgba(236,236,248,0.5);
+      }
+
+      &.overdue,
+      &.overdue a {
+        color: #f90000;
+      }
+
+      &.due-today .due-date {
+        color: orange;
+      }
+    }
+
+    a {
+      color: #333;
+    }
+
+    .details {
+      margin-left: 15px;
+      font-size: .9rem;
+    }
+  }
+
+  .completed-todo-list {
+    margin-left: 15px;
+    color: #999;
+    margin-bottom: 15px;
+
+    .todo {
+      margin-bottom: 3px;
+      &:hover {
+        background-color: rgba(236,236,248,0.5);
+      }
+
+      a {
+        padding-top: 3px;
+        text-decoration: line-through;
+        color: #999;
+      }
+    }
+  }
+}

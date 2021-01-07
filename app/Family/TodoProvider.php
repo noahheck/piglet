@@ -27,4 +27,26 @@ class TodoProvider
 
         return $todos;
     }
+
+    public function getPendingTodosForMember(Member $member)
+    {
+        $todos = $this->todoModel
+            ->ordered()
+            ->whereNull('completed')
+            ->where('created_by', $member->id)
+            ->get();
+
+        return $todos;
+    }
+
+    public function getTodosForMemberCompletedOnDate(Member $member, $date)
+    {
+        $todos = $this->todoModel
+            ->ordered()
+            ->where('completed', $date->format('m/d/Y'))
+            ->where('created_by', $member->id)
+            ->get();
+
+        return $todos;
+    }
 }

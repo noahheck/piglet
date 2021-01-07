@@ -123,14 +123,13 @@ Route::middleware(['auth', 'auth.email_verified'])->group(function() {
 
 
         // Calendar
-
         Route::get('/calendar/{year?}/{month?}/{day?}', 'CalendarController@month')->name('calendar');
-
         Route::resource('/events', 'EventController');
 
-
+        // Todos
         Route::resource('/todos', 'TodoController');
-
+        Route::post('/todos/{todo}/complete', 'TodoController@complete')->name('todos.complete');
+        Route::post('/todos/{todo}/uncomplete', 'TodoController@uncomplete')->name('todos.uncomplete');
 
 
         // Money Matters

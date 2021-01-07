@@ -2,6 +2,8 @@
 
 namespace App\Family;
 
+use App\Traits\HasDueDate;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Todo extends Model
@@ -10,7 +12,6 @@ class Todo extends Model
 
     protected $casts = [
         'active' => 'boolean',
-        'completed' => 'date',
         'created_by' => 'integer',
     ];
 
@@ -24,6 +25,46 @@ class Todo extends Model
     public function createdBy()
     {
         return $this->belongsTo(Member::class, 'created_by');
+    }
+
+    public function isDueToday()
+    {
+        if ($this->completed) {
+
+            return false;
+        }
+
+        if (!$this->due_date) {
+
+            return false;
+        }
+
+        $today = \Auth::user()->today()->setTime(0, 0, 0);
+
+        $dueDate = Carbon::createFromFormat("m/d/Y", $this->due_date, $today->timezone)
+                    ->setTime(0, 0, 0);
+
+        return $today->eq($dueDate);
+    }
+
+    public function isOverdue()
+    {
+        if ($this->completed) {
+
+            return false;
+        }
+
+        if (!$this->due_date) {
+
+            return false;
+        }
+
+        $today = \Auth::user()->today()->setTime(0, 0, 0);
+
+        $dueDate = Carbon::createFromFormat("m/d/Y", $this->due_date, $today->timezone)
+                    ->setTime(0, 0, 0);
+
+        return $dueDate->lt($today);
     }
 
     public function isPrivate()

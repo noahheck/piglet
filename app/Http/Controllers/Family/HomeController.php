@@ -6,6 +6,7 @@ use App\Calendar\DayDetailProvider;
 use App\Family;
 use App\Family\CalendarEntryProvider;
 use App\Family\CashFlowPlan;
+use App\Family\TodoProvider;
 use App\Http\Response\AjaxResponse;
 use App\Mail\MailgunTest;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-    public function index(Family $family)
+    public function index(Family $family, TodoProvider $todoProvider)
     {
         $today = \Auth::user()->today();
 
@@ -30,6 +31,14 @@ class HomeController extends Controller
             $currentCfp->load(['expenseGroups.expenses']);
         }
 
+        $user = \Auth::user();
+        $member = $user->familyMember();
+        $today = $user->today();
+
+        $todos = $todoProvider->getPendingTodosForMember($member);
+
+        $completedTodos = $todoProvider->getTodosForMemberCompletedOnDate($member, $today);
+
         return view('family.home', [
             'family'     => $family,
             'members'    => Family\Member::all(),
@@ -42,6 +51,8 @@ class HomeController extends Controller
             'dayDetailProvider' => $dayDetailProvider,
             'dayEntryProvider'  => $dayEntryProvider,
             'returnRoute'       => route('family.home', $family),
+            'todos' => $todos,
+            'completedTodos' => $completedTodos,
         ]);
     }
 }

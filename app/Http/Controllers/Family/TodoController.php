@@ -138,4 +138,33 @@ class TodoController extends Controller
 
         return redirect()->route('family.home', [$family]);
     }
+
+
+    public function complete(Request $request, Family $family, Todo $todo)
+    {
+        $today = $request->user()->today()->format("m/d/Y");
+
+        $todo->completed = $today;
+        $todo->save();
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('family.home', [$family]);
+    }
+
+    public function uncomplete(Request $request, Family $family, Todo $todo)
+    {
+        $todo->completed = null;
+        $todo->save();
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('family.home', [$family]);
+    }
 }

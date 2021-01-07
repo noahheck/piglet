@@ -133,6 +133,102 @@ $menu[] = [
 
         </div>
 
+        <div class="col-12 col-sm-10 col-md-6">
+
+            <div class="card shadow">
+                <div class="card-body p-0">
+
+                    <div>
+
+                        <div class="d-flex">
+
+                            <div class="margin flex-grow-0">
+
+                            </div>
+
+                            <h3 class="mt-4 ml-4 mb-2">
+                                <span class="fa fa-check-square-o"></span>
+                                {{ __('todos.todos') }}
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="sheet">
+
+                        <div class="d-flex">
+                            <div class="margin flex-grow-0">
+
+                            </div>
+                            <div class="flex-grow-1">
+
+                                <div class="todo-list">
+
+                                    @foreach ($todos as $todo)
+                                        <div class="todo d-flex {{ $todo->isOverdue() ? 'overdue' : '' }} {{ $todo->isDueToday() ? 'due-today' : '' }}">
+                                            <div class="flex-grow-0">
+                                                <form action="{{ route('family.todos.complete', [$family, $todo]) }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="return" value="{{ url()->current() }}">
+
+                                                    <button type="submit" class="btn btn-light mr-2 border-0" style="background: transparent;" title="{{ __('todos.complete-this-todo') }}">
+                                                        <span class="fa fa-square-o"></span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <a class="flex-grow-1" href="{{ route('family.todos.edit', [$family, $todo]) }}">
+                                                {{ $todo->title }}
+                                                <small class="due-date">{{ $todo->due_date }}</small>
+                                                @if ($todo->isDueToday())
+
+                                                @endif
+                                                @if ($todo->details)
+                                                    <div class="details">{!! nl2br(e($todo->details)) !!}</div>
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                                <div class="pl-3 pb-3">
+                                    <a href="{{ route('family.todos.create', [$family]) }}" class="btn btn-primary">
+                                        {{ __('todos.add-new-todo') }}
+                                    </a>
+                                </div>
+
+                                <div class="completed-todo-list">
+                                    @foreach ($completedTodos as $todo)
+
+                                        <div class="todo d-flex">
+                                            <div class="flex-grow-0">
+                                                <form action="{{ route('family.todos.uncomplete', [$family, $todo]) }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="return" value="{{ url()->current() }}">
+                                                    <button type="submit" class="btn btn-light mr-2 border-0" style="background: transparent;" title="{{ __('todos.uncomplete-this-todo') }}">
+                                                        <span class="fa fa-check-square-o"></span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <a class="flex-grow-1" href="{{ route('family.todos.show', [$family, $todo]) }}">
+                                                {{ $todo->title }}
+                                            </a>
+                                        </div>
+
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
             @if ($currentCfp)
 
                 @php
@@ -144,7 +240,7 @@ $menu[] = [
                     <div class="card shadow">
 
                         <a class="card-header" href="{{ $cfpRoute }}">
-                            <h3>{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
+                            <h3 class="mb-0">{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
                         </a>
 
                         <a href="{{ $cfpRoute }}">
@@ -157,7 +253,7 @@ $menu[] = [
                             </div>
                         </a>
 
-                        <div class="card-header border-top">
+<!--                        <div class="card-header border-top">
                             <h4>{{ __('expense-groups.expense-groups') }}</h4>
                         </div>
 
@@ -194,7 +290,7 @@ $menu[] = [
                                 </li>
                             @endforeach
 
-                        </ul>
+                        </ul>-->
 
                     </div>
 

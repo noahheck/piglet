@@ -35,6 +35,20 @@
                 <dt>{{ __('todos.due_date') }}</dt>
                 <dd>{{ $todo->due_date }}</dd>
 
+                @if ($todo->completed)
+                    <dt>{{ __('todos.completed') }}</dt>
+                    <dd>
+                        {{ $todo->completed }}
+                        <form action="{{ route('family.todos.uncomplete', [$family, $todo]) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="return" value="{{ url()->current() }}">
+                            <button type="submit" class="btn btn-sm btn-link">
+                                Re-open
+                            </button>
+                        </form>
+                    </dd>
+                @endif
+
                 <dt>{{ __('todos.created_by') }}</dt>
                 <dd>{!! $todo->createdBy->icon(['mr-2']) !!} {{ $todo->createdBy->name }}</dd>
             </dl>
