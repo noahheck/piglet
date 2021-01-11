@@ -50,4 +50,34 @@ class TodoProvider
 
         return $todos;
     }
+
+    public function getOverdueTodosForMember(Member $member, $date)
+    {
+        $todaysDate = $date->format('m/d/Y');
+
+        $todos = $this->todoModel
+            ->ordered()
+            ->whereNull('completed')
+            ->where('active', true)
+            ->where('created_by', $member->id)
+            ->where('due_date', '<', $todaysDate)
+            ->get();
+
+        return $todos;
+    }
+
+    public function getDueTodayTodosForMember(Member $member, $date)
+    {
+        $todaysDate = $date->format('m/d/Y');
+
+        $todos = $this->todoModel
+            ->ordered()
+            ->whereNull('completed')
+            ->where('active', true)
+            ->where('created_by', $member->id)
+            ->where('due_date', '=', $todaysDate)
+            ->get();
+
+        return $todos;
+    }
 }

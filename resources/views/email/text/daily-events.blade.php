@@ -18,6 +18,21 @@ Good morning! Here's what your day looks like:
         @endif
     @endforeach
 
+    @foreach ($details['overdueTodos'] as $todo)
+        @if ($loop->first)
+            Overdue To Dos
+        @endif
+        - {{ $todo->title }}
+
+    @endforeach
+
+    @foreach ($details['dueTodayTodos'] as $todo)
+        @if ($loop->first)
+            Today's To Dos
+        @endif
+        - {{ $todo->title }}
+    @endforeach
+
     ----------
 
 @endforeach

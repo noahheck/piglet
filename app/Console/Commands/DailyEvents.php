@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Family;
 use App\Family\CalendarEntryProvider;
+use App\Family\TodoProvider;
 use App\Mail\DailyEvents as DailyEventsEmail;
 use App\Service\FamilyConnectService;
 use App\User;
@@ -48,7 +49,7 @@ class DailyEvents extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(TodoProvider $todoProvider)
     {
         $timezone = $this->argument('timezone');
 
@@ -66,13 +67,22 @@ class DailyEvents extends Command
 
                 $events = $provider->events();
 
-                if ($events->count() === 0) {
+                $overdueTodos = $todoProvider->getOverdueTodosForMember($user->member, $user->today());
+
+                $dueTodayTodos = $todoProvider->getDueTodayTodosForMember($user->member, $user->today());
+
+                if (   $events->count() === 0
+                    && $overdueTodos->count() === 0
+                    && $dueTodayTodos->count() === 0
+                ) {
                     continue;
                 }
 
                 $familyEntryDetails[] = [
                     'family' => $family,
                     'events' => $provider->events(),
+                    'overdueTodos' => $overdueTodos,
+                    'dueTodayTodos' => $dueTodayTodos,
                 ];
             }
 
