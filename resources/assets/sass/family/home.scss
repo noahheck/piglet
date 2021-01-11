@@ -2,6 +2,8 @@
  * family/home.scss
  */
 @import "~Css/variables";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
 h2 {
   text-align: center;
@@ -33,6 +35,26 @@ img.family-photo {
   }
 }
 
+
+
+// Calendar
+.calendar-day-detail {
+
+  @include make-row();
+
+  .calendar-page,
+  .entries {
+    @include make-col-ready();
+    @include media-breakpoint-up(lg) {
+      @include make-col(6);
+    }
+  }
+
+
+
+}
+
+
 .margin {
   border-right: 2px solid pink;
   padding-left: 45px;
@@ -41,7 +63,7 @@ img.family-photo {
 .sheet {
   background-color: white;
 
-  background-image: linear-gradient(#d2d9f1 .1em, transparent .05em);
+  background-image: linear-gradient(#e2e9f9 .1em, transparent .05em);
   background-size: 100% 1.5em;
 
 
@@ -50,12 +72,29 @@ img.family-photo {
 
   .todo-list {
     margin-left: 3px;
-    font-size: 1.2rem;
+    margin-right: 15px;
+    font-size: 1.0rem;
     margin-bottom: 15px;
 
+    .date-header {
+      margin-left: 10px;
+      padding-left: 4px;
+      padding-right: 4px;
+      font-weight: 600;
+
+      &.today {
+        color: orange;
+        border-bottom: 1px solid orange;
+      }
+    }
+
     .todo {
-      margin-bottom: 7px;
+      margin-bottom: 3px;
       padding-left: 12px;
+
+      &:nth-child(2) {
+        background-color: rgba(248, 248, 248, 0.5);
+      }
 
       &:hover {
         background-color: rgba(236,236,248,0.5);
@@ -65,20 +104,13 @@ img.family-photo {
       &.overdue a {
         color: #f90000;
       }
-
-      &.due-today .due-date {
-        color: orange;
-      }
     }
 
     a {
       color: #333;
+      padding-top: 4px;
     }
 
-    .details {
-      margin-left: 15px;
-      font-size: .9rem;
-    }
   }
 
   .completed-todo-list {

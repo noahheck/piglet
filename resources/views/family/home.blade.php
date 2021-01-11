@@ -41,19 +41,21 @@ $menu[] = [
 
     <div class="row">
 
-        <div class="col-12 col-md-8 text-center">
+        <div class="col-12 col-md-6 col-lg-5 col-xl-4">
 
-            <h2>{{ $family->name }}</h2>
+            <div class="text-center">
 
-            {!! $family->photo(['rounded-circle', 'img-fluid', 'family-photo']) !!}
+                <h2>{{ $family->name }}</h2>
 
-            @if (Auth::user()->familyMember()->is_administrator)
-                <p><a href="{{ route('family.edit', $family) }}" class="btn btn-outline-primary">{{ ucwords(__('form.edit_details')) }}</a></p>
-            @endif
+                {!! $family->photo(['rounded-circle', 'img-fluid', 'family-photo']) !!}
 
-        </div>
+                @if (Auth::user()->familyMember()->is_administrator)
+                    <p><a href="{{ route('family.edit', $family) }}" class="btn btn-outline-primary">{{ ucwords(__('form.edit_details')) }}</a></p>
+                @endif
 
-        <div class="col-12 col-md-4">
+            </div>
+
+            <hr>
 
             <a class="card shadow component-link" href="{{ route('family.members.index', $family) }}">
                 <div class="card-body">
@@ -66,13 +68,6 @@ $menu[] = [
                     @endforeach
                 </div>
             </a>
-
-            {{--<div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title">Goals <small class="text-muted">- Coming Soon!</small></h5>
-                    Setting and tracking progress toward goals
-                </div>
-            </div>--}}
 
             <a class="card shadow component-link" href="{{ route('family.money-matters', $family) }}">
                 <div class="card-body">
@@ -87,7 +82,7 @@ $menu[] = [
                 </div>
             </a>
 
-            @if (App::isLocal())
+            {{--@if (App::isLocal())
                 <a class="card shadow component-link" href="{{ route('family.taskLists.index', $family) }}">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -100,9 +95,9 @@ $menu[] = [
                         </p>
                     </div>
                 </a>
-            @endif
+            @endif--}}
 
-            <a class="card shadow component-link" href="{{ route('family.calendar', $family) }}">
+<!--            <a class="card shadow component-link" href="{{ route('family.calendar', $family) }}">
                 <div class="card-body">
                     <h5 class="card-title">
                         <span class="fa fa-calendar"></span>
@@ -113,29 +108,50 @@ $menu[] = [
                     </p>
                     {{ __('calendar.calendar-short-desc') }}
                 </div>
-            </a>
+            </a>-->
 
         </div>
 
-    </div>
 
 
+        <div class="col-12 col-md-6 col-lg-7 col-xl-8">
 
-    <hr>
-
-    <div class="row justify-content-around">
-
-        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5" id="calendar_dayDetails">
-
-            @include('family.calendar._day-detail', [
-                'returnRoute' => route('family.home', $family),
-            ])
-
-        </div>
-
-        <div class="col-12 col-sm-10 col-md-6">
 
             <div class="card shadow">
+
+                <a class="card-header" href="{{ route('family.calendar', $family) }}">
+                    <h4 class="mb-0 ">
+                        <span class="fa fa-calendar mr-2"></span>{{ __('calendar.calendar') }}
+                        <span class="fa fa-external-link"></span>
+                    </h4>
+                </a>
+
+                <div class="card-body">
+
+                    <div id="calendar_dayDetails">
+
+                        @include('family.calendar._day-detail', [
+                            'returnRoute' => route('family.home', $family),
+                        ])
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="card shadow mb-5">
                 <div class="card-body p-0">
 
                     <div>
@@ -165,7 +181,16 @@ $menu[] = [
 
                                 <div class="todo-list">
 
+                                    @php
+                                        $currentDueDate = '';
+                                    @endphp
+
                                     @foreach ($todos as $todo)
+
+                                        @if ($todo->due_date != $currentDueDate)
+                                            <span class="date-header {{ $todo->due_date === \Auth::user()->today()->format('m/d/Y') ? 'today' : '' }}">{{ $currentDueDate = $todo->due_date }}</span>
+                                        @endif
+
                                         <div class="todo d-flex {{ $todo->isOverdue() ? 'overdue' : '' }} {{ $todo->isDueToday() ? 'due-today' : '' }}">
                                             <div class="flex-grow-0">
                                                 <form action="{{ route('family.todos.complete', [$family, $todo]) }}" method="POST">
@@ -179,12 +204,10 @@ $menu[] = [
                                             </div>
                                             <a class="flex-grow-1" href="{{ route('family.todos.edit', [$family, $todo]) }}">
                                                 {{ $todo->title }}
-                                                <small class="due-date">{{ $todo->due_date }}</small>
-                                                @if ($todo->isDueToday())
-
-                                                @endif
                                                 @if ($todo->details)
-                                                    <div class="details">{!! nl2br(e($todo->details)) !!}</div>
+                                                    <small>
+                                                        <span class='fa fa-align-left ml-2' title="{{ $todo->details }}"></span>
+                                                    </small>
                                                 @endif
                                             </a>
                                         </div>
@@ -227,7 +250,13 @@ $menu[] = [
                 </div>
             </div>
 
-        </div>
+
+
+
+
+
+
+
 
             @if ($currentCfp)
 
@@ -235,68 +264,94 @@ $menu[] = [
                     $cfpRoute = route("family.cash-flow-plans.show", [$family, $currentCfp]);
                 @endphp
 
-                <div class="col-12 col-sm-8 col-md-6">
+                <div class="row justify-content-center">
 
-                    <div class="card shadow">
+                    <div class="col-12 col-lg-10 col-xl-8">
 
-                        <a class="card-header" href="{{ $cfpRoute }}">
-                            <h3 class="mb-0">{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
-                        </a>
+                        <div class="card shadow">
 
-                        <a href="{{ $cfpRoute }}">
-                            <div class="card-body">
+                            <a class="card-header" href="{{ $cfpRoute }}">
+                                <h3 class="mb-0">{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
+                            </a>
 
-                                <h4>{{ __('cash-flow-plans.actual') }} {{ __('cash-flow-plans.expenditures') }}</h4>
+                            <a href="{{ $cfpRoute }}">
+                                <div class="card-body">
 
-                                <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
+                                    <h4>{{ __('cash-flow-plans.actual') }} {{ __('cash-flow-plans.expenditures') }}</h4>
 
+                                    <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
+
+                                </div>
+                            </a>
+
+                        <!--                        <div class="card-header border-top">
+                                <h4>{{ __('expense-groups.expense-groups') }}</h4>
                             </div>
-                        </a>
 
-<!--                        <div class="card-header border-top">
-                            <h4>{{ __('expense-groups.expense-groups') }}</h4>
+                            <ul class="list-group list-group-flush">
+
+                                @foreach ($currentCfp->expenseGroups as $group)
+                            <li class="list-group-item">
+
+                                <h5>{{ $group->name }}</h5>
+
+                                        <p>
+                                            <a class="float-right btn btn-sm btn-outline-primary" href="{{ route("family.cash-flow-plans.expenses.create", [$family, $currentCfp, 'expense_group_id' => $group]) }}">
+                                                <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
+                                    </a>
+                                    {{ App\formatCurrency($group->actualTotal(), true) }} / {{ App\formatCurrency($group->projected, true) }}
+                                    <small class="text-muted" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
+                                                {{ App\formatCurrency($group->actualVsProjected(), true) }}
+                                    </small>
+                                </p>
+
+                                <div class="progress">
+
+                            @php
+                                $statusClass = '';
+                                if ($group->isOverspent()) {
+                                    $statusClass = 'bg-danger';
+                                } elseif ($group->isCloseToOverspent()) {
+                                    $statusClass = 'bg-warning';
+                                }
+                            @endphp
+
+                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $group->percentUtilized() }}%" aria-valuenow="{{ $group->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($group->projected, false) }}"></div>
+                                        </div>
+                                    </li>
+                                @endforeach
+
+                                </ul>-->
+
                         </div>
-
-                        <ul class="list-group list-group-flush">
-
-                            @foreach ($currentCfp->expenseGroups as $group)
-                                <li class="list-group-item">
-
-                                    <h5>{{ $group->name }}</h5>
-
-                                    <p>
-                                        <a class="float-right btn btn-sm btn-outline-primary" href="{{ route("family.cash-flow-plans.expenses.create", [$family, $currentCfp, 'expense_group_id' => $group]) }}">
-                                            <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                        </a>
-                                        {{ App\formatCurrency($group->actualTotal(), true) }} / {{ App\formatCurrency($group->projected, true) }}
-                                        <small class="text-muted" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
-                                            {{ App\formatCurrency($group->actualVsProjected(), true) }}
-                                        </small>
-                                    </p>
-
-                                    <div class="progress">
-
-                                        @php
-                                            $statusClass = '';
-                                            if ($group->isOverspent()) {
-                                                $statusClass = 'bg-danger';
-                                            } elseif ($group->isCloseToOverspent()) {
-                                                $statusClass = 'bg-warning';
-                                            }
-                                        @endphp
-
-                                        <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $group->percentUtilized() }}%" aria-valuenow="{{ $group->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($group->projected, false) }}"></div>
-                                    </div>
-                                </li>
-                            @endforeach
-
-                        </ul>-->
 
                     </div>
 
                 </div>
 
             @endif
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <hr>
+
+    <div class="row justify-content-around">
+
+        <div class="col-12 col-sm-10 col-md-6">
+
+
+
+        </div>
+
+
 
         </div>
 

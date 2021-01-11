@@ -11,4 +11,6 @@ return [
 
     'next-day'     => 'Next Day',
     'previous-day' => 'Previous Day',
+
+    'no-events-for-month-day' => 'No Events Scheduled for :month :day',
 ];

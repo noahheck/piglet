@@ -33,6 +33,7 @@ class TodoProvider
         $todos = $this->todoModel
             ->ordered()
             ->whereNull('completed')
+            ->where('active', true)
             ->where('created_by', $member->id)
             ->get();
 

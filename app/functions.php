@@ -72,3 +72,12 @@ function urlWithQueryString($url, $queryParams) {
 function str_possessive($string) {
     return $string . '\'' . ($string[strlen($string) - 1] != 's' ? 's' : '');
 }
+
+
+function ordinal($number) {
+    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+    if ((($number % 100) >= 11) && (($number%100) <= 13))
+        return $number. 'th';
+    else
+        return $number. $ends[$number % 10];
+}
