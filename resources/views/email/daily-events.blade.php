@@ -6,15 +6,22 @@
 
 @foreach ($familyEntryDetails as $details)
 
-    @continue($details['events']->count() === 0)
-
     <h3>{{ $details['family']->name }}</h3>
 
     @foreach ($details['events'] as $event)
+        @if ($loop->first)
+            <h4>Today's Events</h4>
+            <ul>
+        @endif
+
         @if ($event->isBirthday())
-            <p>{{ \App\str_possessive($event->first_name) }} Birthday!</p>
+            <li>{{ \App\str_possessive($event->first_name) }} Birthday!</li>
         @else
-            <p>{{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}</p>
+            <li>{{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}</li>
+        @endif
+
+        @if ($loop->last)
+            </ul>
         @endif
     @endforeach
 

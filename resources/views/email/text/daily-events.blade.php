@@ -6,11 +6,12 @@ Good morning! Here's what your day looks like:
 
 @foreach ($familyEntryDetails as $details)
 
-    @continue($details['events']->count() === 0)
-
     {{ $details['family']->name }}
 
     @foreach ($details['events'] as $event)
+        @if ($loop->first)
+            Today's Events
+        @endif
         @if ($event->isBirthday())
             {{ \App\str_possessive($event->first_name) }} Birthday!
         @else
