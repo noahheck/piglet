@@ -26,7 +26,7 @@
 
                     <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-                        <div class="card">
+                        <div class="card mb-5">
 
                             <div class="card-header">
                                 {{ __('family-settings.invited_to_family') }}:

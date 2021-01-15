@@ -78,8 +78,10 @@ class TodoController extends Controller
      * @param  \App\Family\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function show(Family $family, Todo $todo)
+    public function show(Request $request, Family $family, Todo $todo)
     {
+        abort_unless($request->user()->can('view', $todo), 403);
+
         $todo->load('createdBy');
 
         return view('family.todos.show', compact('family', 'todo'));
@@ -91,8 +93,10 @@ class TodoController extends Controller
      * @param  \App\Family\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Family $family, Todo $todo)
+    public function edit(Request $request, Family $family, Todo $todo)
     {
+        abort_unless($request->user()->can('update', $todo), 403);
+
         return view('family.todos.edit', compact('family', 'todo'));
     }
 
@@ -105,6 +109,8 @@ class TodoController extends Controller
      */
     public function update(UpdateRequest $request, Family $family, Todo $todo)
     {
+        abort_unless($request->user()->can('update', $todo), 403);
+
         $this->dispatchNow($todoUpdated = new \App\Jobs\Family\Todo\Update(
             $todo,
             $request->title,
@@ -130,8 +136,10 @@ class TodoController extends Controller
      * @param  \App\Family\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Family $family, Todo $todo)
+    public function destroy(Request $request, Family $family, Todo $todo)
     {
+        abort_unless($request->user()->can('delete', $todo), 403);
+
         $todo->delete();
 
         flashWarning('todos.todo-deleted');
@@ -142,6 +150,8 @@ class TodoController extends Controller
 
     public function complete(Request $request, Family $family, Todo $todo)
     {
+        abort_unless($request->user()->can('update', $todo), 403);
+
         $today = $request->user()->today()->format("m/d/Y");
 
         $todo->completed = $today;
@@ -157,6 +167,8 @@ class TodoController extends Controller
 
     public function uncomplete(Request $request, Family $family, Todo $todo)
     {
+        abort_unless($request->user()->can('update', $todo), 403);
+
         $todo->completed = null;
         $todo->save();
 
