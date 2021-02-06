@@ -86,9 +86,20 @@ img.family-photo {
       padding-right: 4px;
       font-weight: 600;
 
+      color: #333;
+
       &.today {
-        color: orange;
-        border-bottom: 1px solid orange;
+
+        color: #000;
+        margin-top: 8px;
+        margin-bottom: 8px;
+
+        span {
+          padding: 8px;
+          border: 1px solid $light-gray-border;
+          border-radius: 50px;
+          background-color: #f9f9ff;
+        }
       }
     }
 

@@ -97,7 +97,8 @@ $menu[] = [
                 </a>
             @endif--}}
 
-<!--            <a class="card shadow component-link" href="{{ route('family.calendar', $family) }}">
+{{--
+            <a class="card shadow component-link" href="{{ route('family.calendar', $family) }}">
                 <div class="card-body">
                     <h5 class="card-title">
                         <span class="fa fa-calendar"></span>
@@ -108,7 +109,8 @@ $menu[] = [
                     </p>
                     {{ __('calendar.calendar-short-desc') }}
                 </div>
-            </a>-->
+            </a>
+--}}
 
         </div>
 
@@ -187,8 +189,12 @@ $menu[] = [
 
                                     @foreach ($todos as $todo)
 
-                                        @if ($todo->due_date != $currentDueDate)
-                                            <span class="date-header {{ $todo->due_date === \Auth::user()->today()->format('m/d/Y') ? 'today' : '' }}">{{ $currentDueDate = $todo->due_date }}</span>
+                                        @if ($todo->due_date != $currentDueDate && !$todo->isOverdue())
+                                            <div class="date-header {{ $todo->isDueToday() ? 'today' : '' }}">
+                                                <span>
+                                                    {{ $currentDueDate = $todo->due_date }}{{ $todo->isDueToday() ? ' - ' . __('todos.today') : '' }}
+                                                </span>
+                                            </div>
                                         @endif
 
                                         <div class="todo d-flex {{ $todo->isOverdue() ? 'overdue' : '' }} {{ $todo->isDueToday() ? 'due-today' : '' }}">
@@ -203,6 +209,9 @@ $menu[] = [
                                                 </form>
                                             </div>
                                             <a class="flex-grow-1" href="{{ route('family.todos.edit', [$family, $todo]) }}">
+                                                @if ($todo->isOverdue())
+                                                    <strong>{{ __('todos.overdue') }} ({{ $todo->due_date }}) - </strong>
+                                                @endif
                                                 {{ $todo->title }}
                                                 @if ($todo->details)
                                                     <small>

@@ -4,6 +4,9 @@ return [
     'todo' => 'To Do',
     'todos' => 'To Dos',
 
+    'overdue' => 'Overdue',
+    'today' => 'Today',
+
     'add-new-todo' => 'Add New To Do',
     'create-new' => 'Create New',
     'no-todos-create' => "You haven't added any To Dos yet. Go ahead and create your first one now!",
