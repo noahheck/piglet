@@ -23,6 +23,7 @@
         <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.expense-tracking') }}</li>
         <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.savings-goal-tracking') }}</li>
         <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.family-calendar') }}</li>
+        <li class="list-group-item"><span class="fa fa-check color-green"></span> {{ __('marketing.pricing-features.todos') }}</li>
     </ul>
 
 </div>

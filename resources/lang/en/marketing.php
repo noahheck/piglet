@@ -20,6 +20,8 @@ return [
         'savings-goal-tracking' => 'Savings Goal Tracking',
 
         'family-calendar' => 'Family Calendar',
+
+        'todos' => 'To Do Lists',
     ],
 
 
@@ -30,10 +32,26 @@ return [
     'calendar-desc' => "<p class='lead'>Keep your family coordinated on all of life's important events using the Family Calendar.</p>
                         <p>School plays, birthday parties, and doctor appointments all find ways to slip under the radar. Having a coordinated calendar makes keeping track of all your family's activities a breeze!</p>
                         <p>
-                            <span class='fa fa-envelope color-purple'></span>
-                            <strong>NEW!</strong> - Receive a listing of the day's events each morning in your inbox so you never miss out!
+                            <span class='fa fa-envelope color-blue'></span>
+                            - Each morning, you'll receive a listing of the day's events in your email inbox so you never miss out!
                         </p>
                         ",
+
+    'todo-lists' => 'To Do Lists',
+    'todo-lists-desc' => "<p class='lead'>
+                                <span class='fa fa-check-square-o'></span>
+                                <strong>NEW!</strong> -
+                                Keep on top of all the things you have to do by organizing all of your tasks with To Do Lists
+                            </p>
+                            <p>
+                                Life is busy, and things seem to find a way to fall through the cracks. Keep on top of all that you have going on. Keep them organized by planning ahead, and have everything you need to do in one place.
+                            </p>
+                            <p>
+                                <span class='fa fa-envelope color-blue'></span>
+                                - To dos also get emailed to you each morning, so you don't have to worry about forgetting anything!
+                            </p>
+    ",
+
 
 
     'money-matters' => 'Money Matters',

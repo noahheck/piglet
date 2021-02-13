@@ -30,6 +30,10 @@
                         <span class="fa fa-circle fa-stack-2x color-red"></span>
                         <span class="fa fa-calendar fa-stack-1x color-white"></span>
                     </span>
+                    <span class="fa-stack fa-3x">
+                        <span class="fa fa-circle fa-stack-2x color-blue"></span>
+                        <span class="fa fa-check-square-o fa-stack-1x color-white"></span>
+                    </span>
                 </p>
 
                 <hr>
@@ -109,6 +113,26 @@
 
         <div class="col-12 col-md-6 pt-3 pt-md-0">
             {!! __('marketing.calendar-desc') !!}
+        </div>
+
+    </div>
+
+
+
+    <div class="row mt-5 border shadow-sm pb-5 m-1 feature-set">
+
+        <div class="col-12">
+            <h3 class="pb-4 pt-4">{{ __('marketing.todo-lists') }}</h3>
+        </div>
+
+        <div class="col-12 col-md-6 order-2 order-md-3">
+            <div class="card p-3 border-0">
+                <img class="card-img" src="{{ asset('img/marketing/to-dos.png') }}" alt="">
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 pt-3 pt-md-0 order-3 order-md-2">
+            {!! __('marketing.todo-lists-desc') !!}
         </div>
 
     </div>
