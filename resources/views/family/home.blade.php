@@ -273,64 +273,48 @@ $menu[] = [
                     $cfpRoute = route("family.cash-flow-plans.show", [$family, $currentCfp]);
                 @endphp
 
-                <div class="row justify-content-center">
+                <div class="card shadow">
 
-                    <div class="col-12 col-lg-10 col-xl-8">
+                    <a class="card-header" href="{{ $cfpRoute }}">
+                        <h3 class="mb-0">{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
+                    </a>
 
-                        <div class="card shadow">
+                    <div class="card-body">
 
-                            <a class="card-header" href="{{ $cfpRoute }}">
-                                <h3 class="mb-0">{{ __('months.' . $currentCfp->month) }} {{ $currentCfp->year }} <span class="fa fa-external-link"></span></h3>
-                            </a>
+                        <h4>{{ __('cash-flow-plans.actual') }} {{ __('cash-flow-plans.expenditures') }}</h4>
 
-                            <a href="{{ $cfpRoute }}">
-                                <div class="card-body">
+                        <div class="row justify-content-center">
 
-                                    <h4>{{ __('cash-flow-plans.actual') }} {{ __('cash-flow-plans.expenditures') }}</h4>
+                            <div class="col col-lg-6 order-1 order-lg-2">
 
-                                    <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
+                                <canvas id="cfpActualBalanceChart" class="piglet-chart" data-chart-data='@json($currentCfp->actualBalanceChartData())'></canvas>
 
-                                </div>
-                            </a>
-
-                        <!--                        <div class="card-header border-top">
-                                <h4>{{ __('expense-groups.expense-groups') }}</h4>
                             </div>
 
-                            <ul class="list-group list-group-flush">
+                            <div class="col col-lg-6 order-2 order-lg-1">
 
-                                @foreach ($currentCfp->expenseGroups as $group)
-                            <li class="list-group-item">
-
-                                <h5>{{ $group->name }}</h5>
-
-                                        <p>
-                                            <a class="float-right btn btn-sm btn-outline-primary" href="{{ route("family.cash-flow-plans.expenses.create", [$family, $currentCfp, 'expense_group_id' => $group]) }}">
-                                                <span class="fa fa-dollar"></span> {{ __('expenses.add-new-expense') }}
-                                    </a>
-                                    {{ App\formatCurrency($group->actualTotal(), true) }} / {{ App\formatCurrency($group->projected, true) }}
-                                    <small class="text-muted" title="{{ __('cash-flow-plans.actual-vs-projected') }}">
-                                                {{ App\formatCurrency($group->actualVsProjected(), true) }}
-                                    </small>
-                                </p>
-
-                                <div class="progress">
-
-                            @php
-                                $statusClass = '';
-                                if ($group->isOverspent()) {
-                                    $statusClass = 'bg-danger';
-                                } elseif ($group->isCloseToOverspent()) {
-                                    $statusClass = 'bg-warning';
-                                }
-                            @endphp
-
-                                    <div class="progress-bar {{ $statusClass }}" role="progressbar" style="width: {{ $group->percentUtilized() }}%" aria-valuenow="{{ $group->actualTotal() }}" aria-valuemin="0" aria-valuemax="{{ App\formatCurrency($group->projected, false) }}"></div>
-                                        </div>
+                                <ul class="list-group shadow-sm">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span class="font-weight-bold">{{ __('cash-flow-plans.income') }}</span>
+                                        <span>
+                                            {{ App\formatCurrency($currentCfp->actualIncomeSourcesTotal(), true) }}
+                                        </span>
                                     </li>
-                                @endforeach
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span class="font-weight-bold">{{ __('cash-flow-plans.expenditures') }}</span>
+                                        <span>
+                                            {{ App\formatCurrency($currentCfp->allExpendituresTotal(), true) }}
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span class="font-weight-bold">{{ __('cash-flow-plans.balance') }}</span>
+                                        <span>
+                                            {{ App\formatCurrency($currentCfp->balance(), true) }}
+                                        </span>
+                                    </li>
+                                </ul>
 
-                                </ul>-->
+                            </div>
 
                         </div>
 
