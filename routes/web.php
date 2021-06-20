@@ -131,6 +131,8 @@ Route::middleware(['auth', 'auth.email_verified'])->group(function() {
         Route::post('/todos/{todo}/complete', 'TodoController@complete')->name('todos.complete');
         Route::post('/todos/{todo}/uncomplete', 'TodoController@uncomplete')->name('todos.uncomplete');
 
+        // Contacts
+        Route::resource('/contacts', 'ContactController');
 
         // Money Matters
         Route::get('/money-matters', 'MoneyMattersController@index')->name('money-matters');
