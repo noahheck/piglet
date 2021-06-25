@@ -82,8 +82,14 @@
                                                 @endif
                                             </a>
                                         </td>
-                                        <td>{{ $contact->phone }}</td>
-                                        <td>{{ $contact->birthdate }}</td>
+                                        <td>
+                                            {{ $contact->phone }}
+                                            @if ($contact->secondaryPhone ?? false)
+                                                <br>
+                                                {{ $contact->secondaryPhone }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $contact->dateOfBirth }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

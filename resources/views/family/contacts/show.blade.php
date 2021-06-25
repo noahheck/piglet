@@ -38,7 +38,7 @@
                     <h3>{{ $contact->name }}</h3>
                 </div>
                 <a class="card-footer" href="{{ route('family.contacts.edit', [$family, $contact]) }}">
-                    {{ __('form.edit') }}
+                    <span class="fa fa-edit"></span> {{ __('form.edit') }}
                 </a>
             </div>
 
@@ -53,6 +53,55 @@
                     <em>&lt;No Name&gt;</em>
                 @endif
             </h2>
+
+            <dl>
+                @if($contact->birthdate ?? false)
+                    <dt>{{ __('contacts.birthdate') }}</dt>
+                    <dd>{{ $contact->dateOfBirth }} <strong>{{ __('contacts.age') }}</strong> {{ $contact->age() }}</dd>
+                @endif
+
+                @if($contact->address ?? false)
+                    <dt>{{ __('contacts.address') }}</dt>
+                    <dd>{!! nl2br(e($contact->address)) !!}</dd>
+                @endif
+
+                @if (($contact->email ?? $contact->secondaryEmail) ?? false)
+                    <dt>{{ __('contacts.email') }}</dt>
+                    <dd>
+                        @if ($contact->email)
+                            <a class="btn btn-sm btn-outline-primary" href="mailto:{{ $contact->email }}">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                            {{ $contact->email }}
+                        @endif
+                        @if ($contact->secondaryEmail)
+                            <a class="btn btn-sm btn-outline-primary ml-4" href="mailto:{{ $contact->secondaryEmail }}">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                            {{ $contact->secondaryEmail }}
+                        @endif
+                    </dd>
+                @endif
+
+                @if (($contact->phone || $contact->secondaryPhone) ?? false)
+                    <dt>{{ __('contacts.phone') }}</dt>
+                    <dd>
+                        @if ($contact->phone ?? false)
+                            <a class="btn btn-sm btn-outline-primary" href="tel:{{ $contact->phone }}">
+                                <span class="fa fa-phone"></span>
+                            </a>
+                            {{ $contact->phone }}
+                        @endif
+                        @if ($contact->secondaryPhone ?? false)
+                            <a class="btn btn-sm btn-outline-primary ml-4" href="tel:{{ $contact->secondaryPhone }}">
+                                <span class="fa fa-phone"></span>
+                            </a>
+                            {{ $contact->secondaryPhone }}
+                        @endif
+                    </dd>
+                @endif
+
+            </dl>
 
         </div>
 

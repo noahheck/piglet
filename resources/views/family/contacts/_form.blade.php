@@ -59,7 +59,7 @@
 
                         <div class="form-group">
                             <label for="birthdate">{{ __('contacts.birthdate') }} <small class="text-muted">mm/dd/yyyy</small></label>
-                            <input type="text" name="birthdate" id="birthdate" class="form-control datepicker" placeholder="{{ __('contacts.birthdate') }}" value="{{ old('birthdate', $contact->birthdate) }}">
+                            <input type="text" name="birthdate" id="birthdate" class="form-control datepicker" placeholder="{{ __('contacts.birthdate') }}" value="{{ old('birthdate', $contact->dateOfBirth) }}">
                             @fieldError('birthdate')
                         </div>
 
@@ -87,6 +87,16 @@
                     <label for="secondaryPhone">{{ __('contacts.secondaryPhone') }}</label>
                     <input type="text" name="secondaryPhone" id="secondaryPhone" class="form-control phone-field" placeholder="{{ __('contacts.secondaryPhone') }}" value="{{ old('secondaryPhone', $contact->secondaryPhone) }}">
                     @fieldError('secondaryPhone')
+                </div>
+
+                <div class="form-group">
+                    <label for="email">{{ __('contacts.email') }}</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('contacts.email') }}" value="{{ old('email', $contact->email) }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="secondaryEmail">{{ __('contacts.secondaryEmail') }}</label>
+                    <input type="email" name="secondaryEmail" id="secondaryEmail" class="form-control" placeholder="{{ __('contacts.secondaryEmail') }}" value="{{ old('secondaryEmail', $contact->secondaryEmail) }}">
                 </div>
 
                 <div class="form-group">

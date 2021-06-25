@@ -16,6 +16,8 @@ class Create
     private $birthdate;
     private $phone;
     private $secondaryPhone;
+    private $email;
+    private $secondaryEmail;
     private $address1;
     private $address2;
     private $city;
@@ -36,6 +38,8 @@ class Create
         $birthdate,
         $phone,
         $secondaryPhone,
+        $email,
+        $secondaryEmail,
         $address1,
         $address2,
         $city,
@@ -48,6 +52,8 @@ class Create
         $this->birthdate = $birthdate;
         $this->phone = $phone;
         $this->secondaryPhone = $secondaryPhone;
+        $this->email = $email;
+        $this->secondaryEmail = $secondaryEmail;
         $this->address1 = $address1;
         $this->address2 = $address2;
         $this->city = $city;
@@ -75,6 +81,8 @@ class Create
         $contact->birthdate = $this->birthdate;
         $contact->phone = $this->phone;
         $contact->secondaryPhone = $this->secondaryPhone;
+        $contact->email = $this->email;
+        $contact->secondaryEmail = $this->secondaryEmail;
         $contact->address1 = $this->address1;
         $contact->address2 = $this->address2;
         $contact->city = $this->city;

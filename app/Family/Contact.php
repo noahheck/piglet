@@ -2,11 +2,15 @@
 
 namespace App\Family;
 
+use App\Traits\HasAddress;
+use App\Traits\HasBirthdate;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        HasBirthdate,
+        HasAddress;
 
     public function getNameAttribute()
     {

@@ -25,6 +25,8 @@ class Store extends FormRequest
     {
         return [
             'birthdate' => 'date|nullable',
+            'email' => 'email|nullable',
+            'secondaryEmail' => 'email|nullable',
         ];
     }
 }
