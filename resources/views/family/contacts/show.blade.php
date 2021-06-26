@@ -46,7 +46,7 @@
 
         <div class="col-12 col-md-9">
 
-            <h2 style="border-bottom: 1px solid #ccc;">
+            <h2 style="border-bottom: 1px solid #e3e3e3;">
                 @if ($contact->fullname)
                     {{ $contact->fullname }}
                 @else
@@ -102,6 +102,12 @@
                 @endif
 
             </dl>
+
+            @if ($contact->notes ?? false)
+                <hr>
+
+                {!! nl2br(e($contact->notes)) !!}
+            @endif
 
         </div>
 

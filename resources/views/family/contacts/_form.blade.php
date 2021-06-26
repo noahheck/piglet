@@ -1,7 +1,3 @@
-{{--@push('scripts')
-    <script type="text/javascript" src="{{ mix('js/family.events._form.js') }}"></script>
-@endpush--}}
-
 <form name="event" action="{{ $action }}" method="POST" class="has-bold-labels" autocomplete="off">
 
     @csrf
@@ -21,6 +17,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" id="contactTab" data-toggle="tab" href="#contactInfo" role="tab" aria-controls="contact" aria-selected="false">{{ __('contacts.contactInfo') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="addressTab" data-toggle="tab" href="#addressInfo" role="tab" aria-controls="contact" aria-selected="false">{{ __('contacts.address') }}</a>
         </li>
 
     </ul>
@@ -67,6 +66,11 @@
 
                 </div>
 
+                <div class="form-group">
+                    <label for="notes">{{ __('contacts.notes') }}</label>
+                    <textarea name="notes" id="notes" rows="5" class="form-control" placeholder="{{ __('contacts.notes_examples') }}">{{ old('notes', $contact->notes) }}</textarea>
+                </div>
+
             </fieldset>
 
         </div>
@@ -98,6 +102,14 @@
                     <label for="secondaryEmail">{{ __('contacts.secondaryEmail') }}</label>
                     <input type="email" name="secondaryEmail" id="secondaryEmail" class="form-control" placeholder="{{ __('contacts.secondaryEmail') }}" value="{{ old('secondaryEmail', $contact->secondaryEmail) }}">
                 </div>
+
+            </fieldset>
+        </div>
+
+        <div class="tab-pane fade" id="addressInfo" role="tabpanel" aria-labelledby="addressTab">
+
+            <firldset>
+                <legend>{{ __('contacts.address') }}</legend>
 
                 <div class="form-group">
                     <label for="address1">{{ __('contacts.address1') }}</label>

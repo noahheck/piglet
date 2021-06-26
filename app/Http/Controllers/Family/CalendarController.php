@@ -31,11 +31,11 @@ class CalendarController extends Controller
 
         $monthDetailProvider = new MonthDetailProvider($year, $month);
 
-        $monthEntryProvider = new CalendarEntryProvider($year, $month);
+        $monthEntryProvider = new CalendarEntryProvider($year, $month, null, $family->id);
 
         $dayDetailProvider   = new DayDetailProvider($year, $month, $day);
 
-        $dayEntryProvider = new CalendarEntryProvider($year, $month, $day);
+        $dayEntryProvider = new CalendarEntryProvider($year, $month, $day, $family->id);
 
 
 

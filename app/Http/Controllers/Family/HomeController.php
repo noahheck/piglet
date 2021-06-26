@@ -25,7 +25,7 @@ class HomeController extends Controller
         $day   = $today->day;
 
         $dayDetailProvider = new DayDetailProvider($year, $month, $day);
-        $dayEntryProvider  = new CalendarEntryProvider($year, $month, $day);
+        $dayEntryProvider  = new CalendarEntryProvider($year, $month, $day, $family->id);
 
         if ($currentCfp = CashFlowPlan::current($today)) {
             $currentCfp->load(['expenseGroups.expenses']);

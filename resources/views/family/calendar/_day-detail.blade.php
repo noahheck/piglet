@@ -55,7 +55,7 @@ $returnRoute = isset($returnRoute) ? $returnRoute : route('family.calendar', [$f
 
                     @if ($event->isBirthday())
 
-                        <a class="entry all-day-entry birthday" href="{{ route('family.members.show', [$family, $event->member_id]) }}">
+                        <a class="entry all-day-entry birthday" href="{{ $event->url }}">
                             <h4>
                                 <span class="fa fa-birthday-cake"></span> {{ App\str_possessive($event->first_name) }} Birthday!
                             </h4>

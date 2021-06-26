@@ -18,6 +18,8 @@ return [
     'lastName' => 'Last Name',
     'birthdate' => 'Birthdate',
     'age' => 'Age',
+    'notes' => 'Notes',
+    'notes_examples' => 'Your family\'s relationship to this person, how you met them, etc...',
     'address' => 'Address',
 
     'contactInfo' => 'Contact Info',

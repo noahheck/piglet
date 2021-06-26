@@ -15,6 +15,7 @@ class Update
     private $middle_name;
     private $last_name;
     private $birthdate;
+    private $notes;
     private $phone;
     private $secondaryPhone;
     private $email;
@@ -36,6 +37,7 @@ class Update
         $middle_name,
         $last_name,
         $birthdate,
+        $notes,
         $phone,
         $secondaryPhone,
         $email,
@@ -51,6 +53,7 @@ class Update
         $this->middle_name = $middle_name;
         $this->last_name = $last_name;
         $this->birthdate = $birthdate;
+        $this->notes = $notes;
         $this->phone = $phone;
         $this->secondaryPhone = $secondaryPhone;
         $this->email = $email;
@@ -75,6 +78,7 @@ class Update
         $contact->middle_name = $this->middle_name;
         $contact->last_name = $this->last_name;
         $contact->birthdate = $this->birthdate;
+        $contact->notes = $this->notes;
         $contact->phone = $this->phone;
         $contact->secondaryPhone = $this->secondaryPhone;
         $contact->email = $this->email;

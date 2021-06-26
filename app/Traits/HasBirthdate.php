@@ -22,7 +22,7 @@ trait HasBirthdate
 
     public function getDateOfBirthAttribute()
     {
-        if (!$this->attributes['birthdate']) {
+        if (!isset($this->attributes['birthdate'])|| !$this->attributes['birthdate']) {
 
             return '';
         }

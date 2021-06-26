@@ -25,6 +25,11 @@ class CalendarEntryProvider
     private $day;
 
     /**
+     * @var string
+     */
+    private $family_id;
+
+    /**
      * @var array
      */
     private $entries = [];
@@ -40,11 +45,12 @@ class CalendarEntryProvider
      * @param $month
      * @param null $day
      */
-    public function __construct($year, $month, $day = null)
+    public function __construct($year, $month, $day = null, $family_id = null)
     {
         $this->year = $year;
         $this->month = $month;
         $this->day = $day;
+        $this->family_id = $family_id;
 
         $this->fetchEntries();
     }
@@ -99,9 +105,14 @@ class CalendarEntryProvider
 
             $events = Event::whereBetween('date', [$startOfMonth, $endOfMonth])->orderBy('date')->get();
 
-            $birthdayContacts = Member::whereMonth('birthdate', $monthDetails->monthWithLeadingZero())->orderBy('birthdate')->get();
+            $birthdayMembers = Member::whereMonth('birthdate', $monthDetails->monthWithLeadingZero())->orderBy('birthdate')->get();
 
-            $birthdayEvents = $this->contactsToBirthdayEvents($birthdayContacts);
+            $birthdayEvents = $this->membersToBirthdayEvents($birthdayMembers);
+
+            $birthdayContacts = Contact::whereMonth('birthdate', $monthDetails->monthWithLeadingZero())->orderBy('birthdate')->get();
+
+            $contactBirthdayEvents = $this->contactsToBirthdayEvents($birthdayContacts);
+
         } else {
             // Calendar scope is a day
             $carbon = Carbon::createFromDate($this->year, $this->month, $this->day);
@@ -109,14 +120,25 @@ class CalendarEntryProvider
 
             $events = Event::where('date', $date)->orderBy('all_day', 'desc')->get();
 
-            $birthdayContacts = Member::whereMonth('birthdate', $carbon->format('m'))
+            $birthdayMembers = Member::whereMonth('birthdate', $carbon->format('m'))
                                       ->whereDay('birthdate', $carbon->format('d'))
                                       ->get();
 
-            $birthdayEvents = $this->contactsToBirthdayEvents($birthdayContacts);
+            $birthdayEvents = $this->membersToBirthdayEvents($birthdayMembers);
+
+            $birthdayContacts = Contact::whereMonth('birthdate', $carbon->format('m'))
+                                    ->whereDay('birthdate', $carbon->format('d'))
+                                    ->get();
+
+            $contactBirthdayEvents = $this->contactsToBirthdayEvents($birthdayContacts);
+
         }
 
         $birthdayEvents->each(function($event, $key) use ($events) {
+            $events->push($event);
+        });
+
+        $contactBirthdayEvents->each(function($event, $key) use ($events) {
             $events->push($event);
         });
 
@@ -160,7 +182,32 @@ class CalendarEntryProvider
         $events = collect([]);
 
         $birthdayContacts->each(function($contact, $key) use ($events) {
-            $bdayEvent = new BirthdayEvent($contact->toArray());
+
+            $details = [
+                'id' => $contact->id,
+                'firstName' => $contact->first_name,
+                'lastName' => $contact->last_name,
+                'birthdate' => $contact->birthdate,
+            ];
+
+            $bdayEvent = new BirthdayEvent($details, route('family.contacts.show', [$this->family_id, $contact]));
+
+            $date = Carbon::createFromFormat('Y-m-d G:i:s', $bdayEvent->birthdate);
+            $date->year($this->year);
+            $bdayEvent->date = $date->format('m/d/Y');
+
+            $events->push($bdayEvent);
+        });
+
+        return $events;
+    }
+
+    private function membersToBirthdayEvents($birthdayMembers)
+    {
+        $events = collect([]);
+
+        $birthdayMembers->each(function($member, $key) use ($events) {
+            $bdayEvent = new BirthdayEvent($member->toArray(), route('family.members.show', [$this->family_id, $member]));
 
             $date = Carbon::createFromFormat('Y-m-d G:i:s', $bdayEvent->birthdate);
             $date->year($this->year);
