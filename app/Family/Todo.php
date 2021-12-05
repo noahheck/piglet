@@ -19,7 +19,7 @@ class Todo extends Model
     {
         return $query
             ->orderBy('completed', 'ASC')
-            ->orderBy('due_date', 'ASC');
+            ->orderByRaw("(SUBSTR(due_date, 7) || SUBSTR(due_date, 1, 2) || SUBSTR(due_date, 4, 2))");
     }
 
     public function createdBy()
