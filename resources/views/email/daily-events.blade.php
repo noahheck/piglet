@@ -6,7 +6,11 @@
 
 @foreach ($familyEntryDetails as $details)
 
-    <h3>{{ $details['family']->name }}</h3>
+    <h3>
+        <a href="{{ route("family.home", [$details['family']]) }}">
+            {{ $details['family']->name }}
+        </a>
+    </h3>
 
     @foreach ($details['events'] as $event)
         @if ($loop->first)
@@ -15,9 +19,17 @@
         @endif
 
         @if ($event->isBirthday())
-            <li>{{ \App\str_possessive($event->first_name) }} Birthday!</li>
+            <li>
+                <a href="{{ $event->url }}">
+                    {{ \App\str_possessive($event->first_name) }} Birthday!
+                </a>
+            </li>
         @else
-            <li>{{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}</li>
+            <li>
+                <a href="{{ route('family.events.show', [$details['family'], $event]) }}">
+                    {{ $event->title }} - {{ ($event->all_day) ? "All Day" : $event->time }}
+                </a>
+            </li>
         @endif
 
         @if ($loop->last)
@@ -30,7 +42,11 @@
             <h4>Overdue To Dos</h4>
             <ul>
         @endif
-            <li>{{ $todo->title }}</li>
+            <li>
+                <a href="{{ route('family.todos.show', [$details['family'], $todo]) }}">
+                    {{ $todo->title }}
+                </a>
+            </li>
         @if ($loop->last)
             </ul>
         @endif
@@ -41,7 +57,11 @@
             <h4>Today's To Dos</h4>
             <ul>
         @endif
-            <li>{{ $todo->title }}</li>
+            <li>
+                <a href="{{ route('family.todos.show', [$details['family'], $todo]) }}">
+                    {{ $todo->title }}
+                </a>
+            </li>
         @if ($loop->last)
             </ul>
         @endif

@@ -63,7 +63,7 @@ class DailyEvents extends Command
             foreach ($user->families->where('active', true) as $family) {
                 $this->connectService->connectToFamily($family);
 
-                $provider = new CalendarEntryProvider($today->year, $today->month, $today->day);
+                $provider = new CalendarEntryProvider($today->year, $today->month, $today->day, $family->id);
 
                 $events = $provider->events();
 
