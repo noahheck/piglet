@@ -43,6 +43,10 @@ class RecurringExpenseCharts
                 'backgroundColor' => Charts::BACKGROUND_COLOR_YELLOW,
                 'borderColor' => Charts::BORDER_COLOR_YELLOW,
             ],
+            [
+                'backgroundColor' => Charts::BACKGROUND_COLOR_BROWN,
+                'borderColor' => Charts::BORDER_COLOR_BROWN,
+            ],
         ];
 
         $labels = [
